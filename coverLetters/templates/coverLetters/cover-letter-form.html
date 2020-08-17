@@ -19,7 +19,7 @@
     
     <h2> {{note}} </h2>
     
-    <form action="{% url 'all-jobs' %}" method="post" class="cover-letter-form">
+    <form action="{% url 'cover-letter' %}" method="post" class="cover-letter-form">
         {% csrf_token %}
         {{ coverLetterForm }}
         <input type="submit" value="Render Template" />
