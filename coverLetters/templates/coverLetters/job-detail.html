@@ -1,13 +1,13 @@
-    
 {% load static %}
     
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        <title>Job Info</title>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">
     </head>
     <body>
         <a href="{% url 'all-jobs' %}"> Back </a>
@@ -16,12 +16,64 @@
             <p> {{key}}: {{job.key}} </p>
         {% endfor %} {% endcomment %}
         <h1>Job Info: {{job.title}} | {{job.company}}</h1>
-        <div style="display: flex;"> 
+        <div class="job-detail-container"> 
             <p> Job Company: </p> <p>{{job.company}} </p>
         </div>
+        <div class="job-detail-container"> 
+            <p> Job Title: </p> <p> {{job.title}} </p>
+        </div>
+        <div class="job-detail-container"> 
+            <p> Job Link: </p> <p> {{job.link}} </p>
+        </div>
+        <div class="job-detail-container"> 
+            <p> Job Link: </p> <p> {{job.job_description}} </p>
+        </div>
+        <div class="job-detail-container"> 
+            <p> Top Skills: </p> <p> {{job.top_skills}} </p>
+        </div>
+        {% if job.extra_line_one %}
+            <div class="job-detail-container"> 
+                <p> Line One: </p> <p> {{job.extra_line_one}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_two %}
+            <div class="job-detail-container"> 
+                <p> Line two: </p> <p> {{job.extra_line_two}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_three %}
+            <div class="job-detail-container"> 
+                <p> Line three: </p> <p> {{job.extra_line_three}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_four %}
+            <div class="job-detail-container"> 
+                <p> Line four: </p> <p> {{job.extra_line_four}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_five %}
+            <div class="job-detail-container"> 
+                <p> Line five: </p> <p> {{job.extra_line_five}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_six %}
+            <div class="job-detail-container"> 
+                <p> Line six: </p> <p> {{job.extra_line_six}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_seven %}
+            <div class="job-detail-container"> 
+                <p> Line seven: </p> <p> {{job.extra_line_seven}} </p>
+            </div>
+        {% endif %}
+        {% if job.extra_line_eight %}
+            <div class="job-detail-container"> 
+                <p> Line eight: </p> <p> {{job.extra_line_eight}} </p>
+            </div>
+        {% endif %}
         
-        <p> {{job.title}} </p>
-        <p> {{job.link}} </p>
+        
+        
     </body>
     </html>
    

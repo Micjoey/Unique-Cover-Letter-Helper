@@ -6,6 +6,7 @@ class Job(models.Model):
     title = models.CharField(max_length = 200)
     link = models.CharField(max_length = 200, null=True, blank=True)
     top_skills = models.TextField(null=True, blank=True)
+    job_description = models.TextField(null=True, blank=True)
     extra_line_one = models.TextField(null=True, blank=True)
     extra_line_two = models.TextField(null=True, blank=True)
     extra_line_three = models.TextField(null=True, blank=True)

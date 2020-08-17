@@ -1,0 +1,22 @@
+.job-info-container {
+    border-top: 2px dotted black;
+    border-bottom: 2px dotted black;
+}
+
+a {
+    margin: 1em;
+}
+
+body {
+    margin: 1vh
+}
+
+.job-detail-container {
+    display: flex;
+}
+
+.job-detail-container > p:nth-child(2) {
+    color: black;
+    font-weight: bold;
+    padding-left: 1em;
+}
