@@ -2,11 +2,14 @@
 
 {% for job in jobs.all %}
     -------------------------
-    <h1> {{job.company}} </h1>
-    <ul>
-        <a href="{% url 'job/job.id' %}">
-        <h2> {{job.title}} </h2>
+    <a href="{% url 'job-detail' job.id %}">
+        <h1> {{job.company}} </h1>
+        <ul>
+            
+                <h2> {{job.title}} </h2>
+        
 
-    </ul>
+        </ul>
+    <a/>
     -------------------------
 {% endfor %}
