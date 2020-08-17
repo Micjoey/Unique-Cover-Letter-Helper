@@ -20,6 +20,6 @@ import coverLetters.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', coverLetters.views.homepage, name='homepage'),
-    path('job-info', coverLetters.views.detail, name='job-info')
-    path('cover-letter', coverLetters.views.homepage, name='cover-letter-form')
+    path('detail', coverLetters.views.detail, name='detail'),
+    path('cover-letter', coverLetters.views.detail, name='cover-letter-form')
 ]
