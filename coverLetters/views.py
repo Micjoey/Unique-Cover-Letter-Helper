@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Job
+from.forms import CoverLetterForm
 
 def all_jobs(request):
     jobs = Job.objects
@@ -7,9 +8,9 @@ def all_jobs(request):
         'jobs': jobs
     })
 
-
 def cover_letter_form(request):
-    return render(request, 'coverLetters/cover-letter-form.html')
+    form = CoverLetterForm()
+    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
 def detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)

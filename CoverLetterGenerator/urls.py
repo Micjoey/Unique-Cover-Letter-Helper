@@ -22,5 +22,8 @@ urlpatterns = [
     path('', coverLetters.views.homepage, name='homepage'),
     path('all-jobs', coverLetters.views.all_jobs, name='all-jobs'),
     path('job-detail/<int:job_id>', coverLetters.views.detail, name='job-detail'),
-    path('cover-letter', coverLetters.views.detail, name='cover-letter-form')
+    path('cover-letter', coverLetters.views.cover_letter_form,
+         name='cover-letter-form'),
+    # path('cover-letters', coverLetters.views.cover_letter_form,
+    #      name='cover-letter-form'),
 ]

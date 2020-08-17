@@ -1,6 +1,7 @@
-<h1>All My Jobs</h1>
+<h1> Cover Letter Template Form </h1>
 
-{% for job in jobs.all %}
-    <h1> {{job.company}} </h1>
-    <h2> {{job.title}} </h2>
-{% endfor %}
+<form action="{% url 'homepage' %}" method="post">
+    {% csrf_token %} 
+    {{ coverLetterForm }}
+    <input type="submit" value="Render Template"/>
+</form>
