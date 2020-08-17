@@ -1,6 +1,8 @@
 <h1> Cover Letter Template Form </h1>
 
-<form action="{% url 'homepage' %}" method="post">
+<h2> {{note}} </h2>
+
+<form action="{% url 'cover-letter-form' %}" method="post">
     {% csrf_token %} 
     {{ coverLetterForm }}
     <input type="submit" value="Render Template"/>

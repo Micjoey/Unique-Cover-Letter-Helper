@@ -9,8 +9,19 @@ def all_jobs(request):
     })
 
 def cover_letter_form(request):
-    form = CoverLetterForm()
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.POST)
+        if filled_form.is_valid():
+            note = 'Thank you for filling out! Filling out form for %s and %s !' %(
+                filled_form.cleaned_data['company'],
+                filled_form.cleaned_data['title'],
+            )
+            new_form = CoverLetterForm()
+            return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form, 'note': note})
+    else:
+        form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+            
 
 def detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
