@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Job
 from.forms import CoverLetterForm
+from django.forms.models import model_to_dict
 
 def all_jobs(request):
     jobs = Job.objects
@@ -31,7 +32,9 @@ def cover_letter(request, info):
 
 def detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
-    return render(request, 'coverLetters/job-detail.html', {'job': job_detail})
+    object = model_to_dict(Job.objects.get(pk=job_id))
+    object_keys = list(object.keys())
+    return render(request, 'coverLetters/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
 
 def homepage(request):
     return render(request, 'coverLetters/homepage.html')

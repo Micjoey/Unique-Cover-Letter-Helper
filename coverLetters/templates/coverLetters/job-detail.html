@@ -1,16 +1,27 @@
     
+    {% load%}
+    
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type = "text/css" href="{% static 'css/main.css' %}">
         <title>Job Info</title>
     </head>
     <body>
         <a href="{% url 'all-jobs' %}"> Back </a>
+        
+        {% comment %} {% for key in object_keys %}
+            <p> {{key}}: {{job.key}} </p>
+        {% endfor %} {% endcomment %}
         <h1>Job Info: {{job.title}} | {{job.company}}</h1>
-        <h1> {{job.company}} </h1>
-        <h2> {{job.title}} </h2>
+        <div style="display: flex;"> 
+            <p> Job Company: </p> <p>{{job.company}} </p>
+        </div>
+        
+        <p> {{job.title}} </p>
+        <p> {{job.link}} </p>
     </body>
     </html>
    
