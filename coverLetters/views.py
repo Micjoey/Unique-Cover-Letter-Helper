@@ -24,9 +24,6 @@ def cover_letter_form(request):
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
-       
-# def cover_letter(self):
-#     filled_out_cover_letter = 
 
 def cover_letter(request, info):
     return render(request, 'coverLetters/cover-letters.html', {'cover_letter_detail': info})

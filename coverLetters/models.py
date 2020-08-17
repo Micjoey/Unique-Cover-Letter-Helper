@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Job(models.Model):
     company = models.CharField(max_length = 200, null=True, blank=True)
     title = models.CharField(max_length = 200)
@@ -17,18 +18,7 @@ class Job(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        company = 'company'
-        created_date = 'created_date'
-        modified_date = 'modified_date'
-        company_and_title = {
-            self.title: {
-                company: self.company,
-                created_date: self.created_date,
-                modified_date: self.modified_date
-            }
-        }
-        
-        return company_and_title
+        return self.company + ' ' + self.title + ' - Last Modified: ' + str(self.modified_date)
     
 
 
