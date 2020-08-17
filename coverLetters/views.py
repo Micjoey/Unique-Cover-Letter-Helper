@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Job
 
-def homepage(request):
+def all_jobs(request):
     jobs = Job.objects
     return render(request, 'coverLetters/homepage.html', {
         'jobs': jobs
