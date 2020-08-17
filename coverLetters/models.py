@@ -37,8 +37,8 @@ class CoverLetter(models.Model):
         max_length=200, null=True, blank=False)
     company = models.CharField(max_length=200, null=True, blank=True)
     job_title = models.CharField(max_length=200)
-    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
-    cover_letter = models.TextField(null=False, blank=False)
+    job_id = models.ForeignKey(Job, default=1, on_delete=models.CASCADE)
+    cover_letter = models.TextField(null=False, blank=False,)
 
     def __str__(self):
         return self.cover_letter_title
