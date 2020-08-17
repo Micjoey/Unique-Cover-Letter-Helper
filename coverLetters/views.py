@@ -13,4 +13,4 @@ def cover_letter_form(request):
 
 def detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
-    return render(request, 'job-info/html')
+    return render(request, 'coverLetters/job-info.html', {'job': job_detail})
