@@ -5,8 +5,10 @@ class CoverLetterForm(forms.ModelForm):
     class Meta:
         model = Job
         fields = ['company', 
+            'city',
             'title', 
             'link', 
+            'description',
             'top_skills',
             'extra_line_one',
             'extra_line_two',
