@@ -34,10 +34,10 @@ class Job(models.Model):
 
 class CoverLetter(models.Model):
     cover_letter_title = models.CharField(
-        max_length=200, null=False, blank=False)
+        max_length=200, null=True, blank=False)
     company = models.CharField(max_length=200, null=True, blank=True)
     job_title = models.CharField(max_length=200)
-    job_id = models.ManyToManyField(Job)
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
     cover_letter = models.TextField(null=False, blank=False)
 
     def __str__(self):
