@@ -20,14 +20,15 @@ def cover_letter_form(request):
                 filled_form.cleaned_data['title'],
             )
             new_form = CoverLetterForm()
-            return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form, 'note': note})
+            return render(request, 'coverLetters/cover-letter.html', {'coverLetterForm': new_form, 'note': note}) # this is where I will take the response and do something with it.
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
 
 def cover_letter(request, info):
-    return render(request, 'coverLetters/cover-letters.html', {'cover_letter_detail': info})
+    print(info)
+    return render(request, 'coverLetters/cover-letter.html', {'cover_letter_detail': info})
 
 
 def detail(request, job_id):

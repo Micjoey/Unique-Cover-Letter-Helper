@@ -17,13 +17,9 @@
     {% for job in jobs.all %}
     <div class="job-info-container">
         <a href="{% url 'job-detail' job.id %}">
-            <h1> {{job.company}} </h1>
-            <ul>
-                <h2> {{job.title}} </h2>
-            </ul>
+            <h1> {{job.company}} | {{job.title}} </h1>
         </a>
     </div>
-        
     {% endfor %}
  </body>
  </html>
