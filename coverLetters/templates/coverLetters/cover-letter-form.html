@@ -1,9 +1,28 @@
-<h1> Cover Letter Template Form </h1>
 
-<h2> {{note}} </h2>
+{% load static %}
 
-<form action="{% url 'all-jobs' %}" method="post">
-    {% csrf_token %} 
-    {{ coverLetterForm }}
-    <input type="submit" value="Render Template"/>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">  
+    <link rel="stylesheet" href="{% static 'css/cover-letter-form.css' %}">     
+    <title>Cover Letter Template Form</title>
+</head>
+<body>
+    <a href="{% url 'homepage' %}"> Back </a>
+    
+    <h1> Cover Letter Template Form </h1>
+    
+    <h2> {{note}} </h2>
+    
+    <form action="{% url 'all-jobs' %}" method="post" class="cover-letter-form">
+        {% csrf_token %}
+        {{ coverLetterForm }}
+        <input type="submit" value="Render Template" />
+    </form>
+</body>
+</html>
