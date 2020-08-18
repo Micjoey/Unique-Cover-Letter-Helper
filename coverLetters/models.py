@@ -30,14 +30,23 @@ class Job(models.Model):
     
 
 
-class CoverLetter(models.Model):
-    cover_letter_title = models.CharField(
-        max_length=200, null=True, blank=False)
-    company = models.CharField(max_length=200, null=True, blank=True)
-    job_title = models.CharField(max_length=200)
-    job_id = models.ForeignKey(Job, default=1, on_delete=models.CASCADE)
-    cover_letter = models.TextField(null=False, blank=False,)
+class User(models.Model):
+    first_name = models.CharField(max_length=200, blank=False)
+    middle_name = models.CharField(max_length=200, null=True, blank=True)
+    last_name = models.CharField(max_length=200, blank=False)
+    email = models.EmailField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    street_address = models.CharField(blank=True, null=False, max_length=200)
+    # if not self.street_address:
+    city_address = models.CharField(blank=True, null=False, max_length=200,)
+    state_address = models.CharField(blank=True, null=False, max_length=200,)
+    zip_code = models.CharField(blank=True, null=False, max_length=200,)
+    # else:
+        # city_address = models.CharField()
+        # state_address = models.CharField()
+        # zip_code = models.CharField()
 
     def __str__(self):
-        return self.cover_letter_title
+        return self.first_name + ' ' + self.last_name
     

@@ -11,10 +11,6 @@
     </head>
     <body>
         <a href="{% url 'all-jobs' %}"> Back </a>
-        
-        {% comment %} {% for key in object_keys %}
-            <p> {{key}}: {{job.key}} </p>
-        {% endfor %} {% endcomment %}
         <h1>Job Info: {{job.title}} | {{job.company}}</h1>
         <div class="job-info-container">
             <div class="job-detail-container"> 
