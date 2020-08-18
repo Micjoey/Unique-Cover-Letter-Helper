@@ -20,6 +20,7 @@ class CoverLetterForm(forms.ModelForm):
             'bullet_point_eight',
         ]
         labels = {'title': 'Title'}
+        
         widgets = {
             # 'bullet_point_one': forms.TextInput,
             # 'top_skills': forms.TextInput,
@@ -32,5 +33,6 @@ class CoverLetterForm(forms.ModelForm):
             # 'bullet_point_eight': forms.TextInput,
         }
         formId = forms.CharField(widget=forms.HiddenInput())
+
 
         
