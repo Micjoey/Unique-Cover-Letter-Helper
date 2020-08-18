@@ -16,7 +16,7 @@
     <a href="{% url 'homepage' %}"> Back </a>
     
     <h1> Cover Letter Template Form </h1>
-    
+    {{info}}
     <form action="{% url 'cover-letter-form' %}" method="post" class="cover-letter-form">
         {% csrf_token %}
         <input type="submit" value="Render Template" class="floating-button"/>

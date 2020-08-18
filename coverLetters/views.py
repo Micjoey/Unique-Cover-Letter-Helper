@@ -22,7 +22,7 @@ def cover_letter_form(request):
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form}) 
+            return render(request, 'coverLetters/cover-letter.html', {'info': filled_form}) 
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
