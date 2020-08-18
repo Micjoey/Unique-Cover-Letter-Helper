@@ -10,19 +10,22 @@ def all_jobs(request):
     })
 
 
-def cover_letter(request, info):
+def cover_letter(request):
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
-            filled_form.save()
-    return render(request, 'coverLetters/cover-letter.html', {'cover_letter_detail': info})
+            filled_form = filled_form.cleaned_data
+            return render(request, 'coverLetters/cover-letter.html', {'info': filled_form})
+    else:
+        form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
 def cover_letter_form(request):
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            return render(request, 'coverLetters/cover-letter.html', {'info': filled_form}) 
+            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form}) 
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
