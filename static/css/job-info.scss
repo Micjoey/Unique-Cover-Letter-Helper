@@ -19,14 +19,18 @@ body {
     font-weight: bold;
     padding-left: 1em;
 }
+.job-detail-container > p:nth-child(1) {
+    min-width: fit-content;
+}
 
-#job-description {
-    background-color: red;
-    max-width: 50vh;
+.job-description {
+    max-width: 100%;
     max-height: 40vh;
     overflow-y: auto;
+    overflow-x: none;
 }
 
 .job-info-container {
-    max-width: 70vh;
+    max-width: 90vh;
+    overflow-wrap: normal;
 }
