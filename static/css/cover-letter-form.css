@@ -13,3 +13,9 @@ textarea {
     width: 20;
 }
 
+
+.floating-button {
+    position: sticky;
+    top: 10vh;
+    background-color: orange;
+}

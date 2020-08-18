@@ -13,13 +13,13 @@ def all_jobs(request):
 def cover_letter(request, info):
     return render(request, 'coverLetters/cover-letters.html', {'cover_letter_detail': info})
 
-
 def cover_letter_form(request):
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            return render(request, 'coverLetters/cover-letter.html', {'filledForm': filled_form}) 
+            new_form = CoverLetterForm()
+            return render(request, 'coverLetters/cover-letter.html', {'coverLetterForm': new_form, 'info': filled_form}) 
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})

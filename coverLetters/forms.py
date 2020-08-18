@@ -30,7 +30,7 @@ class CoverLetterForm(forms.ModelForm):
             # 'extra_line_six': forms.TextInput,
             # 'extra_line_seven': forms.TextInput,
             # 'extra_line_eight': forms.TextInput,
-
         }
+        formId = forms.CharField(widget=forms.HiddenInput())
 
         
