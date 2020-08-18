@@ -8,6 +8,7 @@ class CoverLetterForm(forms.ModelForm):
             'city',
             'title', 
             'link', 
+            'recruiter',
             'description',
             'pre_bullet_point_paragraph_one',
             'pre_bullet_point_paragraph_two',
