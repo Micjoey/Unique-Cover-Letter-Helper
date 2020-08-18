@@ -15,7 +15,7 @@ def cover_letter(request):
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'info': filled_form})
+            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form})
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
