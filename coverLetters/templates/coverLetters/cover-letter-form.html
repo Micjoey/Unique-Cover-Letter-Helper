@@ -19,7 +19,7 @@
     
     <h2> {{note}} </h2>
     
-    <form action="{% url 'cover-letter' %}" method="post" class="cover-letter-form">
+    <form action="{% url 'cover-letter-form' %}" method="post" class="cover-letter-form">
         {% csrf_token %}
         <input type="submit" value="Render Template" class="floating-button"/>
         {{ coverLetterForm }}
