@@ -19,3 +19,14 @@ body {
     font-weight: bold;
     padding-left: 1em;
 }
+
+#job-description {
+    background-color: red;
+    max-width: 50vh;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.job-info-container {
+    max-width: 70vh;
+}

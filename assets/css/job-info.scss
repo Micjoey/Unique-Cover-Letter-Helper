@@ -1,7 +1,5 @@
 .job-info-container {
-    border-top: 2px dotted black;
     border-bottom: 2px dotted black;
-    width: 100%;
 }
 
 a {
@@ -20,4 +18,15 @@ body {
     color: black;
     font-weight: bold;
     padding-left: 1em;
+}
+
+#job-description {
+    background-color: red;
+    max-width: 50vh;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.job-info-container {
+    max-width: 70vh;
 }

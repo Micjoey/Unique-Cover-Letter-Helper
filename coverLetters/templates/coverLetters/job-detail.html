@@ -16,66 +16,166 @@
             <p> {{key}}: {{job.key}} </p>
         {% endfor %} {% endcomment %}
         <h1>Job Info: {{job.title}} | {{job.company}}</h1>
-        <div class="job-detail-container"> 
-            <p> Job Company: </p> <p>{{job.company}} </p>
+        <div class="job-info-container">
+            <div class="job-detail-container"> 
+                <p> Job Company: </p> <p>{{job.company}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Title: </p> <p> {{job.title}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job City: </p> <p> {{job.city}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Link: </p> <p> {{job.link}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> Job Description: </p> <p id="job-description"> {{job.description}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> Top Skills: </p> <p> {{job.top_skills}} </p>
+            </div>
+            {% if job.bullet_point_one %}
+                <div class="job-detail-container"> 
+                    <p> Line One: </p> <p> {{job.bullet_point_one}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_two %}
+                <div class="job-detail-container"> 
+                    <p> Line two: </p> <p> {{job.bullet_point_two}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_three %}
+                <div class="job-detail-container"> 
+                    <p> Line three: </p> <p> {{job.bullet_point_three}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_four %}
+                <div class="job-detail-container"> 
+                    <p> Line four: </p> <p> {{job.bullet_point_four}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_five %}
+                <div class="job-detail-container"> 
+                    <p> Line five: </p> <p> {{job.bullet_point_five}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_six %}
+                <div class="job-detail-container"> 
+                    <p> Line six: </p> <p> {{job.bullet_point_six}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_seven %}
+                <div class="job-detail-container"> 
+                    <p> Line seven: </p> <p> {{job.bullet_point_seven}} </p>
+                </div>
+            {% endif %}
+            {% if job.bullet_point_eight %}
+                <div class="job-detail-container"> 
+                    <p> Line eight: </p> <p> {{job.bullet_point_eight}} </p>
+                </div>
+            {% endif %}
         </div>
-        <div class="job-detail-container"> 
-            <p> Job Title: </p> <p> {{job.title}} </p>
-        </div>
-        <div class="job-detail-container"> 
-            <p> Job City: </p> <p> {{job.city}} </p>
-        </div>
-        <div class="job-detail-container"> 
-            <p> Job Link: </p> <p> {{job.link}} </p>
-        </div>
-        <div class="job-detail-container"> 
-            <p> Job Link: </p> <p> {{job.description}} </p>
-        </div>
-        <div class="job-detail-container"> 
-            <p> Top Skills: </p> <p> {{job.top_skills}} </p>
-        </div>
-        {% if job.bullet_point_one %}
-            <div class="job-detail-container"> 
-                <p> Line One: </p> <p> {{job.bullet_point_one}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_two %}
-            <div class="job-detail-container"> 
-                <p> Line two: </p> <p> {{job.bullet_point_two}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_three %}
-            <div class="job-detail-container"> 
-                <p> Line three: </p> <p> {{job.bullet_point_three}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_four %}
-            <div class="job-detail-container"> 
-                <p> Line four: </p> <p> {{job.bullet_point_four}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_five %}
-            <div class="job-detail-container"> 
-                <p> Line five: </p> <p> {{job.bullet_point_five}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_six %}
-            <div class="job-detail-container"> 
-                <p> Line six: </p> <p> {{job.bullet_point_six}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_seven %}
-            <div class="job-detail-container"> 
-                <p> Line seven: </p> <p> {{job.bullet_point_seven}} </p>
-            </div>
-        {% endif %}
-        {% if job.bullet_point_eight %}
-            <div class="job-detail-container"> 
-                <p> Line eight: </p> <p> {{job.bullet_point_eight}} </p>
-            </div>
-        {% endif %}
         
-        
+
+    <h1> Generated Cover Letter </h1>
+    </br>
+    </br>
+    <div class="cover-letter-container">
+        <div class="cover-letter-header">
+            <h1>Macallan Savett</h1>
+            <div class="header-jobrmation-and-links-container">
+                <p>
+                    805-451-0363 
+                        | 
+                    <Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail> 
+                        |
+                    <a href="">www.linked/in/macallan-savett/</a>
+                        |
+                    <a href="">https://github.com/Micjoey</a>
+                </p>
+            </div>
+            <div>
+                {% now "F jS, Y" %}
+            </div>
+            <div>
+                <h2>Macallan Savett</h2>
+                <h2>8875 Ne Spargur Loop</h2>
+                <h2>Bainbridge Island, WA 98110</h2>
+                <h2>805-451-0363</h2>
+                <h2><Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail></h2>
+            </div>
+            <div>
+                <p>
+                    {% if job.recruiter %}
+                    <p> Dear {{job.recruiter}}:</p>
+                    {% else%}
+                    <p> Dear Hiring Manager:</p>
+                    {% endif %}
+                </p>
+                <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
+                website is an excellent match to my background and career goals. 
+                With my strong education and experience, I am confident I can make 
+                an immediate contribution given the opportunity.</p> 
+
+                {% if  job.pre_bullet_point_paragraph_one%}
+                    <p> {{job.pre_bullet_point_paragraph_one}} </p>
+                {% endif %}
+
+                {% if  job.pre_bullet_point_paragraph_two%}
+                    <p> {{job.pre_bullet_point_paragraph_two}} </p>
+                {% endif %}
+
+                <p>Highlights of my qualifications most relevant to your needs include:</p>
+
+                <li> Dynamic and accomplished Software Engineer with experience and expertise in {{job.top_skills}}.</li> </br>
+                {% if  job.bullet_point_two%}
+                    <li> {{job.bullet_point_two}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_two%}
+                <li> {{job.bullet_point_two}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_three%}
+                <li> {{job.bullet_point_three}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_four%}
+                <li> {{job.bullet_point_four}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_five%}
+                <li> {{job.bullet_point_five}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_six%}
+                <li> {{job.bullet_point_six}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_seven%}
+                <li> {{job.bullet_point_seven}}</li> </br>
+                {% endif %}
+                {% if  job.bullet_point_eight%}
+                <li> {{job.bullet_point_eight}}</li> </br>
+                {% endif %}
+                
+                {% if  job.post_bullet_point_paragraph_one%}
+                    <p> {{job.post_bullet_point_paragraph_one}} </p>
+                {% endif %}
+
+                {% if  job.post_bullet_point_paragraph_two%}
+                    <p> {{job.post_bullet_point_paragraph_two}} </p>
+                {% endif %}
+
+                These proven abilities can contribute to {{job.Company}} continued success. I would welcome the opportunity to discuss my background with you in detail and to learn more about your company and its goals. 
+                </br>
+                My résumé is attached and offers additional jobrmation about my specific achievements. I look forward to our conversation. 
+                </br>
+                </br>
+                Sincerely, </br>
+                Macallan Savett
+
+            </div>
+        </div>
+
+    </div>
         
     </body>
     </html>
