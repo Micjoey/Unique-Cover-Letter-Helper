@@ -7,7 +7,8 @@ class Job(models.Model):
     link = models.CharField(max_length = 200, null=True, blank=True)
     recruiter = models.CharField(max_length = 200, null=True, blank=True)
     city = models.CharField(max_length = 200, null=True, blank=True)
-    top_skills = models.TextField(null=True, blank=True)
+    top_skills = models.TextField(
+        null=True, blank=True, default='Dynamic and accomplished Software Engineer with experience and expertise in')
     description = models.TextField(null=True, blank=True)
     bullet_point_one = models.TextField(null=True, blank=True)
     bullet_point_two = models.TextField(null=True, blank=True)

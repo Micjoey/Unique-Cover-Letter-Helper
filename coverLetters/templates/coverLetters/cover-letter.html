@@ -49,10 +49,17 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-                <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
+                {% comment %} <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
                 website is an excellent match to my background and career goals. 
                 With my strong education and experience, I am confident I can make 
-                an immediate contribution given the opportunity.</p> 
+                an immediate contribution given the opportunity.</p>  {% endcomment %}
+
+               <p> As advertised on the {{job.company}} website, your need for a 
+                {{job.title}} is an excellent match to my background 
+                and career goals. With my strong education and experience, I am 
+                confident I can make an immediate contribution given the opportunity.</p>
+
+                
 
                 {% if  job.pre_bullet_point_paragraph_one%}
                     <p> {{job.pre_bullet_point_paragraph_one}} </p>
