@@ -5,6 +5,7 @@ class Job(models.Model):
     company = models.CharField(max_length = 200, null=True, blank=True)
     title = models.CharField(max_length = 200)
     link = models.CharField(max_length = 200, null=True, blank=True)
+    recruiter = models.CharField(max_length = 200, null=True, blank=True)
     city = models.CharField(max_length = 200, null=True, blank=True)
     top_skills = models.TextField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)

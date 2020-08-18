@@ -13,7 +13,42 @@
 </head>
 <body>
     <a href="{% url 'homepage' %}"> Back </a>
-    <h1> test </h1>
+    <h1> Generated Cover Letter </h1>
+    </br>
+    </br>
+    <div class="cover-letter-container">
+        <div class="cover-letter-header">
+            <h1>Macallan Savett</h1>
+            <div class="header-information-and-links-container">
+                <p>
+                    805-451-0363 
+                        | 
+                    <Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail> 
+                        |
+                    <a href="">www.linked/in/macallan-savett/</a>
+                        |
+                    <a href="">https://github.com/Micjoey</a>
+                </p>
+            </div>
+            <div>
+                {% now "F jS, Y" %}
+            </div>
+            <div>
+                <h2>Macallan Savett</h2>
+                <h2>8875 Ne Spargur Loop</h2>
+                <h2>Bainbridge Island, WA 98110</h2>
+                <h2>805-451-0363</h2>
+                <h2><Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail></h2>
+            </div>
+            <div>
+                <textarea name="dear-field" id="" cols="30" rows="10">
+                    {% if info.recruiter %}{% endif %}
+                </textarea>
+            </div>
+        </div>
+
+    </div>
+
     {% comment %} {{info.company}} {% endcomment %}
 </body>
 </html>
