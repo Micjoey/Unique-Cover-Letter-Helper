@@ -9,10 +9,9 @@ Generates a template cover letter for easy submitting of an application.
 
 ## **Creating a SuperUser**
   For this system it is important to create a superuser. To do so go click here ([documentation](https://docs.djangoproject.com/en/1.8/intro/tutorial02/)) or follow the below steps:
-    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal that is at the top folder level (CoverLetterGenerator) of the project.
+    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal that is at the top folder level (CoverLetterGenerator) of the        project.
     * Follow prompts in the terminal.
-    
-    ### Access to SuperUser
+    **Access to SuperUser**
       To access the superuser you'll have to go to `http://localhost:3000/admin` or `http://localhost:8000/admin` and log in. At this point you can edit or delete any information that is in the system.
       
 ## Editing Cover Letter
