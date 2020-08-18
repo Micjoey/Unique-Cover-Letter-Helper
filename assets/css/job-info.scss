@@ -1,6 +1,4 @@
-.job-info-container {
-    border-bottom: 2px dotted black;
-}
+
 
 a {
     margin: 1em;
@@ -19,6 +17,9 @@ body {
     font-weight: bold;
     padding-left: 1em;
 }
+.job-detail-container > p:nth-child(1) {
+    min-width: fit-content;
+}
 
 .job-description {
     max-width: 100%;
@@ -28,6 +29,7 @@ body {
 }
 
 .job-info-container {
-    max-width: 90vh;
+    border-bottom: 2px dotted black;
+    // max-width: 90vh;
     overflow-wrap: normal;
 }

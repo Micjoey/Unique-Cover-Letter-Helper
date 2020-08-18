@@ -9,6 +9,8 @@ class CoverLetterForm(forms.ModelForm):
             'title', 
             'link', 
             'description',
+            'pre_bullet_point_paragraph_one',
+            'pre_bullet_point_paragraph_two',
             'top_skills',
             'bullet_point_one',
             'bullet_point_two',
@@ -18,6 +20,8 @@ class CoverLetterForm(forms.ModelForm):
             'bullet_point_six',
             'bullet_point_seven',
             'bullet_point_eight',
+            'post_bullet_point_paragraph_one',
+            'post_bullet_point_paragraph_two',
         ]
         labels = {'title': 'Title'}
         

@@ -3,8 +3,9 @@ from .models import Job
 from.forms import CoverLetterForm
 from django.forms.models import model_to_dict
 
+
 def all_jobs(request):
-    jobs = Job.objects
+    jobs = Job.objects.order_by('created_date')
     return render(request, 'coverLetters/all-jobs.html', {
         'jobs': jobs
     })

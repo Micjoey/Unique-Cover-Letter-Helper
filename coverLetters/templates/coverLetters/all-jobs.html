@@ -15,13 +15,18 @@
     <a href="{% url 'homepage' %}"> Back </a>
     <h1>All Jobs: </h1>
     </br>
-    {% for job in jobs.all %}
-    <div class="job-info-container">
-        <a href="{% url 'job-detail' job.id %}">
-            <h1> {{job.company}} | {{job.title}} </h1>
-        </a>
-    </div>
-    {% endfor %}
+    
+    <ol>
+        {% for job in jobs.all %}
+        <div class="job-info-container">
+            <ul>
+            <a href="{% url 'job-detail' job.id %}">
+                <h1> {{job.company}} | {{job.title}} | {{job.created_date}} </h1>
+            </a>
+            </ul>
+        </div>
+        {% endfor %}
+    </ol>
  </body>
  </html>
  

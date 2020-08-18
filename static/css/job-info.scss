@@ -1,6 +1,3 @@
-.job-info-container {
-    border-bottom: 2px dotted black;
-}
 
 a {
     margin: 1em;
@@ -31,6 +28,7 @@ body {
 }
 
 .job-info-container {
-    max-width: 90vh;
+    border-bottom: 2px dotted black;
+    // max-width: 90vh;
     overflow-wrap: normal;
 }
