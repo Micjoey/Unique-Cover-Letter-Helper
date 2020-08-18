@@ -17,5 +17,6 @@ textarea {
 .floating-button {
     position: sticky;
     top: 10vh;
+    left: 45vh;
     background-color: orange;
 }
