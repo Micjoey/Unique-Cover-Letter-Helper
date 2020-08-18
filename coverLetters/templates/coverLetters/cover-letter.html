@@ -48,7 +48,7 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-                <p> Your need for a {{job.title}} as advertised on the {{job.Company}} 
+                <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
                 website is an excellent match to my background and career goals. 
                 With my strong education and experience, I am confident I can make 
                 an immediate contribution given the opportunity.</p> 
@@ -63,7 +63,7 @@
 
                 <p>Highlights of my qualifications most relevant to your needs include:</p>
 
-                <li> Dynamic and accomplished Software Engineer with experience and expertise in {{job.bullet_point_one}}.</li> </br>
+                <li> Dynamic and accomplished Software Engineer with experience and expertise in {{job.top_skills}}.</li> </br>
                 {% if  job.bullet_point_two%}
                     <li> {{job.bullet_point_two}}</li> </br>
                 {% endif %}
