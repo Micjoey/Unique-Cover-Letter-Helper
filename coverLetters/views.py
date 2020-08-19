@@ -4,6 +4,10 @@ from.forms import CoverLetterForm, UserForm
 from django.forms.models import model_to_dict
 
 
+def homepage(request):
+    return render(request, 'homepage/homepage.html')
+
+
 def all_jobs(request):
     jobs = Job.objects.order_by('created_date')
     return render(request, 'jobs/all-jobs.html', {
@@ -18,32 +22,7 @@ def all_users(request):
     })
 
 
-def cover_letter(request):
-    if request.method == 'POST':
-        filled_form = CoverLetterForm(request.POST)
-        if filled_form.is_valid():
-            filled_form.save()
-            filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form})
-    else:
-        form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
-
-def cover_letter_form(request):
-    if request.method == 'POST':
-        filled_form = CoverLetterForm(request.POST)
-        if filled_form.is_valid():
-            filled_form.save()
-            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form}) 
-    else:
-        form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
-
-
-
-
-
-def detail(request, job_id):
+def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
     object_keys = list(object.keys())
@@ -56,10 +35,36 @@ def user_detail(request, user_id):
     object_keys = list(object.keys())
     return render(request, 'users/user-detail.html', {'user': user_detail, 'object_keys': object_keys, 'object': object})
 
-def homepage(request):
-    return render(request, 'homepage/homepage.html')
+
+def cover_letter_form(request):
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form})
+    else:
+        form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
 
+def cover_letter(request):
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            filled_form = filled_form.cleaned_data
+            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form})
+    else:
+        form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
 
 
-
+def user_form(request):
+    if request.method == 'POST':
+        user_filled_form = UserForm(request.POST)
+        if user_filled_form.is_valid():
+            user_filled_form.save()
+            return render(request, 'coverLetters/user-form.html', {'info': user_filled_form})
+    else:
+        form = UserForm()
+        return render(request, 'coverLetters/user-form.html', {'userForm': form})
