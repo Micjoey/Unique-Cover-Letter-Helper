@@ -1,5 +1,5 @@
 from django.db import models
-
+from phone_field import PhoneField
 
 class Job(models.Model):
     company = models.CharField(max_length = 200, null=True, blank=True)
@@ -22,7 +22,6 @@ class Job(models.Model):
     pre_bullet_point_paragraph_two = models.TextField(null=True, blank=True)
     post_bullet_point_paragraph_one = models.TextField(null=True, blank=True)
     post_bullet_point_paragraph_two = models.TextField(null=True, blank=True)
-    
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
 
@@ -31,22 +30,20 @@ class Job(models.Model):
     
 
 
-class User(models.Model):
+class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, blank=False)
+    preferred_name = models.CharField(max_length=200, blank=True)
+    phone_number = PhoneField(blank=True)
     email = models.EmailField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     github = models.URLField(blank=True, null=True)
+    portfolio_website = models.URLField(blank=True, null=True)
     street_address = models.CharField(blank=True, null=False, max_length=200)
-    # if not self.street_address:
     city_address = models.CharField(blank=True, null=False, max_length=200,)
     state_address = models.CharField(blank=True, null=False, max_length=200,)
     zip_code = models.CharField(blank=True, null=False, max_length=200,)
-    # else:
-        # city_address = models.CharField()
-        # state_address = models.CharField()
-        # zip_code = models.CharField()
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
