@@ -16,24 +16,26 @@
             <h1>{{first_user.first_name}} {{first_user.last_name}}</h1>
             <div class="header-jobrmation-and-links-container">
                 <p>
-                    {% comment %} {{first_user.phone_number}} {% endcomment %}
+                    {{first_user.phone_number}}
                         | 
-                    <Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail> 
+                    {{first_user.email}} 
                         |
-                    <a href="">www.linked/in/macallan-savett/</a>
+                    {{first_user.linkedin}} 
                         |
-                    <a href="">https://github.com/Micjoey</a>
+                    {{first_user.github}}
+                        |
+                    {{first_user.portfolio_website}} 
                 </p>
             </div>
             <div>
                 {% now "F jS, Y" %}
             </div>
             <div>
-                <h2>Macallan Savett</h2>
-                <h2>8875 Ne Spargur Loop</h2>
-                <h2>Bainbridge Island, WA 98110</h2>
-                <h2>805-451-0363</h2>
-                <h2><Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail></h2>
+                <h2>{{first_user.first_name}} {{first_user.last_name}}</h2>
+                <h2>{{first_user.street_address}}</h2>
+                <h2>{{first_user.city_address}}, {{first_user.state_address}} {{first_user.zip_code}}</h2>
+                <h2>{{first_user.phone_number}}</h2>
+                <h2>{{first_user.email}}</h2>
             </div>
             <div>
                 <p>
@@ -106,7 +108,7 @@
                 </br>
                 </br>
                 Sincerely, </br>
-                Macallan Savett
+                {{first_user.first_name}} {{first_user.last_name}}
 
             </div>
         </div>
