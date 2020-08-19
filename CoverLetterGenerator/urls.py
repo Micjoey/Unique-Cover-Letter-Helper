@@ -18,7 +18,7 @@ from django.urls import path
 import coverLetters.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='Admin-site'),
     path('', coverLetters.views.homepage, name='homepage'),
     path('all-jobs', coverLetters.views.all_jobs, name='all-jobs'),
     path('all-users', coverLetters.views.all_users, name='all-users'),
@@ -30,5 +30,7 @@ urlpatterns = [
          name='cover-letter'),
     path('user-form', coverLetters.views.user_form,
          name='user-form'),
+    path('user-detail', coverLetters.views.user_detail,
+         name='user-detail'),
     
 ]
