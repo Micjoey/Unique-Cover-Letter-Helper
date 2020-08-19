@@ -22,7 +22,6 @@ class Job(models.Model):
     pre_bullet_point_paragraph_two = models.TextField(null=True, blank=True)
     post_bullet_point_paragraph_one = models.TextField(null=True, blank=True)
     post_bullet_point_paragraph_two = models.TextField(null=True, blank=True)
-    
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
 
@@ -41,14 +40,9 @@ class User(models.Model):
     github = models.URLField(blank=True, null=True)
     portfolio_website = models.URLField(blank=True, null=True)
     street_address = models.CharField(blank=True, null=False, max_length=200)
-    # if not self.street_address:
     city_address = models.CharField(blank=True, null=False, max_length=200,)
     state_address = models.CharField(blank=True, null=False, max_length=200,)
     zip_code = models.CharField(blank=True, null=False, max_length=200,)
-    # else:
-        # city_address = models.CharField()
-        # state_address = models.CharField()
-        # zip_code = models.CharField()
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

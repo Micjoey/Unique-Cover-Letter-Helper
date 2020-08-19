@@ -11,6 +11,13 @@ def all_jobs(request):
     })
 
 
+def all_users(request):
+    users = User.objects.all
+    return render(request, 'users/all-users.html', {
+        'users': users
+    })
+
+
 def cover_letter(request):
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
@@ -42,18 +49,17 @@ def detail(request, job_id):
     object_keys = list(object.keys())
     return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
 
-def homepage(request):
-    return render(request, 'homepage/homepage.html')
-
-def all_users(request):
-    users = User.objects.order_by('created_date')
-    return render(request, 'user/all-users.html', {
-        'users': users
-    })
-
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(User, pk=user_id)
     object = model_to_dict(User.objects.get(pk=user_id))
     object_keys = list(object.keys())
-    return render(request, 'users/user-detail.html', {'user': job_detail, 'object_keys': object_keys, 'object': object})
+    return render(request, 'users/user-detail.html', {'user': user_detail, 'object_keys': object_keys, 'object': object})
+
+def homepage(request):
+    return render(request, 'homepage/homepage.html')
+
+
+
+
+
