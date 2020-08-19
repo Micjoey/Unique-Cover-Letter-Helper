@@ -6,7 +6,9 @@ from .models import UserDetail
 class CoverLetterForm(ModelForm):
     class Meta:
         model = Job
-        fields = ['company', 
+        fields = [
+            # 'template_choices',
+            'company', 
             'city',
             'title', 
             'link', 
@@ -27,17 +29,14 @@ class CoverLetterForm(ModelForm):
             'post_bullet_point_paragraph_two',
         ]
         labels = {'title': 'Title'}
-        
+        model_template_choices = (('Template 1', 'cover-letter-1'),
+                                  ('Template 2', 'cover-letter-2'),
+                                  ('Template 3', 'cover-letter-3'),
+                                  ('Template 4', 'cover-letter-4'),
+                                  ('Template 5', 'cover-letter-5'))
         widgets = {
             # 'bullet_point_one': forms.TextInput,
-            # 'top_skills': forms.TextInput,
-            # 'bullet_point_two': forms.TextInput,
-            # 'bullet_point_three': forms.TextInput,
-            # 'bullet_point_four': forms.TextInput,
-            # 'bullet_point_five': forms.TextInput,
-            # 'bullet_point_six': forms.TextInput,
-            # 'bullet_point_seven': forms.TextInput,
-            # 'bullet_point_eight': forms.TextInput,
+            'template_choices': forms.RadioSelect,
         }
         formId = forms.CharField(widget=forms.HiddenInput())
 
