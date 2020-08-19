@@ -61,10 +61,10 @@ def cover_letter(request):
 
 def user_form(request):
     if request.method == 'POST':
-        user_filled_form = UserForm(request.POST)
+        user_filled_form = UserDetailForm(request.POST)
         if user_filled_form.is_valid():
             user_filled_form.save()
             return render(request, 'users/user-form.html', {'info': user_filled_form})
     else:
-        form = UserForm()
+        form = UserDetailForm()
         return render(request, 'users/user-form.html', {'userForm': form})
