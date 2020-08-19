@@ -22,6 +22,13 @@ Generates a template cover letter for easy submitting of an application.
 ## Editing Cover Letter
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
 
+  ### Cover Letter Template
+  If you want a different pre-filled sections (i.e Top Skills is filled with "Dynamic and accomplished Software Engineer with experience and expertise in") you can go to `coverLetters/models.py` and under that field in the `Job Model` you can either add or change the field `default="x"`.
+
+  Currently the `top_skills` field has a default value of `"Dynamic and accomplished Software Engineer with experience and expertise in"`. Which is based off the template I have in there.
+
+  Don't worry about the bullet_point_one, etc. They wont be added into the cover letter unless you wish it to be so.
+
 ## All Job Detail
   ### `CoverLetterGenerator/coverLetters/templates/jobs`
   This is the location of the code which holds the general information for the cover letter, and then the cover letter itself.
