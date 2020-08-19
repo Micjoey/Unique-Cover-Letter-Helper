@@ -26,9 +26,9 @@ urlpatterns = [
     path('user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-form', coverLetters.views.cover_letter_form,
          name='cover-letter-form'),
-    path('user-form', coverLetters.views.user_form,
-         name='user-form'),
     path('cover-letter', coverLetters.views.cover_letter,
          name='cover-letter'),
+    path('user-form', coverLetters.views.user_form,
+         name='user-form'),
     
 ]

@@ -30,7 +30,7 @@ class Job(models.Model):
     
 
 
-class User(models.Model):
+class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, blank=False)
