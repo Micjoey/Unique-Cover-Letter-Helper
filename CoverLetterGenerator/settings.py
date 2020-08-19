@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'coverLetters',
     'phone_field',
-
+    'multiselectfield',
 ]
 
 

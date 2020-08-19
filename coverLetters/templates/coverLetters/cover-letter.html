@@ -13,27 +13,25 @@
     
     <div class="cover-letter-container">
         <div class="cover-letter-header">
-            {% comment %} <h1>{% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}</h1> {% endcomment %}
             <div class="header-jobrmation-and-links-container">
                 <p>
                     {% if last_user.phone %}
                     {{last_user.phone_number}}
-                        | 
                     {% endif %}
                     {% if last_user.email %}
+                        | 
                     <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
-                        |
                     {% endif %}
                     {% if last_user.linkedin %}
-                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                         |
-                        
+                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                     {% endif %}
                     {% if last_user.github %}
-                    <a href={{last_user.github}}>{{last_user.github}}</a>
                         |
+                    <a href={{last_user.github}}>{{last_user.github}}</a>
                     {% endif %}
                     {% if last_user.portfolio_website %}
+                        |
                     <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
                     {% endif %}
                 </p>
@@ -44,10 +42,12 @@
             <div>
                 <h2>{% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}</h2>
                 {% if last_user.city_address%}
-                    {% include last_user.city_address%}
-                        {% include last_user.zip_code%}
-                    <h2>{{last_user.street_address}}</h2>
-                    <h2>{{last_user.city_address}}, {{last_user.state_address}} {{last_user.zip_code}}</h2>
+                    {% if last_user.city_address%}
+                        {% if last_user.zip_code%}
+                            <h2>{{last_user.street_address}}</h2>
+                            <h2>{{last_user.city_address}}, {{last_user.state_address}} {{last_user.zip_code}}</h2>
+                        {% endif %}
+                    {% endif %}
                 {% endif %}
                 {% if  last_user.phone_number%}
                     <h2>{{last_user.phone_number}}</h2>
