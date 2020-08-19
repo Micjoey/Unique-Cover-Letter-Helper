@@ -32,9 +32,9 @@ class Job(models.Model):
 
 class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
-    middle_name = models.CharField(max_length=200, null=True, blank=True)
+    middle_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, blank=False)
-    preferred_name = models.CharField(max_length=200, blank=True)
+    preferred_name = models.CharField(max_length=200, null=True)
     phone_number = PhoneField(blank=True)
     email = models.EmailField(null=True)
     linkedin = models.URLField(null=True)
