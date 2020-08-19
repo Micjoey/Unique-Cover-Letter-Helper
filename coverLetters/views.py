@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Job
-from.forms import CoverLetterForm
+from .models import Job, User
+from.forms import CoverLetterForm, UserForm
 from django.forms.models import model_to_dict
 
 
@@ -44,3 +44,16 @@ def detail(request, job_id):
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
+
+def all_users(request):
+    users = User.objects.order_by('created_date')
+    return render(request, 'user/all-users.html', {
+        'users': users
+    })
+
+
+def user_detail(request, user_id):
+    user_detail = get_object_or_404(User, pk=user_id)
+    object = model_to_dict(User.objects.get(pk=user_id))
+    object_keys = list(object.keys())
+    return render(request, 'users/user-detail.html', {'user': job_detail, 'object_keys': object_keys, 'object': object})

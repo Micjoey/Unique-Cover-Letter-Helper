@@ -35,9 +35,11 @@ class User(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, blank=False)
+    preferred_name = models.CharField(max_length=200, blank=True)
     email = models.EmailField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     github = models.URLField(blank=True, null=True)
+    portfolio_website = models.URLField(blank=True, null=True)
     street_address = models.CharField(blank=True, null=False, max_length=200)
     # if not self.street_address:
     city_address = models.CharField(blank=True, null=False, max_length=200,)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Job
+from .models import Job, User
 
 class CoverLetterForm(forms.ModelForm):
     class Meta:
@@ -39,5 +39,21 @@ class CoverLetterForm(forms.ModelForm):
         }
         formId = forms.CharField(widget=forms.HiddenInput())
 
-
+class UserForm(forms.ModelForm):
+    class meta:
+        model = User
+        fields = [
+            'first_name',
+            'middle_name',
+            'last_name',
+            'preferred_name'
+            'email',
+            'linkedin',
+            'github',
+            'portfolio',
+            'street_address',
+            'city_address',
+            'state_address',
+            'zip_code'
+        ]
         

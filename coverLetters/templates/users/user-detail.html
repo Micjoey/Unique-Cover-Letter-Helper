@@ -1,0 +1,40 @@
+{% load static %}
+    
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        <title>Job Info</title>
+        <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">
+    </head>
+    <body>
+        <a href="{% url 'all-users' %}"> Back </a>
+        <h1>User Info: {{job.title}} | {{job.company}}</h1>
+        <div class="job-info-container">
+            <div class="job-detail-container"> 
+                <p> Job Company: </p> <p>{{job.company}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Title: </p> <p> {{job.title}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job City: </p> <p> {{job.city}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Link: </p> <p class="job-description"> {{job.link}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> Job Description: </p> <p class="job-description"> {{job.description}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> Top Skills: </p> <p> {{job.top_skills}} </p>
+            </div>
+        </div>
+        
+    </body>
+    </html>
+   
