@@ -18,13 +18,19 @@ from django.urls import path
 import coverLetters.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='Admin-site'),
     path('', coverLetters.views.homepage, name='homepage'),
     path('all-jobs', coverLetters.views.all_jobs, name='all-jobs'),
-    path('job-detail/<int:job_id>', coverLetters.views.detail, name='job-detail'),
+    path('all-users', coverLetters.views.all_users, name='all-users'),
+    path('job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
+    path('user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-form', coverLetters.views.cover_letter_form,
          name='cover-letter-form'),
     path('cover-letter', coverLetters.views.cover_letter,
          name='cover-letter'),
+    path('user-form', coverLetters.views.user_form,
+         name='user-form'),
+    path('user-detail', coverLetters.views.user_detail,
+         name='user-detail'),
     
 ]
