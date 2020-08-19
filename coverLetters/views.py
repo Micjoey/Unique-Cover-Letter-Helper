@@ -54,7 +54,7 @@ def cover_letter(request):
         if filled_form.is_valid():
             filled_form.save()
             filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': first_user})
+            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user})
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})

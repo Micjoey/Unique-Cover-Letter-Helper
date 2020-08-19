@@ -13,29 +13,29 @@
     
     <div class="cover-letter-container">
         <div class="cover-letter-header">
-            <h1>{{first_user.first_name}} {{first_user.last_name}}</h1>
+            <h1>{% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}</h1>
             <div class="header-jobrmation-and-links-container">
                 <p>
-                    {{first_user.phone_number}}
+                    {{last_user.phone_number}}
                         | 
-                    <Jsavett@gmail class="com">{{first_user.email}}</Jsavett@gmail>
+                    <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
                         |
-                    <a href={{first_user.linkedin}}>{{first_user.linkedin}}</a>
+                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                         |
-                    <a href={{first_user.github}}>{{first_user.github}}</a>
+                    <a href={{last_user.github}}>{{last_user.github}}</a>
                         |
-                    <a href={{first_user.portfolio_website}}>{{first_user.portfolio_website}}</a>
+                    <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
                 </p>
             </div>
             <div>
                 {% now "F jS, Y" %}
             </div>
             <div>
-                <h2>{{first_user.first_name}} {{first_user.last_name}}</h2>
-                <h2>{{first_user.street_address}}</h2>
-                <h2>{{first_user.city_address}}, {{first_user.state_address}} {{first_user.zip_code}}</h2>
-                <h2>{{first_user.phone_number}}</h2>
-                <h2><Jsavett@gmail class="com">{{first_user.email}}</Jsavett@gmail></h2>
+                <h2>{% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}</h2>
+                <h2>{{last_user.street_address}}</h2>
+                <h2>{{last_user.city_address}}, {{last_user.state_address}} {{last_user.zip_code}}</h2>
+                <h2>{{last_user.phone_number}}</h2>
+                <h2><Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail></h2>
             </div>
             <div>
                 <p>
@@ -102,13 +102,13 @@
                     <p> {{job.post_bullet_point_paragraph_two}} </p>
                 {% endif %}
 
-                These proven abilities can contribute to {{job.Company}} continued success. I would welcome the opportunity to discuss my background with you in detail and to learn more about your company and its goals. 
+                These proven abilities can contribute to {{job.company}} continued success. I would welcome the opportunity to discuss my background with you in detail and to learn more about your company and its goals. 
                 </br>
                 My résumé is attached and offers additional information about my specific achievements. I look forward to our conversation. 
                 </br>
                 </br>
                 Sincerely, </br>
-                {{first_user.first_name}} {{first_user.last_name}}
+                {% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}
 
             </div>
         </div>
