@@ -47,9 +47,20 @@ def cover_letter(request):
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            filled_form = filled_form.cleaned_data
+            filled_form = filled_form.cleaned_data #turns the form into a dict (object)
             template_choice = filled_form['template_choices']
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, 'template_choice': template_choice})
+            # Checks to see what template to render for the cover letter -->
+            if "1" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            elif "2" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            elif "3" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            elif "4" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            elif "5" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            # <--------  ------->
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
