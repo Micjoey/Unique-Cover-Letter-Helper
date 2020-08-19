@@ -36,14 +36,14 @@ class UserDetail(models.Model):
     last_name = models.CharField(max_length=200, blank=False)
     preferred_name = models.CharField(max_length=200, blank=True)
     phone_number = PhoneField(blank=True)
-    email = models.EmailField(blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
-    github = models.URLField(blank=True, null=True)
-    portfolio_website = models.URLField(blank=True, null=True)
-    street_address = models.CharField(blank=True, null=False, max_length=200)
-    city_address = models.CharField(blank=True, null=False, max_length=200,)
-    state_address = models.CharField(blank=True, null=False, max_length=200,)
-    zip_code = models.CharField(blank=True, null=False, max_length=200,)
+    email = models.EmailField(null=True)
+    linkedin = models.URLField(null=True)
+    github = models.URLField(null=True)
+    portfolio_website = models.URLField(null=True)
+    street_address = models.CharField(null=True, max_length=200)
+    city_address = models.CharField(null=True, max_length=200,)
+    state_address = models.CharField(null=True, max_length=200,)
+    zip_code = models.CharField(null=True, max_length=200,)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
