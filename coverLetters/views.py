@@ -37,14 +37,8 @@ def user_detail(request, user_id):
 
 
 def cover_letter_form(request):
-    if request.method == 'POST':
-        filled_form = CoverLetterForm(request.POST)
-        if filled_form.is_valid():
-            filled_form.save()
-            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form})
-    else:
-        form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+        new_form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
 
 
 def cover_letter(request):
@@ -54,7 +48,8 @@ def cover_letter(request):
         if filled_form.is_valid():
             filled_form.save()
             filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user})
+            template_choice = filled_form['template_choices']
+            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, 'template_choice': template_choice})
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
