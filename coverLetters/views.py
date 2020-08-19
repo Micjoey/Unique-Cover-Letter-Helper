@@ -65,7 +65,8 @@ def user_form(request):
         user_filled_form = UserDetailForm(request.POST)
         if user_filled_form.is_valid():
             user_filled_form.save()
-            return render(request, 'users/user-form.html', {'info': user_filled_form})
+            users = UserDetail.objects.all
+            return render(request, 'users/all-users.html', {'users': users})
     else:
         form = UserDetailForm()
         return render(request, 'users/user-form.html', {'userForm': form})
