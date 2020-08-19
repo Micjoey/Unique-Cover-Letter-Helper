@@ -16,7 +16,7 @@ def all_jobs(request):
 
 
 def all_users(request):
-    users = User.objects.all
+    users = UserDetail.objects.all
     return render(request, 'users/all-users.html', {
         'users': users
     })
@@ -30,8 +30,8 @@ def job_detail(request, job_id):
 
 
 def user_detail(request, user_id):
-    user_detail = get_object_or_404(User, pk=user_id)
-    object = model_to_dict(User.objects.get(pk=user_id))
+    user_detail = get_object_or_404(UserDetail, pk=user_id)
+    object = model_to_dict(UserDetail.objects.get(pk=user_id))
     object_keys = list(object.keys())
     return render(request, 'users/user-detail.html', {'user': user_detail, 'object_keys': object_keys, 'object': object})
 
