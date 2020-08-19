@@ -13,6 +13,11 @@ Generates a template cover letter for easy submitting of an application.
     * Follow prompts in the terminal.
     **Access to SuperUser**
       To access the superuser you'll have to go to `http://localhost:3000/admin` or `http://localhost:8000/admin` and log in. At this point you can edit or delete any information that is in the system.
+
+## **Create a User**
+  On the homepage click the User Form to create.
+
+  For simplicity the last user you create will be the one that the system uses for the cover-letter template. Eventually I will add in the option to select which user-info to be used, but for now it will just take whatever the last user was created.
       
 ## Editing Cover Letter
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
