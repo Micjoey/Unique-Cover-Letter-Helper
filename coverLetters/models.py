@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from multiselectfield import MultiSelectField
 
 class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
@@ -22,6 +23,12 @@ class Job(models.Model):
     pre_bullet_point_paragraph_two = models.TextField( blank=True)
     post_bullet_point_paragraph_one = models.TextField( blank=True)
     post_bullet_point_paragraph_two = models.TextField( blank=True)
+    model_template_choices = (('Template 1', 'cover-letter-1'),
+                  ('Template 2', 'cover-letter-2'),
+                  ('Template 3', 'cover-letter-3'),
+                  ('Template 4', 'cover-letter-4'),
+                  ('Template 5', 'cover-letter-5'))
+    template_choices = MultiSelectField(choices=model_template_choices, blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
 

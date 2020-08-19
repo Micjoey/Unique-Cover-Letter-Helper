@@ -20,3 +20,7 @@ textarea {
     left: 45vh;
     background-color: orange;
 }
+
+#id_template_choices {
+    display: flex;
+}
