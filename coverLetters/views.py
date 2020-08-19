@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Job, User
-from.forms import CoverLetterForm, UserForm
+from .models import Job, UserDetail
+from.forms import CoverLetterForm, UserDetailForm
 from django.forms.models import model_to_dict
 
 
@@ -64,7 +64,7 @@ def user_form(request):
         user_filled_form = UserForm(request.POST)
         if user_filled_form.is_valid():
             user_filled_form.save()
-            return render(request, 'coverLetters/user-form.html', {'info': user_filled_form})
+            return render(request, 'users/user-form.html', {'info': user_filled_form})
     else:
         form = UserForm()
-        return render(request, 'coverLetters/user-form.html', {'userForm': form})
+        return render(request, 'users/user-form.html', {'userForm': form})
