@@ -18,7 +18,7 @@
     <h1> User Info Creation Form </h1>
     <form action="{% url 'user-form' %}" method="post" class="cover-letter-form">
         {% csrf_token %}
-        <input type="submit" value="Render Template" class="floating-button"/>
+        <input type="submit" value="Create User" class="floating-button"/>
         {{ userForm }}
     </form>
 </body>
