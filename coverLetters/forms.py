@@ -1,7 +1,8 @@
 from django import forms
+from django.forms import ModelForm
 from .models import Job, UserDetail
 
-class CoverLetterForm(forms.ModelForm):
+class CoverLetterForm(ModelForm):
     class Meta:
         model = Job
         fields = ['company', 
@@ -40,7 +41,7 @@ class CoverLetterForm(forms.ModelForm):
         formId = forms.CharField(widget=forms.HiddenInput())
 
 
-class UserDetailForm(forms.ModelForm):
+class UserDetailForm(ModelForm):
     class meta:
         model = UserDetail
         fields = [
@@ -55,6 +56,6 @@ class UserDetailForm(forms.ModelForm):
             'street_address',
             'city_address',
             'state_address',
-            'zip_code'
+            'zip_code',
         ]
         
