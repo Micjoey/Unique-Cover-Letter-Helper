@@ -22,10 +22,12 @@ urlpatterns = [
     path('', coverLetters.views.homepage, name='homepage'),
     path('all-jobs', coverLetters.views.all_jobs, name='all-jobs'),
     path('all-users', coverLetters.views.all_users, name='all-users'),
-    path('job-detail/<int:job_id>', coverLetters.views.detail, name='job-detail'),
+    path('job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
     path('user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-form', coverLetters.views.cover_letter_form,
          name='cover-letter-form'),
+    path('user-form', coverLetters.views.user_form,
+         name='user-form'),
     path('cover-letter', coverLetters.views.cover_letter,
          name='cover-letter'),
     
