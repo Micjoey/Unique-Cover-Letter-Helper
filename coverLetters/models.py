@@ -1,5 +1,5 @@
 from django.db import models
-
+from phone_field import PhoneField
 
 class Job(models.Model):
     company = models.CharField(max_length = 200, null=True, blank=True)
@@ -35,6 +35,7 @@ class UserDetail(models.Model):
     middle_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, blank=False)
     preferred_name = models.CharField(max_length=200, blank=True)
+    phone_number = PhoneField(blank=True)
     email = models.EmailField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     github = models.URLField(blank=True, null=True)

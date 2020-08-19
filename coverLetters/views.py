@@ -48,12 +48,13 @@ def cover_letter_form(request):
 
 
 def cover_letter(request):
+    first_user = UserDetail.objects.first
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
             filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form})
+            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'first_user': first_user})
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
