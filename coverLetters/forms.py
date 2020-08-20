@@ -4,10 +4,11 @@ from .models import Job
 from .models import UserDetail
 
 class CoverLetterForm(ModelForm):
+    
     class Meta:
         model = Job
         fields = [
-            # 'template_choices',
+            'template_choices',
             'company', 
             'city',
             'title', 
@@ -29,14 +30,10 @@ class CoverLetterForm(ModelForm):
             'post_bullet_point_paragraph_two',
         ]
         labels = {'title': 'Title'}
-        model_template_choices = (('Template 1', 'cover-letter-1'),
-                                  ('Template 2', 'cover-letter-2'),
-                                  ('Template 3', 'cover-letter-3'),
-                                  ('Template 4', 'cover-letter-4'),
-                                  ('Template 5', 'cover-letter-5'))
         widgets = {
             # 'bullet_point_one': forms.TextInput,
-            'template_choices': forms.RadioSelect,
+            'template_choices': forms.RadioSelect(),
+
         }
         formId = forms.CharField(widget=forms.HiddenInput())
 
