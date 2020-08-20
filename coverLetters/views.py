@@ -37,14 +37,8 @@ def user_detail(request, user_id):
 
 
 def cover_letter_form(request):
-    if request.method == 'POST':
-        filled_form = CoverLetterForm(request.POST)
-        if filled_form.is_valid():
-            filled_form.save()
-            return render(request, 'coverLetters/cover-letter-form.html', {'info': filled_form})
-    else:
-        form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+        new_form = CoverLetterForm()
+        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
 
 
 def cover_letter(request):
@@ -53,8 +47,20 @@ def cover_letter(request):
         filled_form = CoverLetterForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
-            filled_form = filled_form.cleaned_data
-            return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user})
+            filled_form = filled_form.cleaned_data #turns the form into a dict (object)
+            template_choice = filled_form['template_choices']
+            # Checks to see what template to render for the cover letter -->
+            if "1" in template_choice:
+                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+            elif "2" in template_choice:
+                return render(request, 'coverLetters/cover-letter-two.html', {'job': filled_form, 'last_user': last_user, })
+            elif "3" in template_choice:
+                return render(request, 'coverLetters/cover-letter-three.html', {'job': filled_form, 'last_user': last_user, })
+            elif "4" in template_choice:
+                return render(request, 'coverLetters/cover-letter-four.html', {'job': filled_form, 'last_user': last_user, })
+            elif "5" in template_choice:
+                return render(request, 'coverLetters/cover-letter-five.html', {'job': filled_form, 'last_user': last_user, })
+            # <--------  ------->
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
