@@ -24,3 +24,7 @@ textarea {
 #id_template_choices {
     display: flex;
 }
+
+.template-choices {
+    display: flex;
+}
