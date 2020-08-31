@@ -1,7 +1,7 @@
 from django.test import TestCase
 from selenium import webdriver
 from .forms import CoverLetterForm
-
+from .models import Job, UserDetail
 
 
 # class FunctionalTestCase(TestCase):
@@ -47,6 +47,33 @@ class UnitTestCaste(TestCase):
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
+
+    def test_cover_letter_object(self):
+        test_job = Job()
+        test_job.template_choices = 'Template 1'
+        test_job.company = 'Test - company1'
+        test_job.city = 'Test-  santa barbara'
+        test_job.title = 'Test - Jackie'
+        test_job.link = 'Test - www.trialone.com'
+        test_job.recruiter = ''
+        test_job.description = 'Test - I love test cases'
+        test_job.pre_bullet_point_paragraph_one = 'Test - paragraphone'
+        test_job.pre_bullet_point_paragraph_two = 'Test - paragraphtwo'
+        test_job.top_skills = 'Test - Javascript Banana'
+        test_job.bullet_point_one = 'Test - BP1'
+        test_job.bullet_point_two = 'Test - BP2'
+        test_job.bullet_point_three = 'Test - BP3'
+        test_job.bullet_point_four = 'Test - BP4'
+        test_job.bullet_point_five = 'Test - BP5'
+        test_job.bullet_point_six = 'Test - BP6'
+        test_job.bullet_point_seven = 'Test - BP7'
+        test_job.bullet_point_eight = 'Test - BP8'
+        test_job.post_bullet_point_paragraph_one = 'Test - paragraphpostone'
+        test_job.post_bullet_point_paragraph_two = 'Test - paragraphposttwo'
+        test_job.save()
+        pulled_job = Job.objects.get(title='Test - Jackie')
+        self.assertEqual(test_job.id, pulled_job.id)
+
 
     def test_all_jobs_template(self):
         response = self.client.get('/cover-letter-generator/all-jobs')
