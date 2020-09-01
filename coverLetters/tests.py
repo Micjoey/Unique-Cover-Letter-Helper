@@ -1,6 +1,6 @@
 from django.test import TestCase
 from selenium import webdriver
-from .forms import CoverLetterForm
+from .forms import CoverLetterForm, UserDetailForm
 from .models import Job, UserDetail
 
 
@@ -47,6 +47,7 @@ class UnitTestCaste(TestCase):
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
+  
 
     def test_cover_letter_object(self):
         test_job = Job()
@@ -73,7 +74,24 @@ class UnitTestCaste(TestCase):
         test_job.save()
         pulled_job = Job.objects.get(title='Test - Jackie')
         self.assertEqual(test_job.id, pulled_job.id)
-
+    
+    def test_user_form(self):
+            user_form = UserDetailForm(data={
+                'first_name':'test-first-name',
+                'middle_name':'test-middle-name',
+                'last_name':'test-last-name',
+                'preferred_name':'test',
+                'phone_number':'805-451-0363',
+                'email':'test@gmail.com',
+                'linkedin':'test-linkedin.com',
+                'github':'test-github.com',
+                'portfolio_website':'test.space',
+                'street_address':'test 123',
+                'city_address':'test-city',
+                'state_address':'test-state',
+                'zip_code':'1234',
+            })
+            self.assertTrue(user_form.is_valid())
 
     def test_all_jobs_template(self):
         response = self.client.get('/cover-letter-generator/all-jobs')
