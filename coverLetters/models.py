@@ -30,7 +30,7 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )
-    template_choices = models.CharField(choices=model_template_choices,default=1, max_length=20)
+    template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
 
