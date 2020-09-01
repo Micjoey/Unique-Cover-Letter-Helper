@@ -13,7 +13,28 @@ class FunctionalTestCase(TestCase):
         self.browser.get('http://localhost:3000')
         self.assertIn('Job Application Process', self.browser.page_source)
 
+    def test_cover_letter_form_button(self):
+        self.browser.get('http://localhost:3000')
+        self.browser.find_element_by_id(
+            'homepage-cover-letter-template-button').click()
 
+
+    def test_user_creation_form_button(self):
+        self.browser.get('http://localhost:3000')
+        self.browser.find_element_by_id('homepage-user-template-button')
+    
+    def test_all_users_button(self):
+        self.browser.get('http://localhost:3000')
+        self.browser.find_element_by_id('homepage-all-users-button')
+    
+    def test_all_jobs_button(self):
+        self.browser.get('http://localhost:3000')
+        self.browser.find_element_by_id('homepage-all-jobs-button')
+    
+    def test_admin_button(self):
+        self.browser.get('http://localhost:3000')
+        self.browser.find_element_by_id('homepage-admin-button')
+    
     def test_cover_letter_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/cover-letter-form')
