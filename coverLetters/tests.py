@@ -4,18 +4,38 @@ from .forms import CoverLetterForm, UserDetailForm
 from .models import Job, UserDetail
 
 
-# class FunctionalTestCase(TestCase):
-#     def setUp(self):
-#         self.browser = webdriver.Chrome()
+class FunctionalTestCase(TestCase):
+    def setUp(self):
+        self.browser = webdriver.Chrome()
 
 
-#     def test_there_is_homepage(self):
-#         self.browser.get('http://localhost:3000')
-#         self.assertIn('cover', self.browser.page_source)
+    def test_there_is_homepage(self):
+        self.browser.get('http://localhost:3000')
+        self.assertIn('Job Application Process', self.browser.page_source)
 
 
-#     def tearDown(self):
-#         self.browser.quit()
+    def test_cover_letter_back_button(self):
+        self.browser.get(
+            'http://localhost:3000/cover-letter-generator/cover-letter-form')
+        self.browser.find_elements_by_link_text('Back')
+    
+    def test_user_form_back_button(self):
+        self.browser.get(
+            'http://localhost:3000/cover-letter-generator/user-form')
+        self.browser.find_elements_by_link_text('Back')
+    
+    def test_all_users_back_button(self):
+        self.browser.get(
+            'http://localhost:3000/cover-letter-generator/all-users')
+        self.browser.find_elements_by_link_text('Back')
+    
+    def test_all_users_back_button(self):
+        self.browser.get(
+            'http://localhost:3000/cover-letter-generator/all-jobs')
+        self.browser.find_elements_by_link_text('Back')
+
+    def tearDown(self):
+        self.browser.quit()
 
 class UnitTestCaste(TestCase):
 
