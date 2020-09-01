@@ -47,9 +47,8 @@ class UnitTestCaste(TestCase):
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
-  
-
-    def test_cover_letter_object(self):
+    
+    def saveCoverLetterObject(self):
         test_job = Job()
         test_job.template_choices = 'Template 1'
         test_job.company = 'Test - company1'
@@ -72,26 +71,48 @@ class UnitTestCaste(TestCase):
         test_job.post_bullet_point_paragraph_one = 'Test - paragraphpostone'
         test_job.post_bullet_point_paragraph_two = 'Test - paragraphposttwo'
         test_job.save()
+        return test_job
+
+    def saveUserObject(self):
+        test_user = User()
+        test_user.first_name = 'test-first-name'
+        test_user.middle_name = 'test-middle-name'
+        test_user.last_name = 'test-last-name'
+        test_user.preferred_name = 'test'
+        test_user.phone_number = '805-451-0363'
+        test_user.email = 'test@gmail.com'
+        test_user.linkedin = 'test-linkedin.com'
+        test_user.github = 'test-github.com'
+        test_user.portfolio_website = 'test.space'
+        test_user.street_address = 'test 123'
+        test_user.city_address = 'test-city'
+        test_user.state_address = 'test-state'
+        test_user.zip_code = '1234'
+        test_user.save()
+        return test_user
+        
+    def test_cover_letter_object(self):
+        test_job = self.saveCoverLetterObject()
         pulled_job = Job.objects.get(title='Test - Jackie')
         self.assertEqual(test_job.id, pulled_job.id)
     
     def test_user_form(self):
-            user_form = UserDetailForm(data={
-                'first_name':'test-first-name',
-                'middle_name':'test-middle-name',
-                'last_name':'test-last-name',
-                'preferred_name':'test',
-                'phone_number':'805-451-0363',
-                'email':'test@gmail.com',
-                'linkedin':'test-linkedin.com',
-                'github':'test-github.com',
-                'portfolio_website':'test.space',
-                'street_address':'test 123',
-                'city_address':'test-city',
-                'state_address':'test-state',
-                'zip_code':'1234',
-            })
-            self.assertTrue(user_form.is_valid())
+        user_form = UserDetailForm(data={
+            'first_name':'test-first-name',
+            'middle_name':'test-middle-name',
+            'last_name':'test-last-name',
+            'preferred_name':'test',
+            'phone_number':'805-451-0363',
+            'email':'test@gmail.com',
+            'linkedin':'test-linkedin.com',
+            'github':'test-github.com',
+            'portfolio_website':'test.space',
+            'street_address':'test 123',
+            'city_address':'test-city',
+            'state_address':'test-state',
+            'zip_code':'1234',
+        })
+        self.assertTrue(user_form.is_valid())
 
     def test_all_jobs_template(self):
         response = self.client.get('/cover-letter-generator/all-jobs')
