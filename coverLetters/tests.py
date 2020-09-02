@@ -1,16 +1,28 @@
 from django.test import TestCase
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 from .forms import CoverLetterForm, UserDetailForm
 from .models import Job, UserDetail
+from django.core.exceptions import ValidationError
 
 
 class FunctionalTestCase(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
+    def test_all_links_on_homepage(self):
+        self.browser.get('http://localhost:3000')
+        allATags = self.browser.find_elements_by_tag_name('a')
+        i = 0
+        while i < len(allATags):
+            self.browser.find_elements_by_tag_name('a')[i].click()
+            self.browser.back()
+            i+=1
+
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
         self.assertIn('Job Application Process', self.browser.page_source)
+        
 
     def test_cover_letter_form_button(self):
         self.browser.get('http://localhost:3000')
@@ -20,19 +32,20 @@ class FunctionalTestCase(TestCase):
 
     def test_user_creation_form_button(self):
         self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-user-template-button')
+        self.browser.find_element_by_id('homepage-user-template-button').click()
     
     def test_all_users_button(self):
         self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-all-users-button')
+        self.browser.find_element_by_id('homepage-all-users-button').click()
     
     def test_all_jobs_button(self):
         self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-all-jobs-button')
+        self.browser.find_element_by_id('homepage-all-jobs-button').click()
     
     def test_admin_button(self):
         self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-admin-button')
+        self.browser.find_element_by_id('homepage-admin-button').click()
+        
     
     def test_cover_letter_back_button(self):
         self.browser.get(
@@ -162,3 +175,7 @@ class UnitTestCaste(TestCase):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
 
+
+    def test_bad_data(self):
+        def badUser():
+            user = User()
