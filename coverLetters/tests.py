@@ -8,7 +8,6 @@ class FunctionalTestCase(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
-
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
         self.assertIn('Job Application Process', self.browser.page_source)
