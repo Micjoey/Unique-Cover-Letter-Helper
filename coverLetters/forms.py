@@ -9,7 +9,6 @@ class CoverLetterForm(ModelForm):
         model = Job
         fields = [
             'template_choices',
-            'users',
             'company', 
             'city',
             'title', 
