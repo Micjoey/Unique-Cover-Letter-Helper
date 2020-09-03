@@ -9,6 +9,7 @@ class CoverLetterForm(ModelForm):
         model = Job
         fields = [
             'template_choices',
+            'users',
             'company', 
             'city',
             'title', 
@@ -33,7 +34,6 @@ class CoverLetterForm(ModelForm):
         widgets = {
             # 'bullet_point_one': forms.TextInput,
             'template_choices': forms.RadioSelect(),
-
         }
         formId = forms.CharField(widget=forms.HiddenInput())
 
