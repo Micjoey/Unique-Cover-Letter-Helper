@@ -18,7 +18,21 @@ class FunctionalTestCase(TestCase):
             self.browser.find_elements_by_tag_name('a')[i].click()
             self.browser.back()
             i+=1
+    
+    def test_all_back_buttons(self):
+        self.browser.get('http://localhost:3000')
+        allATags = self.browser.find_elements_by_tag_name('a')
+        i = 0
+        while i < len(allATags):
+            currentLink = self.browser.find_elements_by_tag_name('a')[i]
+            print(currentLink.text == 'Admin')
+            if (currentLink.text == "Admin"):
+                self.browser.back()
+            else:
+                self.browser.find_element_by_link_text('Back').click()
 
+            i += 1
+        
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
         self.assertIn('Job Application Process', self.browser.page_source)
@@ -28,7 +42,6 @@ class FunctionalTestCase(TestCase):
         self.browser.get('http://localhost:3000')
         self.browser.find_element_by_id(
             'homepage-cover-letter-template-button').click()
-
 
     def test_user_creation_form_button(self):
         self.browser.get('http://localhost:3000')
@@ -50,22 +63,22 @@ class FunctionalTestCase(TestCase):
     def test_cover_letter_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/cover-letter-form')
-        self.browser.find_elements_by_link_text('Back')
+        self.browser.find_element_by_link_text('Back').click()
     
     def test_user_form_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/user-form')
-        self.browser.find_elements_by_link_text('Back')
+        self.browser.find_element_by_link_text('Back').click()
     
     def test_all_users_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-users')
-        self.browser.find_elements_by_link_text('Back')
+        self.browser.find_element_by_link_text('Back').click()
     
     def test_all_users_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs')
-        self.browser.find_elements_by_link_text('Back')
+        self.browser.find_element_by_link_text('Back').click()
 
     def tearDown(self):
         self.browser.quit()
