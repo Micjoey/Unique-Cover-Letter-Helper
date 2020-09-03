@@ -2,6 +2,25 @@ from django.db import models
 from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 
+
+class UserDetail(models.Model):
+    first_name = models.CharField(max_length=200, blank=False)
+    middle_name = models.CharField(max_length=200,  blank=True)
+    last_name = models.CharField(max_length=200, blank=False)
+    preferred_name = models.CharField(max_length=200, blank=True)
+    phone_number = PhoneField(blank=True)
+    email = models.EmailField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    portfolio_website = models.URLField(blank=True, null=True)
+    street_address = models.CharField(blank=True, max_length=200)
+    city_address = models.CharField(blank=True, max_length=200,)
+    state_address = models.CharField(blank=True, max_length=200,)
+    zip_code = models.CharField(blank=True, max_length=200,)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
     title = models.CharField(max_length = 200)
@@ -30,6 +49,7 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )
+    users = models.ManyToManyField(UserDetail)
     template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
@@ -39,21 +59,5 @@ class Job(models.Model):
     
 
 
-class UserDetail(models.Model):
-    first_name = models.CharField(max_length=200, blank=False)
-    middle_name = models.CharField(max_length=200,  blank=True)
-    last_name = models.CharField(max_length=200, blank=False)
-    preferred_name = models.CharField(max_length=200, blank=True)
-    phone_number = PhoneField(blank=True)
-    email = models.EmailField(blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
-    github = models.URLField(blank=True, null=True)
-    portfolio_website = models.URLField(blank=True, null=True)
-    street_address = models.CharField(blank=True, max_length=200)
-    city_address = models.CharField(blank=True, max_length=200,)
-    state_address = models.CharField(blank=True, max_length=200,)
-    zip_code = models.CharField(blank=True, max_length=200,)
 
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
     
