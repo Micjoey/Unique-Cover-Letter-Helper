@@ -17,6 +17,8 @@ class UserDetail(models.Model):
     city_address = models.CharField(blank=True, max_length=200,)
     state_address = models.CharField(blank=True, max_length=200,)
     zip_code = models.CharField(blank=True, max_length=200,)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -49,7 +51,7 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )
-    users = models.ManyToManyField(UserDetail)
+    users = UserDetail.objects.values_list('id', 'first_name', 'last_name', flat=True)
     template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
