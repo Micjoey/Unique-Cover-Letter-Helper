@@ -22,7 +22,7 @@ class UserDetail(models.Model):
 
 
     def __str__(self):
-        return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
+        return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
 
 class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
@@ -52,7 +52,7 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )
-    choice_of_user = models.ForeignKey('UserDetail', on_delete=models.CASCADE, default=2)
+    choice_of_user = models.ForeignKey('UserDetail', on_delete=models.CASCADE, blank=True, null=True)
     template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
