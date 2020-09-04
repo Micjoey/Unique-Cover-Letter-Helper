@@ -6,85 +6,84 @@ from .models import Job, UserDetail
 from django.core.exceptions import ValidationError
 
 
-class FunctionalTestCase(TestCase):
-    def setUp(self):
-        self.browser = webdriver.Chrome()
+# class FunctionalTestCase(TestCase):
+#     def setUp(self):
+#         self.browser = webdriver.Chrome()
 
-    def test_all_links_on_homepage(self):
-        self.browser.get('http://localhost:3000')
-        allATags = self.browser.find_elements_by_tag_name('a')
-        i = 0
-        while i < len(allATags):
-            self.browser.find_elements_by_tag_name('a')[i].click()
-            self.browser.back()
-            i+=1
+
+#     def test_all_links_on_homepage(self):
+#         self.browser.get('http://localhost:3000')
+#         allATags = self.browser.find_elements_by_tag_name('a')
+#         i = 0
+#         while i < len(allATags):
+#             self.browser.find_elements_by_tag_name('a')[i].click()
+#             self.browser.back()
+#             i+=1
     
-    def test_all_back_buttons(self):
-        self.browser.get('http://localhost:3000')
-        allATags = self.browser.find_elements_by_tag_name('a')
-        i = 0
-        while i < len(allATags):
-            currentLink = self.browser.find_elements_by_tag_name('a')[i]
-            print(currentLink.text == 'Admin')
-            if (currentLink.text == "Admin"):
-                self.browser.back()
-            else:
-                self.browser.find_element_by_link_text('Back').click()
-
-            i += 1
+#     def test_all_back_buttons(self):
+#         self.browser.get('http://localhost:3000')
+#         allATags = self.browser.find_elements_by_tag_name('a')
+#         i = 0
+#         while i < len(allATags):
+#             self.browser.find_elements_by_tag_name('a')[i].click()
+#             backButton = self.browser.find_element_by_link_text('Back')
+#             if backButton:
+#                 self.browser.find_element_by_link_text('Back').click()
+#             else:
+#                 self.browser.back()
+#             i += 1
         
-    def test_there_is_homepage(self):
-        self.browser.get('http://localhost:3000')
-        self.assertIn('Job Application Process', self.browser.page_source)
+#     def test_there_is_homepage(self):
+#         self.browser.get('http://localhost:3000')
+#         self.assertIn('Job Application Process', self.browser.page_source)
         
 
-    def test_cover_letter_form_button(self):
-        self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id(
-            'homepage-cover-letter-template-button').click()
+#     def test_cover_letter_form_button(self):
+#         self.browser.get('http://localhost:3000')
+#         self.browser.find_element_by_id(
+#             'homepage-cover-letter-template-button').click()
 
-    def test_user_creation_form_button(self):
-        self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-user-template-button').click()
+#     def test_user_creation_form_button(self):
+#         self.browser.get('http://localhost:3000')
+#         self.browser.find_element_by_id('homepage-user-template-button').click()
     
-    def test_all_users_button(self):
-        self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-all-users-button').click()
+#     def test_all_users_button(self):
+#         self.browser.get('http://localhost:3000')
+#         self.browser.find_element_by_id('homepage-all-users-button').click()
     
-    def test_all_jobs_button(self):
-        self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-all-jobs-button').click()
+#     def test_all_jobs_button(self):
+#         self.browser.get('http://localhost:3000')
+#         self.browser.find_element_by_id('homepage-all-jobs-button').click()
     
-    def test_admin_button(self):
-        self.browser.get('http://localhost:3000')
-        self.browser.find_element_by_id('homepage-admin-button').click()
+#     def test_admin_button(self):
+#         self.browser.get('http://localhost:3000')
+#         self.browser.find_element_by_id('homepage-admin-button').click()
         
     
-    def test_cover_letter_back_button(self):
-        self.browser.get(
-            'http://localhost:3000/cover-letter-generator/cover-letter-form')
-        self.browser.find_element_by_link_text('Back').click()
+#     def test_cover_letter_back_button(self):
+#         self.browser.get(
+#             'http://localhost:3000/cover-letter-generator/cover-letter-form')
+#         self.browser.find_element_by_link_text('Back').click()
     
-    def test_user_form_back_button(self):
-        self.browser.get(
-            'http://localhost:3000/cover-letter-generator/user-form')
-        self.browser.find_element_by_link_text('Back').click()
+#     def test_user_form_back_button(self):
+#         self.browser.get(
+#             'http://localhost:3000/cover-letter-generator/user-form')
+#         self.browser.find_element_by_link_text('Back').click()
     
-    def test_all_users_back_button(self):
-        self.browser.get(
-            'http://localhost:3000/cover-letter-generator/all-users')
-        self.browser.find_element_by_link_text('Back').click()
+#     def test_all_users_back_button(self):
+#         self.browser.get(
+#             'http://localhost:3000/cover-letter-generator/all-users')
+#         self.browser.find_element_by_link_text('Back').click()
     
-    def test_all_users_back_button(self):
-        self.browser.get(
-            'http://localhost:3000/cover-letter-generator/all-jobs')
-        self.browser.find_element_by_link_text('Back').click()
+#     def test_all_jobs_back_button(self):
+#         self.browser.get(
+#             'http://localhost:3000/cover-letter-generator/all-jobs')
+#         self.browser.find_element_by_link_text('Back').click()
 
-    def tearDown(self):
-        self.browser.quit()
+#     def tearDown(self):
+#         self.browser.quit()
 
 class UnitTestCaste(TestCase):
-
     def test_home_homepage_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'homepage/homepage.html')
@@ -140,7 +139,7 @@ class UnitTestCaste(TestCase):
         return test_job
 
     def saveUserObject(self):
-        test_user = User()
+        test_user = UserDetail()
         test_user.first_name = 'test-first-name'
         test_user.middle_name = 'test-middle-name'
         test_user.last_name = 'test-last-name'
@@ -159,6 +158,7 @@ class UnitTestCaste(TestCase):
         
     def test_cover_letter_object(self):
         test_job = self.saveCoverLetterObject()
+        print(test_job)
         pulled_job = Job.objects.get(title='Test - Jackie')
         self.assertEqual(test_job.id, pulled_job.id)
     
@@ -188,7 +188,6 @@ class UnitTestCaste(TestCase):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
 
-
-    def test_bad_data(self):
-        def badUser():
-            user = User()
+    # def test_bad_data(self):
+        def badUserUserDetail():
+            user = UserUserDetail()
