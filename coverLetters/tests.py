@@ -20,18 +20,17 @@ class FunctionalTestCase(TestCase):
             self.browser.back()
             i+=1
     
-    def test_all_back_buttons(self):
-        self.browser.get('http://localhost:3000')
-        allATags = self.browser.find_elements_by_tag_name('a')
-        i = 0
-        while i < len(allATags):
-            self.browser.find_elements_by_tag_name('a')[i].click()
-            backButton = self.browser.find_element_by_link_text('Back')
-            if backButton:
-                self.browser.find_element_by_link_text('Back').click()
-            else:
-                self.browser.back()
-            i += 1
+    # def test_all_back_buttons(self):
+    #     self.browser.get('http://localhost:3000')
+    #     allATags = self.browser.find_elements_by_tag_name('a')
+    #     i = 0
+    #     while i < len(allATags):
+    #         currentLink = self.browser.find_elements_by_tag_name('a')[i]
+    #         self.browser.find_elements_by_tag_name('a')[i].click()
+    #         backButton = self.browser.find_element_by_link_text('Back')
+    #         print(currentLink.text)
+    #         backButton.click()
+    #         i += 1
         
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
@@ -158,7 +157,6 @@ class UnitTestCaste(TestCase):
         
     def test_cover_letter_object(self):
         test_job = self.saveCoverLetterObject()
-        print(test_job)
         pulled_job = Job.objects.get(title='Test - Jackie')
         self.assertEqual(test_job.id, pulled_job.id)
     
@@ -187,7 +185,3 @@ class UnitTestCaste(TestCase):
     def test_all_users_template(self):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
-
-    # def test_bad_data(self):
-        def badUserUserDetail():
-            user = UserUserDetail()
