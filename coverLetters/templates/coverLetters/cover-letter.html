@@ -139,7 +139,8 @@
         </div>
         </br>
         </br>
-        <button href="{% url 'cover-letter-form' %}"> Another Cover Letter </button>
+        {% comment %} <button><a href="{% url 'cover-letter-form' %}"> Another Cover Letter </a> </button> {% endcomment %}
+        <a href="{% url 'cover-letter-form' %}"><button> Another Cover Letter</button></a> 
     </div>
 
     {% comment %} {{job.company}} {% endcomment %}

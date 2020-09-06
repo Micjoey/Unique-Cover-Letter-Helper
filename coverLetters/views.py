@@ -51,9 +51,9 @@ def cover_letter(request):
             last_user = filled_form['choice_of_user']
             template_choice = filled_form['template_choices']
             # Checks to see what template to render for the cover letter -->
-            if "1" in template_choice:
+            if "Standard Job Template" in template_choice:
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
-            elif "2" in template_choice:
+            elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "3" in template_choice:
                 return render(request, 'coverLetters/cover-letter-three.html', {'job': filled_form, 'last_user': last_user, })
