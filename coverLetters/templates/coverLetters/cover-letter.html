@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/cover-form-rendered.scss' %}">     
     <title>Cover Letter</title>
 </head>
@@ -59,7 +61,7 @@
                 {% if last_user.email %}<h2><Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail></h2>{% endif %}
                 
             </div>
-            <div>
+            <div class="cover-letter-paragraph">
                 <p>
                     {% if job.recruiter %}
                     <p> Dear {{job.recruiter}}:</p>
