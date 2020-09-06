@@ -50,7 +50,12 @@ class FunctionalTestCase(TestCase):
     
     def test_cover_letter_back_button(self):
         self.browser.get(
-            'http://localhost:3000/cover-letter-generator/cover-letter-form')
+            'http://localhost:3000/cover-letter-generator/forms/cover-letter-form')
+        self.browser.find_element_by_link_text('Back').click()
+    
+    def test_triplebyte_back_button(self):
+        self.browser.get(
+            'http://localhost:3000/cover-letter-generator/forms/triplebyte-form')
         self.browser.find_element_by_link_text('Back').click()
     
     def test_user_form_back_button(self):

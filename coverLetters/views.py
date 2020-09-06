@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Job, UserDetail
-from.forms import CoverLetterForm, UserDetailForm
+from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
 
 
@@ -37,9 +37,13 @@ def user_detail(request, user_id):
 
 
 def cover_letter_form(request):
-        new_form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
+    new_form = CoverLetterForm()
+    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
 
+
+def triplebyte_message_form(request):
+    new_form=CoverLetterForm()
+    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
 
 def cover_letter(request):
     last_user = UserDetail.objects.last
