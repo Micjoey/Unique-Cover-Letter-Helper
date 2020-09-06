@@ -19,18 +19,7 @@ class FunctionalTestCase(TestCase):
             self.browser.find_elements_by_tag_name('a')[i].click()
             self.browser.back()
             i+=1
-    
-    # def test_all_back_buttons(self):
-    #     self.browser.get('http://localhost:3000')
-    #     allATags = self.browser.find_elements_by_tag_name('a')
-    #     i = 0
-    #     while i < len(allATags):
-    #         currentLink = self.browser.find_elements_by_tag_name('a')[i]
-    #         self.browser.find_elements_by_tag_name('a')[i].click()
-    #         backButton = self.browser.find_element_by_link_text('Back')
-    #         print(currentLink.text)
-    #         backButton.click()
-    #         i += 1
+
         
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
@@ -91,8 +80,9 @@ class UnitTestCaste(TestCase):
         form = CoverLetterForm(data={
             'template_choices': 'Template 1',
             'company':'Test - company1',
+            'choice_of_user': UserDetail.objects.last(),
             'city':'Test-  santa barbara',
-            'title':'Test - Jackie',
+            'position_title':'Test - Jackie',
             'link':'Test - www.trialone.com',
             'recruiter':'',
             'description':'Test - I love test cases',
@@ -112,10 +102,29 @@ class UnitTestCaste(TestCase):
         })
         self.assertTrue(form.is_valid())
     
+    def saveUserObject(self):
+        test_user = UserDetail()
+        test_user.first_name = 'test-first-name'
+        test_user.middle_name = 'test-middle-name'
+        test_user.last_name = 'test-last-name'
+        test_user.preferred_name = 'test'
+        test_user.phone_number = '805-451-0363'
+        test_user.email = 'test@gmail.com'
+        test_user.linkedin = 'test-linkedin.com'
+        test_user.github = 'test-github.com'
+        test_user.portfolio_website = 'test.space'
+        test_user.street_address = 'test 123'
+        test_user.city_address = 'test-city'
+        test_user.state_address = 'test-state'
+        test_user.zip_code = '1234'
+        test_user.save()
+        return test_user
+
     def saveCoverLetterObject(self):
         test_job = Job()
         test_job.template_choices = 'Template 1'
         test_job.company = 'Test - company1'
+        test_job.choice_of_user = UserDetail.objects.last()
         test_job.city = 'Test-  santa barbara'
         test_job.position_title = 'Test - Jackie'
         test_job.link = 'Test - www.trialone.com'
@@ -137,28 +146,12 @@ class UnitTestCaste(TestCase):
         test_job.save()
         return test_job
 
-    def saveUserObject(self):
-        test_user = UserDetail()
-        test_user.first_name = 'test-first-name'
-        test_user.middle_name = 'test-middle-name'
-        test_user.last_name = 'test-last-name'
-        test_user.preferred_name = 'test'
-        test_user.phone_number = '805-451-0363'
-        test_user.email = 'test@gmail.com'
-        test_user.linkedin = 'test-linkedin.com'
-        test_user.github = 'test-github.com'
-        test_user.portfolio_website = 'test.space'
-        test_user.street_address = 'test 123'
-        test_user.city_address = 'test-city'
-        test_user.state_address = 'test-state'
-        test_user.zip_code = '1234'
-        test_user.save()
-        return test_user
-        
     def test_cover_letter_object(self):
         test_job = self.saveCoverLetterObject()
-        pulled_job = Job.objects.get(title='Test - Jackie')
-        self.assertEqual(test_job.id, pulled_job.id)
+        pulled_job = Job.objects.get(link='Test - www.trialone.com')
+        self.assertEqual(test_job.link, pulled_job.link)
+        
+    
     
     def test_user_form(self):
         user_form = UserDetailForm(data={
