@@ -35,7 +35,8 @@ class Job(models.Model):
         ('Template 5', 'cover-letter-5')
         )
     template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
-    choice_of_user = models.ForeignKey('UserDetail', on_delete=models.CASCADE, blank=True, null=False, default=UserDetail.objects.first())
+    choice_of_user = models.ForeignKey(
+        'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.first().id)
     job_posting_website = models.CharField(max_length=200, blank=True)
     company = models.CharField(max_length = 200, blank=True)
     position_title = models.CharField(max_length = 200)
@@ -59,6 +60,7 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return self.company + ' ' + self.title + ' - Last Modified: ' + str(self.modified_date)
