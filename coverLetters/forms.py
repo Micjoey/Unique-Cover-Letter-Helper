@@ -10,6 +10,7 @@ class CoverLetterForm(ModelForm):
         fields = [
             'template_choices',
             'company', 
+            'job_posting_website',
             'city',
             'title', 
             'link', 
