@@ -11,13 +11,13 @@
     </head>
     <body>
         <a href="{% url 'all-jobs' %}"> Back </a>
-        <h1>Job Info: {{job.title}} | {{job.company}}</h1>
+        <h1>Job Info: {{job.position_title}} | {{job.company}}</h1>
         <div class="job-info-container">
             <div class="job-detail-container"> 
                 <p> Job Company: </p> <p>{{job.company}} </p>
             </div>
             <div class="job-detail-container"> 
-                <p> Job Title: </p> <p> {{job.title}} </p>
+                <p> Job Title: </p> <p> {{job.position_title}} </p>
             </div>
             <div class="job-detail-container"> 
                 <p> Job City: </p> <p> {{job.city}} </p>
@@ -111,7 +111,7 @@
                         <p> Dear Hiring Manager:</p>
                         {% endif %}
                     </p>
-                    <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
+                    <p> Your need for a {{job.position_title}} as advertised on the {{job.company}} 
                     website is an excellent match to my background and career goals. 
                     With my strong education and experience, I am confident I can make 
                     an immediate contribution given the opportunity.</p> 

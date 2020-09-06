@@ -117,7 +117,7 @@ class UnitTestCaste(TestCase):
         test_job.template_choices = 'Template 1'
         test_job.company = 'Test - company1'
         test_job.city = 'Test-  santa barbara'
-        test_job.title = 'Test - Jackie'
+        test_job.position_title = 'Test - Jackie'
         test_job.link = 'Test - www.trialone.com'
         test_job.recruiter = ''
         test_job.description = 'Test - I love test cases'

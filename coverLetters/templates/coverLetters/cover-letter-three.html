@@ -69,13 +69,13 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-                {% comment %} <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
+                {% comment %} <p> Your need for a {{job.position_title}} as advertised on the {{job.company}} 
                 website is an excellent match to my background and career goals. 
                 With my strong education and experience, I am confident I can make 
                 an immediate contribution given the opportunity.</p>  {% endcomment %}
 
                <p> As advertised on the {% if {{job.job_posting_website}} %}{{job.job_posting_website}}{% else %}{{job.company}}{% endif %} website, your need for a 
-                {{job.title}} is an excellent match to my background 
+                {{job.position_title}} is an excellent match to my background 
                 and career goals. With my strong education and experience, I am 
                 confident I can make an immediate contribution given the opportunity.</p>
 
