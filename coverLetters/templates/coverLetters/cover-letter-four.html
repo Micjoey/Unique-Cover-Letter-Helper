@@ -74,7 +74,7 @@
                 With my strong education and experience, I am confident I can make 
                 an immediate contribution given the opportunity.</p>  {% endcomment %}
 
-               <p> As advertised on the {% if {{job.job_posting_website}} %}{{job.job_posting_website}}{% else %}{{job.company}}{% endif %} website, your need for a 
+               <p> As advertised on the {% if job.job_posting_website %}{{job.job_posting_website}}{% else %}{{job.company}}{% endif %} website, your need for a 
                 {{job.position_title}} is an excellent match to my background 
                 and career goals. With my strong education and experience, I am 
                 confident I can make an immediate contribution given the opportunity.</p>
@@ -139,7 +139,7 @@
         </div>
         </br>
         </br>
-        <button href="{% url 'cover-letter-form' %}"> Another Cover Letter </button>
+        <button><a href="{% url 'cover-letter-form' %}"> Another Cover Letter </a> </button>
     </div>
 
     {% comment %} {{job.company}} {% endcomment %}
