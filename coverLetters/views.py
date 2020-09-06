@@ -42,7 +42,7 @@ def cover_letter_form(request):
 
 
 def triplebyte_message_form(request):
-    new_form=CoverLetterForm()
+    new_form=TripleByteForm()
     return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
 
 def cover_letter(request):
