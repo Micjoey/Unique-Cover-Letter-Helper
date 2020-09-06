@@ -23,22 +23,22 @@
                 <p>
                     {% if last_user.phone_number %}
                         {{last_user.phone_number}}
+                        |
                     {% endif %}
                     {% if last_user.email %}
+                        <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
                         | 
-                    <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
                     {% endif %}
                     {% if last_user.linkedin %}
+                        <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                         |
-                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                     {% endif %}
                     {% if last_user.github %}
+                        <a href={{last_user.github}}>{{last_user.github}}</a>
                         |
-                    <a href={{last_user.github}}>{{last_user.github}}</a>
                     {% endif %}
                     {% if last_user.portfolio_website %}
-                        |
-                    <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
+                        <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
                     {% endif %}
                 </p>
             </div>
