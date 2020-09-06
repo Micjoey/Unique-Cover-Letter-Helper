@@ -23,22 +23,22 @@
                 <p>
                     {% if last_user.phone_number %}
                         {{last_user.phone_number}}
+                        |
                     {% endif %}
                     {% if last_user.email %}
+                        <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
                         | 
-                    <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
                     {% endif %}
                     {% if last_user.linkedin %}
+                        <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                         |
-                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
                     {% endif %}
                     {% if last_user.github %}
+                        <a href={{last_user.github}}>{{last_user.github}}</a>
                         |
-                    <a href={{last_user.github}}>{{last_user.github}}</a>
                     {% endif %}
                     {% if last_user.portfolio_website %}
-                        |
-                    <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
+                        <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
                     {% endif %}
                 </p>
             </div>
@@ -91,31 +91,31 @@
 
                 <p>Highlights of my qualifications most relevant to your needs include:</p>
 
-                <p>     * {{job.top_skills}}</p> 
+                <p> * {{job.top_skills}}</p> 
                 
                 {% if  job.bullet_point_one%}
-                    <p>     * {{job.bullet_point_one}}</p> 
+                    <p> * {{job.bullet_point_one}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_two%}
-                         * {{job.bullet_point_two}}</p> 
+                    <p> * {{job.bullet_point_two}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_three%}
-                         * {{job.bullet_point_three}}</p> 
+                    <p> * {{job.bullet_point_three}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_four%}
-                         * {{job.bullet_point_four}}</p> 
+                    <p> * {{job.bullet_point_four}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_five%}
-                         * {{job.bullet_point_five}}</p> 
+                    <p> * {{job.bullet_point_five}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_six%}
-                         * {{job.bullet_point_six}}</p> 
+                    <p> * {{job.bullet_point_six}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_seven%}
-                         * {{job.bullet_point_seven}}</p> 
+                    <p> * {{job.bullet_point_seven}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_eight%}
-                         * {{job.bullet_point_eight}}</p> 
+                    <p> * {{job.bullet_point_eight}}</p> 
                 {% endif %}
                 
                 {% if  job.post_bullet_point_paragraph_one%}
@@ -139,7 +139,8 @@
         </div>
         </br>
         </br>
-        <a href="{% url 'cover-letter-form' %}"> Another Cover Letter </a>
+        {% comment %} <button><a href="{% url 'cover-letter-form' %}"> Another Cover Letter </a> </button> {% endcomment %}
+        <a href="{% url 'cover-letter-form' %}"><button> Another Cover Letter</button></a>  
     </div>
 
     {% comment %} {{job.company}} {% endcomment %}
