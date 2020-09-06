@@ -10,7 +10,7 @@ class CoverLetterForm(ModelForm):
         fields = '__all__'
         labels = {'position_title': 'Position title'}
         widgets = {
-            'template_choices': forms.RadioSelect(), 
+            'template_choices': forms.Select(), 
         }
         
         formId = forms.CharField(widget=forms.HiddenInput())
@@ -19,7 +19,6 @@ class CoverLetterForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
-        
 
 class UserDetailForm(ModelForm):
     class Meta:
