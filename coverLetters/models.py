@@ -28,8 +28,8 @@ class UserDetail(models.Model):
 
 class Job(models.Model):
     model_template_choices = (
-        ('Template 1', 'cover-letter-1'),
-        ('Template 2', 'cover-letter-2'),
+        ('Standard Job Template', 'cover-letter-1'),
+        ('Triplebyte (message-version)', 'cover-letter-2'),
         ('Template 3', 'cover-letter-3'),
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
@@ -46,9 +46,9 @@ class Job(models.Model):
     description = models.TextField( blank=True)
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
     pre_bullet_point_paragraph_two = models.TextField( blank=True)
-    bullet_point_one = models.TextField( blank=True)
     top_skills = models.TextField(
          blank=True, default='Dynamic and accomplished Software Engineer with experience and expertise in')
+    bullet_point_one = models.TextField( blank=True)
     bullet_point_two = models.TextField( blank=True)
     bullet_point_three = models.TextField( blank=True)
     bullet_point_four = models.TextField( blank=True)

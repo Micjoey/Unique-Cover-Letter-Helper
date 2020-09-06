@@ -28,7 +28,7 @@ urlpatterns = [
          name='cover-letter-form'),
     path('cover-letter-generator/cover-letter', coverLetters.views.cover_letter,
          name='cover-letter'),
-    path('cover-letter-generator/cover-letter-two', coverLetters.views.cover_letter,
+    path('cover-letter-generator/triplebyte-cover-letter', coverLetters.views.cover_letter,
          name='cover-letter-three'),
     path('cover-letter-generator/cover-letter', coverLetters.views.cover_letter,
          name='cover-letter-four'),
