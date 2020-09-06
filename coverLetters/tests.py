@@ -10,6 +10,7 @@ class FunctionalTestCase(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
+
     def test_all_links_on_homepage(self):
         self.browser.get('http://localhost:3000')
         allATags = self.browser.find_elements_by_tag_name('a')
@@ -19,19 +20,17 @@ class FunctionalTestCase(TestCase):
             self.browser.back()
             i+=1
     
-    def test_all_back_buttons(self):
-        self.browser.get('http://localhost:3000')
-        allATags = self.browser.find_elements_by_tag_name('a')
-        i = 0
-        while i < len(allATags):
-            currentLink = self.browser.find_elements_by_tag_name('a')[i]
-            print(currentLink.text == 'Admin')
-            if (currentLink.text == "Admin"):
-                self.browser.back()
-            else:
-                self.browser.find_element_by_link_text('Back').click()
-
-            i += 1
+    # def test_all_back_buttons(self):
+    #     self.browser.get('http://localhost:3000')
+    #     allATags = self.browser.find_elements_by_tag_name('a')
+    #     i = 0
+    #     while i < len(allATags):
+    #         currentLink = self.browser.find_elements_by_tag_name('a')[i]
+    #         self.browser.find_elements_by_tag_name('a')[i].click()
+    #         backButton = self.browser.find_element_by_link_text('Back')
+    #         print(currentLink.text)
+    #         backButton.click()
+    #         i += 1
         
     def test_there_is_homepage(self):
         self.browser.get('http://localhost:3000')
@@ -75,7 +74,7 @@ class FunctionalTestCase(TestCase):
             'http://localhost:3000/cover-letter-generator/all-users')
         self.browser.find_element_by_link_text('Back').click()
     
-    def test_all_users_back_button(self):
+    def test_all_jobs_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs')
         self.browser.find_element_by_link_text('Back').click()
@@ -84,7 +83,6 @@ class FunctionalTestCase(TestCase):
         self.browser.quit()
 
 class UnitTestCaste(TestCase):
-
     def test_home_homepage_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'homepage/homepage.html')
@@ -119,7 +117,7 @@ class UnitTestCaste(TestCase):
         test_job.template_choices = 'Template 1'
         test_job.company = 'Test - company1'
         test_job.city = 'Test-  santa barbara'
-        test_job.title = 'Test - Jackie'
+        test_job.position_title = 'Test - Jackie'
         test_job.link = 'Test - www.trialone.com'
         test_job.recruiter = ''
         test_job.description = 'Test - I love test cases'
@@ -140,7 +138,7 @@ class UnitTestCaste(TestCase):
         return test_job
 
     def saveUserObject(self):
-        test_user = User()
+        test_user = UserDetail()
         test_user.first_name = 'test-first-name'
         test_user.middle_name = 'test-middle-name'
         test_user.last_name = 'test-last-name'
@@ -187,8 +185,3 @@ class UnitTestCaste(TestCase):
     def test_all_users_template(self):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
-
-
-    def test_bad_data(self):
-        def badUser():
-            user = User()
