@@ -31,7 +31,7 @@ class CoverLetterForm(ModelForm):
         #     'post_bullet_point_paragraph_two',
         # ]
         fields = '__all__'
-        labels = {'title': 'Title'}
+        labels = {'position_title': 'Position title'}
         widgets = {
             # 'bullet_point_one': forms.TextInput,
             'template_choices': forms.RadioSelect(), 
