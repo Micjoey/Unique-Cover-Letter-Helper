@@ -169,4 +169,14 @@ ol li::before {
   content: counter(my-awesome-counter) ". ";
   color: red;
   font-weight: bold;
+
+
+}
+
+p {
+  font-family: Calibri,Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 23px;
 }

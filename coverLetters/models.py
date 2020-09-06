@@ -27,6 +27,7 @@ class UserDetail(models.Model):
 class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
     title = models.CharField(max_length = 200)
+    job_posting_website = models.CharField(max_length=200)
     link = models.CharField(max_length = 200, blank=True)
     recruiter = models.CharField(max_length = 200,  blank=True)
     city = models.CharField(max_length = 200,  blank=True)
