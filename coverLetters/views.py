@@ -48,6 +48,7 @@ def cover_letter(request):
         if filled_form.is_valid():
             filled_form.save()
             filled_form = filled_form.cleaned_data #turns the form into a dict (object)
+            last_user = filled_form['choice_of_user']
             template_choice = filled_form['template_choices']
             # Checks to see what template to render for the cover letter -->
             if "1" in template_choice:

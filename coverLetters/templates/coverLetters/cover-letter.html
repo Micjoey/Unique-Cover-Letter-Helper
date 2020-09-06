@@ -1,8 +1,14 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/cover-form-rendered.scss' %}">     
     <title>Cover Letter</title>
 </head>
 <body>
@@ -55,7 +61,7 @@
                 {% if last_user.email %}<h2><Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail></h2>{% endif %}
                 
             </div>
-            <div>
+            <div class="cover-letter-paragraph">
                 <p>
                     {% if job.recruiter %}
                     <p> Dear {{job.recruiter}}:</p>
@@ -63,13 +69,13 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-                {% comment %} <p> Your need for a {{job.title}} as advertised on the {{job.company}} 
+                {% comment %} <p> Your need for a {{job.position_title}} as advertised on the {{job.company}} 
                 website is an excellent match to my background and career goals. 
                 With my strong education and experience, I am confident I can make 
                 an immediate contribution given the opportunity.</p>  {% endcomment %}
 
-               <p> As advertised on the {{job.company}} website, your need for a 
-                {{job.title}} is an excellent match to my background 
+               <p> As advertised on the {% if job.job_posting_website %}{{job.job_posting_website}}{% else %}{{job.company}}{% endif %} website, your need for a 
+                {{job.position_title}} is an excellent match to my background 
                 and career goals. With my strong education and experience, I am 
                 confident I can make an immediate contribution given the opportunity.</p>
 
@@ -85,31 +91,31 @@
 
                 <p>Highlights of my qualifications most relevant to your needs include:</p>
 
-                <p>* {{job.top_skills}}</p> 
+                <p>     * {{job.top_skills}}</p> 
                 
                 {% if  job.bullet_point_one%}
-                    <p>* {{job.bullet_point_one}}</p> 
+                    <p>     * {{job.bullet_point_one}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_two%}
-                    <p>* {{job.bullet_point_two}}</p> 
+                         * {{job.bullet_point_two}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_three%}
-                    <p>* {{job.bullet_point_three}}</p> 
+                         * {{job.bullet_point_three}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_four%}
-                    <p>* {{job.bullet_point_four}}</p> 
+                         * {{job.bullet_point_four}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_five%}
-                    <p>* {{job.bullet_point_five}}</p> 
+                         * {{job.bullet_point_five}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_six%}
-                    <p>* {{job.bullet_point_six}}</p> 
+                         * {{job.bullet_point_six}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_seven%}
-                    <p>* {{job.bullet_point_seven}}</p> 
+                         * {{job.bullet_point_seven}}</p> 
                 {% endif %}
                 {% if  job.bullet_point_eight%}
-                    <p>* {{job.bullet_point_eight}}</p> 
+                         * {{job.bullet_point_eight}}</p> 
                 {% endif %}
                 
                 {% if  job.post_bullet_point_paragraph_one%}
