@@ -19,6 +19,8 @@ class UserDetail(models.Model):
     modified_date = models.DateField(auto_now=True, blank=True)
     created_date = models.DateField(auto_now_add=True, blank=True)
 
+    class Meta:
+        ordering = ['-created_date']
 
 
     def __str__(self):
@@ -33,7 +35,8 @@ class Job(models.Model):
         ('Template 5', 'cover-letter-5')
         )
     template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
-    choice_of_user = models.ForeignKey('UserDetail', on_delete=models.CASCADE, blank=True, null=True)
+    # choice_of_user = models.ForeignKey('UserDetail', on_delete=models.CASCADE, blank=True, null=True)
+    # choice_of_user = models.CharField(max_length=200, blank=True)
     job_posting_website = models.CharField(max_length=200, blank=True)
     company = models.CharField(max_length = 200, blank=True)
     title = models.CharField(max_length = 200)
