@@ -28,13 +28,14 @@ class UserDetail(models.Model):
 
 class Job(models.Model):
     model_template_choices = (
-        ('Template 1', 'cover-letter-1'),
-        ('Template 2', 'cover-letter-2'),
+        ('Standard Job Template', 'Standard Job Template'),
+        ('Triplebyte (message-version)', 'Triplebyte (message-version)'),
         ('Template 3', 'cover-letter-3'),
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )
-    template_choices = models.CharField(choices=model_template_choices, default='Template 1', max_length=20)
+    template_choices = models.CharField(
+        choices=model_template_choices, default='Standard Job Template', max_length=100)
     choice_of_user = models.ForeignKey(
         'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.first().id)
     job_posting_website = models.CharField(max_length=200, blank=True)
@@ -46,9 +47,9 @@ class Job(models.Model):
     description = models.TextField( blank=True)
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
     pre_bullet_point_paragraph_two = models.TextField( blank=True)
-    bullet_point_one = models.TextField( blank=True)
     top_skills = models.TextField(
          blank=True, default='Dynamic and accomplished Software Engineer with experience and expertise in')
+    bullet_point_one = models.TextField( blank=True)
     bullet_point_two = models.TextField( blank=True)
     bullet_point_three = models.TextField( blank=True)
     bullet_point_four = models.TextField( blank=True)
