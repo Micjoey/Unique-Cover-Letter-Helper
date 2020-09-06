@@ -54,7 +54,7 @@ def cover_letter(request):
             if "1" in template_choice:
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "2" in template_choice:
-                return render(request, 'coverLetters/cover-letter-two.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "3" in template_choice:
                 return render(request, 'coverLetters/cover-letter-three.html', {'job': filled_form, 'last_user': last_user, })
             elif "4" in template_choice:
