@@ -19,13 +19,13 @@
     </br>
     
     <ol>
-        {% for job in jobs.all %}
+        {% for job in jobs.all.reverse %}
         <div class="job-info-container">
-            <ul>
-            <a href="{% url 'job-detail' job.id %}">
-                <h1> {{job.company}} | {{job.position_title}} | {{job.created_date}} </h1>
-            </a>
-            </ul>
+            <li style='display: flex;'>
+                <a href="{% url 'job-detail' job.id %}" >
+                    <h1> {{job.company}} | {{job.position_title}} | {{job.created_date}} </h1>
+                </a>
+            </li>
         </div>
         {% endfor %}
     </ol>
