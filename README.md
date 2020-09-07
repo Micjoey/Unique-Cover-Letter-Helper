@@ -36,4 +36,21 @@ Generates a template cover letter for easy submitting of an application.
   ### `CoverLetterGenerator/coverLetters/templates/all-jobs`
   This is a simple for loop which shows all jobs that have templates and exist in your database.
   
+## Filling Out Form
+  Each field of the form:
+    `Template choices:` - This is where you select which version of the template you wish to populate. This is pre-populated with `cover-letter.html` or otherwise known as "Standard Cover Letter".
+    `Choice of user:` - ID 2 - Your User Info - date created: 2020-09-03 - This is whatever user information you provided that will populate the form.
+    `Job posting website:` - Linkedin - Put here the website to which you gathered the information from. This is so that it can say "I saw your job posting from x"
+    `Company:` - The name of the company you are applying to.
+    `Position title:` - Title of the position you are applying to.
+    `City:` - What city is the job in? This is really just for your records.
+    `Link:` - This is the link of the job posting so that you can go back to it.
+    `Recruiter:` - If you have a recruiters name, then put it here. The recruiters name will replace the generic greeting.
+    `Description:` - Job description for your records.
+    `Pre bullet point paragraph one:` - If you want to have a paragraph before the bullet points.
+    `Pre bullet point paragraph two:` - If you want to have a second paragraph before the bullet points.
+    `Top skills:` - These are your top skills that are relevant to the job. This is prefilled in with "Dynamic and accomplished Software Engineer with experience and expertise in "
+    `Bullet point x:` - These are the additional reasons why you are good for this position. There are eight fields. 
+    `Post bullet point paragraph one:` - If you want to have a paragraph post the bullet points.
+    `Post bullet point paragraph two:` - If you want to have a second paragraph post the bullet points.
 
