@@ -46,9 +46,7 @@ Generates a template cover letter for easy submitting of an application.
     <ul>`Choice of user:` - ID 2 - Your User Info - date created: 2020-09-03 - This is whatever user information you provided that will populate the form. </ul>
     </br>
     </br>
-    <ul>`Job posting website:` - Linkedin - Put here the website to which you gathered the information from.</ul>
-    </br>
-    </br> This is so that it can say "I saw your job posting from x"
+    <ul>`Job posting website:` - Linkedin - Put here the website to which you gathered the information from.This is so that it can say "I saw your job posting from x" </ul>
     <ul>`Company:` - The name of the company you are applying to.</ul>
     </br>
     </br>
