@@ -27,7 +27,7 @@ class UserDetail(models.Model):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
 
 class Job(models.Model):
-    model_template_choices = (
+    job_template_choices = (
         ('Standard Job Template', 'Standard Job Template'),
         ('Triplebyte (message-version)', 'Triplebyte (message-version)'),
         ('Non-technical Cover Letter', 'non-technical-cover-letter'),
@@ -35,7 +35,7 @@ class Job(models.Model):
         ('Template 5', 'cover-letter-5')
         )
     template_choices = models.CharField(
-        choices=model_template_choices, default='Standard Job Template', max_length=100)
+        choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
         'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.first().id)
     job_posting_website = models.CharField(max_length=200, blank=True)
