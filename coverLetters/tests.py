@@ -81,7 +81,6 @@ class UnitTestCaste(TestCase):
     def test_home_homepage_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'homepage/homepage.html')
-<<<<<<< HEAD
 
     def test_cover_letter_form(self):
         form = CoverLetterForm(data={
@@ -130,75 +129,6 @@ class UnitTestCaste(TestCase):
     def saveCoverLetterObject(self):
         test_job = Job()
         test_job.template_choices = 'Template 1'
-=======
-        
-
-    def save_user_Object(self):
-        test_user = UserDetail()
-        test_user.first_name = 'test-first-name'
-        test_user.middle_name = 'test-middle-name'
-        test_user.last_name = 'test-last-name'
-        test_user.preferred_name = 'test'
-        test_user.phone_number = '805-451-0363'
-        test_user.email = 'test@gmail.com'
-        test_user.linkedin = 'test-linkedin.com'
-        test_user.github = 'test-github.com'
-        test_user.portfolio_website = 'test.space'
-        test_user.street_address = 'test 123'
-        test_user.city_address = 'test-city'
-        test_user.state_address = 'test-state'
-        test_user.zip_code = '1234'
-        test_user.save()
-        return test_user
-
-    def test_user_form(self):
-        user_form = UserDetailForm(data={
-            'first_name':'test-first-name',
-            'middle_name':'test-middle-name',
-            'last_name':'test-last-name',
-            'preferred_name':'test',
-            'phone_number':'805-451-0363',
-            'email':'test@gmail.com',
-            'linkedin':'test-linkedin.com',
-            'github':'test-github.com',
-            'portfolio_website':'test.space',
-            'street_address':'test 123',
-            'city_address':'test-city',
-            'state_address':'test-state',
-            'zip_code':'1234',
-        })
-        self.assertTrue(user_form.is_valid())
-    
-    def test_cover_letter_form(self):
-        form = CoverLetterForm(data={
-        'template_choices': 'Template 1',
-        'company': 'Test - company1',
-        'choice_of_user': UserDetail.objects.last(),
-        'city': 'Test-  santa barbara',
-        'position_title': 'Test - Jackie',
-        'link': 'Test - www.trialone.com',
-        'recruiter': '',
-        'description': 'Test - I love test cases',
-        'pre_bullet_point_paragraph_one': 'Test - paragraphone',
-        'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
-        'top_skills': 'Test - Javascript, Banana',
-        'bullet_point_one': 'Test - BP1',
-        'bullet_point_two': 'Test - BP2',
-        'bullet_point_three': 'Test - BP3',
-        'bullet_point_four': 'Test - BP4',
-        'bullet_point_five': 'Test - BP5',
-        'bullet_point_six': 'Test - BP6',
-        'bullet_point_seven': 'Test - BP7',
-        'bullet_point_eight': 'Test - BP8',
-        'post_bullet_point_paragraph_one': 'Test - paragraphpostone',
-        'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
-        })
-
-        self.assertTrue(form.is_valid())
-
-    def save_cover_letter_object_template_one(self):
-        test_job = Job()
->>>>>>> fix-testing
         test_job.company = 'Test - company1'
         test_job.choice_of_user = UserDetail.objects.last()
         test_job.city = 'Test-  santa barbara'
@@ -219,10 +149,6 @@ class UnitTestCaste(TestCase):
         test_job.bullet_point_eight = 'Test - BP8'
         test_job.post_bullet_point_paragraph_one = 'Test - paragraphpostone'
         test_job.post_bullet_point_paragraph_two = 'Test - paragraphposttwo'
-<<<<<<< HEAD
-=======
-        test_job.template_choices = 'Template 1'
->>>>>>> fix-testing
         test_job.save()
         return test_job
 
@@ -231,7 +157,6 @@ class UnitTestCaste(TestCase):
         test_job = self.saveCoverLetterObject()
         pulled_job = Job.objects.get(link='Test - www.trialone.com')
         self.assertEqual(test_job.link, pulled_job.link)
-        
     def test_user_form(self):
         user_form = UserDetailForm(data={
             'first_name':'test-first-name',
@@ -253,13 +178,6 @@ class UnitTestCaste(TestCase):
         test_job = self.save_cover_letter_object_template_one()
         pulled_job = Job.objects.get(link='Test - www.trialone.com')
         self.assertEqual(test_job.link, pulled_job.link)
-        
-   
->>>>>>> fix-testing
-
-    def test_all_jobs_template(self):
-        response = self.client.get('/cover-letter-generator/all-jobs')
-        self.assertTemplateUsed(response, 'jobs/all-jobs.html')
 
     def test_all_users_template(self):
         response = self.client.get('/cover-letter-generator/all-users')
