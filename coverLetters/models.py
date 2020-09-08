@@ -30,7 +30,7 @@ class Job(models.Model):
     model_template_choices = (
         ('Standard Job Template', 'Standard Job Template'),
         ('Triplebyte (message-version)', 'Triplebyte (message-version)'),
-        ('Template 3', 'cover-letter-3'),
+        ('Template 3', 'non-technical-cover-letter'),
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
         )

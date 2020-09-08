@@ -60,7 +60,7 @@ def cover_letter(request):
             elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "3" in template_choice:
-                return render(request, 'coverLetters/cover-letter-three.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "4" in template_choice:
                 return render(request, 'coverLetters/cover-letter-four.html', {'job': filled_form, 'last_user': last_user, })
             elif "5" in template_choice:

@@ -42,17 +42,5 @@ class TripleByteForm(ModelForm):
 class UserDetailForm(ModelForm):
     class Meta:
         model = UserDetail
-        fields = ['first_name',
-            'middle_name',
-            'last_name',
-            'preferred_name',
-            'email',
-            'linkedin',
-            'github',
-            'portfolio_website',
-            'street_address',
-            'city_address',
-            'state_address',
-            'zip_code',
-        ]
+        fields = '__all__'
 
