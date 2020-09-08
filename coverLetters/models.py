@@ -64,7 +64,7 @@ class Job(models.Model):
 
 
     def __str__(self):
-        return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date)
+        return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
     
 
 
