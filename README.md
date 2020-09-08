@@ -40,52 +40,50 @@ Generates a template cover letter for easy submitting of an application.
   Each field of the form:
     </br>
     </br>
-    <ul>`Template choices:` - This is where you select which version of the template you wish to populate. This is pre-populated with `cover-letter.html` or otherwise known as "Standard Cover Letter".
+    <ul>`Template choices:` - This is where you select which version of the template you wish to populate. This is pre-populated with `cover-letter.html` or otherwise known as "Standard Cover Letter".</ul>
     </br>
     </br>
-    <ul>`Choice of user:` - ID 2 - Your User Info - date created: 2020-09-03 - This is whatever user information you provided that will populate the form.
+    <ul>`Choice of user:` - ID 2 - Your User Info - date created: 2020-09-03 - This is whatever user information you provided that will populate the form. </ul>
     </br>
     </br>
-    <ul>`Job posting website:` - Linkedin - Put here the website to which you gathered the information from.
+    <ul>`Job posting website:` - Linkedin - Put here the website to which you gathered the information from.</ul>
     </br>
     </br> This is so that it can say "I saw your job posting from x"
-    <ul>`Company:` - The name of the company you are applying to.
+    <ul>`Company:` - The name of the company you are applying to.</ul>
     </br>
     </br>
-    <ul>`Position title:` - Title of the position you are applying to.
+    <ul>`Position title:` - Title of the position you are applying to.</ul>
     </br>
     </br>
-    <ul>`City:` - What city is the job in? This is really just for your records.
+    <ul>`City:` - What city is the job in? This is really just for your records.</ul>
     </br>
     </br>
-    <ul>`Link:` - This is the link of the job posting so that you can go back to it.
+    <ul>`Link:` - This is the link of the job posting so that you can go back to it.</ul>
     </br>
     </br>
-    <ul>`Recruiter:` - If you have a recruiters name, then put it here.
-    </br>
-    </br> The recruiters name will replace the generic greeting.
+    <ul>`Recruiter:` - If you have a recruiters name, then put it here.The recruiters name will replace the generic greeting.</ul>
     </br>
     </br>
-    <ul>`Description:` - Job description for your records.
+    <ul>`Description:` - Job description for your records.</ul>
     </br>
     </br>
-    <ul>`Pre bullet point paragraph one:` - If you want to have a paragraph before the bullet points.
+    <ul>`Pre bullet point paragraph one:` - If you want to have a paragraph before the bullet points.</ul>
     </br>
     </br>
-    <ul>`Pre bullet point paragraph two:` - If you want to have a second paragraph before the bullet points.
+    <ul>`Pre bullet point paragraph two:` - If you want to have a second paragraph before the bullet points.</ul>
     </br>
     </br>
     <ul>`Top skills:` - These are your top skills that are relevant to the job.
-        This is prefilled in with "Dynamic and accomplished Software Engineer with experience and expertise in x".
+        This is prefilled in with "Dynamic and accomplished Software Engineer with experience and expertise in x".</ul>
     </br>
     </br> 
-    <ul>`Bullet point x:` - These are the additional reasons why you are good for this position. There are eight fields.
+    <ul>`Bullet point x:` - These are the additional reasons why you are good for this position. There are eight fields.</ul>
     </br>
     </br> 
-    <ul>`Post bullet point paragraph one:` - If you want to have a paragraph post the bullet points.
+    <ul>`Post bullet point paragraph one:` - If you want to have a paragraph post the bullet points.</ul>
     </br>
     </br>
-    <ul>`Post bullet point paragraph two:` - If you want to have a second paragraph post the bullet points.
+    <ul>`Post bullet point paragraph two:` - If you want to have a second paragraph post the bullet points.</ul>
     </br>
     </br>
 
