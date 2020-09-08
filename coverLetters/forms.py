@@ -36,7 +36,7 @@ class TripleByteForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
-        self.fields['choice_of_user'].initial = UserDetail.objects.first().id
+        self.fields['choice_of_user'].initial = UserDetail.objects.last().id 
         self.fields['template_choices'].initial = 'Triplebyte (message-version)'
 
 class UserDetailForm(ModelForm):
