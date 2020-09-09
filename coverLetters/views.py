@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
-
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
@@ -28,6 +27,10 @@ def job_detail(request, job_id):
     object_keys = list(object.keys())
     return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
 
+def delete_job_detail(request, job_id):
+    job_detail = get_object_or_404(Job, pk=job_id)
+    job_detail.delete()
+    return all_jobs(request)
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
@@ -59,7 +62,7 @@ def cover_letter(request):
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
-            elif "3" in template_choice:
+            elif "non-technical-cover-letter" in template_choice:
                 return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "4" in template_choice:
                 return render(request, 'coverLetters/cover-letter-four.html', {'job': filled_form, 'last_user': last_user, })
