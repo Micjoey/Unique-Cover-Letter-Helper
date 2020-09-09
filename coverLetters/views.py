@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
+from django.urls import path, include
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
@@ -9,9 +10,13 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('created_date')
+    # if 'delete' in str(request.build_absolute_uri()):
+    #     print(request.build_absolute_uri())
+    #     render(request, 'jobs/all-jobs.html', )
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
+    
 
 
 def all_users(request):
@@ -62,7 +67,7 @@ def cover_letter(request):
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
-            elif "non-technical-cover-letter" in template_choice:
+            elif "Non-technical Cover Letter" in template_choice:
                 return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
             elif "4" in template_choice:
                 return render(request, 'coverLetters/cover-letter-four.html', {'job': filled_form, 'last_user': last_user, })

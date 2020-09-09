@@ -13,7 +13,7 @@
 </head>
 <body>
     <a href="{% url 'homepage' %}"> Back </a>
-    <h1> Generated Cover Letter Form 3</h1>
+    <h1> Non-technical Cover Letter</h1>
     </br>
     </br>
     
@@ -27,23 +27,21 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-
-               <p> Thank you for the opportunity to apply for the {{job.title}} role at your company - {{job.company}}. 
-               After reviewing your job description, it's clear that you're looking for a candidate that is extremely familiar with the responsibilities associated with the role, and can perform them confidently.
-            Given these requirements, I am certain that I have the necessary skills to successfully do the job adeptly and perform above expectations.</p>
-
-            <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Over the course of my career, I have developed proven communication, analytical and teamwork skills, whcih I hope to leverage into the {{job.title}} role at your company.</p>
-                    </br>
-            <p> After reviewing my resume, I hope you will agree that I am the type of competent and competitive candidate you are looking for. I look forward to elaborating on how my specific skills and abilities will benefit your organization. Please contact me at {{last_user.phone_number}} or via email at {{last_user.email}} to arrange a convenient meeting time. 
-                  </br>
-            <p> Thank you for your consideration, and I look forward to hearing from you soon.</p>
-
+                <p> Thank you for the opportunity to apply for the {{job.title}} role at your company - {{job.company}}. 
+                After reviewing your job description, it's clear that you're looking for a candidate that is extremely familiar with the responsibilities associated with the role, and can perform them confidently.
+                Given these requirements, I am certain that I have the necessary skills to successfully do the job adeptly and perform above expectations.</p>
+                <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Over the course of my career, I have developed proven communication, analytical and teamwork skills, which I hope to leverage into the {{job.title}} role at your company.</p>
+                </br>
+                <p> After reviewing my resume, I hope you will agree that I am the type of competent and competitive candidate you are looking for. I look forward to elaborating on how my specific skills and abilities will benefit your organization. Please contact me at {{last_user.phone_number}} or via email at {{last_user.email}} to arrange a convenient meeting time. 
+                </br>
+                <p> Thank you for your consideration, and I look forward to hearing from you soon.</p>
                 </br>
                 </br>
-                My résumé is attached and offers additional information about my specific achievements. I look forward to our conversation. 
+                My résumé is attached and offers additional information about my specific achievements. 
                 </br>
                 </br>
-                Sincerely, </br>
+                Sincerely, 
+                </br>
                 {% if last_user.preferred_name %} 
                     {{last_user.preferred_name}} 
                 {% else %} 
