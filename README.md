@@ -58,4 +58,3 @@ Generates a template cover letter for easy submitting of an application.
     <ul>`Post bullet point paragraph two:` - If you want to have a second paragraph post the bullet points.</ul>
     </br>
     </br>
-
