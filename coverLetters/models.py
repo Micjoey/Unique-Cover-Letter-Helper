@@ -42,7 +42,7 @@ class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
     position_title = models.CharField(max_length = 200)
     city = models.CharField(max_length = 200,  blank=True)
-    link = models.CharField(max_length = 200, blank=True)
+    link = models.CharField(max_length = 200, blank=True, unique=True)
     recruiter = models.CharField(max_length = 200,  blank=True)
     description = models.TextField( blank=True)
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
