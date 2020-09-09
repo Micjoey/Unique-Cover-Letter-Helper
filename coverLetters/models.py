@@ -66,7 +66,7 @@ class Job(models.Model):
     created_date = models.DateField(auto_now_add=True)
     
     class Meta:
-        unique_together = ('link', 'template_choices')
+        unique_together = ('link', 'template_choices', 'position_title')
 
 
     def __str__(self):
