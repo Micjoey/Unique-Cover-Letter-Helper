@@ -1,7 +1,10 @@
 from django.db import models
+from django.db.models import Q, UniqueConstraint
 from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 
+
+__all__ = ['CheckConstraint', 'UniqueConstraint']
 class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
@@ -33,7 +36,7 @@ class Job(models.Model):
         ('Non-technical Cover Letter', 'non-technical-cover-letter'),
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
-        )
+    )
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
@@ -61,6 +64,9 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('link', 'template_choices', 'position_title')
 
 
     def __str__(self):

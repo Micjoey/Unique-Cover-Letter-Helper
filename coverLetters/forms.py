@@ -4,7 +4,6 @@ from .models import Job, UserDetail
 from django.forms.models import model_to_dict
 
 class CoverLetterForm(ModelForm):
-
     class Meta:
         model = Job
         fields = '__all__'
@@ -22,7 +21,6 @@ class CoverLetterForm(ModelForm):
 
 
 class TripleByteForm(ModelForm):
-
     class Meta:
         model = Job
         fields = '__all__'
@@ -30,7 +28,6 @@ class TripleByteForm(ModelForm):
         widgets = {
             'template_choices': forms.Select(), 
         }
-        
         formId = forms.CharField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
