@@ -33,7 +33,7 @@ class Job(models.Model):
         ('Non-technical Cover Letter', 'non-technical-cover-letter'),
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
-        )
+    )
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(

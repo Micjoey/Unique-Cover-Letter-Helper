@@ -11,7 +11,6 @@ class FunctionalTestCase(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
-
     def main_form_text_link(self):
         return 'http://localhost:3000/cover-letter-generator/forms/cover-letter-form'
 
@@ -80,45 +79,14 @@ class FunctionalTestCase(TestCase):
             'http://localhost:3000/cover-letter-generator/all-jobs')
         self.browser.find_element_by_link_text('Back').click()
 
-    # def test_filling_out_cover_letter_form(self):
-    #     self.browser.get(self.main_form_text_link())
-    #     all_template_choices = Select(self.browser.find_element_by_name('template_choices'))
-    #     all_template_users = Select(self.browser.find_element_by_name('choice_of_user'))
-    #     i = 1
-    #     while i < len(all_template_choices.options):
-    #         x = 1
-    #         while x < len(all_template_users.options):
-    #             all_template_choices.options[i].click()
-    #             all_template_users.options[x].click()
-    #             input_tags = self.browser.find_elements_by_tag_name('input')
-    #             for tag in input_tags:
-    #                 tag_id = tag.get_attribute('id')
-    #                 if tag_id and not tag_id == 'submit-button':
-    #                     self.browser.find_element_by_id(tag_id).send_keys('hello')
-    #             self.browser.find_element_by_id("submit-button").click()
-    #             self.browser.get(
-    #                 self.main_form_text_link())
-    #             staleness = WebDriverWait(self.browser, 10).until(
-    #                 EC.staleness_of(input_tags[2]))
-    #             if staleness:
-    #                 all_template_choices = Select(
-    #                     self.browser.find_element_by_name('template_choices'))
-    #                 all_template_users = Select(
-    #                     self.browser.find_element_by_name('choice_of_user'))
-    #                 input_tags = self.browser.find_elements_by_tag_name(
-    #                     'input')
-    #             x += 1
-    #         i += 1
-        
-        
-
-    
-
     def tearDown(self):
-       
         self.browser.quit()
 
+
 class UnitTestCaste(TestCase):
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+
     def test_home_homepage_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'homepage/homepage.html')
@@ -276,6 +244,9 @@ class UnitTestCaste(TestCase):
         })
         self.assertTrue(form.is_valid())
     
+    def test_all_forms(self):
+        self.save_user_object()
+        
     
 
     def save_cover_letter_object(self):
@@ -310,7 +281,6 @@ class UnitTestCaste(TestCase):
         pulled_job = Job.objects.get(link='Test - www.trialone.com')
         self.assertEqual(test_job.link, pulled_job.link)
         
-   
 
     def test_all_jobs_template(self):
         response = self.client.get('/cover-letter-generator/all-jobs')
@@ -319,3 +289,6 @@ class UnitTestCaste(TestCase):
     def test_all_users_template(self):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
+
+
+    
