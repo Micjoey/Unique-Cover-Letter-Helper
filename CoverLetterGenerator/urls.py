@@ -20,10 +20,11 @@ import coverLetters.views
 urlpatterns = [
     path('admin/', admin.site.urls, name='Admin-site'),
     path('', coverLetters.views.homepage, name='homepage'),
-    path('cover-letter-generator/all-jobs', coverLetters.views.all_jobs, name='all-jobs'),
+    path('cover-letter-generator/all-jobs/', coverLetters.views.all_jobs, name='all-jobs'),
     path('cover-letter-generator/all-users', coverLetters.views.all_users, name='all-users'),
     path('cover-letter-generator/job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
-    path('cover-letter-generator/job-detail/<int:job_id>/delete', coverLetters.views.delete_job_detail, name='delete-job-detail'),
+    path('cover-letter-generator/all-jobs/<int:job_id>',
+         coverLetters.views.delete_job_detail, name='delete-job-detail'),
     path('cover-letter-generator/user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-generator/forms/cover-letter-form', coverLetters.views.cover_letter_form,
          name='cover-letter-form'),
@@ -33,13 +34,13 @@ urlpatterns = [
          name='cover-letter'),
     path('cover-letter-generator/triplebyte-cover-letter', coverLetters.views.cover_letter,
          name='non-technical-cover-letter'),
-    path('cover-letter-generator/cover-letter', coverLetters.views.cover_letter,
-         name='cover-letter-four'),
+    path('cover-letter-generator/non-technical-cover-letter', coverLetters.views.cover_letter,
+         name='non-technical-cover-letter'),
     path('cover-letter-generator/cover-letter', coverLetters.views.cover_letter,
          name='cover-letter-five'),
     path('cover-letter-generator/user-form', coverLetters.views.user_form,
          name='user-form'),
     path('cover-letter-generator/user-detail', coverLetters.views.user_detail,
          name='user-detail'),
-    
+
 ]
