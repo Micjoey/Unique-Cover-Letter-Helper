@@ -1,5 +1,6 @@
 # cover-letter-template-generator
-Generates a template cover letter for easy submitting of an application.
+Problem: Creating unique cover letters that are focused on a company and why you like them and how you are relevant.
+Solution: This application, which is a program that is oriented around creating fully dynamic and customized cover letters with more ease.
 
 # **Make Sure All Commands For Below Are Done At The Root Level.**
 
