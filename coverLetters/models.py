@@ -1,7 +1,10 @@
 from django.db import models
+from django.db.models import Q, UniqueConstraint
 from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 
+
+__all__ = ['CheckConstraint', 'UniqueConstraint']
 class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
@@ -42,7 +45,7 @@ class Job(models.Model):
     company = models.CharField(max_length = 200, blank=True)
     position_title = models.CharField(max_length = 200)
     city = models.CharField(max_length = 200,  blank=True)
-    link = models.CharField(max_length = 200, blank=True, unique=True)
+    link = models.CharField(max_length = 200, blank=True)
     recruiter = models.CharField(max_length = 200,  blank=True)
     description = models.TextField( blank=True)
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
@@ -61,6 +64,9 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('link', 'template_choices')
 
 
     def __str__(self):
