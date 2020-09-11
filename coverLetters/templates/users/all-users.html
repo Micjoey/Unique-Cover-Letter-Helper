@@ -19,9 +19,14 @@
     <ol>
         {% for user in users.all %}
         <div class="job-info-container">
-            <ul>
+            <ul class="listing-info" style="display: flex;">
             <a href="{% url 'user-detail' user.id %}">
                 <h1> {{user.first_name}} {{user.last_name}} </h1>
+                {% comment %} <h1> {{user.first_name}} {{user.last_name}} </h1> {% endcomment %}
+                <div class='delete-button' style="margin: auto;
+    margin-left: 0; width: fit-content;">
+                    <a href="{% url 'delete-user-detail' user.id%}">Delete User<a/>
+                </div>
             </a>
             </ul>
         </div>
