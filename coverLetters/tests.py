@@ -103,6 +103,9 @@ class FunctionalTestCase(TestCase):
                         self.browser.find_element_by_id(
                             tag_id).send_keys(randomWord)
                 self.browser.find_element_by_id("submit-button").click()
+                self.browser.get(
+                    'http://localhost:3000/cover-letter-generator/all-jobs/')
+                self.browser.find_element_by_link_text('Delete Job').click()
                 self.browser.get(self.main_form_text_link())
                 staleness = WebDriverWait(self.browser, 20).until(
                     EC.staleness_of(input_tags[2]))
@@ -114,26 +117,6 @@ class FunctionalTestCase(TestCase):
                     input_tags = self.browser.find_elements_by_tag_name(
                         'input')
                 x += 1	
-            i += 1
-
-    def test_delete_form(self):
-        self.browser.get(self.main_form_text_link())
-        all_template_choices = Select(
-        self.browser.find_element_by_name('template_choices'))
-        all_template_users = Select(
-            self.browser.find_element_by_name('choice_of_user'))
-        totalLength = len(all_template_choices.options) + len(all_template_users.options)
-        self.browser.find_element_by_link_text('Back').click()
-        self.browser.find_element_by_link_text('All Jobs').click()
-        all_buttons = self.browser.find_elements_by_link_text(
-            'Delete Job')
-        i = 1
-        while i < totalLength:
-            all_buttons[i].click()
-            staleness = WebDriverWait(self.browser, 20).until(EC.staleness_of(all_buttons[0]))
-            if staleness:
-                all_buttons = self.browser.find_elements_by_link_text(
-                    'Delete Job')
             i += 1
 
     def tearDown(self):
