@@ -74,103 +74,21 @@
                 </div>
             {% endif %}
         </div>
-        
-
-        <h1> Generated Cover Letter </h1>
         </br>
         </br>
         <div class="cover-letter-container">
-            <div class="cover-letter-header">
-                <h1>Macallan Savett</h1>
-                <div class="header-jobrmation-and-links-container">
-                    <p>
-                        805-451-0363 
-                            | 
-                        <Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail> 
-                            |
-                        <a href="">www.linked/in/macallan-savett/</a>
-                            |
-                        <a href="">https://github.com/Micjoey</a>
-                    </p>
-                </div>
-                <div>
-                    {% now "F jS, Y" %}
-                </div>
-                <div>
-                    <h2>Macallan Savett</h2>
-                    <h2>8875 Ne Spargur Loop</h2>
-                    <h2>Bainbridge Island, WA 98110</h2>
-                    <h2>805-451-0363</h2>
-                    <h2><Jsavett@gmail class="com">Jsavett@gmail.com</Jsavett@gmail></h2>
-                </div>
-                <div>
-                    <p>
-                        {% if job.recruiter %}
-                        <p> Dear {{job.recruiter}}:</p>
-                        {% else%}
-                        <p> Dear Hiring Manager:</p>
-                        {% endif %}
-                    </p>
-                    <p> Your need for a {{job.position_title}} as advertised on the {{job.company}} 
-                    website is an excellent match to my background and career goals. 
-                    With my strong education and experience, I am confident I can make 
-                    an immediate contribution given the opportunity.</p> 
-
-                    {% if  job.pre_bullet_point_paragraph_one%}
-                        <p> {{job.pre_bullet_point_paragraph_one}} </p>
-                    {% endif %}
-
-                    {% if  job.pre_bullet_point_paragraph_two%}
-                        <p> {{job.pre_bullet_point_paragraph_two}} </p>
-                    {% endif %}
-
-                    <p>Highlights of my qualifications most relevant to your needs include:</p>
-
-                    <li> Dynamic and accomplished Software Engineer with experience and expertise in {{job.top_skills}}.</li> </br>
-                    {% if  job.bullet_point_two%}
-                        <li> {{job.bullet_point_two}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_two%}
-                    <li> {{job.bullet_point_two}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_three%}
-                    <li> {{job.bullet_point_three}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_four%}
-                    <li> {{job.bullet_point_four}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_five%}
-                    <li> {{job.bullet_point_five}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_six%}
-                    <li> {{job.bullet_point_six}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_seven%}
-                    <li> {{job.bullet_point_seven}}</li> </br>
-                    {% endif %}
-                    {% if  job.bullet_point_eight%}
-                    <li> {{job.bullet_point_eight}}</li> </br>
-                    {% endif %}
-                    
-                    {% if  job.post_bullet_point_paragraph_one%}
-                        <p> {{job.post_bullet_point_paragraph_one}} </p>
-                    {% endif %}
-
-                    {% if  job.post_bullet_point_paragraph_two%}
-                        <p> {{job.post_bullet_point_paragraph_two}} </p>
-                    {% endif %}
-
-                    These proven abilities can contribute to {{job.Company}} continued success. I would welcome the opportunity to discuss my background with you in detail and to learn more about your company and its goals. 
-                    </br>
-                    My résumé is attached and offers additional jobrmation about my specific achievements. I look forward to our conversation. 
-                    </br>
-                    </br>
-                    Sincerely, </br>
-                    Macallan Savett
-
-                </div>
-            </div>
-
+            {% if 'Standard Job Template' in job.template_choices %}
+                {% include 'coverLetters/cover-letter.html' with last_user=job.choice_of_user %}
+            {% elif 'Triplebyte (message-version)' in job.template_choices %}
+                {% include 'coverLetters/triplebyte-cover-letter.html' with last_user=job.choice_of_user %}
+            {% elif 'Non-technical Cover Letter' in job.template_choices %}
+                {% include 'coverLetters/non-technical-cover-letter.html' with last_user=job.choice_of_user %}
+            {% elif '4' in job.template_choices %}
+                {% include 'coverLetters/cover-letter-four' with last_user=job.choice_of_user %}
+            {% elif '5' in job.template_choices %}
+                {% include 'coverLetters/cover-letter-five' with last_user=job.choice_of_user %}
+            
+            {% endif %}
         </div>
         
     </body>
