@@ -3,7 +3,9 @@ from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
 from django.urls import path, include
-import urllib.request
+import urllib3
+import json
+
 
 
 def homepage(request):
@@ -29,14 +31,13 @@ def all_users(request):
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
-    # print(self.submit_to_interview_db())
     object_keys = list(object.keys())
     return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
 
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     job_detail.delete()
-    return all_jobs(request)
+    return redirect('all-jobs')
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
@@ -63,6 +64,12 @@ def cover_letter(request):
             filled_form = filled_form.cleaned_data #turns the form into a dict (object)
             last_user = filled_form['choice_of_user']
             template_choice = filled_form['template_choices']
+            interviewDBInfo = {
+                'company': filled_form['company'],
+                'job_title': filled_form['position_title'],
+                'source': filled_form['job_posting_website']
+            }
+            submit_to_interview_db(interviewDBInfo)
             # Checks to see what template to render for the cover letter -->
             if "Standard Job Template" in template_choice:
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
@@ -91,6 +98,15 @@ def user_form(request):
         form = UserDetailForm()
         return render(request, 'users/user-form.html', {'userForm': form})
 
-def submit_to_interview_db(info):
-    webUrl = urllib.request.urlopen('https://www.interview-db.com/')
-    return print("result code: " + str(webUrl.getcode()))
+
+def submit_to_interview_db(interviewDBInfo):
+    http = urllib3.PoolManager()
+    data = {
+        'css-1hwfws3': interviewDBInfo['company'],
+        'root_applications_0_jobTitle': interviewDBInfo['job_title'],
+        'css-151xaom-placeholder': interviewDBInfo['source']
+    }
+    r = http.request('GET',
+                     'https://www.interview-db.com/',)
+    print(r)
+    
