@@ -25,6 +25,8 @@ urlpatterns = [
     path('cover-letter-generator/job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
     path('cover-letter-generator/all-jobs/<int:job_id>',
          coverLetters.views.delete_job_detail, name='delete-job-detail'),
+    path('cover-letter-generator/all-users/<int:user_id>',
+          coverLetters.views.delete_user_detail, name='delete-user-detail'),
     path('cover-letter-generator/user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-generator/forms/cover-letter-form', coverLetters.views.cover_letter_form,
          name='cover-letter-form'),

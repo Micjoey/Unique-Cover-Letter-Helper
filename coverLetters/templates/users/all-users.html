@@ -22,6 +22,7 @@
             <ul>
             <a href="{% url 'user-detail' user.id %}">
                 <h1> {{user.first_name}} {{user.last_name}} </h1>
+                <a href="{% url 'delete-user-detail' user.id%}">Delete User<a/>
             </a>
             </ul>
         </div>
