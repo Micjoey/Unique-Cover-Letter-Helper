@@ -3,7 +3,8 @@ from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
 from django.urls import path, include
-import urllib3
+import urllib.request
+
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
@@ -11,9 +12,6 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('created_date')
-    # if 'delete' in str(request.build_absolute_uri()):
-    #     print(request.build_absolute_uri())
-    #     render(request, 'jobs/all-jobs.html', )
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
@@ -27,9 +25,11 @@ def all_users(request):
     })
 
 
+
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
+    # print(self.submit_to_interview_db())
     object_keys = list(object.keys())
     return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
 
@@ -90,3 +90,7 @@ def user_form(request):
     else:
         form = UserDetailForm()
         return render(request, 'users/user-form.html', {'userForm': form})
+
+def submit_to_interview_db(info):
+    webUrl = urllib.request.urlopen('https://www.interview-db.com/')
+    return print("result code: " + str(webUrl.getcode()))
