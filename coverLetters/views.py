@@ -10,9 +10,6 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('created_date')
-    # if 'delete' in str(request.build_absolute_uri()):
-    #     print(request.build_absolute_uri())
-    #     render(request, 'jobs/all-jobs.html', )
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
@@ -36,6 +33,11 @@ def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     job_detail.delete()
     return all_jobs(request)
+    
+def delete_user_detail(request, user_id):
+    user_detail = get_object_or_404(UserDetail, pk=user_id)
+    user_detail.delete()
+    return redirect('all-users')
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
