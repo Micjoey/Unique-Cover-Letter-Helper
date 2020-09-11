@@ -3,6 +3,7 @@ from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
 from django.urls import path, include
+import urllib3
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
