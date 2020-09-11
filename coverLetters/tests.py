@@ -8,10 +8,6 @@ from .models import Job, UserDetail
 from django.core.exceptions import ValidationError
 from selenium.webdriver.common.keys import Keys
 from random_word import RandomWords
-<<<<<<< HEAD
-=======
-
->>>>>>> dev-branch
 
 class FunctionalTestCase(TestCase):
     def setUp(self):
@@ -119,11 +115,7 @@ class FunctionalTestCase(TestCase):
                         self.browser.find_element_by_name('choice_of_user'))
                     input_tags = self.browser.find_elements_by_tag_name(
                         'input')
-<<<<<<< HEAD
-                x += 1	
-=======
                 x += 1
->>>>>>> dev-branch
             i += 1
 
     def tearDown(self):

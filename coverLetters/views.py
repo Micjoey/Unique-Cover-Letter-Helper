@@ -111,7 +111,7 @@ def submit_to_interview_db(interviewDBInfo):
         'root_applications_0_jobTitle': interviewDBInfo['job_title'],
         'css-151xaom-placeholder': interviewDBInfo['source']
     }
-    r = http.request('GET',
+    r = http.request('POST',
                      'https://www.interview-db.com/',)
     print(r)
     
