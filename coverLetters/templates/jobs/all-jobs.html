@@ -25,7 +25,10 @@
                 <a href="{% url 'job-detail' job.id %}" >
                     <h1> {{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}</h1>
                 </a>
-                <a href="{% url 'delete-job-detail' job.id%}">Delete Job<a/>
+                <div class='delete-button' style="margin: auto;
+    margin-left: 0; width: fit-content;">
+                    <a href="{% url 'delete-job-detail' job.id%}">Delete Job<a/>
+                </div>
             </li>
         </div>
         {% endfor %}
