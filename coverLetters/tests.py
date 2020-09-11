@@ -7,6 +7,8 @@ from .forms import CoverLetterForm, UserDetailForm
 from .models import Job, UserDetail
 from django.core.exceptions import ValidationError
 from selenium.webdriver.common.keys import Keys
+from random_word import RandomWords
+
 
 class FunctionalTestCase(TestCase):
     def setUp(self):
@@ -25,14 +27,12 @@ class FunctionalTestCase(TestCase):
         while i < len(allATags):
             self.browser.find_elements_by_tag_name('a')[i].click()
             self.browser.back()
-            i+=1
+            i += 1
 
-        
     def test_there_is_homepage(self):
         self.browser.get(
             self.home_page_form_text_link())
         self.assertIn('Job Application Process', self.browser.page_source)
-        
 
     def test_cover_letter_form_button(self):
         self.browser.get(self.home_page_form_text_link())
@@ -41,44 +41,83 @@ class FunctionalTestCase(TestCase):
 
     def test_user_creation_form_button(self):
         self.browser.get(self.home_page_form_text_link())
-        self.browser.find_element_by_id('homepage-user-template-button').click()
-    
+        self.browser.find_element_by_id(
+            'homepage-user-template-button').click()
+
     def test_all_users_button(self):
         self.browser.get(self.home_page_form_text_link())
         self.browser.find_element_by_id('homepage-all-users-button').click()
-    
+
     def test_all_jobs_button(self):
         self.browser.get(self.home_page_form_text_link())
         self.browser.find_element_by_id('homepage-all-jobs-button').click()
-    
+
     def test_admin_button(self):
         self.browser.get(self.home_page_form_text_link())
         self.browser.find_element_by_id('homepage-admin-button').click()
-    
+
     def test_cover_letter_back_button(self):
         self.browser.get(
             self.main_form_text_link())
         self.browser.find_element_by_link_text('Back').click()
-    
+
     def test_triplebyte_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/forms/triplebyte-form')
         self.browser.find_element_by_link_text('Back').click()
-    
+
     def test_user_form_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/user-form')
         self.browser.find_element_by_link_text('Back').click()
-    
+
     def test_all_users_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-users')
         self.browser.find_element_by_link_text('Back').click()
-    
+
     def test_all_jobs_back_button(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs')
         self.browser.find_element_by_link_text('Back').click()
+
+    def test_create_all_forms(self):
+        self.browser.get(self.main_form_text_link())
+        all_template_choices = Select(
+            self.browser.find_element_by_name('template_choices'))
+        all_template_users = Select(
+            self.browser.find_element_by_name('choice_of_user'))
+        i = 1
+        while i < len(all_template_choices.options):
+            x = 1
+            while x < len(all_template_users.options):
+                all_template_choices.options[i].click()
+                all_template_users.options[x].click()
+                input_tags = self.browser.find_elements_by_tag_name('input')
+                randomWord = RandomWords().get_random_word()
+                if not randomWord:
+                    randomWord = 'Macallan'
+                for tag in input_tags:
+                    tag_id = tag.get_attribute('id')
+                    if tag_id and not tag_id == 'submit-button':
+                        self.browser.find_element_by_id(
+                            tag_id).send_keys(randomWord)
+                self.browser.find_element_by_id("submit-button").click()
+                self.browser.get(
+                    'http://localhost:3000/cover-letter-generator/all-jobs/')
+                self.browser.find_element_by_link_text('Delete Job').click()
+                self.browser.get(self.main_form_text_link())
+                staleness = WebDriverWait(self.browser, 20).until(
+                    EC.staleness_of(input_tags[2]))
+                if staleness:
+                    all_template_choices = Select(
+                        self.browser.find_element_by_name('template_choices'))
+                    all_template_users = Select(
+                        self.browser.find_element_by_name('choice_of_user'))
+                    input_tags = self.browser.find_elements_by_tag_name(
+                        'input')
+                x += 1
+            i += 1
 
     def tearDown(self):
         self.browser.quit()
@@ -112,25 +151,25 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Standard Job Template',
-            'company':'Test - company1',
+            'company': 'Test - company1',
             'choice_of_user': UserDetail.objects.last(),
-            'city':'Test-  santa barbara',
-            'position_title':'Test - Jackie',
-            'link':'Test - www.trialone.com',
-            'recruiter':'',
-            'description':'Test - I love test cases',
-            'pre_bullet_point_paragraph_one':'Test - paragraphone',
-            'pre_bullet_point_paragraph_two':'Test - paragraphtwo',
-            'top_skills':'Test - Javascript, Banana',
-            'bullet_point_one':'Test - BP1',
-            'bullet_point_two':'Test - BP2',
-            'bullet_point_three':'Test - BP3',
-            'bullet_point_four':'Test - BP4',
-            'bullet_point_five':'Test - BP5',
-            'bullet_point_six':'Test - BP6',
-            'bullet_point_seven':'Test - BP7',
-            'bullet_point_eight':'Test - BP8',
-            'post_bullet_point_paragraph_one':'Test - paragraphpostone',
+            'city': 'Test-  santa barbara',
+            'position_title': 'Test - Jackie',
+            'link': 'Test - www.trialone.com',
+            'recruiter': '',
+            'description': 'Test - I love test cases',
+            'pre_bullet_point_paragraph_one': 'Test - paragraphone',
+            'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
+            'top_skills': 'Test - Javascript, Banana',
+            'bullet_point_one': 'Test - BP1',
+            'bullet_point_two': 'Test - BP2',
+            'bullet_point_three': 'Test - BP3',
+            'bullet_point_four': 'Test - BP4',
+            'bullet_point_five': 'Test - BP5',
+            'bullet_point_six': 'Test - BP6',
+            'bullet_point_seven': 'Test - BP7',
+            'bullet_point_eight': 'Test - BP8',
+            'post_bullet_point_paragraph_one': 'Test - paragraphpostone',
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
@@ -139,25 +178,25 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Triplebyte (message-version)',
-            'company':'Test - company1',
+            'company': 'Test - company1',
             'choice_of_user': UserDetail.objects.last(),
-            'city':'Test-  santa barbara',
-            'position_title':'Test - Jackie',
-            'link':'Test - www.trialone.com',
-            'recruiter':'',
-            'description':'Test - I love test cases',
-            'pre_bullet_point_paragraph_one':'Test - paragraphone',
-            'pre_bullet_point_paragraph_two':'Test - paragraphtwo',
-            'top_skills':'Test - Javascript, Banana',
-            'bullet_point_one':'Test - BP1',
-            'bullet_point_two':'Test - BP2',
-            'bullet_point_three':'Test - BP3',
-            'bullet_point_four':'Test - BP4',
-            'bullet_point_five':'Test - BP5',
-            'bullet_point_six':'Test - BP6',
-            'bullet_point_seven':'Test - BP7',
-            'bullet_point_eight':'Test - BP8',
-            'post_bullet_point_paragraph_one':'Test - paragraphpostone',
+            'city': 'Test-  santa barbara',
+            'position_title': 'Test - Jackie',
+            'link': 'Test - www.trialone.com',
+            'recruiter': '',
+            'description': 'Test - I love test cases',
+            'pre_bullet_point_paragraph_one': 'Test - paragraphone',
+            'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
+            'top_skills': 'Test - Javascript, Banana',
+            'bullet_point_one': 'Test - BP1',
+            'bullet_point_two': 'Test - BP2',
+            'bullet_point_three': 'Test - BP3',
+            'bullet_point_four': 'Test - BP4',
+            'bullet_point_five': 'Test - BP5',
+            'bullet_point_six': 'Test - BP6',
+            'bullet_point_seven': 'Test - BP7',
+            'bullet_point_eight': 'Test - BP8',
+            'post_bullet_point_paragraph_one': 'Test - paragraphpostone',
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
@@ -166,25 +205,25 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Non-technical Cover Letter',
-            'company':'Test - company1',
+            'company': 'Test - company1',
             'choice_of_user': UserDetail.objects.last(),
-            'city':'Test-  santa barbara',
-            'position_title':'Test - Jackie',
-            'link':'Test - www.trialone.com',
-            'recruiter':'',
-            'description':'Test - I love test cases',
-            'pre_bullet_point_paragraph_one':'Test - paragraphone',
-            'pre_bullet_point_paragraph_two':'Test - paragraphtwo',
-            'top_skills':'Test - Javascript, Banana',
-            'bullet_point_one':'Test - BP1',
-            'bullet_point_two':'Test - BP2',
-            'bullet_point_three':'Test - BP3',
-            'bullet_point_four':'Test - BP4',
-            'bullet_point_five':'Test - BP5',
-            'bullet_point_six':'Test - BP6',
-            'bullet_point_seven':'Test - BP7',
-            'bullet_point_eight':'Test - BP8',
-            'post_bullet_point_paragraph_one':'Test - paragraphpostone',
+            'city': 'Test-  santa barbara',
+            'position_title': 'Test - Jackie',
+            'link': 'Test - www.trialone.com',
+            'recruiter': '',
+            'description': 'Test - I love test cases',
+            'pre_bullet_point_paragraph_one': 'Test - paragraphone',
+            'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
+            'top_skills': 'Test - Javascript, Banana',
+            'bullet_point_one': 'Test - BP1',
+            'bullet_point_two': 'Test - BP2',
+            'bullet_point_three': 'Test - BP3',
+            'bullet_point_four': 'Test - BP4',
+            'bullet_point_five': 'Test - BP5',
+            'bullet_point_six': 'Test - BP6',
+            'bullet_point_seven': 'Test - BP7',
+            'bullet_point_eight': 'Test - BP8',
+            'post_bullet_point_paragraph_one': 'Test - paragraphpostone',
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
@@ -220,25 +259,25 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Template 5',
-            'company':'Test - company1',
+            'company': 'Test - company1',
             'choice_of_user': UserDetail.objects.last(),
-            'city':'Test-  santa barbara',
-            'position_title':'Test - Jackie',
-            'link':'Test - www.trialone.com',
-            'recruiter':'',
-            'description':'Test - I love test cases',
-            'pre_bullet_point_paragraph_one':'Test - paragraphone',
-            'pre_bullet_point_paragraph_two':'Test - paragraphtwo',
-            'top_skills':'Test - Javascript, Banana',
-            'bullet_point_one':'Test - BP1',
-            'bullet_point_two':'Test - BP2',
-            'bullet_point_three':'Test - BP3',
-            'bullet_point_four':'Test - BP4',
-            'bullet_point_five':'Test - BP5',
-            'bullet_point_six':'Test - BP6',
-            'bullet_point_seven':'Test - BP7',
-            'bullet_point_eight':'Test - BP8',
-            'post_bullet_point_paragraph_one':'Test - paragraphpostone',
+            'city': 'Test-  santa barbara',
+            'position_title': 'Test - Jackie',
+            'link': 'Test - www.trialone.com',
+            'recruiter': '',
+            'description': 'Test - I love test cases',
+            'pre_bullet_point_paragraph_one': 'Test - paragraphone',
+            'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
+            'top_skills': 'Test - Javascript, Banana',
+            'bullet_point_one': 'Test - BP1',
+            'bullet_point_two': 'Test - BP2',
+            'bullet_point_three': 'Test - BP3',
+            'bullet_point_four': 'Test - BP4',
+            'bullet_point_five': 'Test - BP5',
+            'bullet_point_six': 'Test - BP6',
+            'bullet_point_seven': 'Test - BP7',
+            'bullet_point_eight': 'Test - BP8',
+            'post_bullet_point_paragraph_one': 'Test - paragraphpostone',
             'post_bullet_point_paragraph_two': 'Test - paragraphposttwo',
         })
         self.assertTrue(form.is_valid())
@@ -274,7 +313,7 @@ class UnitTestCaste(TestCase):
         test_job = self.save_cover_letter_object()
         pulled_job = Job.objects.get(link='Test - www.trialone.com')
         self.assertEqual(test_job.link, pulled_job.link)
-        
+
     def test_all_jobs_template(self):
         response = self.client.get('/cover-letter-generator/all-jobs/')
         self.assertTemplateUsed(response, 'jobs/all-jobs.html')
@@ -282,6 +321,3 @@ class UnitTestCaste(TestCase):
     def test_all_users_template(self):
         response = self.client.get('/cover-letter-generator/all-users')
         self.assertTemplateUsed(response, 'users/all-users.html')
-
-
-    
