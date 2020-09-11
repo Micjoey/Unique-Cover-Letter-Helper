@@ -37,16 +37,12 @@ def job_detail(request, job_id):
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     job_detail.delete()
-<<<<<<< HEAD
-    return redirect('all-jobs')
-=======
     return all_jobs(request)
     
 def delete_user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
     user_detail.delete()
     return redirect('all-users')
->>>>>>> dev-branch
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
