@@ -276,7 +276,7 @@ class UnitTestCaste(TestCase):
         self.assertEqual(test_job.link, pulled_job.link)
         
     def test_all_jobs_template(self):
-        response = self.client.get('/cover-letter-generator/all-jobs')
+        response = self.client.get('/cover-letter-generator/all-jobs/')
         self.assertTemplateUsed(response, 'jobs/all-jobs.html')
 
     def test_all_users_template(self):
