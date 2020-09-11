@@ -76,7 +76,7 @@
         </div>
         </br>
         </br>
-        <div class="cover-letter-container">
+        <div class="job-detail-container">
             {% if 'Standard Job Template' in job.template_choices %}
                 {% include 'coverLetters/cover-letter.html' with last_user=job.choice_of_user %}
             {% elif 'Triplebyte (message-version)' in job.template_choices %}
