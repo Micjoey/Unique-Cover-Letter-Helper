@@ -22,7 +22,7 @@ class FunctionalTestCase(TestCase):
             self.browser.find_element_by_id(
                 'login_field').send_keys('Micjoey')
             self.browser.find_element_by_id(
-                'password').send_keys('1W@NT-coding')
+                'password').send_keys('v2CAMjBdOf1lQ09DoIXuQ')
             # self.browser.find_element_by_link_text('Sign in').click()
             self.browser.find_element_by_class_name(
                 'btn-block').click()
