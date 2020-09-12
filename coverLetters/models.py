@@ -62,7 +62,7 @@ class Job(models.Model):
     bullet_point_eight = models.TextField( blank=True)
     post_bullet_point_paragraph_one = models.TextField( blank=True)
     post_bullet_point_paragraph_two = models.TextField( blank=True)
-    modified_date = models.DateField(auto_now=True)
+    modified_date = models.DateField(auto_now_add=True)
     created_date = models.DateField(auto_now_add=True)
     
     class Meta:
