@@ -236,7 +236,7 @@ class UnitTestCaste(TestCase):
         form = CoverLetterForm(data={
             'template_choices': 'Non-technical Cover Letter',
             'company': 'Test - company3',
-            'job_posting_website': 'company5',
+            'job_posting_website': 'company3',
             'choice_of_user': UserDetail.objects.last(),
             'city': 'Test-  santa barbara3',
             'position_title': 'Test - Jackie3',
