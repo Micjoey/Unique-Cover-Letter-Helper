@@ -33,7 +33,7 @@ def job_detail(request, job_id):
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     job_detail.delete()
-    return all_jobs(request)
+    return redirect('all-jobs')
     
 def delete_user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)

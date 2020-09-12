@@ -104,7 +104,7 @@ class FunctionalTestCase(TestCase):
                         self.browser.find_element_by_id(
                             tag_id).send_keys(randomWord)
                 self.browser.find_element_by_id("submit-button").click()
-                self.assertIn('All Jobs',
+                self.assertIn('Cover',
                               self.browser.page_source)
                 self.browser.get(
                     'http://localhost:3000/cover-letter-generator/all-jobs/')
