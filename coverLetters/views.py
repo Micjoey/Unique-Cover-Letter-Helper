@@ -65,12 +65,6 @@ def cover_letter(request):
             filled_form = filled_form.cleaned_data #turns the form into a dict (object)
             last_user = filled_form['choice_of_user']
             template_choice = filled_form['template_choices']
-            interviewDBInfo = {
-                'company': filled_form['company'],
-                'job_title': filled_form['position_title'],
-                'source': filled_form['job_posting_website']
-            }
-            submit_to_interview_db(interviewDBInfo)
             # Checks to see what template to render for the cover letter -->
             if "Standard Job Template" in template_choice:
                 return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
