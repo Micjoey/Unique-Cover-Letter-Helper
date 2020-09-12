@@ -180,7 +180,7 @@ class UnitTestCaste(TestCase):
         form = CoverLetterForm(data={
             'template_choices': 'Standard Job Template',
             'company': 'Test - company1',
-            'job_posting_website': 'company5',
+            'job_posting_website': 'company1',
             'choice_of_user': UserDetail.objects.last(),
             'city': 'Test-  santa barbara',
             'position_title': 'Test - Jackie',
@@ -208,7 +208,7 @@ class UnitTestCaste(TestCase):
         form = CoverLetterForm(data={
             'template_choices': 'Triplebyte (message-version)',
             'company': 'Test - company2',
-            'job_posting_website': 'company5',
+            'job_posting_website': 'company2',
             'choice_of_user': UserDetail.objects.last(),
             'city': 'Test-  santa barbara2',
             'position_title': 'Test - Jackie2',
@@ -256,7 +256,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Template 4',
-            'job_posting_website': 'company5',
+            'job_posting_website': 'company4',
             'company': 'Test - company4',
             'choice_of_user': UserDetail.objects.last(),
             'city': 'Test-  santa barbara4',
@@ -305,6 +305,7 @@ class UnitTestCaste(TestCase):
     def save_cover_letter_object(self):
         test_job = Job()
         test_job.template_choices = 'Standard Job Template'
+        test_job.job_posting_website = 'Standard Job Template'
         test_job.company = 'Test - company1'
         test_job.choice_of_user = UserDetail.objects.last()
         test_job.city = 'Test-  santa barbara'
