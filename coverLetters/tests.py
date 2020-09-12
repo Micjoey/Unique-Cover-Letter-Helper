@@ -96,7 +96,7 @@ class FunctionalTestCase(TestCase):
                 all_template_users.options[x].click()
                 input_tags = self.browser.find_elements_by_tag_name('input')
                 randomWord = RandomWords().get_random_word()
-                if not randomWord:
+                if randomWord is None:
                     randomWord = 'Macallan'
                 for tag in input_tags:
                     tag_id = tag.get_attribute('id')
@@ -234,12 +234,19 @@ class UnitTestCaste(TestCase):
     def test_non_technical_cover_letter_form(self):
         self.save_user_object()
         form = CoverLetterForm(data={
-            'template_choices': 'Non-technical Cover Letter',
+            'template_choices': 'Triplebyte (message-version)',
             'company': 'Test - company3',
             'job_posting_website': 'company3',
             'choice_of_user': UserDetail.objects.last(),
-            'city': 'Test-  santa barbara3',
-            'position_title': 'Test - Jackie3',
+            'city': 'Test-  santa barbara2',
+            'position_title': 'Test - Jackie2',
+            'link': 'Test - www.trialone.com',
+            'recruiter': '',
+            'description': 'Test - I love test cases',
+            'pre_bullet_point_paragraph_one': 'Test - paragraphone',
+            'pre_bullet_point_paragraph_two': 'Test - paragraphtwo',
+            'top_skills': 'Test - Javascript, Banana',
+            'bullet_point_one': 'Test - BP1',
             'bullet_point_two': 'Test - BP2',
             'bullet_point_three': 'Test - BP3',
             'bullet_point_four': 'Test - BP4',
