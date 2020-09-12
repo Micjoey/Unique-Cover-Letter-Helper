@@ -100,6 +100,7 @@ def user_form(request):
         return render(request, 'users/user-form.html', {'userForm': form})
 
 
+<<<<<<< HEAD
 def submit_to_interview_db(interviewDBInfo):
     http = urllib3.PoolManager()
     data = {
@@ -112,4 +113,18 @@ def submit_to_interview_db(interviewDBInfo):
                      )
 
     print(r.data)
+=======
+# def submit_to_interview_db(interviewDBInfo):
+#     http = urllib3.PoolManager()
+#     data = {
+#         'css-1hwfws3': interviewDBInfo['company'],
+#         'root_applications_0_jobTitle': interviewDBInfo['job_title'],
+#         'css-151xaom-placeholder': interviewDBInfo['source']
+#     }
+#     r = http.request('GET',
+#                      'https://www.interview-db.com/',
+#                      )
+
+#     print(r.data)
+>>>>>>> 9ae0feb... edit tests.py
     
