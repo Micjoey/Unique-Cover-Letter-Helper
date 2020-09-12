@@ -17,16 +17,12 @@ def all_jobs(request):
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
-    
-
 
 def all_users(request):
     users = UserDetail.objects.all
     return render(request, 'users/all-users.html', {
         'users': users
     })
-
-
 
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
