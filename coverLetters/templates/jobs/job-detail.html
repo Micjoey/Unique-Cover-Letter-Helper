@@ -100,9 +100,9 @@
             {% elif 'Non-technical Cover Letter' in job.template_choices %}
                 {% include 'coverLetters/non-technical-cover-letter.html' with last_user=job.choice_of_user %}
             {% elif '4' in job.template_choices %}
-                {% include 'coverLetters/cover-letter-four' with last_user=job.choice_of_user %}
+                {% include 'coverLetters/cover-letter-four.html' with last_user=job.choice_of_user %}
             {% elif '5' in job.template_choices %}
-                {% include 'coverLetters/cover-letter-five' with last_user=job.choice_of_user %}
+                {% include 'coverLetters/cover-letter-five.html' with last_user=job.choice_of_user %}
             {% endif %}
         </div>
         
