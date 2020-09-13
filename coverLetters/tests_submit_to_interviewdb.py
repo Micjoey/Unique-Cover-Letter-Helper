@@ -17,19 +17,14 @@ class FunctionalSubmitToInterviewDB(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
-       
-
     def test_submitting_to_interviewdb(self):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
-        # todaysDate = datetime.now().strftime(" %B %d, %Y ")
-        todaysDate = datetime.now().strftime('%B %dth, %Y')
+        # todaysDate = datetime.now().strftime('%B %dth, %Y')
         allJobs = self.browser.find_elements_by_tag_name('a')
         i = 2
         while i < len(allJobs):
-            self.browser.get(
-                'http://localhost:3000/cover-letter-generator/all-jobs/')
-            allJobs = self.browser.find_elements_by_tag_name('a')
+            print("current index -", i)
             currentJob = allJobs[i]
             currentJob.click()
             time.sleep(2)
@@ -39,7 +34,11 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobDetails = self.browser.find_element_by_id(
                 'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
             self.browser.get('https://www.interview-db.com/')
-            if self.browser.find_element_by_link_text('Student Sign in with Github'):
+            signInText = None
+            if i == 2:
+                signInText = self.browser.find_element_by_link_text(
+                    'Student Sign in with Github')
+            if signInText:
                 self.browser.find_element_by_link_text(
                     'Student Sign in with Github').click()
                 self.browser.find_element_by_id(
@@ -49,68 +48,77 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 self.browser.find_element_by_class_name(
                     'btn-block').click()
                 WebDriverWait(self.browser, 10).until(EC.url_changes(self.browser))
-                self.browser.get('https://www.interview-db.com/profile/job-search')
-                # WebDriverWait(self.browser, 10).until(
-                #     EC.element_to_be_clickable((By.TAG_NAME, 'button')))
-                # self.browser.find_elements_by_tag_name('button')[2].click()
+                print('signed in')
+            self.browser.get('https://www.interview-db.com/profile/job-search')
+            WebDriverWait(self.browser, 10).until(
+                EC.element_to_be_clickable((By.TAG_NAME, 'li')))
+            self.browser.find_element_by_tag_name('li').click()
+            self.browser.find_element_by_tag_name('input').send_keys('365')
+            self.browser.find_elements_by_tag_name('button')[4].click()
+            time.sleep(10)
+            # WebDriverWait(self.browser, 10).until(EC.staleness_of(self.browser.find_element_by_class_name('rt-tb')))
+            isPresent = self.browser.page_source.find(
+                jobDetails) != -1
+            print(isPresent," -", jobDetails)
+            if not isPresent:
+                print('in NOT present if clause')
+                self.browser.get('https://www.interview-db.com/')
+                self.browser.find_element_by_id('react-tabs-2').click()
+                if WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn'))):
+                    self.browser.find_elements_by_class_name('btn')[5].click()
+                    # find the Job Title input field
+                    title = self.browser.find_element_by_id(
+                        'root_applications_0_jobTitle')
+                    title.click()
+                    title.send_keys(
+                        jobTitle)
+                    #
+                    # find the company field and create it or select
+                    actions = ActionChains(self.browser)
+                    companyButton = self.browser.find_elements_by_class_name(
+                        'css-1hwfws3')[0]
+                    actions.click(companyButton)
+                    actions.send_keys(
+                        jobCompany)
+                    actions.pause(2)
+                    actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.ENTER)
+                    # actions.send_keys(Keys.TAB)
+                    actions.perform()
+                    actions.reset_actions()
+                    #
+                    # find the link
+                    # find the source field and create or select
+                    sourceButton = self.browser.find_elements_by_class_name(
+                        'css-1hwfws3')[1]
+                    actions = ActionChains(self.browser)    
+                    actions.reset_actions()
+                    actions.click(sourceButton)
+                    actions.send_keys(
+                        jobWebsite)
+                    actions.pause(2)
+                    actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.ENTER)
+                    actions.perform()
+                    actions.reset_actions()
+                    #
+                self.browser.find_elements_by_tag_name('button')[9].click()
+                print('submit job')
                 WebDriverWait(self.browser, 10).until(
-                    EC.element_to_be_clickable((By.TAG_NAME, 'li')))
-                self.browser.find_element_by_tag_name('li').click()
+                    EC.element_to_be_clickable((By.CLASS_NAME, 'btn')))
+                print('just submitted')
+                self.browser.get(
+                    'http://localhost:3000/cover-letter-generator/all-jobs/')
                 time.sleep(10)
-                # WebDriverWait(self.browser, 10).until(EC.staleness_of(self.browser.find_element_by_class_name('rt-tb')))
-                isPresent = self.browser.page_source.find(
-                    jobDetails) != -1
-                print(isPresent)
-                if not isPresent:
-                    self.browser.get('https://www.interview-db.com/')
-                    time.sleep(5)
-                    self.browser.find_element_by_id('react-tabs-2').click()
-                    time.sleep(4)
-                    if WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn'))):
-                        self.browser.find_elements_by_class_name('btn')[5].click()
-                        # find the Job Title input field
-                        title = self.browser.find_element_by_id(
-                            'root_applications_0_jobTitle')
-                        title.click()
-                        title.send_keys(
-                            jobTitle)
-                        #
-                        # find the company field and create it or select
-                        actions = ActionChains(self.browser)
-                        companyButton = self.browser.find_elements_by_class_name(
-                            'css-1hwfws3')[0]
-                        actions.click(companyButton)
-                        actions.send_keys(
-                            jobCompany)
-                        actions.pause(2)
-                        actions.send_keys(Keys.UP)
-                        actions.send_keys(Keys.ENTER)
-                        # actions.send_keys(Keys.TAB)
-                        actions.perform()
-                        actions.reset_actions()
-                        #
-                        # find the link
-                        # find the source field and create or select
-                        sourceButton = self.browser.find_elements_by_class_name(
-                            'css-1hwfws3')[1]
-                        actions = ActionChains(self.browser)    
-                        actions.reset_actions()
-                        actions.click(sourceButton)
-                        actions.send_keys(
-                            jobWebsite)
-                        actions.pause(2)
-                        actions.send_keys(Keys.UP)
-                        actions.send_keys(Keys.ENTER)
-                        actions.perform()
-                        actions.reset_actions()
-                        #
-                    self.browser.find_elements_by_tag_name('button')[9].click()
-                    self.browser.get(
-                        'http://localhost:3000/cover-letter-generator/all-jobs/')
-            i += 1
-            #     
+            print('break from if clause')
+            self.browser.get(
+                'http://localhost:3000/cover-letter-generator/all-jobs/')
+            allJobs = self.browser.find_elements_by_tag_name('a')
+            i += 2
                 
 
     def tearDown(self):
-        # time.sleep(20)
+#         # time.sleep(20)
         self.browser.quit()
+
+
