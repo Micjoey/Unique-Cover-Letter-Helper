@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        <title>Job Info</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        
+        <title>Job Info</title>
         <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">
     </head>
     <body>
@@ -14,16 +15,25 @@
         <h1>Job Info: {{job.position_title}} | {{job.company}}</h1>
         <div class="job-info-container">
             <div class="job-detail-container"> 
-                <p> Job Company: </p> <p>{{job.company}} </p>
+                <p> Template: </p> <p>{{job.template_choices}} </p>
             </div>
             <div class="job-detail-container"> 
-                <p> Job Title: </p> <p> {{job.position_title}} </p>
+                <p> User Id: </p> <p>{{job.choice_of_user}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Website: </p> <p id='job-website'>{{job.job_posting_website}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Company: </p> <p id='job-company'>{{job.company}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Title: </p> <p id="job-title"> {{job.position_title}} </p>
             </div>
             <div class="job-detail-container"> 
                 <p> Job City: </p> <p> {{job.city}} </p>
             </div>
             <div class="job-detail-container"> 
-                <p> Job Link: </p> <p class="job-description"> {{job.link}} </p>
+                <p> Job Link: </p> <p class="job-description" id='job-link'> {{job.link}} </p>
             </div>
             </br>
             <div class="job-detail-container"> 
