@@ -40,7 +40,7 @@ class Job(models.Model):
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
-        'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.first().id)
+        'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.last().id)
     job_posting_website = models.CharField(max_length=200,)
     company = models.CharField(max_length = 200, blank=True)
     position_title = models.CharField(max_length = 200)

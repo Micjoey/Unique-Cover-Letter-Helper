@@ -25,11 +25,9 @@ class FunctionalSubmitToInterviewDB(TestCase):
         # todaysDate = datetime.now().strftime(" %B %d, %Y ")
         todaysDate = datetime.now().strftime('%B %dth, %Y')
         allJobs = self.browser.find_elements_by_tag_name('a')
+        print(len(allJobs))
         i = 2
         while i < len(allJobs):
-            self.browser.get(
-                'http://localhost:3000/cover-letter-generator/all-jobs/')
-            allJobs = self.browser.find_elements_by_tag_name('a')
             currentJob = allJobs[i]
             currentJob.click()
             time.sleep(2)
@@ -56,12 +54,15 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 WebDriverWait(self.browser, 10).until(
                     EC.element_to_be_clickable((By.TAG_NAME, 'li')))
                 self.browser.find_element_by_tag_name('li').click()
+                self.browser.find_element_by_tag_name('input').send_keys('365')
+                self.browser.find_elements_by_tag_name('button')[4].click()
                 time.sleep(10)
                 # WebDriverWait(self.browser, 10).until(EC.staleness_of(self.browser.find_element_by_class_name('rt-tb')))
                 isPresent = self.browser.page_source.find(
                     jobDetails) != -1
-                print(isPresent)
+                print(isPresent," -", jobDetails)
                 if not isPresent:
+                    print('in NOT present if clause')
                     self.browser.get('https://www.interview-db.com/')
                     time.sleep(5)
                     self.browser.find_element_by_id('react-tabs-2').click()
@@ -105,12 +106,69 @@ class FunctionalSubmitToInterviewDB(TestCase):
                         actions.reset_actions()
                         #
                     self.browser.find_elements_by_tag_name('button')[9].click()
+                    WebDriverWait(self.browser, 10).until(
+                        EC.url_changes(self.browser))
                     self.browser.get(
                         'http://localhost:3000/cover-letter-generator/all-jobs/')
-            i += 1
-            #     
+                    staleness = WebDriverWait(self.browser, 20).until(
+                        EC.staleness_of(allJobs[i]))
+                    if staleness:
+                        time.sleep(10)
+                        i += 2
+                        print(i)
+                        self.browser.get(
+                            'http://localhost:3000/cover-letter-generator/all-jobs/')
+                        print('changed website back to start')
+                        WebDriverWait(self.browser, 10).until(
+                            EC.url_changes(self.browser))
+                        allJobs = self.browser.find_elements_by_tag_name(
+                            'input')
+                        print(len(allJobs), 'length of all jobs')
+                        allJobs[i].click()
+                        jobTitle = self.browser.find_element_by_id(
+                            'job-title').text
+                        jobCompany = self.browser.find_element_by_id('job-company').text
+                        jobWebsite = self.browser.find_element_by_id('job-website').text
+                        jobDetails = self.browser.find_element_by_id(
+                            'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+                        print(jobDetails)
+                else:
+#                 #     i += 1
+#                 #     print(i)
+#                 #     print('changed website back to start')
+                    self.browser.get(
+                        'http://localhost:3000/cover-letter-generator/all-jobs/')
+                    WebDriverWait(self.browser, 10).until(
+                        EC.url_changes(self.browser))
+                    time.sleep(5)
+                    i += 1
+                    print('reached this point')
+                    staleness = WebDriverWait(self.browser, 20).until(
+                        EC.staleness_of(allJobs[2]))
+                    print('last-pring')
+                    if staleness:
+                        allJobs = self.browser.find_elements_by_tag_name(
+                            'a')
+                        currentJob = allJobs[i]
+                        currentJob.click()
+                        
+                    # allJobs = self.browser.find_elements_by_tag_name(
+                    #     'input')
+                    # print(len(allJobs), 'length of all jobs')
+                    # allJobs[i].click()
+                    # jobTitle = self.browser.find_element_by_id(
+                    #     'job-title').text
+                    # jobCompany = self.browser.find_element_by_id(
+                    #     'job-company').text
+                    # jobWebsite = self.browser.find_element_by_id(
+                    #     'job-website').text
+                    # jobDetails = self.browser.find_element_by_id(
+                    #     'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+                    # print(jobDetails)
+
+        
                 
 
     def tearDown(self):
-        # time.sleep(20)
+#         # time.sleep(20)
         self.browser.quit()
