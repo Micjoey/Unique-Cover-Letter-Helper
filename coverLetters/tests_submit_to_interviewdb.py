@@ -104,11 +104,6 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     #
                 self.browser.find_elements_by_tag_name('button')[9].click()
                 print('submit job')
-                WebDriverWait(self.browser, 10).until(
-                    EC.element_to_be_clickable((By.CLASS_NAME, 'btn')))
-                print('just submitted')
-                self.browser.get(
-                    'http://localhost:3000/cover-letter-generator/all-jobs/')
                 time.sleep(10)
             print('break from if clause')
             self.browser.get(
@@ -119,3 +114,5 @@ class FunctionalSubmitToInterviewDB(TestCase):
 
     def tearDown(self):
         self.browser.quit()
+
+
