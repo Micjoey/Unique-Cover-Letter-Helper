@@ -3,6 +3,10 @@ from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 from django.forms.models import model_to_dict
 from django.urls import path, include
+import urllib3
+import json
+
+
 
 def homepage(request):
     return render(request, 'homepage/homepage.html')
@@ -10,21 +14,15 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('created_date')
-    # if 'delete' in str(request.build_absolute_uri()):
-    #     print(request.build_absolute_uri())
-    #     render(request, 'jobs/all-jobs.html', )
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
-    
-
 
 def all_users(request):
     users = UserDetail.objects.all
     return render(request, 'users/all-users.html', {
         'users': users
     })
-
 
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
@@ -35,7 +33,12 @@ def job_detail(request, job_id):
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     job_detail.delete()
-    return all_jobs(request)
+    return redirect('all-jobs')
+    
+def delete_user_detail(request, user_id):
+    user_detail = get_object_or_404(UserDetail, pk=user_id)
+    user_detail.delete()
+    return redirect('all-users')
 
 def user_detail(request, user_id):
     user_detail = get_object_or_404(UserDetail, pk=user_id)
@@ -89,3 +92,18 @@ def user_form(request):
     else:
         form = UserDetailForm()
         return render(request, 'users/user-form.html', {'userForm': form})
+
+
+# def submit_to_interview_db(interviewDBInfo):
+#     http = urllib3.PoolManager()
+#     data = {
+#         'css-1hwfws3': interviewDBInfo['company'],
+#         'root_applications_0_jobTitle': interviewDBInfo['job_title'],
+#         'css-151xaom-placeholder': interviewDBInfo['source']
+#     }
+#     r = http.request('GET',
+#                      'https://www.interview-db.com/',
+#                      )
+
+#     print(r.data)
+    

@@ -32,4 +32,25 @@ body {
     border-bottom: 2px dotted black;
     // max-width: 90vh;
     overflow-wrap: normal;
+    display: flex;
+    
+}
+
+.listing-info {
+    display: flex;
+    text-align: center;
+}
+
+.delete-button {
+    margin: auto;
+    margin-left: 0;
+    width: fit-content;
+}
+
+.job-detail-container {
+    margin: 1em;
+}
+
+.cover-letter-header {
+    margin: 1em;
 }

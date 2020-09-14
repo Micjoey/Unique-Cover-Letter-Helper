@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        <title>Job Info</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        
+        <title>Job Info</title>
         <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">
     </head>
     <body>
@@ -14,16 +15,25 @@
         <h1>Job Info: {{job.position_title}} | {{job.company}}</h1>
         <div class="job-info-container">
             <div class="job-detail-container"> 
-                <p> Job Company: </p> <p>{{job.company}} </p>
+                <p> Template: </p> <p>{{job.template_choices}} </p>
             </div>
             <div class="job-detail-container"> 
-                <p> Job Title: </p> <p> {{job.position_title}} </p>
+                <p> User Id: </p> <p>{{job.choice_of_user}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Website: </p> <p id='job-website'>{{job.job_posting_website}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Company: </p> <p id='job-company'>{{job.company}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Job Title: </p> <p id="job-title"> {{job.position_title}} </p>
             </div>
             <div class="job-detail-container"> 
                 <p> Job City: </p> <p> {{job.city}} </p>
             </div>
             <div class="job-detail-container"> 
-                <p> Job Link: </p> <p class="job-description"> {{job.link}} </p>
+                <p> Job Link: </p> <p class="job-description" id='job-link'> {{job.link}} </p>
             </div>
             </br>
             <div class="job-detail-container"> 
@@ -32,6 +42,12 @@
             </br>
             <div class="job-detail-container"> 
                 <p> Top Skills: </p> <p> {{job.top_skills}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Date Created: </p> <p> {{job.created_date}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> Date Modified: </p> <p> {{job.modified_date}} </p>
             </div>
             {% if job.bullet_point_one %}
                 <div class="job-detail-container"> 
@@ -76,7 +92,7 @@
         </div>
         </br>
         </br>
-        <div class="cover-letter-container">
+        <div class="job-detail-container">
             {% if 'Standard Job Template' in job.template_choices %}
                 {% include 'coverLetters/cover-letter.html' with last_user=job.choice_of_user %}
             {% elif 'Triplebyte (message-version)' in job.template_choices %}
@@ -84,10 +100,9 @@
             {% elif 'Non-technical Cover Letter' in job.template_choices %}
                 {% include 'coverLetters/non-technical-cover-letter.html' with last_user=job.choice_of_user %}
             {% elif '4' in job.template_choices %}
-                {% include 'coverLetters/cover-letter-four' with last_user=job.choice_of_user %}
+                {% include 'coverLetters/cover-letter-four.html' with last_user=job.choice_of_user %}
             {% elif '5' in job.template_choices %}
-                {% include 'coverLetters/cover-letter-five' with last_user=job.choice_of_user %}
-            
+                {% include 'coverLetters/cover-letter-five.html' with last_user=job.choice_of_user %}
             {% endif %}
         </div>
         

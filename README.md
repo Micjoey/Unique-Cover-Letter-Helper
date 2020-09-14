@@ -19,6 +19,9 @@ Solution: This application, which is a program that is oriented around creating 
 * `Selenium` for testing:
   * [Installing Selenium](https://selenium-python.readthedocs.io/installation.html)
 
+### **Additional Technologies Used**
+* `UrlLib3`
+* `RandomWords`
 
 ## **STARTING VIRTUAL ENVIRONMENT: `source venv/bin/activate`**
   It is important to start the virtual environment and doing the above code will do so. 
