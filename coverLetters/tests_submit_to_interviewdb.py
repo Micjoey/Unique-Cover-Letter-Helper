@@ -18,12 +18,15 @@ class FunctionalSubmitToInterviewDB(TestCase):
         self.browser = webdriver.Chrome()
 
     def test_submitting_to_interviewdb(self):
+        
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
+        wait = WebDriverWait(self.browser, 20)
+        
         # todaysDate = datetime.now().strftime('%B %dth, %Y')
         allJobs = self.browser.find_elements_by_tag_name('a')
         i = 2
-        while i < len(allJobs):
+        while i < 110:
             print("current index -", i)
             currentJob = allJobs[i]
             currentJob.click()
@@ -47,25 +50,41 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     'password').send_keys('v2CAMjBdOf1lQ09DoIXuQ')
                 self.browser.find_element_by_class_name(
                     'btn-block').click()
-                WebDriverWait(self.browser, 10).until(EC.url_changes(self.browser))
+                wait.until(EC.url_changes(self.browser))
                 print('signed in')
-            self.browser.get('https://www.interview-db.com/profile/job-search')
-            WebDriverWait(self.browser, 10).until(
+                self.browser.get('https://www.interview-db.com/profile')
+                reportLink = self.browser.find_element_by_css_selector(
+                    '#root > section > div > nav > a:nth-child(1)')
+                reportLink.click()
+                self.browser.find_element_by_css_selector('#react-tabs-2').click()
+                time.sleep(10)
+            self.browser.get('https://www.interview-db.com/profile')
+            self.browser.find_element_by_xpath(
+                '//*[@id="root"]/section/div/main/nav/nav/button[3]').click()
+            print('go back to interview-db-job-search')
+            wait.until(
                 EC.element_to_be_clickable((By.TAG_NAME, 'li')))
-            self.browser.find_element_by_tag_name('li').click()
+            print('click on all activity')
+            self.browser.find_element_by_tag_name('input').clear()
             self.browser.find_element_by_tag_name('input').send_keys('365')
-            self.browser.find_elements_by_tag_name('button')[4].click()
+            print('enter search day')
             time.sleep(10)
-            # WebDriverWait(self.browser, 10).until(EC.staleness_of(self.browser.find_element_by_class_name('rt-tb')))
             isPresent = self.browser.page_source.find(
                 jobDetails) != -1
             print(isPresent," -", jobDetails)
             if not isPresent:
                 print('in NOT present if clause')
-                self.browser.get('https://www.interview-db.com/')
-                self.browser.find_element_by_id('react-tabs-2').click()
-                if WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn'))):
-                    self.browser.find_elements_by_class_name('btn')[5].click()
+                self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
+                print('click on report')
+                wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
+                print('clear clickable wait for li')
+                # time.sleep(10)
+                # self.browser.find_element_by_xpath('/html/body/main/section/div/div/div/div/ul/li[2]').click()
+                # print('click on job search updates')
+                if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
+                    print("clear btn wait")
+                    self.browser.find_elements_by_class_name('btn-add')[5].click()
+                    print('clicked button')
                     # find the Job Title input field
                     title = self.browser.find_element_by_id(
                         'root_applications_0_jobTitle')
@@ -80,8 +99,8 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.click(companyButton)
                     actions.send_keys(
                         jobCompany)
-                    actions.pause(2)
-                    actions.send_keys(Keys.UP)
+                    actions.pause(4)
+                    # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     # actions.send_keys(Keys.TAB)
                     actions.perform()
@@ -96,8 +115,8 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.click(sourceButton)
                     actions.send_keys(
                         jobWebsite)
-                    actions.pause(2)
-                    actions.send_keys(Keys.UP)
+                    actions.pause(4)
+                    # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
                     actions.reset_actions()
