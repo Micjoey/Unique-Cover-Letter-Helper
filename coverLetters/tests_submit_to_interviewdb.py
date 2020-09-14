@@ -99,7 +99,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.click(companyButton)
                     actions.send_keys(
                         jobCompany)
-                    actions.pause(4)
+                    actions.pause(2)
                     # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     # actions.send_keys(Keys.TAB)
@@ -115,7 +115,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.click(sourceButton)
                     actions.send_keys(
                         jobWebsite)
-                    actions.pause(4)
+                    actions.pause(2)
                     # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
@@ -123,7 +123,9 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     #
                 self.browser.find_elements_by_tag_name('button')[9].click()
                 print('submit job')
-                time.sleep(10)
+                wait.until(EC.url_matches(
+                    'https://www.interview-db.com/profile/job-search'))
+                # time.sleep(10)
             print('break from if clause')
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
