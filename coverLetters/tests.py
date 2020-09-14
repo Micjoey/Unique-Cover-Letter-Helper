@@ -108,7 +108,8 @@ class FunctionalTestCase(TestCase):
                               self.browser.page_source)
                 self.browser.get(
                     'http://localhost:3000/cover-letter-generator/all-jobs/')
-                self.browser.find_element_by_link_text('Delete Job').click()
+                linkText = "Delete " + randomWord +"'s"+" "+randomWord+" role"
+                self.browser.find_element_by_link_text(linkText).click()
                 self.browser.get(self.main_form_text_link())
                 staleness = WebDriverWait(self.browser, 20).until(
                     EC.staleness_of(input_tags[2]))
