@@ -36,6 +36,8 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobWebsite = self.browser.find_element_by_id('job-website').text
             jobDetails = self.browser.find_element_by_id(
                 'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+            halfJobDetails = self.browser.find_element_by_id(
+                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
             self.browser.get('https://www.interview-db.com/')
             signInText = None
             if i == 2:
@@ -69,10 +71,11 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.find_element_by_tag_name('input').send_keys('365')
             print('enter search day')
             time.sleep(10)
-            isPresent = self.browser.page_source.find(
+            fullTitleIsPresent = self.browser.page_source.find(
                 jobDetails) != -1
-            print(isPresent," -", jobDetails)
-            if not isPresent:
+            halfTitleIsPresent = halfJobDetails in self.browser.page_source
+            print(fullTitleIsPresent," -", jobDetails)
+            if not fullTitleIsPresent or not halfTitleIsPresent:
                 print('in NOT present if clause')
                 self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
                 print('click on report')
