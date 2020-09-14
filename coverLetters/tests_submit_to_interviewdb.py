@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from random_word import RandomWords
 import time
 from datetime import datetime
-
+from .passwords import github_login, github_password
 
 class FunctionalSubmitToInterviewDB(TestCase):
 
@@ -46,9 +46,9 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 self.browser.find_element_by_link_text(
                     'Student Sign in with Github').click()
                 self.browser.find_element_by_id(
-                    'login_field').send_keys('Micjoey')
+                    'login_field').send_keys(github_login())
                 self.browser.find_element_by_id(
-                    'password').send_keys('v2CAMjBdOf1lQ09DoIXuQ')
+                    'password').send_keys(github_password())
                 self.browser.find_element_by_class_name(
                     'btn-block').click()
                 wait.until(EC.url_changes(self.browser))
@@ -69,7 +69,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             fullTitleIsPresent = self.browser.page_source.find(
                 jobDetails) != -1
             halfTitleIsPresent = halfJobDetails in self.browser.page_source
-            if not fullTitleIsPresent or not halfTitleIsPresent:
+            if not halfTitleIsPresent or not fullTitleIsPresent:
                 self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
                 wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
                 if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):

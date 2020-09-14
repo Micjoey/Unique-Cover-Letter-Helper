@@ -95,9 +95,9 @@ class FunctionalTestCase(TestCase):
                 all_template_choices.options[i].click()
                 all_template_users.options[x].click()
                 input_tags = self.browser.find_elements_by_tag_name('input')
-                randomWord = RandomWords().get_random_word()
-                if randomWord is None:
-                    randomWord = 'Macallan'
+                # randomWord = RandomWords().get_random_word()
+                # if randomWord is None:
+                randomWord = 'Macallan'
                 for tag in input_tags:
                     tag_id = tag.get_attribute('id')
                     if tag_id and not tag_id == 'submit-button':
