@@ -42,8 +42,8 @@ class Job(models.Model):
     choice_of_user = models.ForeignKey(
         'UserDetail', on_delete=models.CASCADE, blank=True, null=True, default=UserDetail.objects.last().id)
     job_posting_website = models.CharField(max_length=200,)
-    company = models.CharField(max_length = 200, blank=True)
     position_title = models.CharField(max_length = 200)
+    company = models.CharField(max_length = 200, blank=True)
     city = models.CharField(max_length = 200,  blank=True)
     link = models.CharField(max_length = 200)
     recruiter = models.CharField(max_length = 200,  blank=True)
