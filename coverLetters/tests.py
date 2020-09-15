@@ -101,7 +101,7 @@ class FunctionalTestCase(TestCase):
                 randomWord = 'Macallan'
                 for tag in input_tags:
                     tag_id = tag.get_attribute('id')
-                    if tag_id and not tag_id == 'submit-button' and not tag_id == 'form_creation_date':
+                    if tag_id and not tag_id == 'submit-button' and not tag_id == 'id_form_creation_date':
                         self.browser.find_element_by_id(
                             tag_id).send_keys(randomWord)
                 self.browser.find_element_by_id("submit-button").click()
@@ -128,9 +128,7 @@ class FunctionalTestCase(TestCase):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/user-form')
         input_tags = self.browser.find_elements_by_tag_name('input')
-        randomWord = RandomWords().get_random_word()
-        if randomWord is None:
-            randomWord = 'Macallan'
+        randomWord = 'Macallan'
         for tag in input_tags:
             currentTagName = tag.get_attribute('name')
             currentTagType = tag.get_attribute('type')

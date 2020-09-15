@@ -22,12 +22,11 @@ class FunctionalSubmitToInterviewDB(TestCase):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
         wait = WebDriverWait(self.browser, 20)
-        todaysDate = datetime.now().strftime('%B %dth, %Y')
         allJobs = self.browser.find_elements_by_tag_name('a')
         dateCreated = datetime.now()
         dateDifferenceBetweenTodayandJob = datetime.now() - dateCreated
-        i = 2
-        while i < 40:
+        i = 26
+        while i < allJobs and dateDifferenceBetweenTodayandJob < 7:
             currentJob = allJobs[i]
             currentJob.click()
             time.sleep(2)
@@ -36,97 +35,101 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobWebsite = self.browser.find_element_by_id('job-website').text
             dateCreated = self.browser.find_element_by_id(
                 'form-created-date').text
-            dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
-            print(dateCreated, todaysDate)
-            dateDifferenceBetweenTodayandJob = datetime.strptime(
-                todaysDate, '%B %dth, %Y') - dateCreated
-            print(dateDifferenceBetweenTodayandJob)
+            if "-" in dateCreated:
+                dateCreated = datetime.strptime(dateCreated, '%Y-%m-%d')
+                todaysDate = datetime.now().strftime('%Y-%m-%d')
+                dateDifferenceBetweenTodayandJob = (datetime.strptime(
+                    todaysDate, '%Y-%m-%d') - dateCreated).days
+            else:
+                todaysDate = datetime.now().strftime('%B %dth, %Y')
+                dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
+                dateDifferenceBetweenTodayandJob = (datetime.strptime(
+                    todaysDate, '%B %dth, %Y') - dateCreated).days
+            self.browser.get(
+                'http://localhost:3000/cover-letter-generator/all-jobs/')
+            allJobs = self.browser.find_elements_by_tag_name('a')
+            jobDetails = self.browser.find_element_by_id(
+                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+            halfJobDetails = self.browser.find_element_by_id(
+                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
+            self.browser.get('https://www.interview-db.com/')
+            signInText = None
+            if i == 2:
+                signInText = self.browser.find_element_by_link_text(
+                    'Student Sign in with Github')
+            if signInText:
+                self.browser.find_element_by_link_text(
+                    'Student Sign in with Github').click()
+                self.browser.find_element_by_id(
+                    'login_field').send_keys(github_login())
+                self.browser.find_element_by_id(
+                    'password').send_keys(github_password())
+                self.browser.find_element_by_class_name(
+                    'btn-block').click()
+                wait.until(EC.url_changes(self.browser))
+                self.browser.get('https://www.interview-db.com/profile')
+                reportLink = self.browser.find_element_by_css_selector(
+                    '#root > section > div > nav > a:nth-child(1)')
+                reportLink.click()
+                self.browser.find_element_by_css_selector('#react-tabs-2').click()
+                time.sleep(10)
+            self.browser.get('https://www.interview-db.com/profile')
+            self.browser.find_element_by_xpath(
+                '//*[@id="root"]/section/div/main/nav/nav/button[3]').click()
+            wait.until(
+                EC.element_to_be_clickable((By.TAG_NAME, 'li')))
+            self.browser.find_element_by_tag_name('input').clear()
+            self.browser.find_element_by_tag_name('input').send_keys('365')
+            time.sleep(10)
+            fullTitleIsPresent = self.browser.page_source.find(
+                jobDetails) != -1
+            halfTitleIsPresent = halfJobDetails in self.browser.page_source
+            if not halfTitleIsPresent or not fullTitleIsPresent:
+                self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
+                wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
+                if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
+                    self.browser.find_elements_by_class_name('btn-add')[5].click()
+                    title = self.browser.find_element_by_id(
+                        'root_applications_0_jobTitle')
+                    title.click()
+                    title.send_keys(
+                        jobTitle)
+                    actions = ActionChains(self.browser)
+                    companyButton = self.browser.find_elements_by_class_name(
+                        'css-1hwfws3')[0]
+                    actions.click(companyButton)
+                    actions.send_keys(
+                        jobCompany)
+                    actions.pause(2)
+                    # actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.ENTER)
+                    # actions.send_keys(Keys.TAB)
+                    actions.perform()
+                    actions.reset_actions()
+                    #
+                    # find the link
+                    # find the source field and create or select
+                    sourceButton = self.browser.find_elements_by_class_name(
+                        'css-1hwfws3')[1]
+                    actions = ActionChains(self.browser)    
+                    actions.reset_actions()
+                    actions.click(sourceButton)
+                    actions.send_keys(
+                        jobWebsite)
+                    actions.pause(2)
+                    # actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.ENTER)
+                    actions.perform()
+                    actions.reset_actions()
+                    #
+                self.browser.find_elements_by_tag_name('button')[9].click()
+                wait.until(EC.url_matches(
+                    'https://www.interview-db.com/profile/job-search'))
+                # time.sleep(10)
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
             i += 2
-            # jobDetails = self.browser.find_element_by_id(
-            #     'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
-            # halfJobDetails = self.browser.find_element_by_id(
-            #     'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
-            # self.browser.get('https://www.interview-db.com/')
-            # signInText = None
-            # if i == 2:
-            #     signInText = self.browser.find_element_by_link_text(
-            #         'Student Sign in with Github')
-            # if signInText:
-            #     self.browser.find_element_by_link_text(
-            #         'Student Sign in with Github').click()
-            #     self.browser.find_element_by_id(
-            #         'login_field').send_keys(github_login())
-            #     self.browser.find_element_by_id(
-            #         'password').send_keys(github_password())
-            #     self.browser.find_element_by_class_name(
-            #         'btn-block').click()
-            #     wait.until(EC.url_changes(self.browser))
-            #     self.browser.get('https://www.interview-db.com/profile')
-            #     reportLink = self.browser.find_element_by_css_selector(
-            #         '#root > section > div > nav > a:nth-child(1)')
-            #     reportLink.click()
-            #     self.browser.find_element_by_css_selector('#react-tabs-2').click()
-            #     time.sleep(10)
-            # self.browser.get('https://www.interview-db.com/profile')
-            # self.browser.find_element_by_xpath(
-            #     '//*[@id="root"]/section/div/main/nav/nav/button[3]').click()
-            # wait.until(
-            #     EC.element_to_be_clickable((By.TAG_NAME, 'li')))
-            # self.browser.find_element_by_tag_name('input').clear()
-            # self.browser.find_element_by_tag_name('input').send_keys('365')
-            # time.sleep(10)
-            # fullTitleIsPresent = self.browser.page_source.find(
-            #     jobDetails) != -1
-            # halfTitleIsPresent = halfJobDetails in self.browser.page_source
-            # if not halfTitleIsPresent or not fullTitleIsPresent:
-            #     self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
-            #     wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
-            #     if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
-            #         self.browser.find_elements_by_class_name('btn-add')[5].click()
-            #         title = self.browser.find_element_by_id(
-            #             'root_applications_0_jobTitle')
-            #         title.click()
-            #         title.send_keys(
-            #             jobTitle)
-            #         actions = ActionChains(self.browser)
-            #         companyButton = self.browser.find_elements_by_class_name(
-            #             'css-1hwfws3')[0]
-            #         actions.click(companyButton)
-            #         actions.send_keys(
-            #             jobCompany)
-            #         actions.pause(2)
-            #         # actions.send_keys(Keys.UP)
-            #         actions.send_keys(Keys.ENTER)
-            #         # actions.send_keys(Keys.TAB)
-            #         actions.perform()
-            #         actions.reset_actions()
-            #         #
-            #         # find the link
-            #         # find the source field and create or select
-            #         sourceButton = self.browser.find_elements_by_class_name(
-            #             'css-1hwfws3')[1]
-            #         actions = ActionChains(self.browser)    
-            #         actions.reset_actions()
-            #         actions.click(sourceButton)
-            #         actions.send_keys(
-            #             jobWebsite)
-            #         actions.pause(2)
-            #         # actions.send_keys(Keys.UP)
-            #         actions.send_keys(Keys.ENTER)
-            #         actions.perform()
-            #         actions.reset_actions()
-            #         #
-            #     self.browser.find_elements_by_tag_name('button')[9].click()
-            #     wait.until(EC.url_matches(
-            #         'https://www.interview-db.com/profile/job-search'))
-            #     # time.sleep(10)
-            # self.browser.get(
-            #     'http://localhost:3000/cover-letter-generator/all-jobs/')
-            # allJobs = self.browser.find_elements_by_tag_name('a')
-            # i += 2
                 
 
     def tearDown(self):
