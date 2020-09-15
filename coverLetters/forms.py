@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Job, UserDetail
 from django.forms.models import model_to_dict
-
+from datetime import datetime
 class CoverLetterForm(ModelForm):
     class Meta:
         model = Job
@@ -10,6 +10,7 @@ class CoverLetterForm(ModelForm):
         labels = {'position_title': 'Position title'}
         widgets = {
             'template_choices': forms.Select(), 
+            # 'template_choices': forms.RadioSelect(), 
         }
         
         formId = forms.CharField(widget=forms.HiddenInput())
@@ -18,6 +19,10 @@ class CoverLetterForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
+        self.fields['job_posting_website'].initial = 'LinkedIn'
+        self.fields['form_creation_date'].initial = datetime.now().strftime(
+            '%B %dth, %Y')
+        self.fields['form_creation_date'].widget = forms.HiddenInput()
 
 
 class TripleByteForm(ModelForm):
@@ -29,12 +34,20 @@ class TripleByteForm(ModelForm):
             'template_choices': forms.Select(), 
         }
         formId = forms.CharField(widget=forms.HiddenInput())
+        
+
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.last().id 
         self.fields['template_choices'].initial = 'Triplebyte (message-version)'
+        self.fields['job_posting_website'].initial = 'Triplebyte'
+        self.fields['form_creation_date'].initial = datetime.now().strftime(
+            '%B %dth, %Y')
+        self.fields['form_creation_date'].widget = forms.HiddenInput()
 
 class UserDetailForm(ModelForm):
     class Meta:

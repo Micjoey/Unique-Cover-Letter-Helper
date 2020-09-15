@@ -18,25 +18,43 @@ class FunctionalSubmitToInterviewDB(TestCase):
         self.browser = webdriver.Chrome()
 
     def test_submitting_to_interviewdb(self):
-        
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
         wait = WebDriverWait(self.browser, 20)
-        
-        # todaysDate = datetime.now().strftime('%B %dth, %Y')
         allJobs = self.browser.find_elements_by_tag_name('a')
+        dateCreated = datetime.now()
+        dateDifferenceBetweenTodayandJob = datetime.now() - dateCreated
+        lessThanSevenDays = True
+        jobWebsiteIsPresent = True
         i = 2
-        while i < 110:
+        while i < 120 and lessThanSevenDays and jobWebsiteIsPresent:
             currentJob = allJobs[i]
             currentJob.click()
-            time.sleep(2)
             jobTitle = self.browser.find_element_by_id('job-title').text
             jobCompany = self.browser.find_element_by_id('job-company').text
             jobWebsite = self.browser.find_element_by_id('job-website').text
+            if jobWebsite:
+                jobWebsiteIsPresent = True
+            else:
+                i += 2
+                continue
+            dateCreated = self.browser.find_element_by_id(
+                'form-created-date').text
             jobDetails = self.browser.find_element_by_id(
                 'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
             halfJobDetails = self.browser.find_element_by_id(
                 'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
+            if "-" in dateCreated:
+                dateCreated = datetime.strptime(dateCreated, '%Y-%m-%d')
+                todaysDate = datetime.now().strftime('%Y-%m-%d')
+                dateDifferenceBetweenTodayandJob = (datetime.strptime(
+                    todaysDate, '%Y-%m-%d') - dateCreated).days
+            else:
+                todaysDate = datetime.now().strftime('%B %dth, %Y')
+                dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
+                dateDifferenceBetweenTodayandJob = (datetime.strptime(
+                    todaysDate, '%B %dth, %Y') - dateCreated).days
+            lessThanSevenDays = dateDifferenceBetweenTodayandJob < 7
             self.browser.get('https://www.interview-db.com/')
             signInText = None
             if i == 2:
@@ -53,11 +71,9 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     'btn-block').click()
                 wait.until(EC.url_changes(self.browser))
                 self.browser.get('https://www.interview-db.com/profile')
-                reportLink = self.browser.find_element_by_css_selector(
-                    '#root > section > div > nav > a:nth-child(1)')
-                reportLink.click()
+                self.browser.find_element_by_css_selector(
+                    '#root > section > div > nav > a:nth-child(1)').click()
                 self.browser.find_element_by_css_selector('#react-tabs-2').click()
-                time.sleep(10)
             self.browser.get('https://www.interview-db.com/profile')
             self.browser.find_element_by_xpath(
                 '//*[@id="root"]/section/div/main/nav/nav/button[3]').click()
@@ -65,7 +81,11 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 EC.element_to_be_clickable((By.TAG_NAME, 'li')))
             self.browser.find_element_by_tag_name('input').clear()
             self.browser.find_element_by_tag_name('input').send_keys('365')
-            time.sleep(10)
+            self.browser.find_element_by_xpath(
+                '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[2]/div/div[1]/select/option[7]').click()
+            wait.until(EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[3]/div[1]/div/div[2]/div')))
+            # time.sleep(10)
             fullTitleIsPresent = self.browser.page_source.find(
                 jobDetails) != -1
             halfTitleIsPresent = halfJobDetails in self.browser.page_source
@@ -114,6 +134,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
+            print('Finished Job #', (i/2)-1)
             i += 2
                 
 
