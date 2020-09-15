@@ -9,8 +9,8 @@ class CoverLetterForm(ModelForm):
         fields = '__all__'
         labels = {'position_title': 'Position title'}
         widgets = {
-            # 'template_choices': forms.Select(), 
-            'template_choices': forms.RadioSelect(), 
+            'template_choices': forms.Select(), 
+            # 'template_choices': forms.RadioSelect(), 
         }
         
         formId = forms.CharField(widget=forms.HiddenInput())
