@@ -71,11 +71,10 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     'btn-block').click()
                 wait.until(EC.url_changes(self.browser))
                 self.browser.get('https://www.interview-db.com/profile')
-                reportLink = self.browser.find_element_by_css_selector(
-                    '#root > section > div > nav > a:nth-child(1)')
-                reportLink.click()
+                self.browser.find_element_by_css_selector(
+                    '#root > section > div > nav > a:nth-child(1)').click()
                 self.browser.find_element_by_css_selector('#react-tabs-2').click()
-                time.sleep(10)
+                # time.sleep(10)
             self.browser.get('https://www.interview-db.com/profile')
             self.browser.find_element_by_xpath(
                 '//*[@id="root"]/section/div/main/nav/nav/button[3]').click()
