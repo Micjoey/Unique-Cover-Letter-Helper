@@ -15,7 +15,7 @@ class CoverLetterForm(ModelForm):
         
         formId = forms.CharField(widget=forms.HiddenInput())
         forms.DateField(initial=datetime.date.today)
-        createdDate = forms.DateField(initial=datetime.date.today, widget=forms.HiddenInput())
+        createdDate = forms.DateField(initial=datetime.date.today)
 
 
     def __init__(self, *args, **kwargs):
@@ -35,7 +35,7 @@ class TripleByteForm(ModelForm):
         }
         formId = forms.CharField(widget=forms.HiddenInput())
         createdDate = forms.DateField(
-            initial=datetime.date.today, widget=forms.HiddenInput())
+            initial=datetime.date.today)
 
 
     def __init__(self, *args, **kwargs):
