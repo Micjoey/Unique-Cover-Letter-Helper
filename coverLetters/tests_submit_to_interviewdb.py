@@ -18,23 +18,32 @@ class FunctionalSubmitToInterviewDB(TestCase):
         self.browser = webdriver.Chrome()
 
     def test_submitting_to_interviewdb(self):
-        
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
         wait = WebDriverWait(self.browser, 20)
         allJobs = self.browser.find_elements_by_tag_name('a')
         dateCreated = datetime.now()
         dateDifferenceBetweenTodayandJob = datetime.now() - dateCreated
-        i = 26
-        while i < allJobs and dateDifferenceBetweenTodayandJob < 7:
+        lessThanSevenDays = True
+        jobWebsiteIsPresent = True
+        i = 2
+        while i < 120 and lessThanSevenDays and jobWebsiteIsPresent:
             currentJob = allJobs[i]
             currentJob.click()
-            time.sleep(2)
             jobTitle = self.browser.find_element_by_id('job-title').text
             jobCompany = self.browser.find_element_by_id('job-company').text
             jobWebsite = self.browser.find_element_by_id('job-website').text
+            if jobWebsite:
+                jobWebsiteIsPresent = True
+            else:
+                i += 2
+                continue
             dateCreated = self.browser.find_element_by_id(
                 'form-created-date').text
+            jobDetails = self.browser.find_element_by_id(
+                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+            halfJobDetails = self.browser.find_element_by_id(
+                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
             if "-" in dateCreated:
                 dateCreated = datetime.strptime(dateCreated, '%Y-%m-%d')
                 todaysDate = datetime.now().strftime('%Y-%m-%d')
@@ -45,13 +54,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
                 dateDifferenceBetweenTodayandJob = (datetime.strptime(
                     todaysDate, '%B %dth, %Y') - dateCreated).days
-            self.browser.get(
-                'http://localhost:3000/cover-letter-generator/all-jobs/')
-            allJobs = self.browser.find_elements_by_tag_name('a')
-            jobDetails = self.browser.find_element_by_id(
-                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
-            halfJobDetails = self.browser.find_element_by_id(
-                'job-company').text+'- '+self.browser.find_element_by_id('job-title').text + ' ('
+            lessThanSevenDays = dateDifferenceBetweenTodayandJob < 7
             self.browser.get('https://www.interview-db.com/')
             signInText = None
             if i == 2:
@@ -129,6 +132,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
+            print('Finished Job #', i/2)
             i += 2
                 
 
