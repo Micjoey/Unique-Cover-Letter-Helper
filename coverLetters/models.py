@@ -3,7 +3,7 @@ from django.db.models import Q, UniqueConstraint
 from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 import datetime
-
+from datetime import datetime
 
 __all__ = ['CheckConstraint', 'UniqueConstraint']
 class UserDetail(models.Model):
@@ -39,7 +39,8 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
     )
-    form_creation_date = models.CharField(max_length=100, blank=True)
+    form_creation_date = models.CharField(
+        max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
