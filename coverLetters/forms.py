@@ -2,22 +2,27 @@ from django import forms
 from django.forms import ModelForm
 from .models import Job, UserDetail
 from django.forms.models import model_to_dict
-
+import datetime
 class CoverLetterForm(ModelForm):
     class Meta:
         model = Job
         fields = '__all__'
         labels = {'position_title': 'Position title'}
         widgets = {
-            'template_choices': forms.Select(), 
+            # 'template_choices': forms.Select(), 
+            'template_choices': forms.RadioSelect(), 
         }
         
         formId = forms.CharField(widget=forms.HiddenInput())
+        forms.DateField(initial=datetime.date.today)
+        createdDate = forms.DateField(initial=datetime.date.today, widget=forms.HiddenInput())
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
+        self.fields['job_posting_website'].initial = 'LinkedIn'
 
 
 class TripleByteForm(ModelForm):
@@ -29,6 +34,9 @@ class TripleByteForm(ModelForm):
             'template_choices': forms.Select(), 
         }
         formId = forms.CharField(widget=forms.HiddenInput())
+        createdDate = forms.DateField(
+            initial=datetime.date.today, widget=forms.HiddenInput())
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

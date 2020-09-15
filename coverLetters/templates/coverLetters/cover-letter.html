@@ -43,7 +43,7 @@
                 </p>
             </div>
             <div>
-                {% now "F jS, Y" %}
+                <p > {% now "F jS, Y" %} </p>
             </div>
             <div>
                 <h2>{% if last_user.preferred_name %} {{last_user.preferred_name}} {% else %} {{last_user.first_name}} {% endif %} {{last_user.last_name}}</h2>
