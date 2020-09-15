@@ -14,15 +14,14 @@ class CoverLetterForm(ModelForm):
         }
         
         formId = forms.CharField(widget=forms.HiddenInput())
-        forms.DateField(initial=datetime.date.today)
-        createdDate = forms.DateField(initial=datetime.date.today)
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
         self.fields['job_posting_website'].initial = 'LinkedIn'
+        self.fields['form_creation_date'].initial = datetime.date.today()
+        self.fields['form_creation_date'].widget = forms.HiddenInput()
 
 
 class TripleByteForm(ModelForm):
