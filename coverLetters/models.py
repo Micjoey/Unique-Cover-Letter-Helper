@@ -65,7 +65,7 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
-    form_creation_date = models.DateField(default=created_date)
+    form_creation_date = models.DateField()
 
 
     
