@@ -4,6 +4,7 @@ from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 import datetime
 
+
 __all__ = ['CheckConstraint', 'UniqueConstraint']
 class UserDetail(models.Model):
     first_name = models.CharField(max_length=200, blank=False)
@@ -38,7 +39,7 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
     )
-    form_creation_date = models.DateField()
+    form_creation_date = models.CharField(max_length=100, blank=True)
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
