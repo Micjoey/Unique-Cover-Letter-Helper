@@ -64,6 +64,7 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
+    date_created = models.DateField(default=created_date, auto_now_add=True, editable=True, blank=True)
     
     class Meta:
         unique_together = ('link', 'template_choices', 'position_title')
