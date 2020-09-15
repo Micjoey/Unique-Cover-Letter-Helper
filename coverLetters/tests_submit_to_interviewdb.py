@@ -27,7 +27,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
         lessThanSevenDays = True
         jobWebsiteIsPresent = True
         i = 2
-        while i < 120 and lessThanSevenDays and jobWebsiteIsPresent:
+        while i < len(allJobs) and lessThanSevenDays and jobWebsiteIsPresent:
             currentJob = allJobs[i]
             currentJob.click()
             jobTitle = self.browser.find_element_by_id('job-title').text
