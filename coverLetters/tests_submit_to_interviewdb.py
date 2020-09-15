@@ -134,7 +134,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
-            print('Finished Job #', i/2)
+            print('Finished Job #', (i/2)-1)
             i += 2
                 
 
