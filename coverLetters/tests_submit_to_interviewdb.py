@@ -34,7 +34,8 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobTitle = self.browser.find_element_by_id('job-title').text
             jobCompany = self.browser.find_element_by_id('job-company').text
             jobWebsite = self.browser.find_element_by_id('job-website').text
-            dateCreated = self.browser.find_element_by_id('date-created').text
+            dateCreated = self.browser.find_element_by_id(
+                'form-created-date').text
             dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
             print(dateCreated, todaysDate)
             dateDifferenceBetweenTodayandJob = datetime.strptime(
