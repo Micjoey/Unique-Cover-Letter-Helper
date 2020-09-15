@@ -83,8 +83,9 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.find_element_by_tag_name('input').send_keys('365')
             self.browser.find_element_by_xpath(
                 '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[2]/div/div[1]/select/option[7]').click()
-            
-            time.sleep(10)
+            wait.until(EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[3]/div[1]/div/div[2]/div')))
+            # time.sleep(10)
             fullTitleIsPresent = self.browser.page_source.find(
                 jobDetails) != -1
             halfTitleIsPresent = halfJobDetails in self.browser.page_source
