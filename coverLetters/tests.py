@@ -1,3 +1,4 @@
+from datetime import datetime
 from selenium.webdriver.common.action_chains import ActionChains
 from django.test import TestCase
 from selenium import webdriver
@@ -100,7 +101,7 @@ class FunctionalTestCase(TestCase):
                 randomWord = 'Macallan'
                 for tag in input_tags:
                     tag_id = tag.get_attribute('id')
-                    if tag_id and not tag_id == 'submit-button':
+                    if tag_id and not tag_id == 'submit-button' and not tag_id == 'id_form_creation_date':
                         self.browser.find_element_by_id(
                             tag_id).send_keys(randomWord)
                 self.browser.find_element_by_id("submit-button").click()
@@ -127,9 +128,7 @@ class FunctionalTestCase(TestCase):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/user-form')
         input_tags = self.browser.find_elements_by_tag_name('input')
-        randomWord = RandomWords().get_random_word()
-        if randomWord is None:
-            randomWord = 'Macallan'
+        randomWord = 'Macallan'
         for tag in input_tags:
             currentTagName = tag.get_attribute('name')
             currentTagType = tag.get_attribute('type')
@@ -180,6 +179,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Standard Job Template',
+            'form_creation_date': datetime.now().strftime('%B %dth, %Y'),
             'company': 'Test - company1',
             'job_posting_website': 'company1',
             'choice_of_user': UserDetail.objects.last(),
@@ -208,6 +208,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Triplebyte (message-version)',
+            'form_creation_date': datetime.now().strftime('%B %dth, %Y'),
             'company': 'Test - company2',
             'job_posting_website': 'company2',
             'choice_of_user': UserDetail.objects.last(),
@@ -236,6 +237,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Triplebyte (message-version)',
+            'form_creation_date': datetime.now().strftime('%B %dth, %Y'),
             'company': 'Test - company3',
             'job_posting_website': 'company3',
             'choice_of_user': UserDetail.objects.last(),
@@ -264,6 +266,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Template 4',
+            'form_creation_date': datetime.now().strftime('%B %dth, %Y'),
             'job_posting_website': 'company4',
             'company': 'Test - company4',
             'choice_of_user': UserDetail.objects.last(),
@@ -292,6 +295,7 @@ class UnitTestCaste(TestCase):
         self.save_user_object()
         form = CoverLetterForm(data={
             'template_choices': 'Template 5',
+            'form_creation_date': datetime.now().strftime('%B %dth, %Y'),
             'job_posting_website': 'company5',
             'company': 'Test - company5',
             'choice_of_user': UserDetail.objects.last(),
@@ -310,8 +314,10 @@ class UnitTestCaste(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+
     def save_cover_letter_object(self):
         test_job = Job()
+        test_job.form_creation_date = datetime.now().strftime('%B %dth, %Y')
         test_job.template_choices = 'Standard Job Template'
         test_job.job_posting_website = 'Standard Job Template'
         test_job.company = 'Test - company1'
