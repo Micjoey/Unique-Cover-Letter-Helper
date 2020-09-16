@@ -90,6 +90,7 @@ Solution: This application, which is a program that is oriented around creating 
           `return 'your-github-username'`
 
   **Don't Wish to Submit to InterviewDB**:
+  
     * Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
   
 ## **Editing Cover Letter**
