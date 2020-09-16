@@ -89,8 +89,8 @@ Solution: This application, which is a program that is oriented around creating 
       * `def github_login():`
           `return 'your-github-username'`
 
-  **Don't Wish to Submit to InterviewDB**
-    Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
+  **Don't Wish to Submit to InterviewDB**:
+  Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
   
 ## **Editing Cover Letter**
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
