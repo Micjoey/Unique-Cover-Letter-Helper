@@ -19,12 +19,9 @@
     </br>
     
     <ol>
-        {% for job in jobs.all.reverse %}
+        {% for job in jobs.all %}
         <div class="job-info-container">
             <li style='display: flex;'>
-                {% comment %} <a href="{% url 'job-detail' job.id %}" >
-                    <h1> {{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}</h1>
-                </a> {% endcomment %}
                 <a href="{% url 'job-detail' job.id %}" >
                     <h1>
                         {% if job.company %}

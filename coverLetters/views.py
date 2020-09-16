@@ -13,7 +13,7 @@ def homepage(request):
 
 
 def all_jobs(request):
-    jobs = Job.objects.order_by('created_date')
+    jobs = Job.objects.order_by('-id')
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs
     })
