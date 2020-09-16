@@ -135,7 +135,6 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 # time.sleep(10)
             else:
                 skipCount += 1
-                print(skipCount, multipleSkips)
                 if skipCount > 10:
                     multipleSkips = True
             self.browser.get(
