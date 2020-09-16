@@ -68,7 +68,7 @@ Solution: This application, which is a program that is oriented around creating 
   If you don't want to use chrome as your main server then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
   
   Whatever driver you choose you'll want to drag the driver to the `venv/bin/` path.
-  
+
   -------------
   * First make sure you are in the virtual environment to start the test. In your terminal it should show `(venv) YourNameHere:ProjectName`.
   * Next in your terminal make sure you are at the root level.
@@ -76,6 +76,21 @@ Solution: This application, which is a program that is oriented around creating 
   This will run through an assortment of tests such as making sure the back buttons are present on each back except for admin. Making sure that each form field is working, and the different templates are valid.
   <br>
   If you change the model, you will also need to change these tests. 
+
+  Submitting to InterviewDB
+  -------------
+  If you wish to submit to interview DB then you'll need to make a couple additions and changes.
+  * Step 1:
+    Add a file called `passwords.py` under the `coverLetters` folder. The pathway should look like `coverLetters/passwords.py`. 
+  * Step 2:
+    Add two functions:
+      * `def github_password():`
+          `return 'your-github-password'`
+      * `def github_login():`
+          `return 'your-github-username'`
+
+  **Don't Wish to Submit to InterviewDB**
+    Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
   
 ## **Editing Cover Letter**
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
