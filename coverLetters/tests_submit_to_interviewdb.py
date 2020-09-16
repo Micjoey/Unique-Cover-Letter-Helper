@@ -26,8 +26,10 @@ class FunctionalSubmitToInterviewDB(TestCase):
         dateDifferenceBetweenTodayandJob = datetime.now() - dateCreated
         lessThanSevenDays = True
         jobWebsiteIsPresent = True
+        multipleSkips = False
+        skipCount = 0
         i = 2
-        while i < len(allJobs) and lessThanSevenDays and jobWebsiteIsPresent:
+        while i < len(allJobs) and lessThanSevenDays and jobWebsiteIsPresent and not multipleSkips:
             currentJob = allJobs[i]
             currentJob.click()
             jobTitle = self.browser.find_element_by_id('job-title').text
@@ -85,7 +87,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[2]/div/div[1]/select/option[7]').click()
             wait.until(EC.visibility_of_element_located(
                 (By.XPATH, '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[3]/div[1]/div/div[2]/div')))
-            # time.sleep(10)
+            time.sleep(2)
             fullTitleIsPresent = self.browser.page_source.find(
                 jobDetails) != -1
             halfTitleIsPresent = halfJobDetails in self.browser.page_source
@@ -131,10 +133,15 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 wait.until(EC.url_matches(
                     'https://www.interview-db.com/profile/job-search'))
                 # time.sleep(10)
+            else:
+                skipCount += 1
+                print(skipCount, multipleSkips)
+                if skipCount > 10:
+                    multipleSkips = True
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
-            print('Finished Job #', (i/2)-1)
+            print('Finished Job #', (i/2))
             i += 2
                 
 
