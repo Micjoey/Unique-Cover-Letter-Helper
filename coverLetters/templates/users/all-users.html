@@ -25,7 +25,7 @@
                 {% comment %} <h1> {{user.first_name}} {{user.last_name}} </h1> {% endcomment %}
                 <div class='delete-button' style="margin: auto;
     margin-left: 0; width: fit-content;">
-                    <a href="{% url 'delete-user-detail' user.id%}">Delete User<a/>
+                    <a href="{% url 'delete-user-detail' user.id%}">Delete User - {{user.first_name}} {{user.last_name}}<a/>
                 </div>
             </a>
             </ul>

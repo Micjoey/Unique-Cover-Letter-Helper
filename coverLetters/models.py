@@ -25,7 +25,7 @@ class UserDetail(models.Model):
     
 
     class Meta:
-        ordering = ['-created_date']
+        ordering = ['-modified_date']
 
 
     def __str__(self):
