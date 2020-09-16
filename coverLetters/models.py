@@ -74,7 +74,7 @@ class Job(models.Model):
     
     class Meta:
         unique_together = ('link', 'template_choices', 'position_title')
-
+        ordering = ['-modified_date']
 
     def __str__(self):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
