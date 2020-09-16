@@ -41,7 +41,6 @@ Solution: This application, which is a program that is oriented around creating 
 
     To install virtualenvwrapper run: `pip install virtualenvwrapper`
 
-    
 ## **STARTING VIRTUAL ENVIRONMENT: `source venv/bin/activate`**
   It is important to start the virtual environment and doing the above code will do so. 
 
@@ -64,6 +63,11 @@ Solution: This application, which is a program that is oriented around creating 
   For simplicity the last user you create will be the one that the system uses for the cover-letter template. You have the option to change it on the form itself if you wish. 
       
 ## **Testing**
+  -------------
+  **Important**:
+    If you don't want to use chrome as your main server then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
+    Whatever driver you choose you'll want to drag the driver to the `venv/bin/` path.
+  -------------
   * First make sure you are in the virtual environment to start the test. In your terminal it should show `(venv) YourNameHere:ProjectName`.
   * Next in your terminal make sure you are at the root level.
   * run: `python manage.py test`
