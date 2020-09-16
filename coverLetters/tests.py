@@ -143,7 +143,7 @@ class FunctionalTestCase(TestCase):
         self.browser.find_element_by_class_name("floating-button").click()
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-users')
-        self.browser.find_element_by_link_text('Delete User').click()
+        self.browser.find_element_by_link_text('Delete User - ' + randomWord + ' ' + randomWord).click()
         
 
     def tearDown(self):
