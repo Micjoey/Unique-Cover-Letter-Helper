@@ -26,6 +26,7 @@ Solution: This application, which is a program that is oriented around creating 
 * `MultiSelectField`
 
 ## *Setup Steps*
+
   I am assuming that you have [Brew](https://treehouse.github.io/installation-guides/mac/homebrew) installed for the following code. If you do not, please copy this `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` into your terminal.
 
   * *Step 1*: If there is a word in paranthesis next to your name in terminal, i.e (venv) X's-Macbook-pro, then you are in the virtual environment. This is good.
@@ -34,6 +35,7 @@ Solution: This application, which is a program that is oriented around creating 
     * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first though (in every terminal instance where you are working on your project): `source venv/bin/activate`
   
   * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
+  **Very Important** --> Run `django-admin flush` and then accept. 
 
     It will get installed in the venv/ folder, and not conflict with other projects.To leave the virtual environment run: `deactivate`
 
