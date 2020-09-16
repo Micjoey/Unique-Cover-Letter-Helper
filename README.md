@@ -22,7 +22,26 @@ Solution: This application, which is a program that is oriented around creating 
 ### **Additional Technologies Used**
 * `UrlLib3`
 * `RandomWords`
+* `PhoneField`
+* `MultiSelectField`
 
+## *Setup Steps*
+  I am assuming that you have [Brew](https://treehouse.github.io/installation-guides/mac/homebrew) installed for the following code. If you do not, please copy this `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` into your terminal.
+
+  * *Step 1*: If there is a word in paranthesis next to your name in terminal, i.e (venv) X's-Macbook-pro, then you are in the virtual environment. This is good.
+    * *1a*: If you don't have that, please follow this step. In your terminal, please run `pip install virtualenv`. I am following steps from [installing venv](https://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
+    * *1b*:If you have a project in a directory called my-project you can set up virtualenv for that project by running: run `cd my-project/virtualenv venv`. If you want your virtualenv to also inherit globally installed packages run: `virtualenv venv --system-site-packages`
+    * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first though (in every terminal instance where you are working on your project): `source venv/bin/activate`
+    * *1d*: In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
+
+    It will get installed in the venv/ folder, and not conflict with other projects.To leave the virtual environment run: `deactivate`
+
+    **Optional**:
+    To make it easier to work on multiple projects that has separate environments you can install `virtualenvwrapper`. It's an extension to `virtualenv` and makes it easier to create and delete virtual environments without creating dependency conflicts.
+
+    To install virtualenvwrapper run: `pip install virtualenvwrapper`
+
+    
 ## **STARTING VIRTUAL ENVIRONMENT: `source venv/bin/activate`**
   It is important to start the virtual environment and doing the above code will do so. 
 
