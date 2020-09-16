@@ -33,7 +33,7 @@ Solution: This application, which is a program that is oriented around creating 
     * *1b*:If you have a project in a directory called my-project you can set up virtualenv for that project by running: run `cd my-project/virtualenv venv`. If you want your virtualenv to also inherit globally installed packages run: `virtualenv venv --system-site-packages`
     * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first though (in every terminal instance where you are working on your project): `source venv/bin/activate`
   
-  * *Step 2*: In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
+  * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
 
     It will get installed in the venv/ folder, and not conflict with other projects.To leave the virtual environment run: `deactivate`
 
