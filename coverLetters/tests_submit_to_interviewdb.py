@@ -92,6 +92,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 jobDetails) != -1
             halfTitleIsPresent = halfJobDetails in self.browser.page_source
             if not halfTitleIsPresent or not fullTitleIsPresent:
+                time.sleep(1)
                 self.browser.find_element_by_xpath('//*[@id="root"]/section/div/nav/a[1]').click()
                 wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
                 if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
@@ -108,7 +109,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(
                         jobCompany)
                     actions.pause(2)
-                    # actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     # actions.send_keys(Keys.TAB)
                     actions.perform()
@@ -124,7 +125,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(
                         jobWebsite)
                     actions.pause(2)
-                    # actions.send_keys(Keys.UP)
+                    actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
                     actions.reset_actions()
@@ -135,7 +136,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 # time.sleep(10)
             else:
                 skipCount += 1
-                if skipCount > 10:
+                if skipCount > 19:
                     multipleSkips = True
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
