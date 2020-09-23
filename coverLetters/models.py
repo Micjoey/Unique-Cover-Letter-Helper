@@ -39,15 +39,11 @@ class Job(models.Model):
         ('Template 4', 'cover-letter-4'),
         ('Template 5', 'cover-letter-5')
     )
-<<<<<<< HEAD
+
     last_user = None
     if UserDetail.objects.last() != None:
         last_user = UserDetail.objects.last().id
     
-    
-=======
-
->>>>>>> dev-branch
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
@@ -77,9 +73,6 @@ class Job(models.Model):
     post_bullet_point_paragraph_two = models.TextField( blank=True)
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
-    
-
-
     
     class Meta:
         unique_together = ('link', 'template_choices', 'position_title')
