@@ -136,12 +136,16 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 # time.sleep(10)
             else:
                 skipCount += 1
+                
                 if skipCount > 19:
                     multipleSkips = True
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
-            print('Finished Job #', (i/2))
+            if not halfTitleIsPresent or not fullTitleIsPresent:
+                print('Skipped Job #', i/2, ' skip count is -', skipCount)
+            else:
+                print('Finished Job #', (i/2))
             i += 2
                 
 
