@@ -16,6 +16,7 @@ class FunctionalTestCase(TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
+
     def main_form_text_link(self):
         return 'http://localhost:3000/cover-letter-generator/forms/cover-letter-form'
 
