@@ -109,7 +109,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(
                         jobCompany)
                     actions.pause(2)
-                    actions.send_keys(Keys.UP)
+                    # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     # actions.send_keys(Keys.TAB)
                     actions.perform()
@@ -125,7 +125,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(
                         jobWebsite)
                     actions.pause(2)
-                    actions.send_keys(Keys.UP)
+                    # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
                     actions.reset_actions()
@@ -142,7 +142,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
-            if not halfTitleIsPresent or not fullTitleIsPresent:
+            if halfTitleIsPresent or fullTitleIsPresent:
                 print('Skipped Job #', i/2, ' skip count is -', skipCount)
             else:
                 print('Finished Job #', (i/2))
