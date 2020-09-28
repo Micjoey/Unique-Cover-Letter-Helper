@@ -32,7 +32,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
         while i < len(allJobs) and lessThanSevenDays and jobWebsiteIsPresent and not multipleSkips:
             currentJob = allJobs[i]
             currentJob.click()
-            jobTitle = self.browser.find_element_by_id('job_posting_website').text
+            jobTitle = self.browser.find_element_by_id('position_title').text
             jobCompany = self.browser.find_element_by_id('company').text
             jobWebsite = self.browser.find_element_by_id(
                 'job_posting_website').text
@@ -44,7 +44,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             dateCreated = self.browser.find_element_by_id(
                 'form_creation_date').text
             jobDetails = self.browser.find_element_by_id(
-                'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('+self.browser.find_element_by_id('job-website').text+')'
+                'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('+self.browser.find_element_by_id('job_posting_website').text+')'
             halfJobDetails = self.browser.find_element_by_id(
                 'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('
             if "-" in dateCreated:
@@ -138,7 +138,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             else:
                 skipCount += 1
                 
-                if skipCount > 19:
+                if skipCount > 29:
                     multipleSkips = True
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
