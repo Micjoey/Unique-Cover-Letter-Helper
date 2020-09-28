@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.forms.models import model_to_dict
+from django.core import serializers
+from django.urls import path, include
 from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
-from django.forms.models import model_to_dict
-from django.urls import path, include
 import urllib3
 import json
-
 
 
 def homepage(request):
@@ -27,8 +27,7 @@ def all_users(request):
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
-    object_keys = list(object.keys())
-    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
+    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object,})
 
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
