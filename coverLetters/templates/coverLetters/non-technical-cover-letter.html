@@ -21,13 +21,30 @@
         <div class="cover-letter-header">
         <p > {% now "F jS, Y" %} </p>
             <div>
-                <p>
+                {% if last_user.email %}
+                    <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
+                    | 
+                {% endif %}
+                {% if last_user.linkedin %}
+                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
+                    |
+                {% endif %}
+                {% if last_user.github %}
+                    <a href={{last_user.github}}>{{last_user.github}}</a>
+                    |
+                {% endif %}
+                {% if last_user.portfolio_website %}
+                    <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
+                {% endif %}
+                </br>
+                </br>
+                <div>
                     {% if job.recruiter %}
                     <p> Dear {{job.recruiter}}:</p>
                     {% else%}
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
-                </p>
+                </div>
                 <p> Thank you for the opportunity to apply for the {{job.title}} role at your company - {{job.company}}. 
                 After reviewing your job description, it's clear that you're looking for a candidate that is familiar with 
                 the responsibilities associated with the role and can perform them confidently. Given these requirements, 
