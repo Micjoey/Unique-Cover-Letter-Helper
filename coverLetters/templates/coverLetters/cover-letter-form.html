@@ -13,8 +13,10 @@
     <title>Cover Letter Template Form</title>
 </head>
 <body>
-    <a href="{% url 'homepage' %}"> Back To Homepage </a>
-    
+    <div class="information additional-spacing">
+        <a href="{% url 'homepage' %}"> Back To Homepage </a>
+        <a href="{% url 'cover-letter-form' %}" id='homepage-cover-letter-template-button'> Cover Letter Template </a>
+    </div>
     <h1> Cover Letter Template Form </h1>
     <form action="{% url 'cover-letter' %}" method="post" class="cover-letter-form">
         {% csrf_token %}

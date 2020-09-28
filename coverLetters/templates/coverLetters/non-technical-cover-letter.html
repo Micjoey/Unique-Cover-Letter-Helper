@@ -12,7 +12,6 @@
     <title>Cover Letter</title>
 </head>
 <body>
-    <a href="{% url 'homepage' %}"> Back To Homepage </a>
     <h1> Non-technical Cover Letter</h1>
     
     </br>
@@ -30,11 +29,12 @@
                     {% endif %}
                 </p>
                 <p> Thank you for the opportunity to apply for the {{job.title}} role at your company - {{job.company}}. 
-                After reviewing your job description, it's clear that you're looking for a candidate that is familiar with the responsibilities associated with the role and can perform them confidently. 
-                Given these requirements, I am confident that I have the necessary skills to successfully do the job adeptly and fulfill above expectations.</p>
-                <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Over the course of my career, I have developed proven communication, analytical, and teamwork skills, which I hope to leverage into the {{job.position_title}} role at your company.</p>
+                After reviewing your job description, it's clear that you're looking for a candidate that is familiar with 
+                the responsibilities associated with the role and can perform them confidently. Given these requirements, 
+                I am confident that I can do the job adeptly and fulfill the above expectations successfully.</p>
+                <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Throughout my career, I have developed proven communication, analytical, and teamwork skills, which I hope to leverage into the {{job.position_title}} role at your company - {{job.company}}.</p>
                 </br>
-                <p> After reviewing my resume, I hope you will agree that I am a competent and competitive candidate you are looking for. I look forward to elaborating on how my specific skills and abilities will benefit your organization. 
+                <p> After reviewing my resume, I hope you will agree that I am a competent and competitive candidate for the {{job.position_title}} role. I look forward to elaborating on how my specific skills and abilities will benefit your organization. 
                 Please contact me at {{last_user.phone_number}} or via email at {{last_user.email}} to arrange a convenient time to chat. 
                 </br>
                 <p> Thank you for your consideration and I look forward to hearing from you soon.</p>
