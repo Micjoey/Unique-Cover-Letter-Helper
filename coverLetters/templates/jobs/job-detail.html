@@ -17,7 +17,7 @@
             {% for key, value in job_object.items %}
                 <div class="job-detail-container"> 
                     {% if value %}
-                        <p> {{key.capitalize}}: </p> <p> {{value}} </p>
+                        <p> {{key.capitalize}}: </p> <p id="{{key}}"> {{value}} </p>
                     {% endif %}
                 </div>
             {% endfor %}
