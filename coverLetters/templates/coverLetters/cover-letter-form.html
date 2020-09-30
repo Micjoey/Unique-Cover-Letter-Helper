@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">  
+    <link rel="stylesheet" href="{% static 'css/homepage.scss' %}">     
     <link rel="stylesheet" href="{% static 'css/cover-letter-form.css' %}">     
     <title>Cover Letter Template Form</title>
 </head>
 <body>
     <div class="information additional-spacing">
-        <a href="{% url 'homepage' %}"> Back To Homepage </a>
-        <a href="{% url 'cover-letter-form' %}" id='homepage-cover-letter-template-button'> New Cover Letter Form </a>
+        <a href="{% url 'homepage' %}" style="margin: 1em;" class="additional-spacing"> Back To Homepage </a>
+        <a href="{% url 'cover-letter-form' %}" style="margin: 1em;"  id='homepage-cover-letter-template-button' class="additional-spacing"> New Cover Letter Form </a>
     </div>
     <h1> Cover Letter Template Form </h1>
     <form action="{% url 'cover-letter' %}" method="post" class="cover-letter-form">
