@@ -64,6 +64,8 @@ Solution: This application, which is a program that is oriented around creating 
   On the homepage click the User Form to create.
 
   For simplicity the last user you create will be the one that the system uses for the cover-letter template. You have the option to change it on the form itself if you wish. 
+
+  **Delete** The test user that currently exists once you have completed your user information.
       
 ## **Testing**
   Important: 
