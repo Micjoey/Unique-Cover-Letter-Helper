@@ -65,6 +65,7 @@ Solution: This application, which is a program that is oriented around creating 
 
   For simplicity the last user you create will be the one that the system uses for the cover-letter template. You have the option to change it on the form itself if you wish. 
       
+  **Delete** The test user that currently exists once you have completed your user information.
 ## **Testing**
   Important: 
   If you don't want to use chrome as your main server then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
