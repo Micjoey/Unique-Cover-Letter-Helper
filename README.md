@@ -1,8 +1,8 @@
 # cover-letter-template-generator
-*Problem*: Creating unique cover letters that are focused on a company and why you like them and how you are relevant.
+*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company.
 </br>
 </br>
-*Solution*: This application, which is a program that is oriented around creating fully dynamic and customized cover letters with more ease.
+*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease.
 
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
