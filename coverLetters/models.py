@@ -50,8 +50,8 @@ class Job(models.Model):
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
         'UserDetail', on_delete=models.CASCADE, blank=True, null=True)
-    job_posting_website = models.CharField(max_length=200,)
-    position_title = models.CharField(max_length = 200)
+    job_posting_website = models.CharField("Job Posting Website", max_length=200,)
+    position_title = models.CharField("Position Title",max_length = 200)
     company = models.CharField(max_length = 200, blank=True)
     city = models.CharField(max_length = 200,  blank=True)
     link = models.CharField(max_length = 200)

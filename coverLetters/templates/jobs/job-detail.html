@@ -14,84 +14,13 @@
         <a href="{% url 'all-jobs' %}"> Back </a>
         <h1>Job Info: {{job.position_title}} | {{job.company}}</h1>
         <div class="job-info-container">
-            <div class="job-detail-container"> 
-                <p> Form Created Date: </p> <p id='form-created-date'>{{job.form_creation_date}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Template: </p> <p>{{job.template_choices}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> User Id: </p> <p>{{job.choice_of_user}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Job Website: </p> <p id='job-website'>{{job.job_posting_website}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Job Company: </p> <p id='job-company'>{{job.company}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Job Title: </p> <p id="job-title"> {{job.position_title}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Job City: </p> <p> {{job.city}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Job Link: </p> <p class="job-description" id='job-link'> {{job.link}} </p>
-            </div>
-            </br>
-            <div class="job-detail-container"> 
-                <p> Job Description: </p> <p class="job-description"> {{job.description}} </p>
-            </div>
-            </br>
-            <div class="job-detail-container"> 
-                <p> Top Skills: </p> <p> {{job.top_skills}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Date Created: </p> <p> {{job.created_date}} </p>
-            </div>
-            <div class="job-detail-container"> 
-                <p> Date Modified: </p> <p> {{job.modified_date}} </p>
-            </div>
-            {% if job.bullet_point_one %}
+            {% for key, value in job_object.items %}
                 <div class="job-detail-container"> 
-                    <p> Line One: </p> <p> {{job.bullet_point_one}} </p>
+                    {% if value %}
+                        <p> {{key.capitalize}}: </p> <p id="{{key}}"> {{value}} </p>
+                    {% endif %}
                 </div>
-            {% endif %}
-            {% if job.bullet_point_two %}
-                <div class="job-detail-container"> 
-                    <p> Line two: </p> <p> {{job.bullet_point_two}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_three %}
-                <div class="job-detail-container"> 
-                    <p> Line three: </p> <p> {{job.bullet_point_three}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_four %}
-                <div class="job-detail-container"> 
-                    <p> Line four: </p> <p> {{job.bullet_point_four}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_five %}
-                <div class="job-detail-container"> 
-                    <p> Line five: </p> <p> {{job.bullet_point_five}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_six %}
-                <div class="job-detail-container"> 
-                    <p> Line six: </p> <p> {{job.bullet_point_six}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_seven %}
-                <div class="job-detail-container"> 
-                    <p> Line seven: </p> <p> {{job.bullet_point_seven}} </p>
-                </div>
-            {% endif %}
-            {% if job.bullet_point_eight %}
-                <div class="job-detail-container"> 
-                    <p> Line eight: </p> <p> {{job.bullet_point_eight}} </p>
-                </div>
-            {% endif %}
+            {% endfor %}
         </div>
         </br>
         </br>

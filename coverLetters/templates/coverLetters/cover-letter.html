@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/cover-form-rendered.scss' %}">     
+    <link rel="stylesheet" href="{% static 'css/job-info.scss' %}" >    
+    <link rel="stylesheet" href="{% static 'css/cover-form-rendered.scss' %}"> 
+    <link rel="stylesheet" href="{% static 'css/homepage.scss' %}">     
+    <link rel="stylesheet" href="{% static 'css/cover-letter-form.css' %}">   
     <title>Cover Letter</title>
 </head>
 <body>
-    <a href="{% url 'homepage' %}"> Back To Homepage </a>
     <h1> Generated Cover Letter {{template_choice}}</h1>
     
     </br>
@@ -56,10 +58,10 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-                {% if  last_user.phone_number%}
-                    <h2>{{last_user.phone_number}}</h2>
+
+                {% if last_user.email %}
+                    <h2> <Jsavett@gmail class="com"> {{last_user.email}} </Jsavett@gmail></h2>
                 {% endif %}
-                {% if last_user.email %}<h2><Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail></h2>{% endif %}
                 
             </div>
             <div class="cover-letter-paragraph">
@@ -70,10 +72,6 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </p>
-                {% comment %} <p> Your need for a {{job.position_title}} as advertised on the {{job.company}} 
-                website is an excellent match to my background and career goals. 
-                With my strong education and experience, I am confident I can make 
-                an immediate contribution given the opportunity.</p>  {% endcomment %}
 
                <p> As advertised on the {% if job.job_posting_website %}{{job.job_posting_website}}{% else %}{{job.company}}{% endif %} website, your need for a 
                 {{job.position_title}} is an excellent match to my background 

@@ -1,5 +1,10 @@
-textarea {
-    
+
+.additional-spacing {
+    padding: 1em;
+}
+
+.information {
+    padding: 1em;
 }
 
 .cover-letter-form label,input, textarea  
@@ -30,12 +35,8 @@ textarea {
     display: flex;
 }
 
-.cover-letter-form {
 
-    
-}
-
-.cover-letter-container {
+/* .cover-letter-container {
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; 
     font-size: 10px; 
     font-style: normal; 
@@ -43,7 +44,6 @@ textarea {
     font-weight: 700; 
     line-height: 11px; 
 
-}
+} */
 
-    
-    
+

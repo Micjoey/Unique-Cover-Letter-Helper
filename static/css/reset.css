@@ -170,3 +170,7 @@ ol li::before {
   color: red;
   font-weight: bold;
 }
+
+body {
+  margin: 1em;
+}

@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.forms.models import model_to_dict
+from django.core import serializers
+from django.urls import path, include
+from django.http import HttpResponseForbidden
 from .models import Job, UserDetail
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
-from django.forms.models import model_to_dict
-from django.urls import path, include
 import urllib3
 import json
-
 
 
 def homepage(request):
@@ -27,8 +28,7 @@ def all_users(request):
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
-    object_keys = list(object.keys())
-    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'object_keys': object_keys, 'object': object})
+    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object,})
 
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
@@ -60,8 +60,10 @@ def cover_letter(request):
     last_user = UserDetail.objects.last
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
+        print(filled_form.is_valid)
         if filled_form.is_valid():
-            filled_form.save()
+            print("hit three a")
+            saved = filled_form.save()
             filled_form = filled_form.cleaned_data #turns the form into a dict (object)
             last_user = filled_form['choice_of_user']
             template_choice = filled_form['template_choices']
@@ -80,6 +82,8 @@ def cover_letter(request):
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+    return HttpResponseForbidden("Duplicate Data")
+    
 
 
 def user_form(request):
@@ -94,16 +98,5 @@ def user_form(request):
         return render(request, 'users/user-form.html', {'userForm': form})
 
 
-# def submit_to_interview_db(interviewDBInfo):
-#     http = urllib3.PoolManager()
-#     data = {
-#         'css-1hwfws3': interviewDBInfo['company'],
-#         'root_applications_0_jobTitle': interviewDBInfo['job_title'],
-#         'css-151xaom-placeholder': interviewDBInfo['source']
-#     }
-#     r = http.request('GET',
-#                      'https://www.interview-db.com/',
-#                      )
 
-#     print(r.data)
     
