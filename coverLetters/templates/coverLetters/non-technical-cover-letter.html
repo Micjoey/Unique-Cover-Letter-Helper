@@ -47,7 +47,7 @@
                 </div>
                 <p> Thank you for the opportunity to apply for the {{job.title}} role at your company - {{job.company}}. 
                 After reviewing your job description, it's clear that you're looking for a candidate that is familiar with 
-                the responsibilities associated with the role and can perform them confidently. Given these requirements, 
+                the responsibilities associated with the {% if job.title %}- {{job.title}} -{% endif %} role and can perform them confidently. Given these requirements, 
                 I am confident that I can do the job adeptly and fulfill the above expectations successfully.</p>
                 <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Throughout my career, I have developed proven communication, analytical, and teamwork skills, which I hope to leverage into the {{job.position_title}} role at your company - {{job.company}}.</p>
                 </br>
