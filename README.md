@@ -1,8 +1,15 @@
 # cover-letter-template-generator
 *Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company.
+<<<<<<< HEAD
 </br>
 </br>
 *Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease.
+=======
+*Problem 2*: I am required to enter the jobs that I apply to, into a secondary application. To apply to 20 jobs it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins of time wasted). 
+</br>
+</br>
+*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people 12 mins a day to 5 hours a day.
+>>>>>>> working-master
 
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
@@ -69,6 +76,7 @@
 
   **Delete** The test user that currently exists once you have completed your user information.
       
+  **Delete** The test user that currently exists once you have completed your user information.
 ## **Testing**
   Important: 
   If you don't want to use chrome as your main server then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
