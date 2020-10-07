@@ -29,7 +29,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
         multipleSkips = False
         skipCount = 0
         i = 2
-        while i < len(allJobs) and lessThanSevenDays and jobWebsiteIsPresent and not multipleSkips:
+        while i <= 100 and lessThanSevenDays and jobWebsiteIsPresent and not multipleSkips:
             currentJob = allJobs[i]
             currentJob.click()
             jobTitle = self.browser.find_element_by_id('position_title').text
