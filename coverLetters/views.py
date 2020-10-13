@@ -27,8 +27,10 @@ def all_users(request):
 
 def job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
+    user_id = int(str(job_detail.choice_of_user).split(" ")[1])
+    user_detail = UserDetail.objects.get(pk=user_id)
     object = model_to_dict(Job.objects.get(pk=job_id))
-    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object,})
+    return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object, 'user_detail': user_detail})
 
 def delete_job_detail(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
