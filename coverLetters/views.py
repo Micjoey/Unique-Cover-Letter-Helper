@@ -62,24 +62,22 @@ def cover_letter(request):
     last_user = UserDetail.objects.last
     if request.method == 'POST':
         filled_form = CoverLetterForm(request.POST)
-        print(filled_form.is_valid)
         if filled_form.is_valid():
-            print("hit three a")
-            saved = filled_form.save()
-            filled_form = filled_form.cleaned_data #turns the form into a dict (object)
-            last_user = filled_form['choice_of_user']
-            template_choice = filled_form['template_choices']
+            filled_form.save()
+            cleaned_filled_form = filled_form.cleaned_data #turns the form into a dict (object)
+            last_user = cleaned_filled_form['choice_of_user']
+            template_choice = cleaned_filled_form['template_choices']
             # Checks to see what template to render for the cover letter -->
             if "Standard Job Template" in template_choice:
-                return render(request, 'coverLetters/cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, })
             elif "Triplebyte (message-version)" in template_choice:
-                return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, })
             elif "Non-technical Cover Letter" in template_choice:
-                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, })
             elif "4" in template_choice:
-                return render(request, 'coverLetters/cover-letter-four.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, })
             elif "5" in template_choice:
-                return render(request, 'coverLetters/cover-letter-five.html', {'job': filled_form, 'last_user': last_user, })
+                return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, })
             # <--------  ------->
     else:
         form = CoverLetterForm()

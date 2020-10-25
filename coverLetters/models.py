@@ -71,8 +71,6 @@ class Job(models.Model):
     created_date = models.DateField(auto_now_add=True)
     
 
-
-    
     class Meta:
         unique_together = ('link', 'template_choices', 'position_title')
         ordering = ['-created_date', '-modified_date', '-position_title']
@@ -80,7 +78,11 @@ class Job(models.Model):
 
     def __str__(self):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
-    
+
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = 'N/A'
+        super().save(*args, **kwargs)
 
 
 

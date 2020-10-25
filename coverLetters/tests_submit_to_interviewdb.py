@@ -37,7 +37,12 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobWebsite = self.browser.find_element_by_id(
                 'job_posting_website').text
             jobDescription = self.browser.find_element_by_id(
-                'description').text
+                'description') or None
+            if jobDescription:
+                jobDescription = self.browser.find_element_by_id(
+                    'description').text
+            else:
+                jobDescription = 'N/A'
             # checks to make sure the a website link is present
             if jobWebsite:
                 jobWebsiteIsPresent = True
@@ -66,7 +71,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             lessThanSevenDays = dateDifferenceBetweenTodayandJob < 14
             self.browser.get('https://www.interview-db.com/')
             signInText = None
-            
+
             if i == 2:
                 signInText = self.browser.find_element_by_link_text(
                     'Student Sign in with Github')
@@ -105,6 +110,12 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
                 if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
                     self.browser.find_elements_by_class_name('btn-add')[5].click()
+                    # find the job description field and select
+                    jobDescriptionInput = self.browser.find_element_by_id(
+                        'root_applications_0_details')
+                    jobDescriptionInput.click()
+                    jobDescriptionInput.send_keys(jobDescription)
+                    #
                     title = self.browser.find_element_by_id(
                         'root_applications_0_jobTitle')
                     title.click()
@@ -136,20 +147,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
                     actions.reset_actions()
-                    #
-                    # find the job description field and select
-                    jobDescriptionInput = self.browser.find_elements_by_id(
-                        'root_applications_0_details')
-                    actions = ActionChains(self.browser)
-                    actions.reset_actions()
-                    actions.click(jobDescriptionInput)
-                    actions.send_keys(
-                        jobDescription)
-                    actions.pause(2)
-                    # actions.send_keys(Keys.ENTER)
-                    actions.perform()
-                    actions.reset_actions()
-                    #
+                    # 
                 self.browser.find_elements_by_tag_name('button')[9].click()
                 wait.until(EC.url_matches(
                     'https://www.interview-db.com/profile/job-search'))
