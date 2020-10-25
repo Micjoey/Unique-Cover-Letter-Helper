@@ -36,11 +36,10 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobCompany = self.browser.find_element_by_id('company').text
             jobWebsite = self.browser.find_element_by_id(
                 'job_posting_website').text
-            jobDescription = self.browser.find_element_by_id(
-                'description') or None
-            if jobDescription:
+            if self.browser.find_element_by_id(
+                'description'):
                 jobDescription = self.browser.find_element_by_id(
-                    'description').text
+                    'description')
             else:
                 jobDescription = 'N/A'
             # checks to make sure the a website link is present
