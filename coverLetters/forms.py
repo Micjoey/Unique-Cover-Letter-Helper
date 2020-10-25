@@ -12,8 +12,9 @@ class CoverLetterForm(ModelForm):
             'template_choices': forms.Select(), 
             # 'template_choices': forms.RadioSelect(), 
         }
-        
         formId = forms.CharField(widget=forms.HiddenInput())
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -39,7 +40,8 @@ class TripleByteForm(ModelForm):
             'template_choices': forms.Select(), 
         }
         formId = forms.CharField(widget=forms.HiddenInput())
-        
+
+     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
