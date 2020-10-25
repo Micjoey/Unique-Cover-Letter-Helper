@@ -110,10 +110,10 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
                     self.browser.find_elements_by_class_name('btn-add')[5].click()
                     # find the job description field and select
-                    jobDescriptionInput = self.browser.find_element_by_id(
-                        'root_applications_0_details')
-                    jobDescriptionInput.click()
-                    jobDescriptionInput.send_keys(jobDescription)
+                    # jobDescriptionInput = self.browser.find_element_by_id(
+                    #     'root_applications_0_details')
+                    # jobDescriptionInput.click()
+                    # jobDescriptionInput.send_keys(jobDescription)
                     #
                     title = self.browser.find_element_by_id(
                         'root_applications_0_jobTitle')
