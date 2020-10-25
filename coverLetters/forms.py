@@ -20,6 +20,11 @@ class CoverLetterForm(ModelForm):
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
         self.fields['job_posting_website'].initial = 'LinkedIn'
+        self.fields['bullet_point_one'].initial = 'Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles. '
+        self.fields['bullet_point_two'].initial = 'For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. '
+        self.fields['bullet_point_three'].initial = 'My passion for competitive soccer has taught me to learn from my mistakes using constructive feedback to improve future action.'
+        self.fields['bullet_point_four'].initial = 'I continually strive for opportunities to improve my skills and have the opportunity to problem-solve.'
+        self.fields['bullet_point_five'].initial = 'A passion for reading books on communication, relationship building, and leadership allow me to learn continually.'
         self.fields['form_creation_date'].initial = datetime.now().strftime(
             '%B %dth, %Y')
         self.fields['form_creation_date'].widget = forms.HiddenInput()
