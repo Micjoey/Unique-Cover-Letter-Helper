@@ -74,10 +74,6 @@ class Job(models.Model):
     modified_date = models.DateField(auto_now=True)
     created_date = models.DateField(auto_now_add=True)
     
-<<<<<<< HEAD
-=======
-
->>>>>>> working-master
     class Meta:
         unique_together = ('link', 'template_choices', 'position_title')
         ordering = ['-created_date', '-modified_date', '-position_title']
