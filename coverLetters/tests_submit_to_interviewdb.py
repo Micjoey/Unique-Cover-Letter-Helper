@@ -36,17 +36,26 @@ class FunctionalSubmitToInterviewDB(TestCase):
             jobCompany = self.browser.find_element_by_id('company').text
             jobWebsite = self.browser.find_element_by_id(
                 'job_posting_website').text
+            if self.browser.find_element_by_id(
+                'description'):
+                jobDescription = self.browser.find_element_by_id(
+                    'description')
+            else:
+                jobDescription = 'N/A'
+            # checks to make sure the a website link is present
             if jobWebsite:
                 jobWebsiteIsPresent = True
             else:
                 i += 2
                 continue
+
             dateCreated = self.browser.find_element_by_id(
                 'form_creation_date').text
             jobDetails = self.browser.find_element_by_id(
                 'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('+self.browser.find_element_by_id('job_posting_website').text+')'
             halfJobDetails = self.browser.find_element_by_id(
                 'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('
+            # edits the date to be consistent
             if "-" in dateCreated:
                 dateCreated = datetime.strptime(dateCreated, '%Y-%m-%d')
                 todaysDate = datetime.now().strftime('%Y-%m-%d')
@@ -57,9 +66,11 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
                 dateDifferenceBetweenTodayandJob = (datetime.strptime(
                     todaysDate, '%B %dth, %Y') - dateCreated).days
-            lessThanSevenDays = dateDifferenceBetweenTodayandJob < 7
+            # 
+            lessThanSevenDays = dateDifferenceBetweenTodayandJob < 14
             self.browser.get('https://www.interview-db.com/')
             signInText = None
+
             if i == 2:
                 signInText = self.browser.find_element_by_link_text(
                     'Student Sign in with Github')
@@ -83,7 +94,7 @@ class FunctionalSubmitToInterviewDB(TestCase):
             wait.until(
                 EC.element_to_be_clickable((By.TAG_NAME, 'li')))
             self.browser.find_element_by_tag_name('input').clear()
-            self.browser.find_element_by_tag_name('input').send_keys('365')
+            self.browser.find_element_by_tag_name('input').send_keys('365', Keys.ENTER)
             self.browser.find_element_by_xpath(
                 '//*[@id="react-tabs-1"]/div/div/div[1]/div/div/div[1]/div[2]/div/div[1]/select/option[7]').click()
             wait.until(EC.visibility_of_element_located(
@@ -98,6 +109,12 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 wait.until(EC.invisibility_of_element((By.CLASS_NAME, 'sc-lcpuFF eOXROa')))
                 if wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn-add'))):
                     self.browser.find_elements_by_class_name('btn-add')[5].click()
+                    # find the job description field and select
+                    # jobDescriptionInput = self.browser.find_element_by_id(
+                    #     'root_applications_0_details')
+                    # jobDescriptionInput.click()
+                    # jobDescriptionInput.send_keys(jobDescription)
+                    #
                     title = self.browser.find_element_by_id(
                         'root_applications_0_jobTitle')
                     title.click()
@@ -126,20 +143,19 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     actions.send_keys(
                         jobWebsite)
                     actions.pause(2)
-                    # actions.send_keys(Keys.UP)
                     actions.send_keys(Keys.ENTER)
                     actions.perform()
                     actions.reset_actions()
-                    #
+                    # 
                 self.browser.find_elements_by_tag_name('button')[9].click()
                 wait.until(EC.url_matches(
                     'https://www.interview-db.com/profile/job-search'))
                 # time.sleep(10)
             else:
                 skipCount += 1
-                
                 if skipCount > 29:
                     multipleSkips = True
+
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
             allJobs = self.browser.find_elements_by_tag_name('a')
