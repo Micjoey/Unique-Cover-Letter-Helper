@@ -1,5 +1,6 @@
 # cover-letter-template-generator
 *Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company.
+</br>
 *Problem 2*: I am required to enter the jobs that I apply to, into a secondary application. To apply to 20 jobs it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins of time wasted). 
 </br>
 </br>
