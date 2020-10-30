@@ -5,6 +5,7 @@
 </br>
 </br>
 *Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a siginificant amount of time.
+</br>
 
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
