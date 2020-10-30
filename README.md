@@ -1,11 +1,11 @@
 # cover-letter-template-generator
-*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company.
+*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company. I know for me it takes about 10 mins or longer to create unique cover for every job. 40 jobs * 10 mins = 400 mins (minimum) per week. 1200 Mins per month. This is a lot of time. 
 </br>
 *Problem 2*: I am required to enter the jobs that I apply to, into a secondary application. To apply to 20 jobs it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins of time wasted). 
 </br>
 </br>
-*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people 12 mins a day to 5 hours a day.
-
+*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a siginificant amount of time.
+</br>
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
 # **Make Sure All Commands For Below Are Done At The Root Level.**
