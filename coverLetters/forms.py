@@ -12,7 +12,7 @@ class CoverLetterForm(ModelForm):
             'template_choices': forms.Select(), 
             # 'template_choices': forms.RadioSelect(), 
         }
-        formId = forms.CharField(widget=forms.HiddenInput())
+
 
 
 
