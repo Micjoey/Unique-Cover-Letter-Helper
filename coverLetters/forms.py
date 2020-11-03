@@ -4,6 +4,7 @@ from .models import Job, UserDetail
 from django.forms.models import model_to_dict
 from datetime import datetime
 class CoverLetterForm(ModelForm):
+    job_posting_website = forms.CharField(required=False)
     class Meta:
         model = Job
         fields = '__all__'
@@ -12,7 +13,7 @@ class CoverLetterForm(ModelForm):
             'template_choices': forms.Select(), 
             # 'template_choices': forms.RadioSelect(), 
         }
-        formId = forms.CharField(widget=forms.HiddenInput())
+
 
 
 

@@ -83,8 +83,11 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
+        defaultLength = len("Dynamic and accomplished Software Engineer with experience and expertise in")
         if not self.description:
             self.description = 'N/A'
+        if not self.job_posting_website:
+            self.job_posting_website = self.company
         super().save(*args, **kwargs)
 
 

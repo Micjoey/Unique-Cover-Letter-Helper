@@ -15,11 +15,11 @@
     <title>Cover Letter</title>
 </head>
 <body>
-    <h1> Generated Cover Letter {{template_choice}}</h1>
+    <h1> Generated Cover Letter - {{template_choice}}</h1>
     
     </br>
     </br>
-    
+    <h3> Resume Link for tracking - <br/> <a href="http://macallan.space/?utm_source=Resume%20Link&utm_medium=link&utm_campaign=Resume%20Link"> https://bit.ly/2HXrCWl </a> </h3>
     <div class="cover-letter-container">
         <div class="cover-letter-header">
             <div class="header-jobrmation-and-links-container">
@@ -142,7 +142,10 @@
          <a href="{% url 'cover-letter-form' %}"><button> Another Cover Letter </button> </a> 
             or  
          <a href="{% url 'all-jobs' %}"> <button> All Jobs </button></a>
+         </br>
+        </br>
+        
     </div>
-    {% comment %} {{job.company}} {% endcomment %}
+
 </body>
 </html>

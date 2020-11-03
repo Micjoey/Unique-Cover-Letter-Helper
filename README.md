@@ -7,6 +7,10 @@
 *Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a siginificant amount of time.
 </br>
 </br>
+<<<<<<< HEAD
+=======
+
+>>>>>>> working-master
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
 # **Make Sure All Commands For Below Are Done At The Root Level.**
