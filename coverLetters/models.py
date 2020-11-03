@@ -84,8 +84,6 @@ class Job(models.Model):
             self.description = 'N/A'
         if not self.job_posting_website:
             self.job_posting_website = self.company
-        # if self.template_choices == "non-technical-cover-letter" and len(self.top_skills) != defaultLength:
-        #     self.template_choices = "Standard Job Template"
         super().save(*args, **kwargs)
 
 
