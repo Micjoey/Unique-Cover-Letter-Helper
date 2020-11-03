@@ -72,8 +72,8 @@ def cover_letter(request):
                 return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "Non-technical Cover Letter" in template_choice:
-                return render(request, 'coverLetters/Non-technical Cover Letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+            elif "non-technical-cover-letter" in template_choice:
+                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "4" in template_choice:
                 return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "5" in template_choice:
@@ -82,7 +82,8 @@ def cover_letter(request):
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
-    return HttpResponseForbidden("Duplicate Data")
+    print(filled_form.errors.as_json(escape_html=False))
+    return HttpResponseForbidden("Duplicate Data - See Terminal Log")
     
 
 
