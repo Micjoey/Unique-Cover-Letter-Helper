@@ -73,7 +73,7 @@ def cover_letter(request):
             elif "Triplebyte (message-version)" in template_choice:
                 return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "Non-technical Cover Letter" in template_choice:
-                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+                return render(request, 'coverLetters/Non-technical Cover Letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "4" in template_choice:
                 return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
             elif "5" in template_choice:

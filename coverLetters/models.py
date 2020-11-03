@@ -35,9 +35,9 @@ class Job(models.Model):
     job_template_choices = (
         ('Standard Job Template', 'Standard Job Template'),
         ('Triplebyte (message-version)', 'Triplebyte (message-version)'),
-        ('Non-technical Cover Letter', 'non-technical-cover-letter'),
-        ('Template 4', 'cover-letter-4'),
-        ('Template 5', 'cover-letter-5')
+        ('non-technical-cover-letter', 'Non-technical Cover Letter'),
+        ('cover-letter-4', 'Template 4'),
+        ('cover-letter-5', 'Template 5')
     )
 
     form_creation_date = models.CharField(
@@ -85,6 +85,8 @@ class Job(models.Model):
             self.description = 'N/A'
         if not self.job_posting_website:
             self.job_posting_website = self.company
+        if self.job_template_choices == "non-technical-cover-letter":
+            self.job_template_choices = "Standard Job Template"
         super().save(*args, **kwargs)
 
 
