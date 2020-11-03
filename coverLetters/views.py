@@ -9,9 +9,24 @@ import urllib3
 import json
 
 
+# Helper Functions
+
+def check_template_choice(request, template_choice, last_user, cleaned_filled_form):
+    if "Standard Job Template" in template_choice:
+        return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "Triplebyte (message-version)" in template_choice:
+        return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "non-technical-cover-letter" in template_choice:
+        return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "4" in template_choice:
+        return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "5" in template_choice:
+        return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+
+# <--------  ------->
+
 def homepage(request):
     return render(request, 'homepage/homepage.html')
-
 
 def all_jobs(request):
     jobs = Job.objects.order_by('-id')
@@ -68,16 +83,8 @@ def cover_letter(request):
             last_user = cleaned_filled_form['choice_of_user']
             template_choice = cleaned_filled_form['template_choices']
             # Checks to see what template to render for the cover letter -->
-            if "Standard Job Template" in template_choice:
-                return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "Triplebyte (message-version)" in template_choice:
-                return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "non-technical-cover-letter" in template_choice:
-                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "4" in template_choice:
-                return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "5" in template_choice:
-                return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+            return check_template_choice(request, template_choice,
+                                  last_user, cleaned_filled_form)
             # <--------  ------->
     else:
         form = CoverLetterForm()
@@ -85,8 +92,6 @@ def cover_letter(request):
     print(filled_form.errors.as_json(escape_html=False))
     return HttpResponseForbidden("Duplicate Data - See Terminal Log")
     
-
-
 def user_form(request):
     if request.method == 'POST':
         user_filled_form = UserDetailForm(request.POST)
@@ -100,4 +105,4 @@ def user_form(request):
 
 
 
-    
+
