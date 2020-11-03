@@ -4,6 +4,7 @@ from django.core import serializers
 from django.urls import path, include
 from django.http import HttpResponseForbidden
 from .models import Job, UserDetail
+from datetime import datetime, timedelta
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 import urllib3
 import json
@@ -30,8 +31,23 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('-id')
+    today = datetime.now().strftime('%Y-%m-%d')
+    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    filtered_jobs_today = jobs.filter(
+        created_date=today)
+    filtered_jobs_week = jobs.filter(
+        created_date__range=[week_ago, today])
+    filtered_jobs = [i for i in jobs if i not in filtered_jobs_week]
+    filtered_jobs_previous = jobs.exclude(
+        created_date__range=[week_ago, today])
+
+    
     return render(request, 'jobs/all-jobs.html', {
-        'jobs': jobs
+        'jobs': jobs,
+        'filtered_jobs_today': filtered_jobs_today,
+        'filtered_jobs_week': filtered_jobs_week,
+        'filtered_jobs': filtered_jobs,
+        'filtered_jobs_previous': filtered_jobs_previous,
     })
 
 def all_users(request):
@@ -63,11 +79,9 @@ def user_detail(request, user_id):
     object_keys = list(object.keys())
     return render(request, 'users/user-detail.html', {'user': user_detail, 'object_keys': object_keys, 'object': object})
 
-
 def cover_letter_form(request):
     new_form = CoverLetterForm()
     return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
-
 
 def triplebyte_message_form(request):
     new_form=TripleByteForm()

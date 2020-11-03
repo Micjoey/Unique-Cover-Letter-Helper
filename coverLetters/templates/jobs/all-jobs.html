@@ -15,38 +15,84 @@
     <a href="{% url 'homepage' %}"> Back To Homepage </a>
     <a href="{% url 'cover-letter-form' %}" id='homepage-cover-letter-template-button'> Cover Letter Template </a>
     <h1>All Jobs: </h1>
+    <h2>Jobs Applied to today: {{filtered_jobs_today.count}} </h2>
+    <h2>Jobs Applied to this week: {{filtered_jobs_week.count}} </h2>
     <h2>Count of Jobs: {{jobs.count}} </h2>
     </br>
     
     <ol>
-        {% for job in jobs.all %}
-        <div class="job-info-container">
-            <li style='display: flex;'>
-                <a href="{% url 'job-detail' job.id %}" id="{{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}">
-                    <h1>
-                        {% if job.company %}
-                            {{job.company}} |
-                        {% endif %}
-                        {% if job.position_title %}
-                            {{job.position_title}} |
-                        {% endif %}
-                        {% if job.created_date %}
-                            {{job.created_date}} |
-                        {% endif %}
-                        {% if job.template_choices %}
-                            {{job.template_choices}}
-                        {% endif %}
-                    </h1> 
-                </a>
-                
-                <div class='delete-button' style="margin: auto;
-    margin-left: 0; width: fit-content;">
-                    <a href="{% url 'delete-job-detail' job.id%}">Delete {{job.company}}'s {{job.position_title}} role</a>
-                </div>
-            </li>
-        </div>
+        {% for job in filtered_jobs_week.all %}
+            <div class="job-info-container">
+                <li style='display: flex;'>
+                    <a href="{% url 'job-detail' job.id %}" id="{{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}">
+                        <h1>
+                            {% if job.company %}
+                                {{job.company}} |
+                            {% endif %}
+                            {% if job.position_title %}
+                                {{job.position_title}} |
+                            {% endif %}
+                            {% if job.created_date %}
+                                {{job.created_date}} |
+                            {% endif %}
+                            {% if job.template_choices %}
+                                {{job.template_choices}}
+                            {% endif %}
+                        </h1> 
+                    </a>
+                    
+                    <div class='delete-button' style="margin: auto;
+                    margin-left: 0; width: fit-content;">
+                        <a href="{% url 'delete-job-detail' job.id%}">Delete {{job.company}}'s {{job.position_title}} role</a>
+                    </div>
+                </li>
+            </div>
         {% endfor %}
+        <button onclick=toggleShowMore() id="toggle-button"> show more </button>
+        <script>
+            function toggleShowMore() {
+                var x = document.getElementById("more-jobs");
+                var y = document.getElementById("toggle-button");
+                if (x.style.display === "none") {
+                    x.style.display = "block"
+                    y.innerHTML = "show less"
+                } else {
+                    x.style.display = "none";
+                     y.innerHTML = "show more"
+                }
+            }
+        </script>
+        <div style="display:none" id="more-jobs">
+            {% for job in filtered_jobs_previous.all %}
+                <div class="job-info-container">
+                    <li style='display: flex;'>
+                        <a href="{% url 'job-detail' job.id %}" id="{{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}">
+                            <h1>
+                                {% if job.company %}
+                                    {{job.company}} |
+                                {% endif %}
+                                {% if job.position_title %}
+                                    {{job.position_title}} |
+                                {% endif %}
+                                {% if job.created_date %}
+                                    {{job.created_date}} |
+                                {% endif %}
+                                {% if job.template_choices %}
+                                    {{job.template_choices}}
+                                {% endif %}
+                            </h1> 
+                        </a>
+                        <div class='delete-button' style="margin: auto;
+                            margin-left: 0; width: fit-content;">
+                            <a href="{% url 'delete-job-detail' job.id%}">Delete {{job.company}}'s {{job.position_title}} role</a>
+                        </div>
+                    </li>
+                </div>
+            {% endfor %}
+        </div>
     </ol>
+    
+
  </body>
  </html>
  
