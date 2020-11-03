@@ -15,15 +15,6 @@ class CoverLetterForm(ModelForm):
         }
 
 
-    def clean_top_skills(self):
-        top_skills_length = len(self.cleaned_data['top_skills'])
-        top_skills_default_length = len(
-            'Dynamic and accomplished Software Engineer with experience and expertise in')
-        template_choices = self.cleaned_data['template_choices']
-        if template_choices == 'non-technical-cover-letter' and top_skills_default_length != top_skills_length:
-            self.cleaned_data['template_choices'] = "Standard Job Template"
-        return template_choices
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
