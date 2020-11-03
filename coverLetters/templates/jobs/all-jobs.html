@@ -11,13 +11,30 @@
         <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">     
         <title>All Jobs</title>
  </head>
- <body>
+<script>
+    function toggleShowMore() {
+        var x = document.getElementById("more-jobs");
+        var y = document.getElementById("toggle-button");
+        if (x.style.display === "none") {
+            x.style.display = "block"
+            y.innerHTML = "show less"
+        } else {
+            x.style.display = "none";
+            y.innerHTML = "show more"
+        }
+    }
+</script>
+<body>
     <a href="{% url 'homepage' %}"> Back To Homepage </a>
     <a href="{% url 'cover-letter-form' %}" id='homepage-cover-letter-template-button'> Cover Letter Template </a>
-    <h1>All Jobs: </h1>
-    <h2>Jobs Applied to today: {{filtered_jobs_today.count}} </h2>
-    <h2>Jobs Applied to this week: {{filtered_jobs_week.count}} </h2>
-    <h2>Count of Jobs: {{jobs.count}} </h2>
+    <div>
+        <h1>All Jobs: </h1>
+        <div class="count-of-jobs-container">
+            <h2>Jobs Applied to today: {{filtered_jobs_today.count}} </h2>
+            <h2>Jobs Applied to this week: {{filtered_jobs_week.count}} </h2>
+            <h2>Count of Jobs: {{jobs.count}} </h2>
+        </div>
+    </div>
     </br>
     
     <ol>
@@ -48,20 +65,7 @@
                 </li>
             </div>
         {% endfor %}
-        <button onclick=toggleShowMore() id="toggle-button"> show more </button>
-        <script>
-            function toggleShowMore() {
-                var x = document.getElementById("more-jobs");
-                var y = document.getElementById("toggle-button");
-                if (x.style.display === "none") {
-                    x.style.display = "block"
-                    y.innerHTML = "show less"
-                } else {
-                    x.style.display = "none";
-                     y.innerHTML = "show more"
-                }
-            }
-        </script>
+        <a onclick=toggleShowMore() id="toggle-button" style="margin: 1vh; cursor: pointer;"> show more </a>
         <div style="display:none" id="more-jobs">
             {% for job in filtered_jobs_previous.all %}
                 <div class="job-info-container">
