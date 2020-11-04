@@ -29,10 +29,10 @@ urlpatterns = [
           coverLetters.views.delete_user_detail, name='delete-user-detail'),
     path('cover-letter-generator/user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
     path('cover-letter-generator/forms/cover-letter-form', coverLetters.views.cover_letter_form,
-         name='template-form'),
+         name='form-template'),
 
     # edit job detail
-    path('cover-letter-generator/forms/edit-template-form/<int:job_id>', coverLetters.views.edit_job_form,
+    path('cover-letter-generator/forms/edit-form/<int:job_id>', coverLetters.views.edit_job_form,
          name='edit-job-form'),
     #  
     path('cover-letter-generator/forms/triplebyte-form', coverLetters.views.triplebyte_message_form,
