@@ -81,11 +81,11 @@ def user_detail(request, user_id):
 
 def cover_letter_form(request):
     new_form = CoverLetterForm()
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
+    return render(request, 'coverLetters/form-template.html', {'coverLetterForm': new_form})
 
 def triplebyte_message_form(request):
     new_form=TripleByteForm()
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
+    return render(request, 'coverLetters/form-template.html', {'coverLetterForm': new_form})
 
 def cover_letter(request):
     last_user = UserDetail.objects.last
@@ -102,7 +102,7 @@ def cover_letter(request):
             # <--------  ------->
     else:
         form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+        return render(request, 'coverLetters/form-template.html', {'coverLetterForm': form})
     print(filled_form.errors.as_json(escape_html=False))
     return HttpResponseForbidden("Duplicate Data - See Terminal Log")
 
@@ -116,7 +116,7 @@ def edit_job_form(request, job_id):
         if filled_form.is_valid():
             filled_form.save()
             form = filled_form
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+    return render(request, 'coverLetters/edit-form-template.html', {'coverLetterForm': form})
 
 def user_form(request):
     if request.method == 'POST':
