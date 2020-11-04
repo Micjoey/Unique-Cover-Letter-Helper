@@ -35,9 +35,9 @@ class Job(models.Model):
     job_template_choices = (
         ('Standard Job Template', 'Standard Job Template'),
         ('Triplebyte (message-version)', 'Triplebyte (message-version)'),
-        ('Non-technical Cover Letter', 'non-technical-cover-letter'),
-        ('Template 4', 'cover-letter-4'),
-        ('Template 5', 'cover-letter-5')
+        ('non-technical-cover-letter', 'Non-technical Cover Letter'),
+        ('cover-letter-4', 'Template 4'),
+        ('cover-letter-5', 'Template 5')
     )
 
     last_user = None
@@ -83,7 +83,6 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
-        defaultLength = len("Dynamic and accomplished Software Engineer with experience and expertise in")
         if not self.description:
             self.description = 'N/A'
         if not self.job_posting_website:

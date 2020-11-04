@@ -16,12 +16,11 @@ class CoverLetterForm(ModelForm):
 
 
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
-        self.fields['template_choices'].initial = 'Non-technical Cover Letter'
+        self.fields['template_choices'].initial = 'non-technical-cover-letter'
         self.fields['job_posting_website'].initial = 'LinkedIn'
         self.fields['bullet_point_one'].initial = 'Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles. '
         self.fields['bullet_point_two'].initial = 'For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. '

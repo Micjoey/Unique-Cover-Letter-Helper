@@ -36,7 +36,7 @@
                 {% include 'coverLetters/cover-letter.html' with last_user=job.choice_of_user %}
             {% elif 'Triplebyte (message-version)' in job.template_choices %}
                 {% include 'coverLetters/triplebyte-cover-letter.html' with last_user=job.choice_of_user %}
-            {% elif 'Non-technical Cover Letter' in job.template_choices %}
+            {% elif 'non-technical-cover-letter' in job.template_choices %}
                 {% include 'coverLetters/non-technical-cover-letter.html' with last_user=job.choice_of_user %}
             {% elif '4' in job.template_choices %}
                 {% include 'coverLetters/cover-letter-four.html' with last_user=job.choice_of_user %}

@@ -4,19 +4,50 @@ from django.core import serializers
 from django.urls import path, include
 from django.http import HttpResponseForbidden
 from .models import Job, UserDetail
+from datetime import datetime, timedelta
 from.forms import CoverLetterForm, UserDetailForm, TripleByteForm
 import urllib3
 import json
 
 
+# Helper Functions
+
+def check_template_choice(request, template_choice, last_user, cleaned_filled_form):
+    if "Standard Job Template" in template_choice:
+        return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "Triplebyte (message-version)" in template_choice:
+        return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "non-technical-cover-letter" in template_choice:
+        return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "4" in template_choice:
+        return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+    elif "5" in template_choice:
+        return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+
+# <--------  ------->
+
 def homepage(request):
     return render(request, 'homepage/homepage.html')
 
-
 def all_jobs(request):
     jobs = Job.objects.order_by('-id')
+    today = datetime.now().strftime('%Y-%m-%d')
+    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    filtered_jobs_today = jobs.filter(
+        created_date=today)
+    filtered_jobs_week = jobs.filter(
+        created_date__range=[week_ago, today])
+    filtered_jobs = [i for i in jobs if i not in filtered_jobs_week]
+    filtered_jobs_previous = jobs.exclude(
+        created_date__range=[week_ago, today])
+
+    
     return render(request, 'jobs/all-jobs.html', {
-        'jobs': jobs
+        'jobs': jobs,
+        'filtered_jobs_today': filtered_jobs_today,
+        'filtered_jobs_week': filtered_jobs_week,
+        'filtered_jobs': filtered_jobs,
+        'filtered_jobs_previous': filtered_jobs_previous,
     })
 
 def all_users(request):
@@ -48,11 +79,9 @@ def user_detail(request, user_id):
     object_keys = list(object.keys())
     return render(request, 'users/user-detail.html', {'user': user_detail, 'object_keys': object_keys, 'object': object})
 
-
 def cover_letter_form(request):
     new_form = CoverLetterForm()
     return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
-
 
 def triplebyte_message_form(request):
     new_form=TripleByteForm()
@@ -68,24 +97,15 @@ def cover_letter(request):
             last_user = cleaned_filled_form['choice_of_user']
             template_choice = cleaned_filled_form['template_choices']
             # Checks to see what template to render for the cover letter -->
-            if "Standard Job Template" in template_choice:
-                return render(request, 'coverLetters/cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "Triplebyte (message-version)" in template_choice:
-                return render(request, 'coverLetters/triplebyte-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "Non-technical Cover Letter" in template_choice:
-                return render(request, 'coverLetters/non-technical-cover-letter.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "4" in template_choice:
-                return render(request, 'coverLetters/cover-letter-four.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
-            elif "5" in template_choice:
-                return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
+            return check_template_choice(request, template_choice,
+                                  last_user, cleaned_filled_form)
             # <--------  ------->
     else:
         form = CoverLetterForm()
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
-    return HttpResponseForbidden("Duplicate Data")
+    print(filled_form.errors.as_json(escape_html=False))
+    return HttpResponseForbidden("Duplicate Data - See Terminal Log")
     
-
-
 def user_form(request):
     if request.method == 'POST':
         user_filled_form = UserDetailForm(request.POST)
@@ -99,4 +119,4 @@ def user_form(request):
 
 
 
-    
+

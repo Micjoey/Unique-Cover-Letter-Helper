@@ -37,3 +37,14 @@ body {
     // max-width: 90vh;
     overflow-wrap: normal;
 }
+
+.count-of-jobs-container {
+    display: flex;
+    margin: 1vh;
+    // background-color: red;
+    div {
+        h2 {
+            margin: 1vh;
+        }
+    }
+}
