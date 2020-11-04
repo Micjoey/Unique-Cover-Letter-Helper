@@ -105,7 +105,19 @@ def cover_letter(request):
         return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
     print(filled_form.errors.as_json(escape_html=False))
     return HttpResponseForbidden("Duplicate Data - See Terminal Log")
-    
+
+
+def edit_job_form(request, job_id):
+    job_detail = Job.objects.get(pk=job_id)
+    user_id = int(str(job_detail.choice_of_user).split(" ")[1])
+    form = CoverLetterForm(instance=job_detail)
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.PATCH, instance = job_detail)
+        if filled_form.is_valid():
+            filled_form.save()
+            form = filled_form
+    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+
 def user_form(request):
     if request.method == 'POST':
         user_filled_form = UserDetailForm(request.POST)
