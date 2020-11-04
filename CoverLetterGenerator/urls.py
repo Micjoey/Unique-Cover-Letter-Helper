@@ -36,7 +36,8 @@ urlpatterns = [
          name='cover-letter'),
     path('cover-letter-generator/triplebyte-cover-letter', coverLetters.views.cover_letter,
          name='non-technical-cover-letter'),
-
+    path('cover-letter-generator/user-form', coverLetters.views.user_form,
+         name='user-form'),
 
 
 
@@ -46,8 +47,7 @@ urlpatterns = [
 #          name='non-technical-cover-letter'),
 #     path('cover-letter-generator/cover-letter', coverLetters.views.cover_letter,
 #          name='cover-letter-five'),
-#     path('cover-letter-generator/user-form', coverLetters.views.user_form,
-#          name='user-form'),
+   
 #     path('cover-letter-generator/user-detail', coverLetters.views.user_detail,
 #          name='user-detail'),
 
