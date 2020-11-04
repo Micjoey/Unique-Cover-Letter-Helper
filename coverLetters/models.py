@@ -40,10 +40,20 @@ class Job(models.Model):
         ('cover-letter-5', 'Template 5')
     )
 
+
+    job_stages = (
+        ('Initial', 'Initial'),
+        ('Active', 'Active'),
+        ('Rejected', 'Rejected'),
+        ('Accepted', 'Accepted'),
+    )
+
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
+    job_stage = models.CharField(
+        choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
     choice_of_user = models.ForeignKey(
         'UserDetail', on_delete=models.CASCADE, blank=True, null=True)
     job_posting_website = models.CharField("Job Posting Website", max_length=200,)
