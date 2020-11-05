@@ -24,6 +24,15 @@ def check_template_choice(request, template_choice, last_user, cleaned_filled_fo
     elif "5" in template_choice:
         return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
 
+
+def date_finder(end_date=0):
+    start_date = datetime.now()
+    if end_date != 0:
+        return (start_date - timedelta(days=end_date)).strftime('%Y-%m-%d')
+    else:
+        return datetime.now().strftime('%Y-%m-%d')
+    
+
 # <--------  ------->
 
 def homepage(request):
@@ -31,8 +40,9 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('-id')
-    today = datetime.now().strftime('%Y-%m-%d')
-    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    today = date_finder()
+    week_ago = date_finder(7)
+    two_months = date_finder(60)
     filtered_jobs_today = jobs.filter(
         created_date=today)
     filtered_jobs_week = jobs.filter(
@@ -40,8 +50,13 @@ def all_jobs(request):
     filtered_jobs = [i for i in jobs if i not in filtered_jobs_week]
     filtered_jobs_previous = jobs.exclude(
         created_date__range=[week_ago, today])
+    old_jobs = jobs.exclude(
+        created_date__range=[two_months, today])
 
-    
+    for job in old_jobs:
+        if "Active" not in job.job_stage:
+            job.job_stage = "Rejected"
+            job.save()
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs,
         'filtered_jobs_today': filtered_jobs_today,
