@@ -43,10 +43,15 @@ body {
 .count-of-jobs-container {
     display: flex;
     margin: 1vh;
-    // background-color: red;
-    h2 {
-        margin: 1vh;
-    }
+}
+
+.job-count-info {
+    padding: 0 1em;
+}
+
+.job-count-info-count {
+    font-weight: bold;
+    color: red;
 }
 
 .main-body {
@@ -56,3 +61,11 @@ body {
 #choice_of_user {
     margin-top: 0;
 }
+
+#toggle-button {
+    margin: auto; 
+    cursor: pointer;
+    font-size: large;
+    color: rgb(3, 6, 96);
+}
+

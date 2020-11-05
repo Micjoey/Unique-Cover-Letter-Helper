@@ -19,7 +19,7 @@
                 {% for key, value in job_object.items %}
                     <div class="job-detail-container"> 
                         {% if value %}
-                            {% if "https" in value  %}
+                            {% if "https" in value %}
                                 <p> {{key.capitalize}}: </p> <a id="{{key}}" href="{{value}}" target="_blank"> {{value}} </a>
                             {% elif "choice_of_user" in key%}
                                 <p> {{key.capitalize}}: </p>  <a id="{{key}}" href={% url 'user-detail' value %} target="_blank" > {{user_detail}} </a>
