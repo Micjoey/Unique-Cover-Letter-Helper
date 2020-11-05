@@ -108,16 +108,18 @@ def cover_letter(request):
 
 def edit_job_form(request, job_id):
     job_detail = get_object_or_404(Job, pk=job_id)
-    user_id = int(str(job_detail.choice_of_user).split(" ")[1])
-    user_detail = UserDetail.objects.get(pk=user_id)
-    object = model_to_dict(Job.objects.get(pk=job_id))
     form = CoverLetterForm(instance=job_detail)
-    if request.method == 'PATCH':
-        filled_form = CoverLetterForm(request.PATCH, instance = job_detail)
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.POST, instance = job_detail)
         if filled_form.is_valid():
             filled_form.save()
             form = filled_form
-    return render(request, 'coverLetters/edit-template-form.html', {'coverLetterForm': form, 'job': job_detail, 'job_object': object, 'user_detail': user_detail})
+            job_detail = get_object_or_404(Job, pk=job_id)
+            user_id = int(str(job_detail.choice_of_user).split(" ")[1])
+            user_detail = UserDetail.objects.get(pk=user_id)
+            object = model_to_dict(Job.objects.get(pk=job_id))
+            return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object, 'user_detail': user_detail})
+    return render(request, 'coverLetters/edit-template-form.html', {'coverLetterForm': form, 'job': job_detail,})
 
 def user_form(request):
     if request.method == 'POST':
