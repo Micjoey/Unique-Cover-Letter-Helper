@@ -13,7 +13,7 @@
     <body>
         <div class="main-body"> 
             <a href="{% url 'all-jobs' %}"> Back </a>
-            <a href="{% url 'edit-job-form' job.id %}"> Edit Job </a>
+            <a href="{% url 'edit-job-form' job.id%}"> Edit Job </a>
             <h1>Job Info: {{job.position_title}} | {{job.company}}</h1>
             <div class="job-info-container">
                 {% for key, value in job_object.items %}
