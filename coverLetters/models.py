@@ -40,12 +40,6 @@ class Job(models.Model):
         ('cover-letter-5', 'Template 5')
     )
 
-<<<<<<< HEAD
-    last_user = None
-    if UserDetail.objects.last() != None:
-        last_user = UserDetail.objects.last().id
-    
-=======
 
     job_stages = (
         ('Initial', 'Initial'),
@@ -54,7 +48,6 @@ class Job(models.Model):
         ('Accepted', 'Accepted'),
     )
 
->>>>>>> working-master
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
