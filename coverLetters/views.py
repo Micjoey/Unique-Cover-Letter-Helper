@@ -111,12 +111,12 @@ def edit_job_form(request, job_id):
     job_detail = Job.objects.get(pk=job_id)
     user_id = int(str(job_detail.choice_of_user).split(" ")[1])
     form = CoverLetterForm(instance=job_detail)
-    if request.method == 'POST':
+    if request.method == 'PATCH':
         filled_form = CoverLetterForm(request.PATCH, instance = job_detail)
         if filled_form.is_valid():
             filled_form.save()
             form = filled_form
-    return render(request, 'coverLetters/edit-form-template.html', {'coverLetterForm': form})
+    return render(request, 'coverLetters/edit-template-form.html', {'coverLetterForm': form})
 
 def user_form(request):
     if request.method == 'POST':

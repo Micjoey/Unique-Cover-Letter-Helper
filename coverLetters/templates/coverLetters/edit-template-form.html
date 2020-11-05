@@ -20,9 +20,9 @@
         <a href="{% url 'all-jobs' %}" style="margin: 1em;"  class="additional-spacing"> All Jobs </a>
     </div>
     <h1> Edit Job </h1>
-    <form action="{% url 'cover-letter' %}" method="patch" class="cover-letter-form">
+    <form action="{% url 'edit-job-form' %}" method="patch" class="cover-letter-form">
         {% csrf_token %}
-        <input type="submit" value="Render Template" class="floating-button" id='submit-button'/>
+        <input type="submit" value="Update Job" class="floating-button" id='submit-button'/>
         {{ coverLetterForm }}
     </form>
 </body>
