@@ -1,4 +1,6 @@
 
+
+
 a {
     margin: 1em;
 }
@@ -42,9 +44,15 @@ body {
     display: flex;
     margin: 1vh;
     // background-color: red;
-    div {
-        h2 {
-            margin: 1vh;
-        }
+    h2 {
+        margin: 1vh;
     }
+}
+
+.main-body {
+    margin: 1em;
+}
+
+#choice_of_user {
+    margin-top: 0;
 }

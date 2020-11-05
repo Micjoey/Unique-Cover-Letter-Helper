@@ -10,7 +10,7 @@
 .cover-letter-form label,input, textarea  
 {
     display: block;
-    margin: 1vh;
+    margin: 1em;
     
 }
 
@@ -39,3 +39,6 @@
     font-weight: bold;
 }
 
+.cover-letter-form select {
+    margin: 1em;
+}

@@ -24,6 +24,15 @@ def check_template_choice(request, template_choice, last_user, cleaned_filled_fo
     elif "5" in template_choice:
         return render(request, 'coverLetters/cover-letter-five.html', {'job': cleaned_filled_form, 'last_user': last_user, 'template_choice': template_choice})
 
+
+def date_finder(end_date=0):
+    start_date = datetime.now()
+    if end_date != 0:
+        return (start_date - timedelta(days=end_date)).strftime('%Y-%m-%d')
+    else:
+        return datetime.now().strftime('%Y-%m-%d')
+    
+
 # <--------  ------->
 
 def homepage(request):
@@ -31,8 +40,9 @@ def homepage(request):
 
 def all_jobs(request):
     jobs = Job.objects.order_by('-id')
-    today = datetime.now().strftime('%Y-%m-%d')
-    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    today = date_finder()
+    week_ago = date_finder(7)
+    two_months = date_finder(60)
     filtered_jobs_today = jobs.filter(
         created_date=today)
     filtered_jobs_week = jobs.filter(
@@ -40,8 +50,13 @@ def all_jobs(request):
     filtered_jobs = [i for i in jobs if i not in filtered_jobs_week]
     filtered_jobs_previous = jobs.exclude(
         created_date__range=[week_ago, today])
+    old_jobs = jobs.exclude(
+        created_date__range=[two_months, today])
 
-    
+    for job in old_jobs:
+        if "Active" not in job.job_stage:
+            job.job_stage = "Rejected"
+            job.save()
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs,
         'filtered_jobs_today': filtered_jobs_today,
@@ -81,11 +96,11 @@ def user_detail(request, user_id):
 
 def cover_letter_form(request):
     new_form = CoverLetterForm()
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
+    return render(request, 'coverLetters/form-template.html', {'coverLetterForm': new_form})
 
 def triplebyte_message_form(request):
     new_form=TripleByteForm()
-    return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': new_form})
+    return render(request, 'coverLetters/form-template.html', {'coverLetterForm': new_form})
 
 def cover_letter(request):
     last_user = UserDetail.objects.last
@@ -102,10 +117,25 @@ def cover_letter(request):
             # <--------  ------->
     else:
         form = CoverLetterForm()
-        return render(request, 'coverLetters/cover-letter-form.html', {'coverLetterForm': form})
+        return render(request, 'coverLetters/form-template.html', {'coverLetterForm': form})
     print(filled_form.errors.as_json(escape_html=False))
     return HttpResponseForbidden("Duplicate Data - See Terminal Log")
-    
+
+def edit_job_form(request, job_id):
+    job_detail = get_object_or_404(Job, pk=job_id)
+    form = CoverLetterForm(instance=job_detail)
+    if request.method == 'POST':
+        filled_form = CoverLetterForm(request.POST, instance = job_detail)
+        if filled_form.is_valid():
+            filled_form.save()
+            form = filled_form
+            job_detail = get_object_or_404(Job, pk=job_id)
+            user_id = int(str(job_detail.choice_of_user).split(" ")[1])
+            user_detail = UserDetail.objects.get(pk=user_id)
+            object = model_to_dict(Job.objects.get(pk=job_id))
+            return render(request, 'jobs/job-detail.html', {'job': job_detail, 'job_object': object, 'user_detail': user_detail})
+    return render(request, 'coverLetters/edit-template-form.html', {'coverLetterForm': form, 'job': job_detail,})
+
 def user_form(request):
     if request.method == 'POST':
         user_filled_form = UserDetailForm(request.POST)
