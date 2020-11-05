@@ -65,6 +65,13 @@ def all_jobs(request):
         'filtered_jobs_previous': filtered_jobs_previous,
     })
 
+def active_jobs(request):
+    jobs = Job.objects.order_by('-id')
+    active_jobs = jobs.filter(job_stage="Active")
+    return render(request, 'jobs/active-jobs.html', {
+        'active_jobs': active_jobs,
+    })
+
 def all_users(request):
     users = UserDetail.objects.all
     return render(request, 'users/all-users.html', {

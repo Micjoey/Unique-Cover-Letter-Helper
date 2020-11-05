@@ -23,6 +23,8 @@ urlpatterns = [
      #     all users/jobs
     path('cover-letter-generator/all-jobs/', coverLetters.views.all_jobs, name='all-jobs'),
     path('cover-letter-generator/all-users', coverLetters.views.all_users, name='all-users'),
+    path('cover-letter-generator/all-active-jobs',
+         coverLetters.views.active_jobs, name='active-jobs'),
      #
      #  job/user detail
     path('cover-letter-generator/job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
