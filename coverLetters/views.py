@@ -52,6 +52,7 @@ def all_jobs(request):
         created_date__range=[week_ago, today])
     old_jobs = jobs.exclude(
         created_date__range=[two_months, today])
+    active_jobs = jobs.filter(job_stage="Active")
 
     for job in old_jobs:
         if "Active" not in job.job_stage:
@@ -63,6 +64,7 @@ def all_jobs(request):
         'filtered_jobs_week': filtered_jobs_week,
         'filtered_jobs': filtered_jobs,
         'filtered_jobs_previous': filtered_jobs_previous,
+        'active_jobs': active_jobs,
     })
 
 def active_jobs(request):
