@@ -78,8 +78,6 @@
                 and career goals. With my strong education and experience, I am 
                 confident I can make an immediate contribution given the opportunity.</p>
 
-                
-
                 {% if  job.pre_bullet_point_paragraph_one%}
                     <p> {{job.pre_bullet_point_paragraph_one}} </p>
                 {% endif %}
@@ -126,7 +124,7 @@
                 {% endif %}
 
                 These proven abilities can contribute to {{job.company}}'s continued success. I would welcome the opportunity to discuss my background with you in detail and to learn more about your company and its goals. 
-                </br>
+                {% comment %} </br> {% endcomment %}
                 </br>
                 My résumé is attached and offers additional information about my specific achievements. I look forward to our conversation. 
                 </br>

@@ -42,7 +42,7 @@ def all_jobs(request):
     jobs = Job.objects.order_by('-id')
     today = date_finder()
     week_ago = date_finder(7)
-    two_months = date_finder(60)
+    two_months = date_finder(30)
     filtered_jobs_today = jobs.filter(
         created_date=today)
     filtered_jobs_week = jobs.filter(

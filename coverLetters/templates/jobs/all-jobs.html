@@ -31,10 +31,10 @@
     <div>
         <h1>All Jobs: </h1>
         <div class="count-of-jobs-container">
-            <h2 class="job-count-info">Jobs Applied to today: <span class="job-count-info-count"> {{filtered_jobs_today.count}} </span> </h2>
-            <h2 class="job-count-info">Jobs Applied to this week: <span class="job-count-info-count" >{{filtered_jobs_week.count}} </span> </h2>
-            <h2 class="job-count-info">Count of Jobs: <span class="job-count-info-count"> {{jobs.count}} </span> </h2>
-            <h2 class="job-count-info">Active Jobs: <span class="job-count-info-count"> <a href="{% url 'active-jobs' %}" style="color: red; margin: 0; padding: 0;"> {{active_jobs.count}} </a> </span> </h2>
+            <h2 class="job-count-info">Jobs applied to today: <span class="job-count-info-count"> {{filtered_jobs_today.count}} </span> </h2>
+            <h2 class="job-count-info">Jobs applied in last seven days: <span class="job-count-info-count" >{{filtered_jobs_week.count}} </span> </h2>
+            <h2 class="job-count-info">Count of jobs: <span class="job-count-info-count"> {{jobs.count}} </span> </h2>
+            <h2 class="job-count-info">Active jobs: <span class="job-count-info-count"> <a href="{% url 'active-jobs' %}" style="color: red; margin: 0; padding: 0;"> {{active_jobs.count}} </a> </span> </h2>
         </div>
     </div>
     </br>
