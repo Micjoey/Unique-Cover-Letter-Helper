@@ -42,11 +42,16 @@ body {
 
 .count-of-jobs-container {
     display: flex;
-    margin: 1vh;
-    // background-color: red;
-    h2 {
-        margin: 1vh;
-    }
+    // margin: 1em;
+}
+
+.job-count-info {
+    padding-right: 1em;
+}
+
+.job-count-info-count {
+    font-weight: bold;
+    color: red;
 }
 
 .main-body {

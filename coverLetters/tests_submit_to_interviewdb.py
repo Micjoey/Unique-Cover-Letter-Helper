@@ -21,16 +21,17 @@ class FunctionalSubmitToInterviewDB(TestCase):
         self.browser.get(
             'http://localhost:3000/cover-letter-generator/all-jobs/')
         wait = WebDriverWait(self.browser, 20)
-        allJobs = self.browser.find_elements_by_tag_name('a')
-        dateCreated = datetime.now()
-        dateDifferenceBetweenTodayandJob = datetime.now() - dateCreated
-        lessThanSevenDays = True
-        jobWebsiteIsPresent = True
-        multipleSkips = False
-        skipCount = 0
-        i = 2
-        while i <= 100 and lessThanSevenDays and jobWebsiteIsPresent and not multipleSkips:
-            currentJob = allJobs[i]
+        all_jobs = self.browser.find_elements_by_tag_name('a')
+        date_created = datetime.now()
+        date_difference_between_today_and_job = datetime.now() - date_created
+        less_than_seven_days = True
+        job_website_is_present = True
+        multiple_skips = False
+        skip_count = 0
+        first_valid_a = 4
+        i = first_valid_a
+        while i <= 100 and less_than_seven_days and job_website_is_present and not multiple_skips:
+            currentJob = all_jobs[i]
             currentJob.click()
             jobTitle = self.browser.find_element_by_id('position_title').text
             jobCompany = self.browser.find_element_by_id('company').text
@@ -44,34 +45,33 @@ class FunctionalSubmitToInterviewDB(TestCase):
                 jobDescription = 'N/A'
             # checks to make sure the a website link is present
             if jobWebsite:
-                jobWebsiteIsPresent = True
+                job_website_is_present = True
             else:
                 i += 2
                 continue
 
-            dateCreated = self.browser.find_element_by_id(
+            date_created = self.browser.find_element_by_id(
                 'form_creation_date').text
             jobDetails = self.browser.find_element_by_id(
                 'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('+self.browser.find_element_by_id('job_posting_website').text+')'
             halfJobDetails = self.browser.find_element_by_id(
                 'company').text+'- '+self.browser.find_element_by_id('position_title').text + ' ('
             # edits the date to be consistent
-            if "-" in dateCreated:
-                dateCreated = datetime.strptime(dateCreated, '%Y-%m-%d')
+            if "-" in date_created:
+                date_created = datetime.strptime(date_created, '%Y-%m-%d')
                 todaysDate = datetime.now().strftime('%Y-%m-%d')
-                dateDifferenceBetweenTodayandJob = (datetime.strptime(
-                    todaysDate, '%Y-%m-%d') - dateCreated).days
+                date_difference_between_today_and_job = (datetime.strptime(
+                    todaysDate, '%Y-%m-%d') - date_created).days
             else:
                 todaysDate = datetime.now().strftime('%B %dth, %Y')
-                dateCreated = datetime.strptime(dateCreated, '%B %dth, %Y')
-                dateDifferenceBetweenTodayandJob = (datetime.strptime(
-                    todaysDate, '%B %dth, %Y') - dateCreated).days
+                date_created = datetime.strptime(date_created, '%B %dth, %Y')
+                date_difference_between_today_and_job = (datetime.strptime(
+                    todaysDate, '%B %dth, %Y') - date_created).days
             # 
-            lessThanSevenDays = dateDifferenceBetweenTodayandJob < 14
+            less_than_seven_days = date_difference_between_today_and_job < 14
             self.browser.get('https://www.interview-db.com/')
             signInText = None
-
-            if i == 2:
+            if i == first_valid_a:
                 signInText = self.browser.find_element_by_link_text(
                     'Student Sign in with Github')
             if signInText:
@@ -152,15 +152,15 @@ class FunctionalSubmitToInterviewDB(TestCase):
                     'https://www.interview-db.com/profile/job-search'))
                 # time.sleep(10)
             else:
-                skipCount += 1
-                if skipCount > 40:
-                    multipleSkips = True
+                skip_count += 1
+                if skip_count > 40:
+                    multiple_skips = True
 
             self.browser.get(
                 'http://localhost:3000/cover-letter-generator/all-jobs/')
-            allJobs = self.browser.find_elements_by_tag_name('a')
+            all_jobs = self.browser.find_elements_by_tag_name('a')
             if halfTitleIsPresent or fullTitleIsPresent:
-                print('Skipped Job #', i/2, ' skip count is -', skipCount)
+                print('Skipped Job #', i/2, ' skip count is -', skip_count)
             else:
                 print('Finished Job #', (i/2))
             i += 2

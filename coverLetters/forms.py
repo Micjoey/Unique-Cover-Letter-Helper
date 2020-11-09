@@ -48,6 +48,7 @@ class TripleByteForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.last().id 
+        self.fields['job_stage'].initial = 'Initial'
         self.fields['template_choices'].initial = 'Triplebyte (message-version)'
         self.fields['job_posting_website'].initial = 'Triplebyte'
         self.fields['form_creation_date'].initial = datetime.now().strftime(

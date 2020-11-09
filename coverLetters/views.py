@@ -42,7 +42,7 @@ def all_jobs(request):
     jobs = Job.objects.order_by('-id')
     today = date_finder()
     week_ago = date_finder(7)
-    two_months = date_finder(60)
+    two_months = date_finder(30)
     filtered_jobs_today = jobs.filter(
         created_date=today)
     filtered_jobs_week = jobs.filter(
@@ -52,6 +52,7 @@ def all_jobs(request):
         created_date__range=[week_ago, today])
     old_jobs = jobs.exclude(
         created_date__range=[two_months, today])
+    active_jobs = jobs.filter(job_stage="Active")
 
     for job in old_jobs:
         if "Active" not in job.job_stage:
@@ -63,6 +64,14 @@ def all_jobs(request):
         'filtered_jobs_week': filtered_jobs_week,
         'filtered_jobs': filtered_jobs,
         'filtered_jobs_previous': filtered_jobs_previous,
+        'active_jobs': active_jobs,
+    })
+
+def active_jobs(request):
+    jobs = Job.objects.order_by('-id')
+    active_jobs = jobs.filter(job_stage="Active")
+    return render(request, 'jobs/active-jobs.html', {
+        'active_jobs': active_jobs,
     })
 
 def all_users(request):
