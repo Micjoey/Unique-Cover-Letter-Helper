@@ -26,7 +26,7 @@ def check_template_choice(request, template_choice, last_user, cleaned_filled_fo
 
 
 def date_finder(end_date=0):
-    start_date = datetime.now() - timedelta(hours=7)
+    start_date = datetime.now()
     if end_date != 0:
         return (start_date - timedelta(days=end_date)).strftime('%Y-%m-%d')
     else:
