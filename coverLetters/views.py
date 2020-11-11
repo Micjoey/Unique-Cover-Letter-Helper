@@ -30,7 +30,7 @@ def date_finder(end_date=0):
     if end_date != 0:
         return (start_date - timedelta(days=end_date)).strftime('%Y-%m-%d')
     else:
-        return datetime.now().strftime('%Y-%m-%d')
+        return start_date.strftime('%Y-%m-%d')
     
 
 # <--------  ------->
