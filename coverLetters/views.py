@@ -55,9 +55,13 @@ def all_jobs(request):
     active_jobs = jobs.filter(job_stage="Active")
 
     for job in old_jobs:
+        if "Rejected" in job.job_stage:
+            continue
+        
         if "Active" not in job.job_stage:
             job.job_stage = "Rejected"
             job.save()
+
     return render(request, 'jobs/all-jobs.html', {
         'jobs': jobs,
         'filtered_jobs_today': filtered_jobs_today,
