@@ -57,7 +57,7 @@ def all_jobs(request):
     for job in old_jobs:
         if "Rejected" in job.job_stage:
             continue
-        
+
         if "Active" not in job.job_stage:
             job.job_stage = "Rejected"
             job.save()
