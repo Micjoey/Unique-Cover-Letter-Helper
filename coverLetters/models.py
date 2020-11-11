@@ -44,8 +44,8 @@ class Job(models.Model):
     job_stages = (
         ('Initial', 'Initial'),
         ('Active', 'Active'),
-        ('Rejected', 'Rejected'),
         ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
     )
 
     form_creation_date = models.CharField(
