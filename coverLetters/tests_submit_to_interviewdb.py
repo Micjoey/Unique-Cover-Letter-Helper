@@ -28,9 +28,14 @@ class FunctionalSubmitToInterviewDB(TestCase):
         job_website_is_present = True
         multiple_skips = False
         skip_count = 0
-        first_valid_a = 4
+        first_valid_a = None
+        # Dynamically finds virst valid job link to click on - assuming that the delete button stays the same.
+        for idx, links in enumerate(all_jobs):
+            if "Delete" in links.text:
+                first_valid_a = idx - 1
+                break
         i = first_valid_a
-        while i <= 100 and less_than_seven_days and job_website_is_present and not multiple_skips:
+        while i is not None and i <= 100 and less_than_seven_days and job_website_is_present and not multiple_skips:
             currentJob = all_jobs[i]
             currentJob.click()
             jobTitle = self.browser.find_element_by_id('position_title').text
