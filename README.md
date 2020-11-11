@@ -156,3 +156,9 @@
   * I added in template choices so that you can have multiple cover letters for one job as long as they are different templates. 
   * Position_title was added in to create one last uniqueness check. 
   
+## Future Features
+  **Front-end**
+    My goal is a cleaner UI that allows my website to be used by the masses to help everyone generate unique cover letters. Even create their own templates from the frontend. 
+
+  **Users**
+    With the creation of the frontend, I want each user to be able to create a unique profile so that they can save their data.

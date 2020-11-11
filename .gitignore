@@ -2,3 +2,22 @@
 /coverLetters/tests_submit_to_interviewdb.py
 /superuser.txt
 frontend/node_modules/
+
+
+# Frontend
+
+frontend/.DS_Store
+frontend/node_modules/
+frontend//dist/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Editor directories and files
+frontend/.idea
+frontend/.vscode
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+coverLetters/migrations/0049_merge_20201028_1812.py
