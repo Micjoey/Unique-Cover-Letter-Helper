@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'coverLetters',
     'phone_field',
     'multiselectfield',
+    'django_memcached',
 ]
 
 
