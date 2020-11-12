@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.cache import cache_page
 import coverLetters.views
 
 urlpatterns = [
@@ -27,7 +28,7 @@ urlpatterns = [
          coverLetters.views.active_jobs, name='active-jobs'),
      #
      #  job/user detail
-    path('cover-letter-generator/job-detail/<int:job_id>', coverLetters.views.job_detail, name='job-detail'),
+    path('cover-letter-generator/job-detail/<int:job_id>', cache_page(60 * 5)(coverLetters.views.job_detail), name='job-detail'),
     path('cover-letter-generator/user-detail/<int:user_id>', coverLetters.views.user_detail, name='user-detail'),
      #     
      #     path to delete a job/user
