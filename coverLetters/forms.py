@@ -4,6 +4,7 @@ from .models import Job, UserDetail
 from django.forms.models import model_to_dict
 from datetime import datetime
 class CoverLetterForm(ModelForm):
+    job_posting_website = forms.CharField(required=False)
     class Meta:
         model = Job
         fields = '__all__'
@@ -12,7 +13,6 @@ class CoverLetterForm(ModelForm):
             'template_choices': forms.Select(), 
             # 'template_choices': forms.RadioSelect(), 
         }
-        formId = forms.CharField(widget=forms.HiddenInput())
 
 
 
@@ -20,7 +20,8 @@ class CoverLetterForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.first().id
-        self.fields['template_choices'].initial = 'Non-technical Cover Letter'
+        self.fields['job_stage'].initial = 'Initial'
+        self.fields['template_choices'].initial = 'non-technical-cover-letter'
         self.fields['job_posting_website'].initial = 'LinkedIn'
         self.fields['bullet_point_one'].initial = 'Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles. '
         self.fields['bullet_point_two'].initial = 'For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. '
@@ -47,6 +48,7 @@ class TripleByteForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['city'].initial = 'San Francisco'
         self.fields['choice_of_user'].initial = UserDetail.objects.last().id 
+        self.fields['job_stage'].initial = 'Initial'
         self.fields['template_choices'].initial = 'Triplebyte (message-version)'
         self.fields['job_posting_website'].initial = 'Triplebyte'
         self.fields['form_creation_date'].initial = datetime.now().strftime(
