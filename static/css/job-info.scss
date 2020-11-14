@@ -1,4 +1,6 @@
 
+
+
 a {
     margin: 1em;
 }
@@ -36,4 +38,26 @@ body {
     border-bottom: 2px dotted black;
     // max-width: 90vh;
     overflow-wrap: normal;
+}
+
+.count-of-jobs-container {
+    display: flex;
+    // margin: 1em;
+}
+
+.job-count-info {
+    padding-right: 1em;
+}
+
+.job-count-info-count {
+    font-weight: bold;
+    color: red;
+}
+
+.main-body {
+    margin: 1em;
+}
+
+#choice_of_user {
+    margin-top: 0;
 }

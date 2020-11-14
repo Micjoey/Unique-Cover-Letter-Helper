@@ -1,10 +1,12 @@
 # cover-letter-template-generator
-*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company.
-</br>
+*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company. I know for me it takes about 10 mins or longer to create unique cover for every job. 40 jobs * 10 mins = 400 mins (minimum) per week. 1200 Mins per month. This is a lot of time. 
+<br></br>
 *Problem 2*: I am required to enter the jobs that I apply to, into a secondary application. To apply to 20 jobs it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins of time wasted). 
 </br>
 </br>
-*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people 12 mins a day to 5 hours a day.
+*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a siginificant amount of time.
+</br>
+</br>
 
 **Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
 
@@ -39,7 +41,7 @@
     * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first though (in every terminal instance where you are working on your project): `source venv/bin/activate`
   
   * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
-  **Very Important** --> Run **`django-admin flush`** and then accept. 
+  
 
     It will get installed in the venv/ folder, and not conflict with other projects.To leave the virtual environment run: `deactivate`
 
@@ -100,6 +102,9 @@
 
   * Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
   
+  **Running the test**:
+    `python manage.py test`
+    </br>
 ## **Editing Cover Letter**
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
 
@@ -151,3 +156,9 @@
   * I added in template choices so that you can have multiple cover letters for one job as long as they are different templates. 
   * Position_title was added in to create one last uniqueness check. 
   
+## Future Features
+  **Front-end**
+    My goal is a cleaner UI that allows my website to be used by the masses to help everyone generate unique cover letters. Even create their own templates from the frontend. 
+
+  **Users**
+    With the creation of the frontend, I want each user to be able to create a unique profile so that they can save their data.

@@ -7,7 +7,7 @@
 </head>
 <body>
     <a href="{% url 'homepage' %}"> Back </a>
-    <h1> Generated Cover Letter Form 3</h1>
+    <h1> Generated Cover Letter - {{template_choice}}</h1>
     </br>
     </br>
     
@@ -133,7 +133,7 @@
         </div>
         </br>
         </br>
-        <a href="{% url 'cover-letter-form' %}"> Another Cover Letter </a>
+        <a href="{% url 'form-template' %}"> Another Cover Letter </a>
     </div>
 
     {% comment %} {{job.company}} {% endcomment %}
