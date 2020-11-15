@@ -46,19 +46,47 @@
                     <p> Dear Hiring Manager:</p>
                     {% endif %}
                 </div>
-                <p> Thank you for the opportunity to apply for the {{job.position_title}} role at your company - {{job.company}}. 
-                After reviewing your job description, it's clear that you're looking for a candidate that is familiar with 
-                the responsibilities associated with the {% if job.position_title %}- {{job.position_title}} -{% endif %} role and can perform them confidently. Given these requirements, 
-                I am confident that I can do the job adeptly and fulfill the above expectations successfully.</p>
-                <p> I am a diligent professional who has been consistently praised as hard-working by my peers. Throughout my career, I have developed proven communication, analytical, and teamwork skills, which I hope to leverage into the {% if job.position_title %} {{job.position_title}} {% endif %} role at your company - {{job.company}}.</p>
+                <p> 
+                    Thank you for the opportunity to apply for the {{job.position_title}}
+                    role at your company - {{job.company}}. 
+                    After reviewing your job description, it's clear that you're looking
+                    for a candidate that is familiar with 
+                    the responsibilities associated with the 
+                    {% if job.position_title %}- {{job.position_title}} -{% endif %} 
+                    role and can perform them confidently. Given these requirements, 
+                    I am confident that I can do the job adeptly and fulfill the above 
+                    expectations successfully.
+                </p>
                 </br>
-                <p> After reviewing my resume, I hope you will agree that I am a competent and competitive candidate for the {% if job.position_title %}- {{job.position_title}} -{% endif %} role. I look forward to elaborating on how my specific skills and abilities will benefit your organization. 
-                Please contact me at {{last_user.phone_number}} or via email at {{last_user.email}} to arrange a convenient time to chat. 
+                <p> 
+                    I am a diligent professional who has been consistently praised 
+                    as hard-working by my peers. Throughout my career, I have 
+                    developed proven communication, analytical, and teamwork skills, 
+                    which I hope to leverage into the 
+                    {% if job.position_title %} 
+                    {{job.position_title}} 
+                    {% endif %} role at 
+                    {% if job.company %} {{job.company}}. {% else %} your company. {% endif %}
+                    </p>
                 </br>
-                <p> Thank you for your consideration and I look forward to hearing from you soon.</p>
+                <p> 
+                    After reviewing my resume, I hope you will agree that I am a 
+                    competent and competitive candidate for the 
+                    {% if job.position_title %}- {{job.position_title}} -{% endif %} 
+                    role. I look forward to elaborating on how my specific skills 
+                    and abilities will benefit your organization. 
+                    Please contact me at {{last_user.phone_number}} or 
+                    via email at {{last_user.email}} to arrange a convenient time to chat. 
+                </p>
                 </br>
-                My résumé is attached and offers additional information about my specific achievements. 
+                <p> 
+                    Thank you for your consideration and I look forward to hearing from you soon.
+                </p>
                 </br>
+                <p> 
+                    My résumé is attached and offers additional information about 
+                    my specific achievements. 
+                </p>
                 </br>
                 Sincerely, 
                 </br>
