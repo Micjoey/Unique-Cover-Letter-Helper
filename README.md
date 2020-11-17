@@ -1,16 +1,17 @@
 # cover-letter-template-generator
-*Problem*: Creating unique cover letters that are focused on a specific company and why you like them/how you are relevant to that company. I know for me it takes about 10 mins or longer to create unique cover for every job. 40 jobs * 10 mins = 400 mins (minimum) per week. 1200 Mins per month. This is a lot of time. 
-<br></br>
-*Problem 2*: I am required to enter the jobs that I apply to, into a secondary application. To apply to 20 jobs it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins of time wasted). 
-</br>
-</br>
-*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a siginificant amount of time.
-</br>
-</br>
 
-**Feedback -->** If you have any feedback please feel free to reach out to me by email Jsavett@gmail.com
+*Problem*: Creating unique cover letters focused on a specific company and why you like them/how you are relevant to that company. I know for me, it takes about 10 mins or longer to create a unique cover for every job. Forty jobs * 10 mins = 400 mins (minimum) per week. 1200 Mins per month - this is a ton of time. 
+</br>
+</br>
+*Problem 2*: I am required to enter the jobs that I apply to a secondary application. To apply to 20 jobs, it takes a minute more of my time, times that by 2-3 times per week (3 mins) for a month (12 mins wasted). 
+</br>
+</br>
+*Solution*: This application is a program that is oriented around creating fully dynamic and customized cover letters with more ease. Ultimately saving people a significant amount of time.
+</br>
+</br>
+**Feedback -->** If you have any feedback, please feel free to reach out to me by email at Jsavett@gmail.com
 
-# **Make Sure All Commands For Below Are Done At The Root Level.**
+# **Make Sure All Commands Below Are Done At The Root Level.**
 
 ## **Techonolgies needed:**
 * `Python`: 
@@ -35,23 +36,27 @@
 
   I am assuming that you have [Brew](https://treehouse.github.io/installation-guides/mac/homebrew) installed for the following code. If you do not, please copy this `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` into your terminal.
 
-  * *Step 1*: If there is a word in paranthesis next to your name in terminal, i.e (venv) X's-Macbook-pro, then you are in the virtual environment. This is good.
-    * *1a*: If you don't have that, please follow this step. In your terminal, please run `pip install virtualenv`. I am following steps from [installing venv](https://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
-    * *1b*:If you have a project in a directory called my-project you can set up virtualenv for that project by running: run `cd my-project/virtualenv venv`. If you want your virtualenv to also inherit globally installed packages run: `virtualenv venv --system-site-packages`
-    * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first though (in every terminal instance where you are working on your project): `source venv/bin/activate`
+  * *Step 1*: If there is a word in parenthesis next to your name in the terminal, i.e. (venv) X's-Macbook-pro, then you are in the virtual environment. 
+    * *1a*: If you don't have that, please follow this step. In your terminal, please run `pip install virtualenv.` I am following steps from [installing venv](https://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
+    * *1b*: If you have a project in a directory called my-project, you can set up virtualenv for that project by running: run `cd my-project/virtualenv venv`. If you want your virtualenv also to inherit globally installed packages, run: `virtualenv venv --system-site-packages`
+    * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first, though (in every terminal instance where you are working on your project): `source venv/bin/activate`
   
-  * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all third-party necessary files and also start the virtual environment for you which is required as mentioned below. 
+  * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all necessary third-party files and start the virtual environment for you, as mentioned below. 
+<<<<<<< HEAD
   
+=======
 
-    It will get installed in the venv/ folder, and not conflict with other projects.To leave the virtual environment run: `deactivate`
+>>>>>>> aaca796e204f981febdfef9edfa7dea8036996a9
+
+    It will get installed in the venv/ folder and not conflict with other projects. To leave the virtual environment, run: `deactivate`
 
     **Optional**:
-    To make it easier to work on multiple projects that has separate environments you can install `virtualenvwrapper`. It's an extension to `virtualenv` and makes it easier to create and delete virtual environments without creating dependency conflicts.
+    To make it easier to work on multiple projects with separate environments, you can install `virtualenvwrapper`. It's an extension to `virtualenv` and makes it easier to create and delete virtual environments without creating dependency conflicts.
 
     To install virtualenvwrapper run: `pip install virtualenvwrapper`
 
 ## **STARTING VIRTUAL ENVIRONMENT: `source venv/bin/activate`**
-  It is important to start the virtual environment and doing the above code will do so. 
+  It is crucial to start the virtual environment, and doing the above code will do so. 
 
 ## Run: `Python3 manage.py runserver`
   This will start the server running on http://localhost:3000/. If you are having issues with running the above command using Python3, 
@@ -60,35 +65,36 @@
   If your preference for locally running the server is http://localhost:8000/, please run `Python3 manage.py runserver 8000` or `Python manage.py runserver 8000`
 
 ## **Creating a SuperUser**
-  For this system it is important to create a superuser. To do so go click here ([documentation](https://docs.djangoproject.com/en/1.8/intro/tutorial02/)) or follow the below steps:
-    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal that is at the top folder level (CoverLetterGenerator) of the        project.
+  For this system, it is vital to create a superuser. To do so, click here ([documentation](https://docs.djangoproject.com/en/1.8/intro/tutorial02/)) or follow the below steps:
+    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal at the top folder level (CoverLetterGenerator) of the project.
     * Follow prompts in the terminal.
     **Access to SuperUser**
       To access the superuser you'll have to go to `http://localhost:3000/admin` or `http://localhost:8000/admin` and log in. At this point you can edit or delete any information that is in the system.
 
 ## **Create a User**
-  On the homepage click the User Form to create.
+  On the homepage, click the User Form to create.
 
-  For simplicity the last user you create will be the one that the system uses for the cover-letter template. You have the option to change it on the form itself if you wish. 
-      
+  For simplicity, the last user you create will be the one that the system uses for the cover-letter template. You have the option to change it on the form itself if you wish. 
+
   **Delete** The test user that currently exists once you have completed your user information.
+      
 ## **Testing**
   Important: 
-  If you don't want to use chrome as your main server then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
+  If you don't want to use chrome as your main server, then you'll need to move to change two files - `coverLetters/tests_submit_to_interviewdb.py` and `coverLetters/tests.py`. In the `def setup(self):` function change the `webdriver.` to what you want it to be -> [options](https://selenium-python.readthedocs.io/installation.html#drivers).
   
-  Whatever driver you choose you'll want to drag the driver to the `venv/bin/` path.
+  Whatever driver you choose, you'll want to drag the driver to the `venv/bin/` path.
 
   -------------
-  * First make sure you are in the virtual environment to start the test. In your terminal it should show `(venv) YourNameHere:ProjectName`.
-  * Next in your terminal make sure you are at the root level.
+  * First, make sure you are in the virtual environment to start the test. In your terminal, it should show `(venv) YourNameHere:ProjectName`.
+  * Next in your terminal, make sure you are at the root level.
   * run: `python manage.py test`
-  This will run through an assortment of tests such as making sure the back buttons are present on each back except for admin. Making sure that each form field is working, and the different templates are valid.
+  This will run through an assortment of tests, such as making sure the back buttons are present on each back except for admin. Making sure that each form field is working and the different templates are valid.
   <br>
   If you change the model, you will also need to change these tests. 
 
   Submitting to InterviewDB
   -------------
-  If you wish to submit to interview DB then you'll need to make a couple additions and changes.
+  If you wish to submit to interview DB, you'll need to make a couple of additions and changes.
   * Step 1:
     Add a file called `passwords.py` under the `coverLetters` folder. The pathway should look like `coverLetters/passwords.py`. 
   * Step 2:
@@ -99,7 +105,7 @@
           `return 'your-github-username'`
 
   **Don't Wish to Submit to InterviewDB**:
-
+  
   * Go to `coverLetters/tests_submit_to_interviewdb.py` and comment/hash out the entire test. 
   
   **Running the test**:
@@ -109,15 +115,15 @@
   ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
 
   ### Cover Letter Template
-  If you want a different pre-filled sections (i.e Top Skills is filled with "Dynamic and accomplished Software Engineer with experience and expertise in") you can go to `coverLetters/models.py` and under that field in the `Job Model` you can either add or change the field `default="x"`.
+  If you want different pre-filled sections (i.e., Top Skills is filled with "Dynamic and accomplished Software Engineer with experience and expertise in") you can go to `coverLetters/models.py` and under that field in the `Job Model` you can either add or change the field `default="x"`.
 
-  Currently the `top_skills` field has a default value of `"Dynamic and accomplished Software Engineer with experience and expertise in"`. Which is based off the template I have in there.
+  Currently, the `top_skills` field has a default value of `"Dynamic and accomplished Software Engineer with experience and expertise in"`, which are based on the template I have in there.
 
-  Don't worry about the bullet_point_one, etc. They wont be added into the cover letter unless you wish it to be so.
+  Don't worry about bullet_point_one, etc. They won't be added to the cover letter unless you wish it to be so.
 
 ## All Job Detail
   ### `CoverLetterGenerator/coverLetters/templates/jobs`
-  This is the location of the code which holds the general information for the cover letter, and then the cover letter itself.
+  This is the code's location, which holds the general information for the cover letter, and then the cover letter itself.
   
   ### `CoverLetterGenerator/coverLetters/templates/all-jobs`
   This is a simple for loop which shows all jobs that have templates and exist in your database.
@@ -150,15 +156,15 @@
     `class Meta:
       unique_together = ('link', 'template_choices', 'position_title')`
 
-   To explain what this little piece of code is doing, it is looking at each form submitted to make sure that there is a unique combination of link, template choice, and position title. 
+   To explain what this little piece of code is doing, it is looking at each form submitted to ensure a unique combination of link, template choice, and position title. 
    I choose these three for a specific reason:
-  * The link generated by a job is typically unique to that single job, so therefore that alone should solve for uniqueness.
-  * I added in template choices so that you can have multiple cover letters for one job as long as they are different templates. 
+  * The link generated by a job is typically unique to that single job, so that alone should solve uniqueness.
+  * I added in template choices to have multiple cover letters for one job as long as they are different templates. 
   * Position_title was added in to create one last uniqueness check. 
   
 ## Future Features
   **Front-end**
-    My goal is a cleaner UI that allows my website to be used by the masses to help everyone generate unique cover letters. Even create their own templates from the frontend. 
+    My goal is a cleaner UI that allows my website to be used by the masses to help everyone generate unique cover letters. Even create their templates from the frontend. 
 
   **Users**
-    With the creation of the frontend, I want each user to be able to create a unique profile so that they can save their data.
+    With the creation of the frontend, I want each user to create a unique profile so that they can save their data.
