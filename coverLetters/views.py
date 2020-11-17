@@ -58,8 +58,8 @@ def all_jobs(request):
         if "Rejected" in job.job_stage:
             continue
 
-        if "Active" not in job.job_stage:
-            job.job_stage = "Rejected"
+        if "Initial" in job.job_stage:
+            job.job_stage = "No Response"
             job.save()
 
     return render(request, 'jobs/all-jobs.html', {
