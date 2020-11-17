@@ -46,6 +46,7 @@ class Job(models.Model):
         ('Active', 'Active'),
         ('Accepted', 'Accepted'),
         ('Rejected', 'Rejected'),
+        ('No Response', 'No Response')
     )
 
     form_creation_date = models.CharField(
