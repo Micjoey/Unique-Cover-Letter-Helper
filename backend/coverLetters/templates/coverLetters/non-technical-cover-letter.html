@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/cover-form-rendered.scss' %}">     
+    <title>Cover Letter</title>
+</head>
+<body>
+    <h1> Non-technical Cover Letter</h1>
+    
+    </br>
+    </br>
+    <h3> Resume Link for tracking - <br/> <a href="http://macallan.space/?utm_source=Resume%20Link&utm_medium=link&utm_campaign=Resume%20Link"> https://bit.ly/2HXrCWl </a> </h3>
+
+    <div class="cover-letter-container">
+        <div class="cover-letter-header">
+        <p > {% now "F jS, Y" %} </p>
+            <div>
+                {% if last_user.email %}
+                    <Jsavett@gmail class="com">{{last_user.email}}</Jsavett@gmail>
+                    | 
+                {% endif %}
+                {% if last_user.linkedin %}
+                    <a href={{last_user.linkedin}}>{{last_user.linkedin}}</a>
+                    |
+                {% endif %}
+                {% if last_user.github %}
+                    <a href={{last_user.github}}>{{last_user.github}}</a>
+                    |
+                {% endif %}
+                {% if last_user.portfolio_website %}
+                    <a href={{last_user.portfolio_website}}>{{last_user.portfolio_website}}</a>
+                {% endif %}
+                </br>
+                </br>
+                <div>
+                    {% if job.recruiter %}
+                    <p> Dear {{job.recruiter}}:</p>
+                    {% else%}
+                    <p> Dear Hiring Manager:</p>
+                    {% endif %}
+                </div>
+                <p> 
+                    Thank you for the opportunity to apply for the {{job.position_title}}
+                    role at your company - {{job.company}}. 
+                    After reviewing your job description, it's clear that you're looking
+                    for a candidate that is familiar with 
+                    the responsibilities associated with the 
+                    {% if job.position_title %}- {{job.position_title}} -{% endif %} 
+                    role and can perform them confidently. Given these requirements, 
+                    I am confident that I can do the job adeptly and fulfill the above 
+                    expectations successfully.
+                </p>
+                </br>
+                <p> 
+                    I am a diligent professional who has been consistently praised 
+                    as hard-working by my peers. Throughout my career, I have 
+                    developed proven communication, analytical, and teamwork skills, 
+                    which I hope to leverage into the 
+                    {% if job.position_title %} 
+                    {{job.position_title}} 
+                    {% endif %} role at 
+                    {% if job.company %} {{job.company}}. {% else %} your company. {% endif %}
+                    </p>
+                </br>
+                <p> 
+                    After reviewing my resume, I hope you will agree that I am a 
+                    competent and competitive candidate for the 
+                    {% if job.position_title %}- {{job.position_title}} -{% endif %} 
+                    role. I look forward to elaborating on how my specific skills 
+                    and abilities will benefit your organization. 
+                    Please contact me at {{last_user.phone_number}} or 
+                    via email at {{last_user.email}} to arrange a convenient time to chat. 
+                </p>
+                </br>
+                <p> 
+                    Thank you for your consideration and I look forward to hearing from you soon.
+                </p>
+                </br>
+                <p> 
+                    My résumé is attached and offers additional information about 
+                    my specific achievements. 
+                </p>
+                </br>
+                Sincerely, 
+                </br>
+                {% if last_user.preferred_name %} 
+                    {{last_user.preferred_name}} 
+                {% else %} 
+                    {{last_user.first_name}} 
+                {% endif %} {{last_user.last_name}}
+            </div>
+        </div>
+        </br>
+        </br>
+        <a href="{% url 'form-template' %}"><button> Another Cover Letter </button> </a> 
+            or  
+         <a href="{% url 'all-jobs' %}"> <button> All Jobs </button></a>
+    </div>
+
+    {% comment %} {{job.company}} {% endcomment %}
+</body>
+</html>

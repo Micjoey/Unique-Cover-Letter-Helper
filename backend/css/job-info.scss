@@ -1,0 +1,63 @@
+
+
+
+a {
+    margin: 1em;
+}
+
+body {
+    margin: 1vh
+}
+
+.job-detail-container {
+    display: flex;
+}
+
+.job-detail-container > p:nth-child(2) {
+    color: black;
+    font-weight: bold;
+    padding-left: 1em;
+}
+.job-detail-container > p:nth-child(1) {
+    min-width: fit-content;
+}
+
+#link {
+    margin: 0;
+    padding-left: 1em;
+}
+
+.job-description {
+    max-width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: none;
+}
+
+.job-info-container {
+    border-bottom: 2px dotted black;
+    // max-width: 90vh;
+    overflow-wrap: normal;
+}
+
+.count-of-jobs-container {
+    display: flex;
+    // margin: 1em;
+}
+
+.job-count-info {
+    padding-right: 1em;
+}
+
+.job-count-info-count {
+    font-weight: bold;
+    color: red;
+}
+
+.main-body {
+    margin: 1em;
+}
+
+#choice_of_user {
+    margin-top: 0;
+}

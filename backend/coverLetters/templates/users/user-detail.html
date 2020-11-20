@@ -1,0 +1,44 @@
+{% load static %}
+    
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        
+        <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">
+        <title>User Info</title>
+    </head>
+    <body>
+        <a href="{% url 'all-users' %}"> Back </a>
+        <h1>User Info: {{user.first_name}} {{user.last_name}}</h1>
+        <div class="job-info-container">
+            <div class="job-detail-container"> 
+                <p> User Full Name: </p> <p>{{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> User Preferred_name: </p> <p> {{user.preferred_name}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> User Email: </p> <p> {{user.email}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> User Linkedin: </p> <p class="User-description"> {{user.linkedin}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> User Github: </p> <p> {{user.github}} </p>
+            </div>
+            </br>
+            <div class="job-detail-container"> 
+                <p> User Portfolio Website Link: </p> <p> {{user.portfolio_website}} </p>
+            </div>
+            <div class="job-detail-container"> 
+                <p> User Address: </p> <p> {{user.street_address}}, {{user.city_address}} {{user.state_address}} {{user.zip_code}} </p>
+            </div>
+        </div>
+        
+    </body>
+    </html>
+   
