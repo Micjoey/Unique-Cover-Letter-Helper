@@ -1,12 +1,26 @@
 import React from "react";
-
+import { Link } from 'react-router-dom';
 
 
 
 const Jobs = props => {
+    const allJobs = Object.values(props.jobs)
+    
     return (
-       <h1>HI WORLD</h1>
+       <div>
+           <h1>Should be listed below: </h1>
+           {allJobs.map((job, idx) => (
+               <Link to='/idx' >
+                   <ul>
+                       {job.position_title} - {job.company}
+                   </ul>
+               </Link>
+                   
+           ))}
+           {/* <h2>{props.jobs[0].id}</h2> */}
+       </div>
     );
 };
+
 
 export default Jobs;
