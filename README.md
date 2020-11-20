@@ -42,11 +42,7 @@
     * *1c*: **Important** These commands create a venv/ directory in your project where all dependencies are installed. You need to activate it first, though (in every terminal instance where you are working on your project): `source venv/bin/activate`
   
   * *Step 2*: **If you are inside the virtual environment, see step one to determine if you are.** In your terminal run `pip install -r requirements.txt`. This will run the `requirements.txt` file that will download all necessary third-party files and start the virtual environment for you, as mentioned below. 
-<<<<<<< HEAD
   
-=======
-
->>>>>>> aaca796e204f981febdfef9edfa7dea8036996a9
 
     It will get installed in the venv/ folder and not conflict with other projects. To leave the virtual environment, run: `deactivate`
 
