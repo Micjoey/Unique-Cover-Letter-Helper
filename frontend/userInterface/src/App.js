@@ -1,6 +1,6 @@
 import './App.css';
 import 'antd/dist/antd.css'
-import CustomLayout from './containers/Layout'
+import CustomLayout from './containers/layout'
 import JobList from './containers/JobListView';
 
 function App() {
