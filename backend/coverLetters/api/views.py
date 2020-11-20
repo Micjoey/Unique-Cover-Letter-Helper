@@ -6,9 +6,9 @@ from coverLetters.models import Job, UserDetail
 from .serializers import JobSerializer
 
 
-class JobsPagination(LimitOffsetPagination):
-    default_limit = 50
-    max_limit = 100
+# class JobsPagination(LimitOffsetPagination):
+#     default_limit = 50
+#     max_limit = 100
 
 class JobListView(ListAPIView):
     queryset = Job.objects.all()
@@ -16,7 +16,7 @@ class JobListView(ListAPIView):
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_fields = ('id',)
     search_fields = ('position_title',)
-    pagination_class = JobsPagination
+    # pagination_class = JobsPagination
 
 class JobDetailView(RetrieveAPIView):
     queryset = Job.objects.all()
