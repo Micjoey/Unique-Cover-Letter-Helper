@@ -1,0 +1,112 @@
+{% load static %} 
+ 
+
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">     
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/job-info.scss' %}">     
+        <title>All Jobs</title>
+ </head>
+<script>
+    function toggleShowMore() {
+        var x = document.getElementById("more-jobs");
+        var y = document.getElementById("toggle-button");
+        if (x.style.display === "none") {
+            x.style.display = "block"
+            y.innerHTML = "show less"
+        } else {
+            x.style.display = "none";
+            y.innerHTML = "show more"
+        }
+    }
+</script>
+<body>
+    <a href="{% url 'homepage' %}"> Back To Homepage </a>
+    <a href="{% url 'form-template' %}" id='homepage-cover-letter-template-button'> Cover Letter Template </a>
+    <a href="{% url 'active-jobs' %}" id='active-jobs-button'> Active Jobs </a>
+    <div>
+        <h1>All Jobs: </h1>
+        <div class="count-of-jobs-container">
+            <h2 class="job-count-info">Jobs applied to today: <span class="job-count-info-count"> {{filtered_jobs_today.count}} </span> </h2>
+            <h2 class="job-count-info">Jobs applied in last seven days: <span class="job-count-info-count" >{{filtered_jobs_week.count}} </span> </h2>
+            <h2 class="job-count-info">Count of jobs: <span class="job-count-info-count"> {{jobs.count}} </span> </h2>
+            <h2 class="job-count-info">Active jobs: <span class="job-count-info-count"> <a href="{% url 'active-jobs' %}" style="color: red; margin: 0; padding: 0;"> {{active_jobs.count}} </a> </span> </h2>
+        </div>
+    </div>
+    </br>
+    
+    <ol>
+        {% for job in filtered_jobs_week.all %}
+            <div class="job-info-container">
+                <li style='display: flex;'>
+                    <a href="{% url 'job-detail' job.id %}" id="{{job.company}} | {{job.position_title}} | {{job.created_date}} | {{job.template_choices}}">
+                        <h1>
+                            {% if job.company %}
+                                {{job.company}} |
+                            {% endif %}
+                            {% if job.position_title %}
+                                {{job.position_title}} |
+                            {% endif %}
+                            {% if job.created_date %}
+                                {{job.created_date}} |
+                            {% endif %}
+                            {% if job.template_choices %}
+                                {{job.template_choices}} |
+                            {% endif %}
+                            {% if job.job_stage %}
+                                {{job.job_stage}} 
+                            {% endif %}
+
+                        </h1> 
+                    </a>
+                    <div class='delete-button' style="margin: auto;
+                    margin-left: 0; width: fit-content;">
+                        <a href="{% url 'delete-job-detail' job.id%}">Delete {{job.company}}'s {{job.position_title}} role</a>
+                    </div>
+                </li>
+            </div>
+        {% endfor %}
+        <div style="margin: auto; display: flex;">
+            <a onclick=toggleShowMore() id="toggle-button" style="margin: auto; cursor: pointer;font-size: large; "> show more </a>
+        </div>
+        <div style="display:none" id="more-jobs">
+            {% for filtered_job in filtered_jobs_previous.all %}
+                <div class="job-info-container">
+                    <li style='display: flex;'>
+                        <a href="{% url 'job-detail' filtered_job.id %}" id="{{filtered_job.company}} | {{filtered_job.position_title}} | {{filtered_job.created_date}} | {{filtered_job.template_choices}}">
+                            <h1>
+                                {% if filtered_job.company %}
+                                    {{filtered_job.company}} |
+                                {% endif %}
+                                {% if filtered_job.position_title %}
+                                    {{filtered_job.position_title}} |
+                                {% endif %}
+                                {% if filtered_job.created_date %}
+                                    {{filtered_job.created_date}} |
+                                {% endif %}
+                                {% if filtered_job.template_choices %}
+                                    {{filtered_job.template_choices}}
+                                {% endif %}
+                                {% if job.job_stage %}
+                                    {{job.job_stage}} 
+                                {% endif %}
+                            </h1> 
+                        </a>
+                        <div class='delete-button' style="margin: auto;
+                            margin-left: 0; width: fit-content;">
+                            <a href="{% url 'delete-job-detail' filtered_job.id%}">Delete {{filtered_job.company}}'s {{filtered_job.position_title}} role</a>
+                        </div>
+                    </li>
+                </div>
+            {% endfor %}
+        </div>
+    </ol>
+    
+
+ </body>
+ </html>
+ 
