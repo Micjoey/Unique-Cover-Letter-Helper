@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Jobs from '../components/Job'
+import Jobs from '../components/Jobs'
 import axios from 'axios'
 
 
