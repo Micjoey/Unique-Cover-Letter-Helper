@@ -9,7 +9,7 @@ const Jobs = props => {
        <div>
            <h1>Should be listed below: </h1>
            {allJobs.map((job, idx) => (
-               <a href={`/${idx}`} >
+               <a href={`/${job.id}`} >
                    <ul>
                        {job.position_title} - {job.company}
                    </ul>
