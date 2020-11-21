@@ -20,7 +20,7 @@ const JobList = () => {
     if (loaded.isLoaded) {
         return (
             <div>
-                <h1>It is Working!</h1>
+                <h1>All Jobs:</h1>
                 <div>
                     <Jobs jobs={allJobs}/>
                 </div>
