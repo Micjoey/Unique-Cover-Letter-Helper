@@ -1,7 +1,8 @@
-from django.urls import path
-from .views import JobListView, JobDetailView
+from rest_framework.routers import DefaultRouter
+from coverLetters.api.views import JobViewSet
 
-urlpatterns = [
-    path("jobs/", JobListView.as_view()),
-    path("jobs/<pk>", JobDetailView.as_view()),
-]
+
+
+router = DefaultRouter()
+router.register(r'jobs', JobViewSet, basename='jobs')
+urlpatterns = router.urls
