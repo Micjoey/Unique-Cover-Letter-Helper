@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.8.4",
     "axios": "^0.21.0",
+    "react-hook-form": "^6.11.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "web-vitals": "^0.2.4"
