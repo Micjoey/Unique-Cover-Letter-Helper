@@ -10,8 +10,9 @@ const JobList = () => {
     useEffect(() => {
         axios.get('http://127.0.0.1:3000/api/jobs/')
         .then( res => {
-            setAllJobs(res.data)
-        }).then(() => {
+            setAllJobs(res.data.results)
+        })
+        .then(() => {
             setLoaded({isLoaded: true})
         })
     }, [])

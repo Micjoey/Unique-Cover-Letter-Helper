@@ -1,12 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import JobDetailView from './containers/JobDetailView'
 import JobListView from './containers/JobListView'
 
 const BaseRouter = () => (
     <div>
-        <Route exact path='/' component={JobListView}/>
-        <Route exact path='/:jobID' component={JobDetailView}/>
+        <Switch>
+            <Route exact path='/:jobID' component={JobDetailView}/>
+            <Route path='/' component={JobListView}/>
+        </Switch>
     </div>
 )
 

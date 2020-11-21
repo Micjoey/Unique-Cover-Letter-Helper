@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Jobs from '../components/Jobs'
+import JobDetail from '../components/JobDetail'
+
 import axios from 'axios'
 
 
@@ -8,8 +9,7 @@ const JobDetailView = (id) => {
     const [loaded, setLoaded] = useState({ isLoaded: false })
 
     useEffect(() => {
-        const jobId = this.props.match.params.jobID
-        axios.get(`http://127.0.0.1:3000/api/jobs/${jobId}`)
+        axios.get(`http://127.0.0.1:3000/api/jobs/1`)
             .then(res => {
                 setjob(res.data)
             }).then(() => {
@@ -20,6 +20,7 @@ const JobDetailView = (id) => {
     if (loaded.isLoaded) {
         return (
             <div>
+                <h1>heyya</h1>
                 <div>
                     <JobDetail jobDetail={job} />
                 </div>
