@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 
 
 const Jobs = props => {
-    const allJobs = Object.values(props.job)
-    
+    const allJobs = Object.values(props.jobs)
     return (
        <div>
            <h1>Should be listed below: </h1>
            {allJobs.map((job, idx) => (
-               <a href='/${idx}' >
+               <a href={`/${idx}`} >
                    <ul>
                        {job.position_title} - {job.company}
                    </ul>
