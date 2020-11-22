@@ -16,7 +16,6 @@ const Jobs = props => {
                </a>
                    
            ))}
-           {/* <h2>{props.jobs[0].id}</h2> */}
        </div>
     );
 };

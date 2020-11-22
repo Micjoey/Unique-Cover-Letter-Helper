@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { useParams } from 'react-router';
 
 export default function JobForm() {
     const { register, handleSubmit, } = useForm({
@@ -8,8 +10,22 @@ export default function JobForm() {
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in "
         }
     })
-    const [initialFormValue, setInitialFormValue] = useState({value: 'non-technical-cover-letter'})
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = (data, requestType, jobID) => {
+        
+        switch (requestType) {
+            case 'post':
+                axios.post('http//127.0.0.1:3000/api/jobs', {data})
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+                
+            case 'put':
+                axios.put(`http//127.0.0.1:3000/api/jobs/${jobID}/`, { data })
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+        }
+
+    };
 
     const template_choices = {
         'non-technical-cover-letter': 'Non-technical Cover Letter',
@@ -51,12 +67,12 @@ export default function JobForm() {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={(event) => handleSubmit(onSubmit(event, useParams().requestType, useParams().jobID))}>
             <label>
                 <p>Template Choices</p>
                 <select style={{ color: 'Red' }} name="job_template_choices">
-                    {Object.keys(template_choices).map((key)=> (
-                        <option value={key}> {template_choices[key]} </option>
+                    {Object.keys(template_choices).map((key, idx)=> (
+                        <option value={key} key={idx}> {template_choices[key]} </option>
                     ))}
                 </select>
             </label>
