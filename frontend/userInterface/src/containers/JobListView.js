@@ -6,6 +6,7 @@ import axios from 'axios'
 
 const JobList = () => {
     const [allJobs, setAllJobs] = useState([])
+    const [next, setNext] = useState([])
     const [loaded, setLoaded] = useState({isLoaded: false})
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const JobList = () => {
                 <div>
                     <Jobs jobs={allJobs}/>
                 </div>
-                <h2>Update Job:</h2>
+                <h2>Create Job:</h2>
                 <JobForm requestType="post" jobID={null} buttonTxt="Create"/>
             </div>
         )
