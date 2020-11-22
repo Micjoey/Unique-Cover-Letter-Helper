@@ -10,9 +10,10 @@ const Jobs = props => {
     return (
         <div>
             <h1>Job Detail: </h1>
-            <div class="job-details">
-                <p>Id - </p>
-                <p>{jobDetail.id}</p>
+            <div className="job-details">
+                {jobDetailKeys.map(key => (
+                   <h1 key={key}>{key} - {jobDetail[key]}</h1> 
+               ))}
             </div>
         </div>
     );
