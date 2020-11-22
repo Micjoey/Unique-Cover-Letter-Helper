@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Jobs from '../components/Jobs'
+import {JobForm} from '../components/JobForm'
 import axios from 'axios'
 
 
@@ -22,8 +23,10 @@ const JobList = () => {
             <div>
                 <h1>All Jobs:</h1>
                 <div>
-                        <Jobs jobs={allJobs}/>
+                    <Jobs jobs={allJobs}/>
                 </div>
+                <h2>Update Job:</h2>
+                <JobForm requestType="post" jobID={null} buttonTxt="Create"/>
             </div>
         )
     } else {

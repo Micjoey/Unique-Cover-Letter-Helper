@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import { useParams } from 'react-router';
 
-export default function JobForm() {
-    const { register, handleSubmit, } = useForm({
+export const JobForm = props => {
+    const requestType = props.requestType
+    const jobID = props.jobID
+    const buttonTxt = props.buttonTxt
+    const { register, handleSubmit} = useForm({
         defaultValues: {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in "
         }
     })
 
-    const onSubmit = (data, requestType, jobID) => {
+    
+    const onSubmit = (data) => {
         
+        console.log(data, requestType, jobID)
         switch (requestType) {
             case 'post':
                 axios.post('http//127.0.0.1:3000/api/jobs', {data})
                 .then(res => console.log(res))
-                .catch(err => console.log(err))
+                .catch(error => console.log(error))
                 
             case 'put':
-                axios.put(`http//127.0.0.1:3000/api/jobs/${jobID}/`, { data })
+                axios.put(`http//127.0.0.1:3000/api/jobs/${jobID}/`, {data})
                     .then(res => console.log(res))
-                    .catch(err => console.log(err))
+                    .catch(error => console.log(error))
         }
 
     };
+    // const onError = (errors, e) => console.log(errors, e);
 
     const template_choices = {
         'non-technical-cover-letter': 'Non-technical Cover Letter',
@@ -67,7 +72,7 @@ export default function JobForm() {
 
 
     return (
-        <form onSubmit={(event) => handleSubmit(onSubmit(event, useParams().requestType, useParams().jobID))}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <label>
                 <p>Template Choices</p>
                 <select style={{ color: 'Red' }} name="job_template_choices">
@@ -96,7 +101,7 @@ export default function JobForm() {
             ))}
             
             
-            <input style={{ color: 'Red' }} type="submit" />
+            <input style={{ color: 'Black' }} type="submit" value={buttonTxt}/>
         </form>
     );
 }
