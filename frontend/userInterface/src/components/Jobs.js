@@ -8,8 +8,8 @@ const Jobs = props => {
     return (
        <div>
            <h1>Should be listed below: </h1>
-           {allJobs.map((job, idx) => (
-               <a href={`/${job.id}`} >
+           {allJobs.map(job => (
+               <a href={`/${job.id}`} key={job.id}>
                    <ul>
                        {job.position_title} - {job.company}
                    </ul>

@@ -23,10 +23,7 @@ const JobList = () => {
             <div>
                 <h1>All Jobs:</h1>
                 <div>
-                    <Jobs jobs={allJobs}/>
-                    <br/>
-                    <h2>Create an job:</h2>
-                    <JobForm/>
+                        <Jobs jobs={allJobs}/>
                 </div>
             </div>
         )

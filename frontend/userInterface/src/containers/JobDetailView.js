@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import JobDetail from '../components/JobDetail'
+import JobForm from '../components/JobForm'
 import axios from 'axios'
 import { useParams } from 'react-router'
 
@@ -23,6 +24,7 @@ const JobDetailView = (id) => {
                 <div>
                     <JobDetail jobDetail={job} />
                 </div>
+                <JobForm/>
             </div>
         )
     } else {
