@@ -1,6 +1,8 @@
 import BaseRouter from './routes'
 import { BrowserRouter as Router}  from 'react-router-dom'
 import './App.css';
+import Header from './containers/Banners/Header/NavBar';
+import FooterPage from './containers/Banners/Footer/FooterBar';
 
 
 
@@ -10,9 +12,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Router>
-          {/* Place the header here */}
-          <BaseRouter/> 
-          {/* Place the footer here */}
+          <Header/>
+            <BaseRouter/> 
+          <FooterPage/>
         </Router>
       </header>
     </div>

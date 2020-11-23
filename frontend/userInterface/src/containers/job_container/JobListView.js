@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import { JobForm } from '../../components/job_componenets/JobForm'
-import Jobs from '../../components/job_componenets/Jobs'
+import Jobs from '../../components/job_componenets/AllJobs'
 
 
 const JobList = () => {
@@ -27,8 +26,6 @@ const JobList = () => {
                 <div>
                     <Jobs jobs={allJobs}/>
                 </div>
-                <h2>Create Job:</h2>
-                <JobForm requestType="post" jobID={null} buttonTxt="Create" setAllJobs={setAllJobs}/>
             </div>
         )
     } else {
