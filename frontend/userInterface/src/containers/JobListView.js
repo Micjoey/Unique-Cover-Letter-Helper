@@ -27,7 +27,7 @@ const JobList = () => {
                     <Jobs jobs={allJobs}/>
                 </div>
                 <h2>Create Job:</h2>
-                <JobForm requestType="post" jobID={null} buttonTxt="Create"/>
+                <JobForm requestType="post" jobID={null} buttonTxt="Create" setAllJobs={setAllJobs}/>
             </div>
         )
     } else {
