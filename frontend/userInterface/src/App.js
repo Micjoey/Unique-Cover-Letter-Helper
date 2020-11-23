@@ -1,9 +1,8 @@
 import BaseRouter from './routes'
 import { BrowserRouter as Router}  from 'react-router-dom'
 import './App.css';
-import 'antd/dist/antd.css'
-import CustomLayout from './containers/layout'
-import JobList from './containers/JobListView';
+
+
 
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
         <Router>
           {/* Place the header here */}
           <BaseRouter/> 
+          {/* Place the footer here */}
         </Router>
       </header>
     </div>
