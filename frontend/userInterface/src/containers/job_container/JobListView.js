@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import Jobs from '../components/Jobs'
-import {JobForm} from '../components/JobForm'
 import axios from 'axios'
+
+import { JobForm } from '../../components/job_componenets/JobForm'
+import Jobs from '../../components/job_componenets/Jobs'
 
 
 const JobList = () => {

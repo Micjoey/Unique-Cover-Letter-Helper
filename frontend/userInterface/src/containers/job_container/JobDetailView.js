@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import JobDetail from '../components/JobDetail'
-import {JobForm} from '../components/JobForm'
+import JobDetail from '../../components/job_componenets/JobDetail'
+
 import axios from 'axios'
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
+import { JobForm } from '../../components/job_componenets/JobForm'
 
 
-const JobDetailView = (id) => {
+const JobDetailView = () => {
     const [job, setjob] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const { handleSubmit } = useForm()
