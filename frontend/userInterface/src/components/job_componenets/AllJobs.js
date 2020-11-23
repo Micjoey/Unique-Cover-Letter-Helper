@@ -1,23 +1,22 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
+import { ListGroup } from 'react-bootstrap'
 
 
 const Jobs = props => {
     const allJobs = Object.values(props.jobs)
 
     return (
-       <div>
-           <h1>Should be listed below: </h1>
+        <ListGroup>
            {allJobs.map(job => (
                <a href={`/${job.id}`} key={job.id}>
-                   <ul>
+                   <ListGroup.Item>
                        {job.position_title} - {job.company}
-                   </ul>
+                   </ListGroup.Item>
                </a>
                    
            ))}
-       </div>
+        </ListGroup>
     );
 };
 

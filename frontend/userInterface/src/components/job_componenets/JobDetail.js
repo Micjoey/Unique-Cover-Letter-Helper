@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Jobs = props => {
-
-    console.log(props)
+    
     const jobDetail = props.jobDetail
     const jobDetailKeys = Object.keys(jobDetail)
 
