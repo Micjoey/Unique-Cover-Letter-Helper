@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Jobs = props => {
     const allJobs = Object.values(props.jobs)
+
     return (
        <div>
            <h1>Should be listed below: </h1>
