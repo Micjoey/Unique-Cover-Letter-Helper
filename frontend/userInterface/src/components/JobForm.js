@@ -19,7 +19,6 @@ export const JobForm = props => {
 
     
     const onSubmit = (data) => {
-
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
@@ -28,8 +27,10 @@ export const JobForm = props => {
                 .catch(error => console.log(error))
                 
             case 'put':
-                axios.put(`http//127.0.0.1:3000/api/jobs/${jobID}/`, {data})
+                console.log(jobID)
+                axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
                     .then(res => console.log(res))
+                    .then(() => window.location.reload())
                     .catch(error => console.log(error))
         }
 
