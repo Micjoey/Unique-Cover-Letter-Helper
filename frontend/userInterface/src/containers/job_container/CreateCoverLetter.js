@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-
 import { JobForm } from '../../components/job_componenets/JobForm'
 
 
-const CreatJobContainer = () => {
+const CreateCoverLetter = () => {
         return (
             <div>
                 <h2>Create Job:</h2>
@@ -14,4 +12,4 @@ const CreatJobContainer = () => {
 
 }
 
-export default CreatJobContainer
+export default CreateCoverLetter
