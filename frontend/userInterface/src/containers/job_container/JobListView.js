@@ -40,7 +40,7 @@ const JobList = () => {
                     <Pagination 
                         pageIndex={pageIndex} 
                         total={count} 
-                        perPage={9} 
+                        perPage={20} 
                         onNext={next}
                         onPrevious={onPrevious}
                         setAllJobs={setAllJobs}
