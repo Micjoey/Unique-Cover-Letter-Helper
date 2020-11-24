@@ -39,7 +39,7 @@ const JobDetailView = () => {
                     <JobDetail jobDetail={job} />
                 </div>
                 <h2>Update Job:</h2>
-                <JobForm requestType="put" jobID={paramsJobId} buttonTxt="Update"/>
+                <JobForm requestType="put" job={job} buttonTxt="Update"/>
                 
             </div>
         )
