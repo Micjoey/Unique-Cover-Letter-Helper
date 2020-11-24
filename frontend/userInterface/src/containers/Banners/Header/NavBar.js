@@ -10,7 +10,7 @@ import React from 'react'
 
 const Header = () => {
   return  (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
