@@ -4,9 +4,8 @@ import { ListGroup } from 'react-bootstrap'
 
 
 const Jobs = props => {
-    console.log(props)
     const allJobs = Object.values(props.jobs)
-
+    
     return (
         <ListGroup>
            {allJobs.map(job => (
