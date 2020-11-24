@@ -38,8 +38,11 @@ const JobDetailView = () => {
                 <div>
                     <JobDetail jobDetail={job} />
                 </div>
-                <h2>Update Job:</h2>
-                <JobForm requestType="put" job={job} buttonTxt="Update"/>
+                <div>
+                    <br></br>
+                    <h2>Update Job:</h2>
+                    <JobForm requestType="put" job={job} buttonTxt="Update"/>
+                </div>
                 
             </div>
         )

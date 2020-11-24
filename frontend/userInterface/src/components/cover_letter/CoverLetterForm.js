@@ -13,6 +13,8 @@ export const JobForm = props => {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
             choice_of_user: 6,
+            job_stage:job.job_stage,
+            template_choices: job.template_choices,
         }
     })
 
@@ -76,18 +78,13 @@ export const JobForm = props => {
     ]
     let jobTemplateChoice = document.getElementsByName(job.template_choices)
     let jobStageChoice = document.getElementsByName(job.job_stage)
-    if (job.id) {
-        jobTemplateChoice = jobTemplateChoice[0]
-        jobStageChoice = jobStageChoice[0]
-        jobTemplateChoice.selected = "selected"
-        jobStageChoice.selected = "selected"
-    }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
             <label style={{ display: 'flex' }}>
                 <p>Template Choices: </p>
-                <select style={{ color: 'Red' }} name="job_template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                     {Object.keys(template_choices).map((key, idx)=> (
                         <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
                     ))}
