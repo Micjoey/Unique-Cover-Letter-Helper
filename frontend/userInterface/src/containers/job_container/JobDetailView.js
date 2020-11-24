@@ -32,7 +32,7 @@ const JobDetailView = () => {
             <div>
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <button type="submit">Delete</button>
+                        <button className="btn-warning" type="submit">Delete</button>
                     </form>
                 </div>
                 <div>
