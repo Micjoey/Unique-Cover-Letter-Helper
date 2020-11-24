@@ -6,15 +6,22 @@ import axios from 'axios';
 export const JobForm = props => {
     const job = props.job
     const requestType = props.requestType
-    const jobID = props.job.id
+    let jobID = null
+    let jobStage = "Initial"
+    let templateChoices = "non-technical-cover-letter"
+    if (props.job) {
+        jobID = props.job.id
+        jobStage = props.job.job_stage
+        templateChoices = props.job.template_choices
+    }
     const buttonTxt = props.buttonTxt
     const { register, handleSubmit} = useForm({
         defaultValues: {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
             choice_of_user: 6,
-            job_stage:job.job_stage,
-            template_choices: job.template_choices,
+            job_stage:jobStage,
+            template_choices: templateChoices,
         }
     })
 
@@ -76,44 +83,81 @@ export const JobForm = props => {
         ["post_bullet_point_paragraph_one", "Post Bullet Point - Paragraph one", false],
         ["post_bullet_point_paragraph_two", "Post Bullet Point - Paragraph two", false],
     ]
-    let jobTemplateChoice = document.getElementsByName(job.template_choices)
-    let jobStageChoice = document.getElementsByName(job.job_stage)
+    if (job) {
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
-            <label style={{ display: 'flex' }}>
-                <p>Template Choices: </p>
-                <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
-                    {Object.keys(template_choices).map((key, idx)=> (
-                        <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
-                    ))}
-                </select>
-            </label>
-            <label style={{ display: 'flex' }}>
-                <p>Job Stage: </p>
-                <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
-                    {Object.keys(job_stages).map((key, idx)=> (
-                        <option defaultValue={job_stages[key]} key={idx} name={job_stages[key]}> {job_stages[key]} </option>
-                    ))}
-                </select>
-            </label>
-            {form_fields.map((input_info, idx) => (
-                <div style={{display: 'flex', margin:'1em'}} key={idx}>
-                    <p>{input_info[1]}: </p>
-                    <textarea 
-                        style={{ color: 'black' }} 
-                        placeholder={input_info[1]}
-                        name={input_info[0]}
-                        ref={register({
-                            required: input_info[3]
-                        })}
-                        defaultValue={job[input_info[0]]}
-                        key={idx}
-                        style={{ display: 'flex', margin: '0em 1em' }}
-                    />
-                </div>
-            ))}
-        </form>
-    );
+        return (
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
+                <label style={{ display: 'flex' }}>
+                    <p>Template Choices: </p>
+                    <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                        {Object.keys(template_choices).map((key, idx)=> (
+                            <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
+                        ))}
+                    </select>
+                </label>
+                <label style={{ display: 'flex' }}>
+                    <p>Job Stage: </p>
+                    <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                        {Object.keys(job_stages).map((key, idx)=> (
+                            <option defaultValue={job_stages[key]} key={idx} name={job_stages[key]}> {job_stages[key]} </option>
+                        ))}
+                    </select>
+                </label>
+                {form_fields.map((input_info, idx) => (
+                    <div style={{display: 'flex', margin:'1em'}} key={idx}>
+                        <p>{input_info[1]}: </p>
+                        <textarea 
+                            style={{ color: 'black' }} 
+                            placeholder={input_info[1]}
+                            name={input_info[0]}
+                            ref={register({
+                                required: input_info[3]
+                            })}
+                            defaultValue={job[input_info[0]]}
+                            key={idx}
+                            style={{ display: 'flex', margin: '0em 1em' }}
+                        />
+                    </div>
+                ))}
+            </form>
+        );
+    } else {
+        return(
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
+                <label style={{ display: 'flex' }}>
+                    <p>Template Choices: </p>
+                    <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                        {Object.keys(template_choices).map((key, idx) => (
+                            <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
+                        ))}
+                    </select>
+                </label>
+                <label style={{ display: 'flex' }}>
+                    <p>Job Stage: </p>
+                    <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                        {Object.keys(job_stages).map((key, idx) => (
+                            <option key={idx} name={job_stages[key]}> {job_stages[key]} </option>
+                        ))}
+                    </select>
+                </label>
+                {form_fields.map((input_info, idx) => (
+                    <div style={{ display: 'flex', margin: '1em' }} key={idx}>
+                        <p>{input_info[1]}: </p>
+                        <textarea
+                            style={{ color: 'black' }}
+                            placeholder={input_info[1]}
+                            name={input_info[0]}
+                            ref={register({
+                                required: input_info[3]
+                            })}
+                            key={idx}
+                            style={{ display: 'flex', margin: '0em 1em' }}
+                        />
+                    </div>
+                ))}
+            </form>
+        )
+    }
 }
