@@ -1,5 +1,5 @@
 import React from 'react'
-import { JobForm } from '../../components/job_componenets/JobForm'
+import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 
 
 const CoverLetterView = () => {
