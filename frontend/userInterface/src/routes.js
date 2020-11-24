@@ -10,8 +10,9 @@ const BaseRouter = () => (
     <div>
         <Switch>
             <Route exact path='/job/form' component={CoverLetterView}/>
-            <Route exact path='/:jobID' component={JobDetailView}/>
-            <Route path='/' component={JobListView}/>
+            <Route exact path='/jobs/:jobID' component={JobDetailView}/>
+            <Route exact path='/' component={JobListView}/>
+            <Route path='' component={JobListView}/>
         </Switch>
     </div>
 )
