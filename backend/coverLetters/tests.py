@@ -149,7 +149,7 @@ class FunctionalTestCase(TestCase):
         self.browser.quit()
 
 
-class UnitTestCaste(TestCase):
+class UnitTestCase(TestCase):
 
     def test_home_homepage_template(self):
         response = self.client.get('/')
