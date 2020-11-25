@@ -1,21 +1,22 @@
-import React  from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
 export const JobForm = props => {
-    const job = props.job
+    let job = null
     const requestType = props.requestType
     let jobID = null
     let jobStage = "Initial"
     let templateChoices = "non-technical-cover-letter"
     if (props.job) {
-        jobID = props.job.id
-        jobStage = props.job.job_stage
-        templateChoices = props.job.template_choices
+        job = props.job
+        jobID = job.id
+        jobStage = job.job_stage
+        templateChoices = job.template_choices
     }
     const buttonTxt = props.buttonTxt
-    const { register, handleSubmit} = useForm({
+    const { register, errors, handleSubmit} = useForm({
         defaultValues: {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
@@ -30,16 +31,14 @@ export const JobForm = props => {
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
-                .then(res => console.log(res))
-                .then(() => window.location.reload())
-                .catch(error => console.log(error))
+                .then(() => window.location.href = "http://127.0.0.1:3001/api/jobs/")
+                .catch(errors => console.log(errors))
                 
             case 'put':
                 console.log(jobID)
                 axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
-                    .then(res => console.log(res))
                     .then(() => window.location.reload())
-                    .catch(error => console.log(error))
+                    .catch(errors => console.log(errors))
         }
 
     };
@@ -60,31 +59,8 @@ export const JobForm = props => {
         'No Response': 'No Response',
     }
 
-    const form_fields = [
-        ["job_posting_website", "Job Posting Website", true],
-        ["position_title", "Position Title", true],
-        ["choice_of_user", "Choice of User", false],
-        ["company", "Company", true],
-        ["city", "City", false],
-        ["link", "Link", true],
-        ["recruiter", "Recruiter", false],
-        ["description","Description", false],
-        ["pre_bullet_point_paragraph_one", "Pre Bullet Point - Paragraph one", false],
-        ["pre_bullet_point_paragraph_two", "Pre Bullet Point - Paragraph two", false],
-        ["top_skills", "Top Skills", false],
-        ["bullet_point_one","Bullet Point One", false],
-        ["bullet_point_two","Bullet Point Two", false],
-        ["bullet_point_three","Bullet Point Three", false],
-        ["bullet_point_four","Bullet Point Four", false],
-        ["bullet_point_five","Bullet Point Five", false],
-        ["bullet_point_six","Bullet Point Six", false],
-        ["bullet_point_seven","Bullet Point Seven", false],
-        ["bullet_point_eight","Bullet Point Eight", false],
-        ["post_bullet_point_paragraph_one", "Post Bullet Point - Paragraph one", false],
-        ["post_bullet_point_paragraph_two", "Post Bullet Point - Paragraph two", false],
-    ]
     if (job) {
-
+        console.log(errors)
         return (
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
@@ -100,34 +76,275 @@ export const JobForm = props => {
                     <p>Job Stage: </p>
                     <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                         {Object.keys(job_stages).map((key, idx)=> (
-                            <option defaultValue={job_stages[key]} key={idx} name={job_stages[key]}> {job_stages[key]} </option>
+                            <option 
+                                defaultValue={job_stages[key]} 
+                                key={idx} 
+                                name={job_stages[key]}
+                            > {job_stages[key]} </option>
                         ))}
                     </select>
                 </label>
-                {form_fields.map((input_info, idx) => (
-                    <div style={{display: 'flex', margin:'1em'}} key={idx}>
-                        <p>{input_info[1]}: </p>
-                        <textarea 
-                            style={{ color: 'black' }} 
-                            placeholder={input_info[1]}
-                            name={input_info[0]}
-                            ref={register({
-                                required: input_info[3]
-                            })}
-                            defaultValue={job[input_info[0]]}
-                            key={idx}
-                            style={{ display: 'flex', margin: '0em 1em' }}
-                        />
-                    </div>
-                ))}
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Job Posting Website: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Job Posting Website"}
+                        defaultValue={job.job_posting_website}
+                        name={"job_posting_website"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.job_posting_website && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Position Title: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Position Title"}
+                        defaultValue={job.position_title}
+                        name={"position_title"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.position_title && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                    <input
+                        type="hidden"
+                        style={{ color: 'black' }}
+                        placeholder={"Choice of User"}
+                        defaultValue={job.choice_of_user}
+                        name={"choice_of_user"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {/* {errors.choice_of_user && "Your input is required"} */}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Company: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Company"}
+                        defaultValue={job.company}
+                        name={"company"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.company && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>City: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"City"}
+                        defaultValue={job.city}
+                        name={"city"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.city && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Link: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Link"}
+                        defaultValue={job.link}
+                        name={"link"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.link && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Recruiter: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Recruiter"}
+                        defaultValue={job.recruiter}
+                        name={"recruiter"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.recruiter && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Description: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Description"}
+                        defaultValue={job.description}
+                        name={"description"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.description && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Pre Bullet Point - Paragraph one: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Pre Bullet Point - Paragraph one"}
+                        defaultValue={job.pre_bullet_point_paragraph_one}
+                        name={"pre_bullet_point_paragraph_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.pre_bullet_point_paragraph_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Pre Bullet Point - Paragraph two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Pre Bullet Point - Paragraph two"}
+                        name={"pre_bullet_point_paragraph_two"}
+                        defaultValue={job.pre_bullet_point_paragraph_two}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.pre_bullet_point_paragraph_two && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Top Skill: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Top Skill"}
+                        defaultValue={job.top_skills}
+                        name={"top_skills"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.top_skills && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point One: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point One"}
+                        defaultValue={job.bullet_point_one}
+                        name={"bullet_point_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Two"}
+                        defaultValue={job.bullet_point_two}
+                        name={"bullet_point_two"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_two && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Three: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Three"}
+                        defaultValue={job.bullet_point_three}
+                        name={"bullet_point_three"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_three && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Four: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Four"}
+                        defaultValue={job.bullet_point_four}
+                        name={"bullet_point_four"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_four && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Five: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Five"}
+                        defaultValue={job.bullet_point_five}
+                        name={"bullet_point_five"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_five && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Six: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Six"}
+                        defaultValue={job.bullet_point_six}
+                        name={"bullet_point_six"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_six && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Seven: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Seven"}
+                        defaultValue={job.bullet_point_seven}
+                        name={"bullet_point_seven"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_seven && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Bullet Point Eight: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Eight"}
+                        defaultValue={job.bullet_point_eight}
+                        name={"bullet_point_eight"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_eight && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Post Bullet Point - Paragraph one: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Post Bullet Point - Paragraph one"}
+                        defaultValue={job.post_bullet_point_paragraph_one}
+                        name={"post_bullet_point_paragraph_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.post_bullet_point_paragraph_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{ width: '12em' }}>Post Bullet Point - Paragraph two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Post Bullet Point - Paragraph two"}
+                        defaultValue={job.post_bullet_point_paragraph_two}
+                        name={"post_bullet_point_paragraph_two"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.post_bullet_point_paragraph_two && "Your input is required"}
+                </div>
             </form>
         );
     } else {
-        return(
+        return (
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
                 <label style={{ display: 'flex' }}>
-                    <p>Template Choices: </p>
+                    <p style={{width: '12em'}}>Template Choices: </p>
                     <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                         {Object.keys(template_choices).map((key, idx) => (
                             <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
@@ -135,28 +352,245 @@ export const JobForm = props => {
                     </select>
                 </label>
                 <label style={{ display: 'flex' }}>
-                    <p>Job Stage: </p>
+                    <p style={{width: '12em'}}>Job Stage: </p>
                     <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                         {Object.keys(job_stages).map((key, idx) => (
                             <option key={idx} name={job_stages[key]}> {job_stages[key]} </option>
                         ))}
                     </select>
                 </label>
-                {form_fields.map((input_info, idx) => (
-                    <div style={{ display: 'flex', margin: '1em' }} key={idx}>
-                        <p>{input_info[1]}: </p>
-                        <textarea
-                            style={{ color: 'black' }}
-                            placeholder={input_info[1]}
-                            name={input_info[0]}
-                            ref={register({
-                                required: input_info[3]
-                            })}
-                            key={idx}
-                            style={{ display: 'flex', margin: '0em 1em' }}
-                        />
-                    </div>
-                ))}
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Job Posting Website: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Job Posting Website"}
+                        name={"job_posting_website"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.job_posting_website && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Position Title: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Position Title"}
+                        name={"position_title"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.position_title && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                    <input
+                        type="hidden"
+                        style={{ color: 'black' }}
+                        placeholder={"Choice of User"}
+                        name={"choice_of_user"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {/* {errors.choice_of_user && "Your input is required"} */}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Company: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Company"}
+                        name={"company"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.company && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>City: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"City"}
+                        name={"city"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.city && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Link: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Link"}
+                        name={"link"}
+                        ref={register({ required: true })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.link && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Recruiter: </p>
+                    <input
+                        style={{ color: 'black' }}
+                        placeholder={"Recruiter"}
+                        name={"recruiter"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.recruiter && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Description: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Description"}
+                        name={"description"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.description && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Pre Bullet Point - Paragraph one: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Pre Bullet Point - Paragraph one"}
+                        name={"pre_bullet_point_paragraph_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.pre_bullet_point_paragraph_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Pre Bullet Point - Paragraph two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Pre Bullet Point - Paragraph two"}
+                        name={"pre_bullet_point_paragraph_two"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.pre_bullet_point_paragraph_two && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Top Skill: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Top Skill"}
+                        name={"top_skills"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.top_skills && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point One: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point One"}
+                        name={"bullet_point_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Two"}
+                        name={"bullet_point_two"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_two && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Three: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Three"}
+                        name={"bullet_point_three"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_three && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Four: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Four"}
+                        name={"bullet_point_four"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_four && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Five: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Five"}
+                        name={"bullet_point_five"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_five && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Six: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Six"}
+                        name={"bullet_point_six"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_six && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Seven: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Seven"}
+                        name={"bullet_point_seven"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_seven && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Bullet Point Eight: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Bullet Point Eight"}
+                        name={"bullet_point_eight"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.bullet_point_eight && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Post Bullet Point - Paragraph one: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Post Bullet Point - Paragraph one"}
+                        name={"post_bullet_point_paragraph_one"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.post_bullet_point_paragraph_one && "Your input is required"}
+                </div>
+                <div style={{ display: 'flex', margin: '1em 0' }}>
+                    <p style={{width: '12em'}}>Post Bullet Point - Paragraph two: </p>
+                    <textarea
+                        style={{ color: 'black' }}
+                        placeholder={"Post Bullet Point - Paragraph two"}
+                        name={"post_bullet_point_paragraph_two"}
+                        ref={register({ required: false })}
+                        style={{ display: 'flex', margin: '0em 1em' }}
+                    />
+                    {errors.post_bullet_point_paragraph_two && "Your input is required"}
+                </div>
             </form>
         )
     }
