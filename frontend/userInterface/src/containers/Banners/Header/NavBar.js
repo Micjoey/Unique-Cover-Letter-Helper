@@ -8,7 +8,8 @@ import {
 import React from 'react'
 
 
-const Header = () => {
+
+const Header = (props) => {
   return  (
     <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
@@ -18,11 +19,17 @@ const Header = () => {
           <Nav.Link href="/Jobs/">Home</Nav.Link>
           <Nav.Link href="/job/form/">Cover Letter Form</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            {
+              props.isAuthenticated ? 
+                <NavDropdown.Item>Logout</NavDropdown.Item>
+                :
+                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            }
+            {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
           </NavDropdown>
         </Nav>
         <Form inline>
