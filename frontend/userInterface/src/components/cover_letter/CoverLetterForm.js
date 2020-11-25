@@ -153,7 +153,7 @@ export const JobForm = props => {
                         defaultValue={job.link}
                         name={"link"}
                         ref={register({ required: true })}
-                        style={{ display: 'flex', margin: '0em 1em' }}
+                        style={{ display: 'flex', margin: '0em 1em'}}
                     />
                     {errors.link && "Your input is required"}
                 </div>
@@ -422,7 +422,7 @@ export const JobForm = props => {
                         placeholder={"Link"}
                         name={"link"}
                         ref={register({ required: true })}
-                        style={{ display: 'flex', margin: '0em 1em' }}
+                        style={{ display: 'flex', margin: '0em 1em'}}
                     />
                     {errors.link && "Your input is required"}
                 </div>
