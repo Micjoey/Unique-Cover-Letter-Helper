@@ -61,7 +61,6 @@ export const JobForm = props => {
     }
 
     if (job) {
-        console.log(errors)
         return (
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
