@@ -25,7 +25,7 @@ const Header = () => {
 
   const logout = useCallback(
     () => dispatch(actions.logout()),
-    () => history.push('/')
+    () => history.push('/'),
   )
 
   return  (
