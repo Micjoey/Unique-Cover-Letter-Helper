@@ -27,8 +27,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Router>
-          <Header {...props}/>
-          <BaseRouter {...props}/> 
+          <Header/>
+          <BaseRouter/> 
+          {/* <BaseRouter {...props}/>  */}
           <FooterPage/>
         </Router>
       </header>

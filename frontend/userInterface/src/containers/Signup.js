@@ -62,7 +62,6 @@ const RegistrationForm = () => {
 
     const onFinish = (values) => {
         onAuth(values.username, values.email, values.password, values.confirm)
-        props.history.push('/')
     };
 
 
@@ -170,7 +169,7 @@ const RegistrationForm = () => {
                     Signup
                 </Button>
                 or
-                <Nav.Link style={{ marginLeft: '10px' }} to='/login'>
+                <Nav.Link style={{ marginLeft: '10px' }} href='/login'>
                     Login
                 </Nav.Link>
             </Form.Item>

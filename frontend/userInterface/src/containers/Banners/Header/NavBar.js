@@ -5,11 +5,29 @@ import {
   Form, 
   FormControl, 
   Button } from 'react-bootstrap';
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../../store/actions/Auth'
+import { useHistory } from 'react-router-dom';
 
 
+const Header = () => {
+  let history = useHistory()
+  const props = useSelector(state => (
+    {
+      ...state,
+      isAuthenticated: state.token !== null,
+      loading: state.loading,
+      error: state.error
+    }))
 
-const Header = (props) => {
+  const dispatch = useDispatch()
+
+  const logout = useCallback(
+    () => dispatch(actions.logout()),
+    () => history.push('/')
+  )
+
   return  (
     <Navbar bg="light" expand="lg" sticky="bottom">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
@@ -25,10 +43,11 @@ const Header = (props) => {
             <NavDropdown.Divider />
             {
               props.isAuthenticated ? 
-                <NavDropdown.Item>Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                 :
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
             }
+            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
             {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
           </NavDropdown>
         </Nav>

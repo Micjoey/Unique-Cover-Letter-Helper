@@ -3,6 +3,7 @@ import {Nav} from 'react-bootstrap';
 import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../store/actions/Auth'
+import { useHistory } from 'react-router-dom';
 
 
 const layout = {
@@ -21,6 +22,7 @@ const tailLayout = {
 };
 
 const Login = () => {
+    let history = useHistory()
     const props = useSelector(state => (
         { ...state, 
             isAuthenticated: state.token !== null,
@@ -30,7 +32,8 @@ const Login = () => {
     
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, password) => dispatch(actions.authLogin(username, password))
+        (username, password) => dispatch(actions.authLogin(username, password)),
+        () => history.push('/')
     )
 
     const [errorMessage, setErrorMessage] = useState(null)
@@ -41,7 +44,7 @@ const Login = () => {
     
     const onFinish = (values) => {
         onAuth(values.username, values.password)
-        props.history.push('/')
+        // props.history.push('/')
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -97,7 +100,7 @@ const Login = () => {
                             Login
                         </Button>
                         or
-                        <Nav.Link style={{marginLeft: '10px'}} to='/signup'>
+                        <Nav.Link style={{marginLeft: '10px'}} href='/signup'>
                             Sign Up
                         </Nav.Link>
                     </Form.Item>

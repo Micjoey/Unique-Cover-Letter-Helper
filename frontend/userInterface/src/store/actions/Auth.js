@@ -37,16 +37,11 @@ export const checkAuthTimeout = expirationTime => {
     }
 }
 
-export const saveToLocale = (res) => {
-    {
-        
-    }
-}
 
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:3001/rest-auth-/login/', {
+        axios.post('http://127.0.0.1:3000/rest-auth/login/', {
             username: username,
             password: password
         })
@@ -68,13 +63,14 @@ export const authLogin = (username, password) => {
 export const authSignUp = (username, email, passwordOne, passwordTwo) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:3001/rest-auth-/registration/', {
+        axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
             username: username,
             email: email,
             passwordOne: passwordOne,
             passwordTwo: passwordTwo
         })
         .then(res => {
+            console.log(res)
             const token = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
