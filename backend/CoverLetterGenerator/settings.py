@@ -86,11 +86,22 @@ WSGI_APPLICATION = 'CoverLetterGenerator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'TEST_NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'TEST_NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'UniqueCoverLetterGenerator',
+        'USER': 'postgres',
+        'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -162,8 +173,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
 ]
 
-ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-# ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True
