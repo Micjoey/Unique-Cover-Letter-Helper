@@ -1,51 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, {useCallback } from 'react'
 import * as actions from '../store/actions/Auth'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     Form,
     Input,
-    Tooltip,
     Select,
     Button,
 } from 'antd';
 import { Nav } from 'react-bootstrap';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-
-const { Option } = Select;
-
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 8,
-        },
-    },
-    wrapperCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 16,
-        },
-    },
-};
-const tailFormItemLayout = {
-    wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0,
-        },
-        sm: {
-            span: 16,
-            offset: 8,
-        },
-    },
-};
+import { useHistory } from 'react-router-dom';
 
 const RegistrationForm = () => {
-
+    let history = useHistory()
     const props = useSelector(state => (
         {
             ...state,
@@ -56,7 +22,7 @@ const RegistrationForm = () => {
 
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, email, passwordOne, passwordTwo) => dispatch(actions.authSignUp(username, email, passwordOne, passwordTwo))
+        (username, email, password1, password2) => dispatch(actions.authSignUp(username, email, password1, password2))
     )
     const [form] = Form.useForm();
 
@@ -107,6 +73,7 @@ const RegistrationForm = () => {
             <Form.Item
                 name="password"
                 label="Password"
+                
                 rules={[
                     {
                         required: true,

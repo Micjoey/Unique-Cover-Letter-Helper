@@ -41,13 +41,13 @@ const Header = () => {
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
+            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
             {
               props.isAuthenticated ? 
                 <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                 :
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
             }
-            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
             {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
           </NavDropdown>
         </Nav>
