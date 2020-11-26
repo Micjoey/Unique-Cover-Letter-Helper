@@ -6,7 +6,7 @@ import Pagination from '../../components/pagination/Pagination'
 
 
 const JobList = () => {
-    const [data, setData] = useState({})
+    // const [data, setData] = useState({})
     const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
     const [next, setNext] = useState([])

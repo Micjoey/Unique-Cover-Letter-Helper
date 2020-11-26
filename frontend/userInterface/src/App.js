@@ -22,39 +22,19 @@ function App() {
     onTryAutoSignup()
   }, [])
 
-  console.log(props)
+  // console.log(props)
   return (
     <div className="App">
       <header className="App-header">
         <Router>
           <Header {...props}/>
-          <BaseRouter/> 
+          <BaseRouter {...props}/> 
           <FooterPage/>
         </Router>
       </header>
     </div>
   );
 }
-
-// class App extends Component {
-//   componentDidMount() {
-//     this.props.onTryAutoSignup();
-//   }
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <Router>
-//             <Header {...this.props}/>
-//             <BaseRouter/> 
-//             <FooterPage/>
-//           </Router>
-//         </header>
-//       </div>
-//     )
-//   }
-// }
 
 
 export default App;
