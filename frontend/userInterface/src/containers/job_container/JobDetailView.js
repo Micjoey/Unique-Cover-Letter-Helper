@@ -5,6 +5,8 @@ import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import CoverLetterContainer from '../cover_letters/CoverLetterContainer'
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 const JobDetailView = (props) => {
@@ -23,19 +25,33 @@ const JobDetailView = (props) => {
     }, [])
 
     const onSubmit = () => {
-        axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
-            .then(() => window.location.href = 'http://127.0.0.1:3001/api/jobs/')
-            .catch(error => console.log(error))
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure to do this.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
+                            .then(() => window.location.href = 'http://127.0.0.1:3001/api/jobs/')
+                            .catch(error => console.log(error))
+                    }
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        });
+        // axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
+        //     .then(() => window.location.href = 'http://127.0.0.1:3001/api/jobs/')
+        //     .catch(error => console.log(error))
     }
 
     if (loaded.isLoaded) {
         return (
             <div>
-                <div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <button className="btn-warning" type="submit">Delete</button>
-                    </form>
-                    <button id="show-job-update-button" onClick={() => reveal('update-job-container', 'show-job-update-button')}>Show Update Details Form</button>
+                <div className="hide-buttons">
+                    <button id="show-job-update-button" onClick={() => reveal('update-job-container', 'show-job-update-button')}>Show Update Form</button>
                     <button id="show-cover-letter-button" onClick={() => reveal('cover-letter-container', "show-cover-letter-button")}>Show Cover Letter</button>
                     <button id="hide-job-details-button" onClick={() => reveal('job-detail', "hide-job-details-button")}>Hide Job Details</button>
                 </div>
@@ -52,8 +68,12 @@ const JobDetailView = (props) => {
                         </div>
                     </div>
                 </div>
-                
-                
+                <div className="job-container">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <button className="btn-warning" type="submit">Delete</button>
+                    </form>
+
+                </div>
             </div>
         )
     } else {

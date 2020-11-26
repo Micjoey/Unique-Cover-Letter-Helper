@@ -30,3 +30,11 @@
 .job-container {
     display: flex;
 }
+
+.job-detail {
+    text-align: left;
+}
+
+.hide-buttons > button {
+    margin: .5em;
+}
