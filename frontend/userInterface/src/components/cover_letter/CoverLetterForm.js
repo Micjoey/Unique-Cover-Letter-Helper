@@ -36,7 +36,6 @@ export const JobForm = props => {
                 .catch(errors => console.log(errors))
                 
             case 'put':
-                console.log(jobID)
                 axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
                     .then(() => window.location.reload())
                     .catch(errors => console.log(errors))

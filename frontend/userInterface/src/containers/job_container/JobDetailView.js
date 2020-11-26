@@ -35,9 +35,9 @@ const JobDetailView = (props) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <button className="btn-warning" type="submit">Delete</button>
                     </form>
-                    <button id="show-job-update-button" onClick={() => reveal('update-job-container')}>Show Update Details Form</button>
-                    <button id="show-cover-letter-button" onClick={() => reveal('cover-letter-container')}>Show Cover Letter</button>
-                    <button id="hide-job-details-button" onClick={() => reveal('job-detail')}>Hide Job Details</button>
+                    <button id="show-job-update-button" onClick={() => reveal('update-job-container', 'show-job-update-button')}>Show Update Details Form</button>
+                    <button id="show-cover-letter-button" onClick={() => reveal('cover-letter-container', "show-cover-letter-button")}>Show Cover Letter</button>
+                    <button id="hide-job-details-button" onClick={() => reveal('job-detail', "hide-job-details-button")}>Hide Job Details</button>
                 </div>
                 <div className="job-container">
                     <div>
@@ -69,11 +69,19 @@ const JobDetailView = (props) => {
 export default JobDetailView
 
 
-const reveal = (buttonType) => {
-    let currentButton = document.getElementsByClassName(buttonType)[0]
-    if (buttonType !== "job-detail") {
-        currentButton.style.display === '' ? currentButton.style.display = 'block' : currentButton.style.display = ''
+const reveal = (divToHide, button) => {
+    const div = document.getElementsByClassName(divToHide)[0]
+    if (divToHide !== "job-detail") {
+        div.style.display === '' ? div.style.display = 'block' : div.style.display = ''
+
     } else {
-        currentButton.style.display === 'none' ? currentButton.style.display = 'block' : currentButton.style.display = 'none'
+        div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
+    }
+
+    let buttonTxt = document.getElementById(button)
+    if (buttonTxt.innerText.includes("Hide")) {
+        buttonTxt.innerText = buttonTxt.innerText.replace("Hide", "Show")
+    } else {
+        buttonTxt.innerText = buttonTxt.innerText.replace("Show", "Hide")
     }
 }
