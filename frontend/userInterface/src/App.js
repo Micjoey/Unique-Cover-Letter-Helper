@@ -15,7 +15,7 @@ function App() {
   
   const onTryAutoSignup = useCallback(
     () => dispatch(actions.authCheckState()),
-    [dispatch]
+    // [dispatch]
   )
   
 
@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Router>
-          <Header/>
+          <Header {...props}/>
           <BaseRouter/> 
           {/* <BaseRouter {...props}/>  */}
           <FooterPage/>

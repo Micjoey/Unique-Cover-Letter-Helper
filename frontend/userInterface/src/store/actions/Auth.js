@@ -60,14 +60,14 @@ export const authLogin = (username, password) => {
 }
 
 
-export const authSignUp = (username, email, passwordOne, passwordTwo) => {
+export const authSignUp = (username, email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
             username: username,
             email: email,
-            passwordOne: passwordOne,
-            passwordTwo: passwordTwo
+            password1: password1,
+            password2: password2
         })
         .then(res => {
             console.log(res)

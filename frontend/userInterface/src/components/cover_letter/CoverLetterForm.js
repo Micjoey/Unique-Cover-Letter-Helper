@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 
 import axios from 'axios';
 
-export const JobForm = props => {
+
+export const JobForm = (props) => {
+    console.log(props)
     let job = null
     const requestType = props.requestType
     let jobID = null
@@ -21,7 +23,7 @@ export const JobForm = props => {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
             choice_of_user: 6,
-            job_stage:jobStage,
+            job_stage: jobStage,
             template_choices: templateChoices,
         }
     })
@@ -31,14 +33,16 @@ export const JobForm = props => {
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
-                // .then(res => window.location.href = `http://127.0.0.1:3001/jobs/${res.data.id}`)
-                .then(res => window.location.href = `job-${res.data.id}`)
+                .then(res => window.location.href = `http://127.0.0.1:3001/jobs/${res.data.id}`)
                 .catch(errors => console.log(errors))
-                
+                break
             case 'put':
                 axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
                     .then(() => window.location.reload())
                     .catch(errors => console.log(errors))
+                break
+            default:
+                break
         }
 
     };
@@ -64,12 +68,11 @@ export const JobForm = props => {
             <div className="update-job-form">
                 <h1 className="form-title">Update Job Info</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                   
                     <label style={{ display: 'flex' }}>
                         <p>Template Choices: </p>
                         <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                             {Object.keys(template_choices).map((key, idx)=> (
-                                <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
+                                <option value={key} key={idx } name={template_choices[key]}> {template_choices[key]} </option>
                             ))}
                         </select>
                     </label>

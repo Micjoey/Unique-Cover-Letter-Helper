@@ -22,12 +22,13 @@ const RegistrationForm = () => {
 
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, email, password1, password2) => dispatch(actions.authSignUp(username, email, password1, password2))
+        (username, email, passwordOne, passwordTwo) => dispatch(actions.authSignUp(username, email, passwordOne, passwordTwo))
     )
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
         onAuth(values.username, values.email, values.password, values.confirm)
+        history.push('/')
     };
 
 
@@ -44,6 +45,7 @@ const RegistrationForm = () => {
             <Form.Item
                 label="Username"
                 name="username"
+                autoComplete="username"
                 rules={[
                     {
                         required: true,
@@ -73,7 +75,7 @@ const RegistrationForm = () => {
             <Form.Item
                 name="password"
                 label="Password"
-                
+                autoComplete="new-password"
                 rules={[
                     {
                         required: true,
@@ -88,6 +90,7 @@ const RegistrationForm = () => {
             <Form.Item
                 name="confirm"
                 label="Confirm Password"
+                autoComplete="new-password"
                 dependencies={['password']}
                 hasFeedback
                 rules={[
