@@ -12,6 +12,7 @@ import { Component, useCallback, useEffect } from 'react';
 function App() {
   const props = useSelector(state => ({ ...state, isAuthenticated: state.token !== null}))
   const dispatch = useDispatch()
+  
   const onTryAutoSignup = useCallback(
     () => dispatch(actions.authCheckState()),
     [dispatch]
