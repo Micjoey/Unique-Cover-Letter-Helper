@@ -26,7 +26,7 @@ const JobDetailView = (props) => {
 
     const onSubmit = () => {
         confirmAlert({
-            title: 'Confirm to submit',
+            title: `Confirm Delete of ${job.position_title}`,
             message: 'Are you sure to do this.',
             buttons: [
                 {
