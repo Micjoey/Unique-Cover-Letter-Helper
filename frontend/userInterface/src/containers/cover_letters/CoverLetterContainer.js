@@ -6,7 +6,6 @@ import { determineCoverLetter } from './determineCoverLetterFormat'
 
 const CoverLetterContainer = ({job}) => {
     const user = null // this will be the state eventually
-    console.log(job)
     const [currentCoverLetter, setCurrentCoverLetter] = useState(job.template_choices)
     const { register, errors, handleSubmit } = useForm({
         defaultValues: {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import JobDetail from '../../components/job_componenets/JobDetail'
-
+import JobDetail from '../../components/jobInfo/JobDetail'
 import axios from 'axios'
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
@@ -36,20 +35,24 @@ const JobDetailView = (props) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <button className="btn-warning" type="submit">Delete</button>
                     </form>
+                    <button id="show-job-update-button" onClick={() => reveal('update-job-container')}>Show Update Details Form</button>
+                    <button id="show-cover-letter-button" onClick={() => reveal('cover-letter-container')}>Show Cover Letter</button>
+                    <button id="hide-job-details-button" onClick={() => reveal('job-detail')}>Hide Job Details</button>
                 </div>
-                <div>
-                    <div>
-                        <CoverLetterContainer job={job}/>
-                    </div>
+                <div className="job-container">
                     <div>
                         <JobDetail jobDetail={job} />
                     </div>
+                    <div>
+                        <div className="update-job-container">
+                            <JobForm requestType="put" job={job} buttonTxt="Update" />
+                        </div>
+                        <div className="cover-letter-container">
+                            <CoverLetterContainer job={job}/>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <br></br>
-                    <h2>Update Job:</h2>
-                    <JobForm requestType="put" job={job} buttonTxt="Update"/>
-                </div>
+                
                 
             </div>
         )
@@ -64,3 +67,13 @@ const JobDetailView = (props) => {
 }
 
 export default JobDetailView
+
+
+const reveal = (buttonType) => {
+    let currentButton = document.getElementsByClassName(buttonType)[0]
+    if (buttonType !== "job-detail") {
+        currentButton.style.display === '' ? currentButton.style.display = 'block' : currentButton.style.display = ''
+    } else {
+        currentButton.style.display === 'none' ? currentButton.style.display = 'block' : currentButton.style.display = 'none'
+    }
+}

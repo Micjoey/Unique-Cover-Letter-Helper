@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import Jobs from '../../components/job_componenets/AllJobs'
+import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
 
 
