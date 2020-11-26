@@ -32,8 +32,7 @@ const Login = () => {
     
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, password) => dispatch(actions.authLogin(username, password)),
-        () => history.push('/')
+        (username, password) => dispatch(actions.authLogin(username, password))
     )
 
     const [errorMessage, setErrorMessage] = useState(null)
@@ -44,7 +43,7 @@ const Login = () => {
     
     const onFinish = (values) => {
         onAuth(values.username, values.password)
-        // props.history.push('/')
+        history.push('/')
     };
 
     const onFinishFailed = (errorInfo) => {
