@@ -22,7 +22,6 @@ function App() {
     onTryAutoSignup()
   }, [])
 
-  // console.log(props)
   return (
     <div className="App">
       <header className="App-header">

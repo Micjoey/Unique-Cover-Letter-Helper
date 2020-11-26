@@ -8,7 +8,8 @@ import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import CoverLetterContainer from '../cover_letters/CoverLetterContainer'
 
 
-const JobDetailView = () => {
+const JobDetailView = (props) => {
+    
     const [job, setjob] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const { handleSubmit } = useForm()
