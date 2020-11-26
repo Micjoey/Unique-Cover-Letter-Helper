@@ -6,3 +6,14 @@
 .update-job-form {
     text-align: left;
 }
+
+.form-button {
+    position: sticky;
+    bottom:10px;
+    display: block;
+    margin: .5em auto;
+}
+
+.form-title {
+    text-align: center;
+}

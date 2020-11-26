@@ -49,8 +49,8 @@ export default function Pagination(props) {
             </div>
             <div className="Pagination-stats">
                 Page {pageIndex} of {lastPage}
-        &nbsp;(displaying {perPage} items per page)
-      </div>
+                &nbsp;(displaying {perPage} items per page)
+            </div>
         </div>
     );
 }
