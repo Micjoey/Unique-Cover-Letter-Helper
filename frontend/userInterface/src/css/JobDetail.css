@@ -1,0 +1,32 @@
+.job-detail {
+    margin: 1em;
+}
+
+.job-detail-container{
+    display: flex;
+}
+
+.job-info-field {
+    width: fit-content;
+    margin-right: .5em;
+}
+
+.job-info-data {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+    max-height: 10em;
+    text-align: left;
+    max-width: 40%;
+}
+
+.job-detail-mapping-container {
+    /* display: flex; */
+}
+
+.update-job-container, .cover-letter-container {
+    display: none;
+}
+
+.job-container {
+    display: flex;
+}

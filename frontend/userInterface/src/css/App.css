@@ -1,3 +1,8 @@
+
+@import 'JobDetail.css';
+@import 'JobForm.css'
+
+
 .App {
   text-align: center;
 }
@@ -40,3 +45,4 @@
 font {
   color: black;
 }
+
