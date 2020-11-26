@@ -1,46 +1,114 @@
-// import React from "react";
-// import { propTypes } from "react-bootstrap/esm/Image";
-// import { useForm } from "react-hook-form";
-// import * as actions from '../store/actions/Auth'
+import { Form, Input, Button, Checkbox, Spin, Space, Alert } from 'antd';
+import {Nav} from 'react-bootstrap';
+import React, { useEffect, useState, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../store/actions/Auth'
 
-// export default function Login({ login }) {
-//     const { register, handleSubmit, errors, reset } = useForm();
-//     const onSubmit = async data => {
-//         await actions.authLogin(data.email, data.password);
-//         reset();
-//     };
 
-//     return (
-//         <form onSubmit={handleSubmit(onSubmit)}>
-//             <label htmlFor="email">email</label>
-//             <input
-//                 id="email"
-//                 name="email"
-//                 ref={register({
-//                     required: "required",
-//                     pattern: {
-//                         value: /S+@S+.S+/,
-//                         message: "Entered value does not match email format"
-//                     }
-//                 })}
-//                 type="email"
-//             />
-//             {errors.email && <span role="alert">{errors.email.message}</span>}
-//             <label htmlFor="password">password</label>
-//             <input
-//                 id="password"
-//                 name="password"
-//                 ref={register({
-//                     required: "required",
-//                     minLength: {
-//                         value: 5,
-//                         message: "min length is 5"
-//                     }
-//                 })}
-//                 type="password"
-//             />
-//             {errors.password && <span role="alert">{errors.password.message}</span>}
-//             <button type="submit">SUBMIT</button>
-//         </form>
-//     );
-// }
+const layout = {
+    labelCol: {
+        span: 8,
+    },
+    wrapperCol: {
+        span: 16,
+    },
+};
+const tailLayout = {
+    wrapperCol: {
+        offset: 8,
+        span: 16,
+    },
+};
+
+const Login = () => {
+    const props = useSelector(state => (
+        { ...state, 
+            isAuthenticated: state.token !== null,
+            loading: state.loading,
+            error: state.error
+        }))
+    
+    const dispatch = useDispatch()
+    const onAuth = useCallback(
+        (username, password) => dispatch(actions.authLogin(username, password))
+    )
+
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    useEffect(() => {
+        setErrorMessage(props.error)
+    }, [])
+    
+    const onFinish = (values) => {
+        onAuth(values.username, values.password)
+        props.history.push('/')
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+    return (
+        <div>
+            {errorMessage}
+            {
+                !props.loading ? 
+                <Form
+                    {...layout}
+                    name="basic"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                >
+                    <Form.Item
+                        label="Username"
+                        name="username"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your username!',
+                            },
+                        ]}
+                    >
+                    <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Login
+                        </Button>
+                        or
+                        <Nav.Link style={{marginLeft: '10px'}} to='/signup'>
+                            Sign Up
+                        </Nav.Link>
+                    </Form.Item>
+                </Form>
+                :
+                <Spin tip="Loading...">
+                </Spin>
+            }
+        </div>
+    );
+};
+
+
+export default Login
