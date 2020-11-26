@@ -62,10 +62,9 @@ export const JobForm = props => {
     if (job) {
         return (
             <div className="update-job-form">
-                <h1>Update Job Info</h1>
-                <h1></h1>
+                <h1 className="form-title">Update Job Info</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
+                   
                     <label style={{ display: 'flex' }}>
                         <p>Template Choices: </p>
                         <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
@@ -339,15 +338,15 @@ export const JobForm = props => {
                         />
                         {errors.post_bullet_point_paragraph_two && "Your input is required"}
                     </div>
+                     <input style={{ color: 'Black' }} type="submit" value={buttonTxt} className="form-button"/>
                 </form>
             </div>
         );
     } else {
         return (
             <div className="create-job-form">
-                <h1>Create Cover Letter</h1>
+                <h1 className="form-title">Create Cover Letter</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input style={{ color: 'Black' }} type="submit" value={buttonTxt} />
                     <label style={{ display: 'flex' }}>
                         <p style={{width: '12em'}}>Template Choices: </p>
                         <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
@@ -596,6 +595,7 @@ export const JobForm = props => {
                         />
                         {errors.post_bullet_point_paragraph_two && "Your input is required"}
                     </div>
+                    <input style={{ color: 'Black' }} type="submit" value={buttonTxt} className="form-button" />
                 </form>
 
             </div>

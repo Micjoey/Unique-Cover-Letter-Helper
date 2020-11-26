@@ -38,3 +38,7 @@
 .hide-buttons > button {
     margin: .5em;
 }
+
+.Pagination-stats, .Pagination-actions > button {
+    margin: .5em;
+}
