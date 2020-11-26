@@ -16,11 +16,13 @@ const store = createStore(reducer, composeEnhances(
 ))
 
 const app = (
-  <React.StrictMode>
+  // <React.StrictMode>
+  <>
     <Provider store={store}>
       <App/>
     </Provider>
-  </React.StrictMode>
+  </>
+  // </React.StrictMode>
 )
 
 ReactDOM.render(app,
