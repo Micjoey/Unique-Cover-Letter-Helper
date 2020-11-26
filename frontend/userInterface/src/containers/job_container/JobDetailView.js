@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
+import CoverLetterContainer from '../cover_letters/CoverLetterContainer'
 
 
 const JobDetailView = () => {
@@ -36,7 +37,12 @@ const JobDetailView = () => {
                     </form>
                 </div>
                 <div>
-                    <JobDetail jobDetail={job} />
+                    <div>
+                        <CoverLetterContainer job={job}/>
+                    </div>
+                    <div>
+                        <JobDetail jobDetail={job} />
+                    </div>
                 </div>
                 <div>
                     <br></br>

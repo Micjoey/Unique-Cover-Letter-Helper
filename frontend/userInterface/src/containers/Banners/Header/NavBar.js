@@ -16,8 +16,8 @@ const Header = (props) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/Jobs/">Home</Nav.Link>
-          <Nav.Link href="/job/form/">Cover Letter Form</Nav.Link>
+          <Nav.Link href="/jobs/">Home</Nav.Link>
+          <Nav.Link to="/job/form/">Cover Letter Form</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
