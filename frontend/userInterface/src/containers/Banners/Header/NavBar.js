@@ -5,10 +5,11 @@ import {
   Form, 
   FormControl, 
   Button } from 'react-bootstrap';
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../store/actions/Auth'
 import { useHistory } from 'react-router-dom';
+import ErrorBoundary from '../../../store/ErrorBoundary';
 
 
 const Header = () => {
@@ -23,10 +24,17 @@ const Header = () => {
 
   const dispatch = useDispatch()
 
-  const logout = useCallback(
-    () => dispatch(actions.logout()),
-    () => history.push('/'),
-  )
+
+  const logout = () => {
+    try {
+      dispatch(actions.logout())
+      history.push('/')
+    }catch (e) {
+      alert('unable to logout')
+    }
+  }
+
+
 
   return  (
     <Navbar bg="light" expand="lg" sticky="bottom">
@@ -42,12 +50,14 @@ const Header = () => {
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
+            <ErrorBoundary>
             {
               props.isAuthenticated ? 
                 <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                 :
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
             }
+            </ErrorBoundary>
             {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
           </NavDropdown>
         </Nav>

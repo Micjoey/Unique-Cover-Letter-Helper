@@ -9,8 +9,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
-const JobDetailView = (props) => {
-    
+const JobDetailView = () => {
     const [job, setjob] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const { handleSubmit } = useForm()
@@ -22,12 +21,15 @@ const JobDetailView = (props) => {
             }).then(() => {
                 setLoaded({ isLoaded: true })
             })
+            .catch(() => {
+                setLoaded({isLoaded: false})
+            })
     }, [])
 
     const onSubmit = () => {
         confirmAlert({
-            title: `Confirm Delete of ${job.position_title}`,
-            message: 'Are you sure to do this.',
+            title: `Confirm Delete of ${job.position_title}?`,
+            message: 'Are you sure to do this?',
             buttons: [
                 {
                     label: 'Yes',
