@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from "../../store/actions/Auth"
 import { useHistory } from 'react-router-dom';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
+import NotLoggedInPage from '../../components/NotLoggedInPage';
 
 
 const CoverLetterView = () => {
@@ -26,7 +27,7 @@ const CoverLetterView = () => {
                 props.isAuthenticated ? 
                 <JobForm requestType="post" jobID={paramsJobId} buttonTxt="Create Cover Letter"/>
                 :
-                <h1>No user is signed in. Please <a href="/signup"> Sign Up</a> or <a href="/login"> Login</a>.</h1>
+                <NotLoggedInPage/>
             }
         </div>
     )
