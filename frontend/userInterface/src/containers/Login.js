@@ -3,7 +3,7 @@ import {Nav} from 'react-bootstrap';
 import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../store/actions/Auth'
-import { useHistory } from 'react-router-dom';
+import { useHistory }  from 'react-router-dom';
 
 
 const layout = {
@@ -22,7 +22,7 @@ const tailLayout = {
 };
 
 const Login = () => {
-    let history = useHistory()
+    const history = useHistory()
     const props = useSelector(state => (
         { ...state, 
             isAuthenticated: state.token !== null,
@@ -42,12 +42,16 @@ const Login = () => {
     }, [])
     
     const onFinish = (values) => {
-        onAuth(values.username, values.password)
-        history.push('/')
+        try {
+            onAuth(values.username, values.password)
+            history.push('/')
+        } catch(e) {
+            alert(e.message)
+        }
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        console.log('Failed:', errorInfo, "hit finish failed");
     };
 
     return (
@@ -67,6 +71,7 @@ const Login = () => {
                     <Form.Item
                         label="Username"
                         name="username"
+                        autoComplete="username"
                         rules={[
                             {
                                 required: true,
@@ -80,6 +85,7 @@ const Login = () => {
                     <Form.Item
                         label="Password"
                         name="password"
+                        autoComplete="current-password"
                         rules={[
                             {
                                 required: true,
