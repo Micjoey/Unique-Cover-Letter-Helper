@@ -1,5 +1,7 @@
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
 from coverLetters.models import Job, UserDetail
+from rest_framework.permissions import IsAuthenticated
 from .serializers import JobSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import BaseFilterBackend, SearchFilter
@@ -20,5 +22,10 @@ class JobViewSet(viewsets.ModelViewSet):
     pagination_class = JobPagination
     filter_backends = (JobFilterBackend, SearchFilter)
     search_fields = {'position_title', 'company'}
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication)
+
+
+            
 
 
