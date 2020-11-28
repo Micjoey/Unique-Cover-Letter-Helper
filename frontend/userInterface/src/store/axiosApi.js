@@ -25,8 +25,8 @@ axiosInstance.interceptors.response.use(
                     localStorage.setItem('access_token', response.data.access);
                     localStorage.setItem('refresh_token', response.data.refresh);
 
-                    axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
-                    originalRequest.headers['Authorization'] = "JWT " + response.data.access;
+                    axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+                    originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
 
                     return axiosInstance(originalRequest);
                 })
