@@ -25,7 +25,7 @@ const Login = () => {
     const history = useHistory()
     const props = useSelector(state => (
         { ...state, 
-            isAuthenticated: state.token !== null,
+            isAuthenticated: localStorage.getItem('access_token') !== null,
             loading: state.loading,
             error: state.error
         }))
@@ -45,6 +45,7 @@ const Login = () => {
         try {
             onAuth(values.username, values.password)
             history.push('/')
+            history.go(0)
         } catch(e) {
             alert(e.message)
         }

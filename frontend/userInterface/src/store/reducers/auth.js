@@ -30,8 +30,6 @@ const authFail = (state, action) => {
 }
 
 const authLogout = (state, action) => {
-    localStorage.removeItem('refresh_token')
-    localStorage.removeItem('access_token')
     return updateObject(state, {
         token: null,
     })

@@ -12,7 +12,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 const JobDetailView = () => {
     const [job, setjob] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
-    const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
+    const [accessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
     useEffect(() => {

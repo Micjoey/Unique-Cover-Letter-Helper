@@ -11,8 +11,8 @@ const CoverLetterView = () => {
     let history = useHistory()
     const props = useSelector(state => (
         {
-            ...state,
-            isAuthenticated: localStorage.getItem('access_token') !== null,
+            ...state, 
+            isAuthenticated: state.token !== null,
             loading: state.loading,
             error: state.error
         }))
