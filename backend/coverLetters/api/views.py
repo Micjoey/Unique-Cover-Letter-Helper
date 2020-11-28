@@ -29,12 +29,14 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     pagination_class = JobPagination
     filter_backends = (JobFilterBackend, SearchFilter)
-    search_fields = {'position_title', 'company'}
+    search_fields = {'position_title', 'company', 'belongs_to_user'}
     permission_classes = [IsAuthenticated]
     # authentication_classes = (JWTAuthentication,)
 
-    # def get_queryset(self):
-    #     return self.request.user.jobs.all()
+    def get_queryset(self):
+        userId = self.request.user.id
+        allJobs = Job.objects.all()
+        return allJobs.filter(belongs_to_user=userId)
 
 
 
