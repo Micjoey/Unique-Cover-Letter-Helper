@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
+import NotLoggedInPage from '../../components/NotLoggedInPage';
 
 
 
@@ -12,8 +13,8 @@ const JobList = () => {
     let history = useHistory()
     const props = useSelector(state => (
         {
-            ...state,
-            isAuthenticated: localStorage.getItem('access_token') !== null,
+            ...state, 
+            isAuthenticated: state.token !== null,
             loading: state.loading,
             error: state.error,
             token: state.token,
@@ -52,34 +53,39 @@ const JobList = () => {
         })
     }, [accessToken])
     
-
-    if (loaded.isLoaded) {
-        return (
-            <div>
-                <h1>All Jobs:</h1>
+    if (props.isAuthenticated) {
+        if (loaded.isLoaded) {
+            return (
                 <div>
-                    <Jobs jobs={allJobs} jobProps={jobProps}/>
+                    <h1>All Jobs:</h1>
+                    <div>
+                        <Jobs jobs={allJobs} jobProps={jobProps}/>
+                    </div>
+                    <footer>
+                        <Pagination 
+                            pageIndex={pageIndex} 
+                            total={count} 
+                            perPage={20} 
+                            onNext={next}
+                            onPrevious={onPrevious}
+                            setAllJobs={setAllJobs}
+                            setNext = {setNext}
+                            setOnPrevious={setOnPrevious}
+                            setPageIndex={setPageIndex}
+                        />
+                    </footer>
                 </div>
-                <footer>
-                    <Pagination 
-                        pageIndex={pageIndex} 
-                        total={count} 
-                        perPage={20} 
-                        onNext={next}
-                        onPrevious={onPrevious}
-                        setAllJobs={setAllJobs}
-                        setNext = {setNext}
-                        setOnPrevious={setOnPrevious}
-                        setPageIndex={setPageIndex}
-                    />
-                </footer>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <h1>Loading</h1>
+                </div>
+            )
+        }
     } else {
-        return (
-            <div>
-                <h1>Loading</h1>
-            </div>
+        return(
+            <NotLoggedInPage/>
         )
     }
 

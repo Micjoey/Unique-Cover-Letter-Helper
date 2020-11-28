@@ -24,8 +24,11 @@ export const authFail = error => {
 }
 
 export const logout = () => {
+    console.log(localStorage)
     localStorage.removeItem('user')
     localStorage.removeItem('expirationDate')
+    localStorage.removeItem('refresh_token')
+    localStorage.removeItem('access_token')
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -43,33 +46,20 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
-        // try {
-        //     axiosInstance.post('api/token/', {
-        //         username: username,
-        //         password: password
-        //     }).then(response => {
-        //         console.log(response)
-        //         axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
-        //         localStorage.setItem('access_token', response.data.access);
-        //         localStorage.setItem('refresh_token', response.data.refresh);
-        //     })
-        //     // return data;
-        // } catch (error) {
-        //     throw error;
-        // }
         axios.post('http://localhost:3000/api/token/', {
             username: username,
             password: password
         }).then(response => {
             axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
             const token = response.data.key;
+            console.log()
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(3600))
+            dispatch(checkAuthTimeout(5000))
         }).catch(err => {
             // dispatch(authFail(err.response.data.non_field_errors[0]))
             throw err;
