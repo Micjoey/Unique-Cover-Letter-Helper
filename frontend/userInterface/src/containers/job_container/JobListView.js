@@ -1,12 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
 
 
+
 const JobList = () => {
-    // const [data, setData] = useState({})
+    let history = useHistory()
+    const props = useSelector(state => (
+        {
+            ...state,
+            isAuthenticated: state.token !== null,
+            loading: state.loading,
+            error: state.error
+        }))
+
     const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
     const [next, setNext] = useState([])
@@ -14,9 +25,8 @@ const JobList = () => {
     const [loaded, setLoaded] = useState({isLoaded: false})
     const [pageIndex, setPageIndex] = useState(1)
     const [count, setCount] = useState(0)
-
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3000/api/jobs/`)
+        axios.get(`http://127.0.0.1:3000/api/jobs/`, )
         .then( res => {
             setAllJobs(res.data.results)
             setJobProps(res.data)

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 
 export const JobForm = (props) => {
-    console.log(props)
     let job = null
     const requestType = props.requestType
     let jobID = null

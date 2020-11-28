@@ -53,7 +53,7 @@ export const authLogin = (username, password) => {
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600))
         }).catch(err => {
-            dispatch(authFail(err))
+            dispatch(authFail(err.response.data.non_field_errors[0]))
         })
     }
 }
