@@ -26,6 +26,7 @@ const formattedData = {
     'post_bullet_point_paragraph_two': 'Post Paragraph Two',
     'modified_date': 'Modified Date',
     'created_date': 'Created Date',
+    'belongs_to_user': 'Belongs To User ID',
 }
 
 export default formattedData

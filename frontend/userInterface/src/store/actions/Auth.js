@@ -1,5 +1,7 @@
 import axios from 'axios'
+import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
+
 
 export const authStart = () => {
     return {
@@ -41,20 +43,54 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:3000/rest-auth/login/', {
+        // try {
+        //     axiosInstance.post('api/token/', {
+        //         username: username,
+        //         password: password
+        //     }).then(response => {
+        //         console.log(response)
+        //         axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
+        //         localStorage.setItem('access_token', response.data.access);
+        //         localStorage.setItem('refresh_token', response.data.refresh);
+        //     })
+        //     // return data;
+        // } catch (error) {
+        //     throw error;
+        // }
+        axios.post('http://localhost:3000/api/token/', {
             username: username,
             password: password
-        })
-        .then(res => {
-            const token = res.data.key;
+        }).then(response => {
+            axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+            const token = response.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600))
         }).catch(err => {
-            dispatch(authFail(err.response.data.non_field_errors[0]))
+            // dispatch(authFail(err.response.data.non_field_errors[0]))
+            throw err;
         })
+        // axios.post('http://127.0.0.1:3000/rest-auth/login/', {
+        //     username: username,
+        //     password: password
+        // })
+        // .then(res => {
+        //     const token = res.data.key;
+        //     const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+        //     axiosInstance.defaults.headers['Authorization'] = "Bearer " + res.data.access;
+        //     localStorage.setItem('token', token);
+        //     localStorage.setItem('expirationDate', expirationDate);
+        //     localStorage.setItem('access_token', res.data.access);
+        //     localStorage.setItem('refresh_token', res.data.refresh);
+        //     dispatch(authSuccess(token));
+        //     dispatch(checkAuthTimeout(3600))
+        // }).catch(err => {
+        //     dispatch(authFail(err.response.data.non_field_errors[0]))
+        // })
     }
 }
 

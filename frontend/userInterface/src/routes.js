@@ -6,6 +6,8 @@ import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
+import ChangeEmail from './containers/Account/ChangeEmail'
+
 
 const BaseRouter = (props) => (
     <div>
@@ -15,6 +17,7 @@ const BaseRouter = (props) => (
             <Route exact path='/login' component={Login}/>
             <Route exact path='/signup' component={Signup}/>
             <Route exact path='/' component={JobListView}/>
+            <Route exact path='/admin/change-email/' component={ChangeEmail}/>
             <Route path='' component={JobListView}/>
         </Switch>
     </div>

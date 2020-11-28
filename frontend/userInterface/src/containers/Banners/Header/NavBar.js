@@ -24,18 +24,16 @@ const Header = () => {
 
   const dispatch = useDispatch()
 
-
   const logout = () => {
     try {
       dispatch(actions.logout())
-      history.push('/')
+      history.push('/login')
     }catch (e) {
       alert('unable to logout')
     }
   }
 
 
-  // console.log(props)
   return  (
     <Navbar bg="light" expand="lg" sticky="bottom">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
