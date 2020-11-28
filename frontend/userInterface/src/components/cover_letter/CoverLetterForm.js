@@ -31,6 +31,7 @@ export const JobForm = (props) => {
     })
 
     const onSubmit = (data) => {
+        console.log(data, accessToken)
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
@@ -351,7 +352,7 @@ export const JobForm = (props) => {
                         <input
                             type="hidden"
                             style={{ color: 'black' }}
-                            placeholder={"User"}
+                            placeholder={userId}
                             name={"belongs_to_user"}
                             defaultValue={userId}
                             ref={register({ required: true })}
@@ -423,7 +424,7 @@ export const JobForm = (props) => {
                         <input
                             type="hidden"
                             style={{ color: 'black' }}
-                            placeholder={"User"}
+                            placeholder={userId}
                             name={"belongs_to_user"}
                             defaultValue={userId}
                             ref={register({ required: true })}
