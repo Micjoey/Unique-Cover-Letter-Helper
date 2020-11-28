@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:3000/',
+    baseURL: 'http://127.0.0.1:3000/api',
     timeout: 5000,
     headers: {
         'Authorization': "Bearer " + localStorage.getItem('access_token'),
@@ -19,12 +19,12 @@ axiosInstance.interceptors.response.use(
             const refresh_token = localStorage.getItem('refresh_token');
 
             return axiosInstance
-                .post('api/token/refresh/', { refresh: refresh_token })
-                .then((response) => {
-
+                .post('/token/refresh/', { refresh: refresh_token })
+                .then(response => {
+                    console.log(response, "logged from axiosApi")
                     localStorage.setItem('access_token', response.data.access);
                     localStorage.setItem('refresh_token', response.data.refresh);
-
+                    console.log("refreshed")
                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
                     originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
 

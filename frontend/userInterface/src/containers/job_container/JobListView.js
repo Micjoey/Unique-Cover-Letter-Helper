@@ -13,7 +13,7 @@ const JobList = () => {
     const props = useSelector(state => (
         {
             ...state,
-            isAuthenticated: state.token !== null,
+            isAuthenticated: localStorage.getItem('access_token') !== null,
             loading: state.loading,
             error: state.error,
             token: state.token,
@@ -28,6 +28,7 @@ const JobList = () => {
     const [count, setCount] = useState(0)
 
 
+    
     useEffect(() => {
 
         axios.defaults.headers = {

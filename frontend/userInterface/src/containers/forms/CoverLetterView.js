@@ -17,7 +17,7 @@ const CoverLetterView = () => {
             error: state.error
         }))
     
-        console.log(props)
+
 
     const dispatch = useDispatch()
 
