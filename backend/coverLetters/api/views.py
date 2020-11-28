@@ -1,3 +1,6 @@
+from .serializers import MyTokenObtainPairSerializer
+from rest_framework import permissions
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from coverLetters.models import Job, UserDetail
@@ -28,13 +31,16 @@ class JobViewSet(viewsets.ModelViewSet):
     filter_backends = (JobFilterBackend, SearchFilter)
     search_fields = {'position_title', 'company'}
     permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (JWTAuthentication,)
 
     # def get_queryset(self):
     #     return self.request.user.jobs.all()
-    
-    
 
+
+
+class ObtainTokenPairWithColorView(TokenObtainPairView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = MyTokenObtainPairSerializer
 
             
 

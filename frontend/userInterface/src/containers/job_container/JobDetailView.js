@@ -12,9 +12,15 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 const JobDetailView = () => {
     const [job, setjob] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
+    const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
     useEffect(() => {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            // Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            Authorization: `Bearer ${accessToken}`
+        }
         axios.get(`http://127.0.0.1:3000/api/jobs/${paramsJobId}`)
             .then(res => {
                 setjob(res.data)

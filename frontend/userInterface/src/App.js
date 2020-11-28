@@ -13,15 +13,15 @@ function App() {
   const props = useSelector(state => ({ ...state, isAuthenticated: state.token !== null}))
   const dispatch = useDispatch()
   
-  const onTryAutoSignup = useCallback(
-    () => dispatch(actions.authCheckState()),
-    // [dispatch]
-  )
+  // const onTryAutoSignup = useCallback(
+  //   () => dispatch(actions.authCheckState()),
+  //   // [dispatch]
+  // )
   
 
-  useEffect(() => {
-    onTryAutoSignup()
-  }, [])
+  // useEffect(() => {
+  //   onTryAutoSignup()
+  // }, [])
 
   return (
     <div className="App">
