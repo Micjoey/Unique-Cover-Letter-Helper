@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
 
 export const JobForm = (props) => {
+    const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
     let job = null
     const requestType = props.requestType
+    const userId = jwt_decode(accessToken).user_id
+    console.log(userId)
     let jobID = null
     let jobStage = "Initial"
     let templateChoices = "non-technical-cover-letter"
@@ -27,13 +30,16 @@ export const JobForm = (props) => {
         }
     })
 
-    
     const onSubmit = (data) => {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${accessToken}`
+        }
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
-                .then(res => window.location.href = `http://127.0.0.1:3001/jobs/${res.data.id}`)
-                .catch(errors => console.log(errors))
+                    .then(res => window.location.href = `http://127.0.0.1:3001/jobs/${res.data.id}`)
+                    .catch(errors => console.log(errors))
                 break
             case 'put':
                 axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
@@ -340,6 +346,19 @@ export const JobForm = (props) => {
                         />
                         {errors.post_bullet_point_paragraph_two && "Your input is required"}
                     </div>
+                    <div style={{ display: 'flex', margin: '1em 0' }}>
+                        {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                        <input
+                            type="hidden"
+                            style={{ color: 'black' }}
+                            placeholder={"User"}
+                            name={"belongs_to_user"}
+                            defaultValue={userId}
+                            ref={register({ required: true })}
+                            style={{ display: 'flex', margin: '0em 1em' }}
+                        />
+                        {/* {errors.choice_of_user && "Your input is required"} */}
+                    </div>
                      <input style={{ color: 'Black' }} type="submit" value={buttonTxt} className="form-button"/>
                 </form>
             </div>
@@ -394,6 +413,19 @@ export const JobForm = (props) => {
                             style={{ color: 'black' }}
                             placeholder={"Choice of User"}
                             name={"choice_of_user"}
+                            ref={register({ required: true })}
+                            style={{ display: 'flex', margin: '0em 1em' }}
+                        />
+                        {/* {errors.choice_of_user && "Your input is required"} */}
+                    </div>
+                    <div style={{ display: 'flex', margin: '1em 0' }}>
+                        {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                        <input
+                            type="hidden"
+                            style={{ color: 'black' }}
+                            placeholder={"User"}
+                            name={"belongs_to_user"}
+                            defaultValue={userId}
                             ref={register({ required: true })}
                             style={{ display: 'flex', margin: '0em 1em' }}
                         />

@@ -18,7 +18,6 @@ const JobList = () => {
             error: state.error,
             token: state.token,
         }))
-    const [response, setResponse] = useState({})
     const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
     const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
@@ -29,8 +28,8 @@ const JobList = () => {
     const [count, setCount] = useState(0)
 
 
-
     useEffect(() => {
+
         axios.defaults.headers = {
             "Content-type": "application/json",
             // Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -38,7 +37,6 @@ const JobList = () => {
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/`, )
         .then( res => {
-            console.log(res)
             return res
         })
         .then(response => {
@@ -51,11 +49,10 @@ const JobList = () => {
         .then(() => {
             setLoaded({isLoaded: true})
         })
-    }, [])
+    }, [accessToken])
     
 
     if (loaded.isLoaded) {
-
         return (
             <div>
                 <h1>All Jobs:</h1>
