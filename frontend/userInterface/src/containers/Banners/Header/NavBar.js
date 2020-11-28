@@ -17,7 +17,7 @@ const Header = () => {
   const props = useSelector(state => (
     {
       ...state,
-      isAuthenticated: state.token !== null,
+            isAuthenticated: localStorage.getItem('access_token') !== null,
       loading: state.loading,
       error: state.error
     }))
@@ -42,6 +42,7 @@ const Header = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/jobs/">Home</Nav.Link>
           <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
+          {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

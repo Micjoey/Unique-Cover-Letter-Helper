@@ -10,9 +10,9 @@ import { Component, useCallback, useEffect } from 'react';
 
 
 function App() {
-  const props = useSelector(state => ({ ...state, isAuthenticated: state.token !== null}))
+  const props = useSelector(state => ({ ...state, isAuthenticated: localStorage.getItem('access_token') !== null}))
   const dispatch = useDispatch()
-  
+  console.log(localStorage.getItem('access_token'), props)
   // const onTryAutoSignup = useCallback(
   //   () => dispatch(actions.authCheckState()),
   //   // [dispatch]
@@ -29,7 +29,6 @@ function App() {
         <Router>
           <Header {...props}/>
           <BaseRouter/> 
-          {/* <BaseRouter {...props}/>  */}
           <FooterPage/>
         </Router>
       </header>
