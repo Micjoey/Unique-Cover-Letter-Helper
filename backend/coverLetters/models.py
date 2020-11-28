@@ -35,6 +35,10 @@ class UserDetail(models.Model):
     class Meta:
         ordering = ['-modified_date']
 
+    def save(self, *args, **kwargs):
+        if self.user: 
+            self.instance.belongs_to_user = self.user
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
@@ -100,7 +104,8 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
-        self.instance.user = self.user
+        if self.user:
+            self.instance.belongs_to_user = self.user
         if not self.description:
             self.description = 'N/A'
         if not self.job_posting_website:

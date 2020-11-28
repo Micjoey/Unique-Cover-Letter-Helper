@@ -44,9 +44,6 @@ const JobDetailView = () => {
                 }
             ]
         });
-        // axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
-        //     .then(() => window.location.href = 'http://127.0.0.1:3001/api/jobs/')
-        //     .catch(error => console.log(error))
     }
 
     if (loaded.isLoaded) {

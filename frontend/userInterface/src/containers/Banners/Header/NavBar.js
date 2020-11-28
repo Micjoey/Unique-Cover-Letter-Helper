@@ -7,8 +7,8 @@ import {
   Button } from 'react-bootstrap';
 import React, { useCallback, } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../../store/actions/Auth'
 import { useHistory } from 'react-router-dom';
+import * as actions from '../../../store/actions/Auth'
 import ErrorBoundary from '../../../store/ErrorBoundary';
 
 
@@ -35,7 +35,7 @@ const Header = () => {
   }
 
 
-
+  // console.log(props)
   return  (
     <Navbar bg="light" expand="lg" sticky="bottom">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
@@ -49,7 +49,6 @@ const Header = () => {
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
             <ErrorBoundary>
             {
               props.isAuthenticated ? 
@@ -58,6 +57,7 @@ const Header = () => {
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
             }
             </ErrorBoundary>
+            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
             {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
           </NavDropdown>
         </Nav>
