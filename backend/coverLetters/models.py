@@ -1,12 +1,20 @@
 from django.db import models
 from django.db.models import Q, UniqueConstraint
+from django.contrib.auth.models import User
+from django.conf import settings
 from phone_field import PhoneField
 from multiselectfield import MultiSelectField
 import datetime
 from datetime import datetime
 
 __all__ = ['CheckConstraint', 'UniqueConstraint']
+
+
 class UserDetail(models.Model):
+    belongs_to_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
     last_name = models.CharField(max_length=200, blank=False)
@@ -48,7 +56,8 @@ class Job(models.Model):
         ('Rejected', 'Rejected'),
         ('No Response', 'No Response')
     )
-
+    belongs_to_user = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, default=1)
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
@@ -91,6 +100,7 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
+        self.instance.user = self.user
         if not self.description:
             self.description = 'N/A'
         if not self.job_posting_website:
