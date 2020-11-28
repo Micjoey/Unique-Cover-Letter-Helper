@@ -61,7 +61,7 @@ class Job(models.Model):
         ('No Response', 'No Response')
     )
     belongs_to_user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, default=1)
+        User, on_delete=models.CASCADE, blank=True)
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
@@ -104,7 +104,7 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
-        if self.user:
+        if not self.belongs_to_user:
             self.instance.belongs_to_user = self.user
         if not self.description:
             self.description = 'N/A'
