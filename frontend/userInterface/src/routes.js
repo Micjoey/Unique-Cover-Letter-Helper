@@ -4,8 +4,9 @@ import { Route, Switch } from 'react-router-dom'
 import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
-import Login from './containers/Login'
-import Signup from './containers/Signup'
+
+import Login from './containers/forms/Login'
+import Signup from './containers/forms/Signup'
 import ChangeEmail from './containers/Account/ChangeEmail'
 
 
