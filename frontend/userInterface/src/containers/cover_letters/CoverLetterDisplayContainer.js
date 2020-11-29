@@ -4,9 +4,9 @@ import { determineCoverLetter } from './determineCoverLetterFormat'
 
 
 
-const CoverLetterContainer = ({job}) => {
+const CoverLetterChoiceContainer = ({job}) => {
     const user = null // this will be the state eventually
-    const [currentCoverLetter, setCurrentCoverLetter] = useState(job.template_choices)
+    const [currentCoverLetterChoice, setCurrentCoverLetterChoice] = useState(job.template_choices)
     const { register, handleSubmit } = useForm({
         defaultValues: {
             template_choice: job.template_choices,
@@ -22,7 +22,7 @@ const CoverLetterContainer = ({job}) => {
     }
 
     const onSubmit = (data) => {
-        setCurrentCoverLetter(data['template_choice'])
+        setCurrentCoverLetterChoice(data['template_choice'])
     }
 
 
@@ -40,7 +40,7 @@ const CoverLetterContainer = ({job}) => {
                 </label>
             </form>
             <div>
-                {determineCoverLetter(currentCoverLetter, job, user)}
+                {determineCoverLetter(currentCoverLetterChoice, job, user)}
             </div>
         </div>
 
@@ -49,4 +49,4 @@ const CoverLetterContainer = ({job}) => {
 
 
 
-export default CoverLetterContainer
+export default CoverLetterChoiceContainer

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
 import NotLoggedInPage from '../../components/NotLoggedInPage';
+import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 
 
 
@@ -54,29 +55,38 @@ const JobList = () => {
         })
     }, [])
     
-    // if (props.isAuthenticated) {
+    if (props.isAuthenticated) {
         if (loaded.isLoaded) {
-            return (
-                <div>
-                    <h1>All Jobs:</h1>
+            if (allJobs.length > 1) {
+                return (
                     <div>
-                        <Jobs jobs={allJobs} jobProps={jobProps}/>
+                        <h1>All Jobs:</h1>
+                        <div>
+                            <Jobs jobs={allJobs} jobProps={jobProps}/>
+                        </div>
+                        <footer>
+                            <Pagination 
+                                pageIndex={pageIndex} 
+                                total={count} 
+                                perPage={20} 
+                                onNext={next}
+                                onPrevious={onPrevious}
+                                setAllJobs={setAllJobs}
+                                setNext = {setNext}
+                                setOnPrevious={setOnPrevious}
+                                setPageIndex={setPageIndex}
+                            />
+                        </footer>
                     </div>
-                    <footer>
-                        <Pagination 
-                            pageIndex={pageIndex} 
-                            total={count} 
-                            perPage={20} 
-                            onNext={next}
-                            onPrevious={onPrevious}
-                            setAllJobs={setAllJobs}
-                            setNext = {setNext}
-                            setOnPrevious={setOnPrevious}
-                            setPageIndex={setPageIndex}
-                        />
-                    </footer>
-                </div>
-            )
+                )
+            } else {
+                return (
+                    <div>
+                        No Jobs - Please create your first cover letter below.
+                        <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
+                    </div>
+                )
+            }
         } else {
             return (
                 <div>
@@ -84,11 +94,11 @@ const JobList = () => {
                 </div>
             )
         }
-    // } else {
-    //     return(
-    //         <NotLoggedInPage/>
-    //     )
-    // }
+    } else {
+        return(
+            <NotLoggedInPage/>
+        )
+    }
 
 }
 
