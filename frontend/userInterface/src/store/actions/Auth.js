@@ -58,7 +58,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(5000))
-            window.location.href="/"
+            window.location.href="/jobs/"
         }).catch(err => {
             throw err;
         })

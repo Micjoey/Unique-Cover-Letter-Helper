@@ -4,9 +4,9 @@ import axios from 'axios'
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
-import CoverLetterContainer from '../cover_letters/CoverLetterContainer'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayContainer'
 
 
 const JobDetailView = () => {
@@ -69,7 +69,7 @@ const JobDetailView = () => {
                             <JobForm requestType="put" job={job} buttonTxt="Update" />
                         </div>
                         <div className="cover-letter-container">
-                            <CoverLetterContainer job={job}/>
+                            <CoverLetterChoiceContainer job={job}/>
                         </div>
                     </div>
                 </div>
