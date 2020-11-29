@@ -9,19 +9,18 @@ import Login from './containers/forms/Login'
 import Signup from './containers/forms/Signup'
 import ChangeEmail from './containers/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
-import { useSelector } from 'react-redux'
 
 const PrivateRoute = ({components: Component, ...rest}) => {
      const authenticated = localStorage.getItem("access_token") !== null
     return (
-        <Route {...rest} render={props => {
+        <Route {...rest} render={ props => {
             authenticated === true ? (
                 <Component {...rest}/>
             ) : (
-                <Redirect to={{
-                    pathname: '/login',
-                    state: {from: props.location}
-                }} />
+            <Redirect to={{
+                pathname: '/login',
+                state: {from: props.location}
+            }} />
             )
         }}/>
     )
@@ -33,7 +32,7 @@ const BaseRouter = (props) => (
     <div>
         <Switch>
             <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
-            <PrivateRoute exact path='/jobs/:jobID' render={() => (<JobDetailView {...props}/>)}/>
+            <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
             <PrivateRoute exact path='/signup' component={Signup}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute path='/all-jobs/' component={JobListView}/>

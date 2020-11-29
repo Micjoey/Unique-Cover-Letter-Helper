@@ -9,7 +9,6 @@ export const JobForm = (props) => {
     let job = null
     const requestType = props.requestType
     const userId = jwt_decode(accessToken).user_id
-    console.log(userId)
     let jobID = null
     let jobStage = "Initial"
     let templateChoices = "non-technical-cover-letter"

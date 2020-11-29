@@ -9,12 +9,11 @@ const Jobs = props => {
     return (
         <ListGroup>
            {allJobs.map(job => (
-               <a href={`/jobs/${job.id}`} key={job.id}>
+               <a href={`/job/${job.id}`} key={job.id}>
                    <ListGroup.Item>
                        {job.position_title} - {job.company}
                    </ListGroup.Item>
-               </a>
-                   
+               </a>  
            ))}
         </ListGroup>
     );

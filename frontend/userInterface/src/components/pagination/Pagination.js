@@ -12,7 +12,6 @@ export default function Pagination(props) {
     const nextPage = () => {
         axios.get(onNext)
             .then(res => {
-                console.log(res)
                 setAllJobs(res.data.results)
                 setNext(res.data.next)
                 setOnPrevious(res.data.previous)
