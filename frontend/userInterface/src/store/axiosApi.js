@@ -21,7 +21,6 @@ axiosInstance.interceptors.response.use(
             return axiosInstance
                 .post('/token/refresh/', { refresh: refresh_token })
                 .then(response => {
-                    console.log(response, "logged from axiosApi")
                     localStorage.setItem('access_token', response.data.access);
                     localStorage.setItem('refresh_token', response.data.refresh);
                     console.log("refreshed")

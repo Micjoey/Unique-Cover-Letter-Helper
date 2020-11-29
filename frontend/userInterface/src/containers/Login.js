@@ -44,8 +44,6 @@ const Login = () => {
     const onFinish = (values) => {
         try {
             onAuth(values.username, values.password)
-            history.push('/')
-            history.go(0)
         } catch(e) {
             alert(e.message)
         }

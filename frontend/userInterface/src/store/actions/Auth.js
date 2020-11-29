@@ -24,7 +24,6 @@ export const authFail = error => {
 }
 
 export const logout = () => {
-    console.log(localStorage)
     localStorage.removeItem('user')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('refresh_token')
@@ -51,17 +50,16 @@ export const authLogin = (username, password) => {
             password: password
         }).then(response => {
             axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
-            const token = response.data.key;
-            console.log()
-            const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-            localStorage.setItem('token', token);
+            const token = response.data.access;
+            const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            // localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(5000))
+            window.location.href="/"
         }).catch(err => {
-            // dispatch(authFail(err.response.data.non_field_errors[0]))
             throw err;
         })
         // axios.post('http://127.0.0.1:3000/rest-auth/login/', {
@@ -95,13 +93,12 @@ export const authSignUp = (username, email, password1, password2) => {
             password2: password2
         })
         .then(res => {
-            console.log(res)
             const token = res.data.key;
-            const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+            const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(3600))})
+            dispatch(checkAuthTimeout(5000))})
             .catch(err => {
                 dispatch(authFail(err))
             })

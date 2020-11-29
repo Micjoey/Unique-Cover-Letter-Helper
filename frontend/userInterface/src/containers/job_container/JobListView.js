@@ -39,6 +39,7 @@ const JobList = () => {
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/`, )
         .then( res => {
+            setAllJobs(res.data.results)
             return res
         })
         .then(response => {
@@ -51,9 +52,9 @@ const JobList = () => {
         .then(() => {
             setLoaded({isLoaded: true})
         })
-    }, [accessToken])
+    }, [])
     
-    if (props.isAuthenticated) {
+    // if (props.isAuthenticated) {
         if (loaded.isLoaded) {
             return (
                 <div>
@@ -83,11 +84,11 @@ const JobList = () => {
                 </div>
             )
         }
-    } else {
-        return(
-            <NotLoggedInPage/>
-        )
-    }
+    // } else {
+    //     return(
+    //         <NotLoggedInPage/>
+    //     )
+    // }
 
 }
 
