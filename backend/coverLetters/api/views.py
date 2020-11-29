@@ -39,7 +39,7 @@ class JobViewSet(viewsets.ModelViewSet):
 
 
 
-class ObtainTokenPairWithColorView(TokenObtainPairView):
+class ObtainTokenView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
