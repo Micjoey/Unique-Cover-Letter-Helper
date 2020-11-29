@@ -196,8 +196,10 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
-    'http://127.0.0.1:3001'
+    'http://127.0.0.1:3001',
+
 ]
+
 # CORS_ORIGIN_ALLOW_ALL = True
 # ALLOWED_HOSTS = ['http://127.0.0.1:3001']
 

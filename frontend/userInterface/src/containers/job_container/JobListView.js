@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
-import NotLoggedInPage from '../../components/NotLoggedInPage';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 
 
 
 const JobList = () => {
-    let history = useHistory()
+    // let history = useHistory()
     const props = useSelector(state => (
         {
             ...state, 
@@ -35,7 +34,6 @@ const JobList = () => {
 
         axios.defaults.headers = {
             "Content-type": "application/json",
-            // Authorization: `Bearer ${localStorage.getItem('access_token')}`
             Authorization: `Bearer ${accessToken}`
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/`, )

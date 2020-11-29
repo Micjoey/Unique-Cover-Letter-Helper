@@ -35,13 +35,13 @@ const Header = () => {
 
 
   return  (
-    <Navbar bg="light" expand="lg" sticky="bottom">
+    <Navbar bg="light" expand="lg" sticky="top" className="text-center">
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {/* <Nav.Link href="/">Home</Nav.Link> */}
-          <NavDropdown.Item href="/all-jobs/">All Jobs</NavDropdown.Item>
+          <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
           <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
           {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
