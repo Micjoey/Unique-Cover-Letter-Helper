@@ -62,23 +62,6 @@ export const authLogin = (username, password) => {
         }).catch(err => {
             throw err;
         })
-        // axios.post('http://127.0.0.1:3000/rest-auth/login/', {
-        //     username: username,
-        //     password: password
-        // })
-        // .then(res => {
-        //     const token = res.data.key;
-        //     const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        //     axiosInstance.defaults.headers['Authorization'] = "Bearer " + res.data.access;
-        //     localStorage.setItem('token', token);
-        //     localStorage.setItem('expirationDate', expirationDate);
-        //     localStorage.setItem('access_token', res.data.access);
-        //     localStorage.setItem('refresh_token', res.data.refresh);
-        //     dispatch(authSuccess(token));
-        //     dispatch(checkAuthTimeout(3600))
-        // }).catch(err => {
-        //     dispatch(authFail(err.response.data.non_field_errors[0]))
-        // })
     }
 }
 
