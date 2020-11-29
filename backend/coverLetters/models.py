@@ -33,27 +33,27 @@ class User(AbstractUser):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 
 
-class UserDetail(models.Model):
-    belongs_to_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, blank = True)
-    first_name = models.CharField(max_length=200, blank=False)
-    middle_name = models.CharField(max_length=200,  blank=True)
-    last_name = models.CharField(max_length=200, blank=False)
-    preferred_name = models.CharField(max_length=200, blank=True)
-    phone_number = PhoneField(blank=True)
-    email = models.EmailField(blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
-    github = models.URLField(blank=True, null=True)
-    portfolio_website = models.URLField(blank=True, null=True)
-    street_address = models.CharField(blank=True, max_length=200)
-    city_address = models.CharField(blank=True, max_length=200,)
-    state_address = models.CharField(blank=True, max_length=200,)
-    zip_code = models.CharField(blank=True, max_length=200,)
-    modified_date = models.DateField(auto_now=True, blank=True)
-    created_date = models.DateField(auto_now_add=True, blank=True)
+# class UserDetail(models.Model):
+#     belongs_to_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, blank = True)
+#     first_name = models.CharField(max_length=200, blank=False)
+#     middle_name = models.CharField(max_length=200,  blank=True)
+#     last_name = models.CharField(max_length=200, blank=False)
+#     preferred_name = models.CharField(max_length=200, blank=True)
+#     phone_number = PhoneField(blank=True)
+#     email = models.EmailField(blank=True, null=True)
+#     linkedin = models.URLField(blank=True, null=True)
+#     github = models.URLField(blank=True, null=True)
+#     portfolio_website = models.URLField(blank=True, null=True)
+#     street_address = models.CharField(blank=True, max_length=200)
+#     city_address = models.CharField(blank=True, max_length=200,)
+#     state_address = models.CharField(blank=True, max_length=200,)
+#     zip_code = models.CharField(blank=True, max_length=200,)
+#     modified_date = models.DateField(auto_now=True, blank=True)
+#     created_date = models.DateField(auto_now_add=True, blank=True)
     
 
-    class Meta:
-        ordering = ['-modified_date']
+#     class Meta:
+#         ordering = ['-modified_date']
 
     # def save(self, *args, **kwargs):
     #     if self.user: 
@@ -88,8 +88,6 @@ class Job(models.Model):
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     job_stage = models.CharField(
         choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
-    choice_of_user = models.ForeignKey(
-        'UserDetail', on_delete=models.CASCADE, blank=True, null=True)
     job_posting_website = models.CharField("Job Posting Website", max_length=200,)
     position_title = models.CharField("Position Title",max_length = 200)
     company = models.CharField(max_length = 200, blank=True)
@@ -124,8 +122,8 @@ class Job(models.Model):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices
 
     def save(self, *args, **kwargs):
-        # if not self.belongs_to_user:
-        #     self.instance.belongs_to_user = self.user
+        if not self.belongs_to_user:
+            self.instance.belongs_to_user = self.user
         if not self.description:
             self.description = 'N/A'
         if not self.job_posting_website:
