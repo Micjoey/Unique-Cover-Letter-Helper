@@ -1,4 +1,4 @@
-const formattedData = {
+export const formattedJobData = {
     'id': 'Id',
     'form_creation_date': 'Creation Date',
     'template_choices': 'Template Choice',
@@ -29,4 +29,18 @@ const formattedData = {
     'belongs_to_user': 'Belongs To User ID',
 }
 
-export default formattedData
+export const formattedUserData = {
+    "first_name": "First Name",
+    "middle_name":"Middle Name",
+    "last_name":"Last Name",
+    "preferred_name":"Preferred Name",
+    "phone_number":"Phone Number Name",
+    "linkedin":"Linkedin",
+    "github":"Github",
+    "portfolio_website":"Portfolio Website",
+    "street_address":"Stree Address",
+    "city_address":"City Address",
+    "state_address":"State Address",
+    "zip_code":"Zip Code",
+
+}

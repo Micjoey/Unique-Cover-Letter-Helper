@@ -1,5 +1,5 @@
 import React from "react";
-import formattedData from "./formattedData";
+import {formattedJobData} from "./formattedData";
 
 
 const Jobs = props => {
@@ -13,7 +13,7 @@ const Jobs = props => {
             <div>
                 {jobDetailKeys.map(key => (
                     <div className="job-detail-container" key={`${key} - container`}>
-                        <p key={key} className="job-info-field">{formattedData[key]}: </p>
+                        <p key={key} className="job-info-field">{formattedJobData[key]}: </p>
                         <p className="job-info-data" key={`key value - ${key}`} key={`${key} - ${key}`}>{jobDetail[key]}</p> 
                     </div>
                ))}
