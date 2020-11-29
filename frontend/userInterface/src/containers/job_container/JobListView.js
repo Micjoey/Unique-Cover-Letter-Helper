@@ -54,10 +54,10 @@ const JobList = () => {
             setLoaded({isLoaded: true})
         })
     }, [])
-    
+    console.log(props)
     if (props.isAuthenticated) {
         if (loaded.isLoaded) {
-            if (allJobs.length > 1) {
+            if (allJobs.length) {
                 return (
                     <div>
                         <h1>All Jobs:</h1>

@@ -31,7 +31,6 @@ export const JobForm = (props) => {
     })
 
     const onSubmit = (data) => {
-        console.log(data, accessToken)
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
