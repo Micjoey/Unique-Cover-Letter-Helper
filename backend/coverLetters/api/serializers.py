@@ -1,7 +1,7 @@
 from django.urls import path, include
 # from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from coverLetters.models import Job, UserDetail, User
+from coverLetters.models import Job, User
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -26,9 +26,5 @@ class JobSerializer(serializers.ModelSerializer):
         raise serializers.VaidationError(
             self.LINK_ERROR
         )
-class UserDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserDetail
-        fields = '__all__'
 
 
