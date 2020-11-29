@@ -54,49 +54,43 @@ const JobList = () => {
             setLoaded({isLoaded: true})
         })
     }, [])
-    console.log(props)
-    if (props.isAuthenticated) {
-        if (loaded.isLoaded) {
-            if (allJobs.length) {
-                return (
-                    <div>
-                        <h1>All Jobs:</h1>
-                        <div className="Jobs-container">
-                            <Jobs jobs={allJobs} jobProps={jobProps}/>
-                        </div>
-                        <footer>
-                            <Pagination 
-                                pageIndex={pageIndex} 
-                                total={count} 
-                                perPage={20} 
-                                onNext={next}
-                                onPrevious={onPrevious}
-                                setAllJobs={setAllJobs}
-                                setNext = {setNext}
-                                setOnPrevious={setOnPrevious}
-                                setPageIndex={setPageIndex}
-                            />
-                        </footer>
+    
+    if (loaded.isLoaded) {
+        if (allJobs.length) {
+            return (
+                <div>
+                    <h1>All Jobs:</h1>
+                    <div className="Jobs-container">
+                        <Jobs jobs={allJobs} jobProps={jobProps}/>
                     </div>
-                )
-            } else {
-                return (
-                    <div>
-                        No Jobs - Please create your first cover letter below.
-                        <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
-                    </div>
-                )
-            }
+                    <footer>
+                        <Pagination 
+                            pageIndex={pageIndex} 
+                            total={count} 
+                            perPage={20} 
+                            onNext={next}
+                            onPrevious={onPrevious}
+                            setAllJobs={setAllJobs}
+                            setNext = {setNext}
+                            setOnPrevious={setOnPrevious}
+                            setPageIndex={setPageIndex}
+                        />
+                    </footer>
+                </div>
+            )
         } else {
             return (
                 <div>
-                    <h1>Loading</h1>
+                    No Jobs - Please create your first cover letter below.
+                    <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
                 </div>
             )
         }
     } else {
-        return(
-            <NotLoggedInPage/>
+        return (
+            <div>
+                <h1>Loading</h1>
+            </div>
         )
     }
 

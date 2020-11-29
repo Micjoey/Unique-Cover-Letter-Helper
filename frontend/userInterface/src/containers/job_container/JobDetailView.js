@@ -15,14 +15,15 @@ const JobDetailView = () => {
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
+
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",
-            // Authorization: `Bearer ${localStorage.getItem('access_token')}`
             Authorization: `Bearer ${accessToken}`
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/${paramsJobId}`)
             .then(res => {
+                console.log(res)
                 setjob(res.data)
             }).then(() => {
                 setLoaded({ isLoaded: true })
@@ -41,7 +42,7 @@ const JobDetailView = () => {
                     label: 'Yes',
                     onClick: () => {
                         axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
-                            .then(() => window.location.href = 'http://127.0.0.1:3001/api/jobs/')
+                            .then(() => window.location.href = 'http://127.0.0.1:3001/api/all-jobs/')
                             .catch(error => console.log(error))
                     }
                 },

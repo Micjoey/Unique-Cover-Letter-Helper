@@ -26,18 +26,18 @@ axios.interceptors.response.use(response => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Device': 'device',
-                    'Token': localStorage.getItem("access_token")
+                    'Token': localStorage.getItem("access_token"),
                 },
                 redirect: 'follow',
                 referrer: 'no-referrer',
                 body: JSON.stringify({
-                    token: localStorage.getItem("token"),
+                    token: localStorage.getItem("access_token"),
                     refresh_token: localStorage.getItem("refresh_token")
                 }),
             }).then(res => res.json()).then(res => {
                 console.log(res);
                 this.setSession({ token: res.token, refresh_token: res.refresh });
-                originalReq.headers['Token'] = res.token;
+                originalReq.headers['access_token'] = res.token;
                 originalReq.headers['Device'] = "device";
                 return axios(originalReq);
             });
