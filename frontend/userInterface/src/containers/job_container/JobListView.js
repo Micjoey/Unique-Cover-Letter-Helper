@@ -61,7 +61,7 @@ const JobList = () => {
                 return (
                     <div>
                         <h1>All Jobs:</h1>
-                        <div>
+                        <div className="Jobs-container">
                             <Jobs jobs={allJobs} jobProps={jobProps}/>
                         </div>
                         <footer>
