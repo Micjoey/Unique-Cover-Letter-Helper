@@ -17,3 +17,16 @@
 .form-title {
     text-align: center;
 }
+
+.form-label-div {
+    display: flex;
+    margin: 1em 0;
+}
+
+.form-label-title {
+    width: 12em;
+}
+
+.form-label-textarea {
+    color: black;
+}

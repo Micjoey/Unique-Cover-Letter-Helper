@@ -38,6 +38,20 @@ class JobViewSet(viewsets.ModelViewSet):
         return allJobs.filter(belongs_to_user=userId)
 
 
+class UserDetailViewSet(viewsets.ModelViewSet):
+    serializer_class = JobSerializer
+    queryset = UserDetail.objects.all()
+    pagination_class = JobPagination
+    # filter_backends = (SearchFilter)
+    # search_fields = {'position_title', 'company', 'belongs_to_user'}
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        userId = self.request.user.id
+        userDetails = UserDetail.objects.all()
+        return userDetails.filter(belongs_to_user=userId)
+
+
 
 class ObtainTokenView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
