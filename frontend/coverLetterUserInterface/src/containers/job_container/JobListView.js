@@ -28,7 +28,6 @@ const JobList = () => {
     const [pageIndex, setPageIndex] = useState(1)
     const [count, setCount] = useState(0)
 
-    
     useEffect(() => {
 
         axios.defaults.headers = {

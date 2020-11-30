@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import Shell from './Shell'
 import {Form, Input, Message, Header, Button} from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux';
-import axios from 'axios'
+
 import axiosInstance from '../../store/axiosApi';
 
 
@@ -12,9 +11,9 @@ const ChangeEmail = () => {
     const [newEmail, setNewEmail] = useState("")
     const [confirmEmail, setConfirmEmail] = useState("")
     const [error, setError] = useState({})
-    const {register, errors, handleSubmit} = useForm()
+    const {register, handleSubmit} = useForm()
     const [loading, setLoading] = useState(false)
-    const accessToken = localStorage.getItem("access_token")
+    // const accessToken = localStorage.getItem("access_token")
     
     const onSubmit = data => {
         const email = data.newEmail
@@ -33,7 +32,8 @@ const ChangeEmail = () => {
 
     return (
         <Shell>
-            <Header as="h4">Change Email</Header>
+            <Header as="h2">Change Email</Header>
+            <br/>
             <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
                 <Form.Field>
                     <label>Current Email</label>
