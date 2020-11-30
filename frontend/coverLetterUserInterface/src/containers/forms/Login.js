@@ -54,7 +54,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className="login-form">
             {errorMessage}
             {
                 !props.loading ? 

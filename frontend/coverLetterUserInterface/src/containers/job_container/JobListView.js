@@ -51,8 +51,8 @@ const JobList = () => {
             setLoaded({isLoaded: true})
         })
         .catch(err => {
-            history.push('/')
-            console.log(err)
+            history.push('/login')
+            alert(err)
         })
     }, [])
     

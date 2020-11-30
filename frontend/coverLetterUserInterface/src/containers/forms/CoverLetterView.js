@@ -16,7 +16,6 @@ const CoverLetterView = () => {
             loading: state.loading,
             error: state.error
         }))
-
     return (
         <div>
             <JobForm requestType="post" jobID={paramsJobId} buttonTxt="Create Cover Letter"/>

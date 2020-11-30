@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 export const JobForm = (props) => {
+    const history = useHistory()
     const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
     let job = null
     const requestType = props.requestType
@@ -46,6 +48,8 @@ export const JobForm = (props) => {
                     .catch(errors => console.log(errors))
                 break
             default:
+                history.push('http://127.0.0.1:3000/api/jobs')
+                window.location.href = "/login"
                 break
         }
 
