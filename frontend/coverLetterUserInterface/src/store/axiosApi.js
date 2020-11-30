@@ -45,6 +45,7 @@ axios.interceptors.response.use(response =>
         authCheckState()
         return Promise.reject(error);
     }
+    
 );
 // axiosInstance.interceptors.response.use(
 //     response => (response),

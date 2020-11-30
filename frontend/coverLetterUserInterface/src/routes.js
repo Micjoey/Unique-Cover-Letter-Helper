@@ -13,18 +13,12 @@ import { authCheckState } from './store/actions/Auth'
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-    // authCheckState()
+    console.log(`is ${authenticated} true or false?`)
     return (
-        <Route {...rest} render={ props => {
-            authenticated === true ? (
-                <Component {...rest}/>
-            ) : (
-            <Redirect to={{
-                pathname: '/login',
-                state: {from: props.location}
-            }} />
-            )
-        }}/>
+        authenticated === true ? 
+        <Route {...rest} render={ props => <Component {...props}/>} />
+        :
+        <Redirect to="/login"/>
     )
     
 }
@@ -35,10 +29,10 @@ const BaseRouter = (props) => (
         <Switch>
             <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
             <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
-            <PrivateRoute exact path='/signup' component={Signup}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
-            <PrivateRoute path='/all-jobs/' component={JobListView}/>
+            <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute exact path='/admin/change-email/' component={ChangeEmail}/>
+            <Route exact path='/signup' component={Signup}/>
             <Route exact path='/login' component={Login}/>
             <Route path='' component={HomePage}/>
         </Switch>

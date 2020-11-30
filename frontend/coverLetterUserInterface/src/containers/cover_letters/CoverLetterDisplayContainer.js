@@ -40,8 +40,9 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             }).then(() => {
                 setLoaded({ isLoaded: true })
             })
-            .catch(() => {
+            .catch(err => {
                 setLoaded({ isLoaded: false })
+                return console.log(err)
             })
     }, [])
 
