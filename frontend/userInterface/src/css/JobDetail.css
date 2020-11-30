@@ -1,5 +1,6 @@
 .job-detail {
     margin: 1em;
+    width: 100%;
 }
 
 .job-detail-container{
@@ -28,7 +29,7 @@
 }
 
 .job-container {
-    display: flex;
+    /* display: flex; */
 }
 
 .job-detail {
@@ -47,4 +48,8 @@
 .delete-button {
     text-align: left;
     margin: 0em 1em 1em 1em;
+}
+
+.job-and-cover-letter-container {
+    display: flex;
 }

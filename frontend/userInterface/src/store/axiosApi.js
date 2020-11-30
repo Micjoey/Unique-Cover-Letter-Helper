@@ -3,11 +3,15 @@ import { authCheckState, logout } from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',
-    timeout: 3000,
+    timeout: 1000,
     headers: {
         'Authorization': "Bearer " + localStorage.getItem('access_token'),
         'Content-Type': 'application/json',
         'accept': 'application/json'
+    },
+    data: {
+        'access_token': localStorage.getItem('access_token'),
+        'refresh_token': localStorage.getItem('refresh_token')
     }
 });
 
@@ -42,6 +46,7 @@ axios.interceptors.response.use(response =>
                     console.log(err, "user was loggedout")
                 });
         }
+        authCheckState()
         return Promise.reject(error);
     }
 );
