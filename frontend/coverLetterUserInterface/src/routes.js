@@ -9,11 +9,11 @@ import Login from './containers/forms/Login'
 import Signup from './containers/forms/Signup'
 import ChangeEmail from './containers/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
-import { authCheckState } from './store/actions/Auth'
+
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-    console.log(`is ${authenticated} true or false?`)
+    
     return (
         authenticated === true ? 
         <Route {...rest} render={ props => <Component {...props}/>} />
