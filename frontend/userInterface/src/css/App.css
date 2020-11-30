@@ -2,6 +2,7 @@
 @import 'JobDetail.css';
 @import 'JobForm.css';
 @import 'JobList.css';
+@import 'CoverLetterForm.css';
 
 .App {
   text-align: center;

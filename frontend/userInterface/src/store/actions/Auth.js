@@ -25,9 +25,9 @@ export const authFail = error => {
 
 export const logout = () => {
     localStorage.removeItem('user')
+    localStorage.removeItem('access_token')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('refresh_token')
-    localStorage.removeItem('access_token')
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -52,12 +52,11 @@ export const authLogin = (username, password) => {
             axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
             const token = response.data.access;
             const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            // localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(5000))
+            // dispatch(checkAuthTimeout(5000))
             window.location.href="/all-jobs/"
         }).catch(err => {
             throw err;

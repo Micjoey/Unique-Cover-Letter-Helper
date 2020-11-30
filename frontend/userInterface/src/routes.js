@@ -13,7 +13,7 @@ import { authCheckState } from './store/actions/Auth'
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-    authCheckState()
+    // authCheckState()
     return (
         <Route {...rest} render={ props => {
             authenticated === true ? (
