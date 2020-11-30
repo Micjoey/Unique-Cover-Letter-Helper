@@ -6,9 +6,9 @@ const HomePage = () => {
             <Header>
                 Welcome to the homepage
             </Header>
-            <body>
+            <div>
 
-            </body>
+            </div>
         </div>
     )
 }

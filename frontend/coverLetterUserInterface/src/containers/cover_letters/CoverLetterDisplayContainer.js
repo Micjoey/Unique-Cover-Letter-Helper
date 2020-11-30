@@ -42,7 +42,6 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             })
             .catch(err => {
                 setLoaded({ isLoaded: false })
-                return console.log(err)
             })
     }, [])
 
