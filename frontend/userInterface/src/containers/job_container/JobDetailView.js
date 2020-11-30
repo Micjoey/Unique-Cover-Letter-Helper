@@ -66,25 +66,26 @@ const JobDetailView = () => {
                     <button id="hide-job-details-button" onClick={() => reveal('job-detail', "hide-job-details-button")}>Hide Job Details</button>
                 </div>
                 <div className="job-container">
-                    <div>
-                        <JobDetail jobDetail={job} />
-                        <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
-                            <button className="btn-warning" type="submit">Delete</button>
-                        </form>
-                        <div className="cover-letter-container" id="cover-letter-choice">
-                            <CoverLetterChoiceContainer job={job} userId={userId} />
+                    <div className="job-and-cover-letter-container">
+                        <div>
+                            <JobDetail jobDetail={job} />
+                            <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
+                                <button className="btn-warning" type="submit">Delete</button>
+                            </form>
+
                         </div>
-                    </div>
-                    <div>
                         <div className="update-job-container">
                             <JobForm requestType="put" job={job} buttonTxt="Update" />
                         </div>
                     </div>
+                    <div className="cover-letter-container" id="cover-letter-choice">
+                        <CoverLetterChoiceContainer job={job} userId={userId} />
+                    </div>
                     
                 </div>
-                <div className="job-container">
+                {/* <div className="job-container">
                     
-                </div>
+                </div> */}
             </div>
         )
     } else {
