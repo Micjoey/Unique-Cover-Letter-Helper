@@ -17,7 +17,7 @@ const Header = () => {
   const props = useSelector(state => (
     {
       ...state, 
-            isAuthenticated: state.token !== null,
+      isAuthenticated: localStorage.getItem('access_token') !== null,
       loading: state.loading,
       error: state.error
     }))

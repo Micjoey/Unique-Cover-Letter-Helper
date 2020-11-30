@@ -21,11 +21,11 @@ axios.interceptors.response.use(response =>
             "Content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
-        console.log(axios.defaults.headers, "headers")
+        console.log(localStorage.getItem('access_token', localStorage.getItem('refresh_token')))
         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');
-            console.log("attempt to refresh -", refresh_token)
+            console.log("attempt to refresh -", localStorage.getItem('refresh_token'))
             return axiosInstance
                 .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
@@ -42,7 +42,6 @@ axios.interceptors.response.use(response =>
                     console.log(err, "user was loggedout")
                 });
         }
-        authCheckState()
         return Promise.reject(error);
     }
 );
