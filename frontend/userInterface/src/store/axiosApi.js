@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { authCheckState } from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',
@@ -10,9 +11,66 @@ const axiosInstance = axios.create({
     }
 });
 
-// axios.interceptors.response.use(response => {
-//     return response;
-// }, err => {
+axios.interceptors.response.use(response => 
+    {
+        return response;
+    }, error => {
+        const originalRequest = error.config;
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+        if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+            const refresh_token = localStorage.getItem('refresh_token');
+            console.log("attempt to refresh", refresh_token)
+            return axiosInstance
+                .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token })
+                .then(response => {
+                    localStorage.setItem('access_token', response.data.access);
+                    localStorage.setItem('refresh_token', response.data.refresh);
+                    axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+                    originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
+
+                    return axiosInstance(originalRequest);
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        }
+        authCheckState()
+        return Promise.reject(error);
+    }
+);
+// axiosInstance.interceptors.response.use(
+//     response => (response),
+//     error => {
+//         const originalRequest = error.config;
+
+//         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+//             const refresh_token = localStorage.getItem('refresh_token');
+
+//             return axiosInstance
+//                 .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token })
+//                 .then(response => {
+//                     localStorage.setItem('access_token', response.data.access);
+//                     localStorage.setItem('refresh_token', response.data.refresh);
+//                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+//                     originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
+
+//                     return axiosInstance(originalRequest);
+//                 })
+//                 .catch(err => {
+//                     console.log(err)
+//                 });
+//         }
+//         return Promise.reject(error);
+//     }
+// );
+
+export default axiosInstance
+
+
+// err => {
 //     return new Promise((resolve, reject) => {
 //         const originalReq = err.config;
 //         if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
@@ -49,30 +107,3 @@ const axiosInstance = axios.create({
 
 //         return Promise.reject(err);
 //     });
-// });
-axiosInstance.interceptors.response.use(
-    response => (response),
-    error => {
-        const originalRequest = error.config;
-
-        if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-            const refresh_token = localStorage.getItem('refresh_token');
-
-            return axiosInstance
-                .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token })
-                .then(response => {
-                    localStorage.setItem('access_token', response.data.access);
-                    localStorage.setItem('refresh_token', response.data.refresh);
-                    axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
-                    originalRequest.headers['Authorization'] = "Bearer " + response.data.access;
-
-                    return axiosInstance(originalRequest);
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-        }
-        return Promise.reject(error);
-    }
-);
-export default axiosInstance

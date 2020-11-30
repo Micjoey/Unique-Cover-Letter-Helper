@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 
 
 
-const CoverLetterChoiceContainer = ({job}) => {
-    const user = null // this will be the state eventually
+const CoverLetterChoiceContainer = ({job, userId}) => {
+    const accessToken = localStorage.getItem("access_token")
+    const [user, setUser] = useState({})
+    const [loaded, setLoaded] = useState({ isLoaded: false })
     const [currentCoverLetterChoice, setCurrentCoverLetterChoice] = useState(job.template_choices)
     const { register, handleSubmit } = useForm({
         defaultValues: {
             template_choice: job.template_choices,
         }
     })
+
     const template_choices = {
         'non-technical-cover-letter': 'Non-technical Cover Letter',
         'Standard Job Template': 'Standard Job Template',
@@ -24,6 +28,22 @@ const CoverLetterChoiceContainer = ({job}) => {
     const onSubmit = (data) => {
         setCurrentCoverLetterChoice(data['template_choice'])
     }
+
+    useEffect(() => {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${accessToken}`
+        }
+        axios.get(`http://127.0.0.1:3000/api/users/${userId}`)
+            .then(res => {
+                setUser(res.data)
+            }).then(() => {
+                setLoaded({ isLoaded: true })
+            })
+            .catch(() => {
+                setLoaded({ isLoaded: false })
+            })
+    }, [])
 
 
     return (

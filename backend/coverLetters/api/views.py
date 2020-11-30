@@ -3,10 +3,9 @@ from rest_framework import permissions
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
-from coverLetters.models import Job
-from django.contrib.auth.models import User
+from coverLetters.models import Job, User
 from rest_framework.permissions import IsAuthenticated
-from .serializers import JobSerializer
+from .serializers import JobSerializer, UserSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import BaseFilterBackend, SearchFilter
 from rest_framework.decorators import action
@@ -38,6 +37,11 @@ class JobViewSet(viewsets.ModelViewSet):
         return allJobs.filter(belongs_to_user=userId)
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    pagination_class = JobPagination
+    permission_classes = [IsAuthenticated]
 
 
 class ObtainTokenView(TokenObtainPairView):

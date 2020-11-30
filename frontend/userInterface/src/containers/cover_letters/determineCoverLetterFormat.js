@@ -4,6 +4,7 @@ import StandardCoverLetter from '../../components/cover_letter/templates/Standar
 import TriplebyteCoverLetter from '../../components/cover_letter/templates/TriplebyteCoverLetter'
 
 export const determineCoverLetter = (coverLetter, job, user) => {
+    
     switch (coverLetter) {
         case "non-technical-cover-letter":
             return <NonTechnicalCoverLetter job={job} user={user} />
