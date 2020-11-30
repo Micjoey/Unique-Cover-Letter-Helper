@@ -15,13 +15,13 @@ const NonTechnicalCoverLetter = (props) => {
     if (user && job) {
         console.log(user)
         return (
-            <div>
+            <div className="full-cover-letter">
                 <header>
                     <h1>Non Tech Cover Letter</h1>
                     <h3> Resume Link for tracking - <br /> <a href="http://macallan.space/?utm_source=Resume%20Link&utm_medium=link&utm_campaign=Resume%20Link"> https://bit.ly/2HXrCWl </a> </h3>
                 </header>
                 <div>
-                    <div className="cover-letter-header">
+                    <div className="cover-letter-body">
                         <p>{today}</p>
                         <div>
                             {user.email ? <p className="com">{user.email}</p> 
@@ -43,7 +43,7 @@ const NonTechnicalCoverLetter = (props) => {
                                 <p> Dear Hiring Manager:</p>}
                             </div>
                             <p>
-                                Thank you for the opportunity to apply for the { job.position_title }
+                                Thank you for the opportunity to apply for the {` ${job.position_title} `} 
                                 role at your company - { job.company }.
                                 After reviewing your job description, it's clear that you're looking
                                 for a candidate that is familiar with
@@ -70,6 +70,22 @@ const NonTechnicalCoverLetter = (props) => {
                                 and abilities will benefit your organization.
                                 I can be reached at {user.phone_number} or
                                 via email at {user.email } to arrange a convenient time to chat.
+                            </p>
+                            <br/>
+                            <p>
+                                Thank you for your consideration and I look forward to hearing from you soon.
+                            </p>
+                            <p>
+                                My résumé is attached and offers additional information about
+                                my specific achievements.
+                            </p>
+                            <p>
+                                Sincerely, 
+                                <br/>
+                                {user.preferred_name ? `${user.preferred_name} ${user.last_name}`
+                                :
+                                `${user.first_name} ${user.last_name}`
+                                }
                             </p>
                         </div>
 
