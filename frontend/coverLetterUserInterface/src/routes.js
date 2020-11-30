@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import React, { Component, useEffect, useState } from 'react'
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
 
 import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
@@ -9,11 +9,13 @@ import Login from './containers/forms/Login'
 import Signup from './containers/forms/Signup'
 import ChangeEmail from './containers/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
+import jwtDecode from 'jwt-decode'
+import axiosInstance from './store/axiosApi'
 
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-    
+
     return (
         authenticated === true ? 
         <Route {...rest} render={ props => <Component {...props}/>} />
@@ -22,6 +24,8 @@ const PrivateRoute = ({components: Component, ...rest}) => {
     )
     
 }
+
+
 
 
 const BaseRouter = (props) => (

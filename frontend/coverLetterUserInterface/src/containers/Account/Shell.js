@@ -1,13 +1,28 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory, } from 'react-router-dom'
 import {logout} from '../../store/actions/Auth'
 import {Grid, Container, Segment, Header, Menu} from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
-
+import jwtDecode from 'jwt-decode'
+import axios from 'axios'
+import axiosInstance from '../../store/axiosApi'
 
 const Shell = props => {
-    const dispatch = useDispatch()
     const history = useHistory()
+    const dispatch = useDispatch()
+    const userId = jwtDecode(localStorage.getItem('access_token')).user_id
+    const [user, setUser] = useState({})
+    useEffect(() => {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+        axios.get(`http://localhost:3000/api/users/${userId}`)
+        .then(resp => {
+            setUser(resp.data)
+        })
+    }, [localStorage.getItem('access_token')])
+
     return (    
         <Segment vertical>
             <Container>
@@ -17,17 +32,17 @@ const Shell = props => {
                             <Header as="h3">Account</Header>
                             <Menu vertical fluid>
                                 <Menu.Item 
-                                    onClick={() => history.push("/admin/change-email/")} 
+                                    onClick={() => history.push("/admin/change-email/", {user: user})} 
                                     active={history.location.pathname === "/admin/change-email/"}
                                     name="change-email">
                                     Change Email
                                 </Menu.Item>
-                                <Menu.Item onClick={() => history.push("/admin/change-password/")}
+                                <Menu.Item onClick={() => history.push("/admin/change-password/", { user: user })}
                                     active={history.location.pathname === "/admin/change-password/"}
                                     name="change-password">
                                     Change Password
                                 </Menu.Item>
-                                <Menu.Item onClick={() => history.push("/admin/change-account-info/")}
+                                <Menu.Item onClick={() => history.push("/admin/change-account-info/", { user: user })}
                                     active={history.location.pathname === "/admin/change-account-info/"}
                                     name="change-account-info">
                                     Change Account Info

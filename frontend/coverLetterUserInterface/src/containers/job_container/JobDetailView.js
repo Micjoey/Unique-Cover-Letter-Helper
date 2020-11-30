@@ -17,6 +17,7 @@ const JobDetailView = () => {
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
     const history = useHistory()
+
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",

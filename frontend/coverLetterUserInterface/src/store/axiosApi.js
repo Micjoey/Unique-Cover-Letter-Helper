@@ -3,12 +3,13 @@ import { authCheckState, logout } from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',
-    timeout: 1000,
+    timeout: 5000,
     headers: {
-        'Authorization': "Bearer " + localStorage.getItem('access_token'),
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
         'Content-Type': 'application/json',
-        'accept': 'application/json'
+        // 'accept': 'application/json'
     },
+
 });
 
 axios.interceptors.response.use(response => 
