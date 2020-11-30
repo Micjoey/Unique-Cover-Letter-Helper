@@ -64,21 +64,22 @@ const JobDetailView = () => {
                 <div className="job-container">
                     <div>
                         <JobDetail jobDetail={job} />
+                        <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
+                            <button className="btn-warning" type="submit">Delete</button>
+                        </form>
+                        <div className="cover-letter-container">
+                            <CoverLetterChoiceContainer job={job} userId={userId} />
+                        </div>
                     </div>
                     <div>
                         <div className="update-job-container">
                             <JobForm requestType="put" job={job} buttonTxt="Update" />
                         </div>
-                        <div className="cover-letter-container">
-                            <CoverLetterChoiceContainer job={job} userId={userId}/>
-                        </div>
                     </div>
+                    
                 </div>
                 <div className="job-container">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <button className="btn-warning" type="submit">Delete</button>
-                    </form>
-
+                    
                 </div>
             </div>
         )

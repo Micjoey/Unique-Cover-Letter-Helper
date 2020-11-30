@@ -10,7 +10,7 @@ import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 
 
 const JobList = () => {
-    // let history = useHistory()
+    let history = useHistory()
     const props = useSelector(state => (
         {
             ...state, 
@@ -49,6 +49,10 @@ const JobList = () => {
         })
         .then(() => {
             setLoaded({isLoaded: true})
+        })
+        .catch(err => {
+            history.push('/')
+            console.log(err)
         })
     }, [])
     

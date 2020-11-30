@@ -42,3 +42,9 @@
 .Pagination-stats, .Pagination-actions > button {
     margin: .5em;
 }
+
+
+.delete-button {
+    text-align: left;
+    margin: 0em 1em 1em 1em;
+}

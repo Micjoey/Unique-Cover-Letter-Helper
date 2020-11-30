@@ -42,3 +42,11 @@
 .cover-letter-form select {
     margin: 1em;
 }
+
+.cover-letter-body {
+    text-align: left;
+}
+
+.full-cover-letter {
+    margin: 2em;
+}
