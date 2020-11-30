@@ -45,26 +45,33 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             })
     }, [])
 
-
-    return (
-        <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input style={{ color: 'Black' }} type="submit" value="Change Cover Letter" />
-                <label style={{ display: 'flex' }}>
-                    <p>Template Choices: </p>
-                    <select style={{ color: 'Red' }} name="template_choice" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
-                        {Object.keys(template_choices).map((key, idx) => (
-                            <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
-                        ))}
-                    </select>
-                </label>
-            </form>
+    if (loaded.isLoaded) {
+        return (
             <div>
-                {determineCoverLetter(currentCoverLetterChoice, job, user)}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input style={{ color: 'Black' }} type="submit" value="Change Cover Letter" />
+                    <label style={{ display: 'flex' }}>
+                        <p>Template Choices: </p>
+                        <select style={{ color: 'Red' }} name="template_choice" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                            {Object.keys(template_choices).map((key, idx) => (
+                                <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
+                            ))}
+                        </select>
+                    </label>
+                </form>
+                <div>
+                    {determineCoverLetter(currentCoverLetterChoice, job, user)}
+                </div>
             </div>
-        </div>
-
-    )
+    
+        )
+    } else {
+        return (
+            <div>
+                <h1>Loading</h1>
+            </div>
+        )
+    }
 }
 
 

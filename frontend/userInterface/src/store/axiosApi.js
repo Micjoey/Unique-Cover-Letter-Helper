@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { authCheckState } from './actions/Auth';
+import { logout } from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',
@@ -34,10 +34,10 @@ axios.interceptors.response.use(response =>
                     return axiosInstance(originalRequest);
                 })
                 .catch(err => {
-                    console.log(err)
+                    logout()
+                    console.log(err, "user was loggedout")
                 });
         }
-        authCheckState()
         return Promise.reject(error);
     }
 );
