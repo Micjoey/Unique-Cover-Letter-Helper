@@ -16,19 +16,10 @@ const CoverLetterView = () => {
             loading: state.loading,
             error: state.error
         }))
-    
-
-
-    const dispatch = useDispatch()
 
     return (
         <div>
-            {
-                props.isAuthenticated ? 
-                <JobForm requestType="post" jobID={paramsJobId} buttonTxt="Create Cover Letter"/>
-                :
-                <NotLoggedInPage/>
-            }
+            <JobForm requestType="post" jobID={paramsJobId} buttonTxt="Create Cover Letter"/>
         </div>
     )
 }
