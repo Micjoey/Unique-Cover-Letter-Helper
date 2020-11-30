@@ -4,7 +4,8 @@ import { ToastHeader } from "react-bootstrap"
 
 const NonTechnicalCoverLetter = (props) => {
     const job = props.job
-    const user = props.user
+    const user = props.job.belongs_to_user
+
 
 
     return (

@@ -11,11 +11,11 @@ import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayConta
 
 const JobDetailView = () => {
     const [job, setjob] = useState([])
+    const [userId, setUserId] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
-
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",
@@ -23,8 +23,8 @@ const JobDetailView = () => {
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/${paramsJobId}`)
             .then(res => {
-                console.log(res)
                 setjob(res.data)
+                setUserId(res.data.belongs_to_user)
             }).then(() => {
                 setLoaded({ isLoaded: true })
             })
@@ -70,7 +70,7 @@ const JobDetailView = () => {
                             <JobForm requestType="put" job={job} buttonTxt="Update" />
                         </div>
                         <div className="cover-letter-container">
-                            <CoverLetterChoiceContainer job={job}/>
+                            <CoverLetterChoiceContainer job={job} userId={userId}/>
                         </div>
                     </div>
                 </div>

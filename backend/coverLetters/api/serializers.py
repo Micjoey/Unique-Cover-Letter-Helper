@@ -26,5 +26,8 @@ class JobSerializer(serializers.ModelSerializer):
         raise serializers.VaidationError(
             self.LINK_ERROR
         )
-
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
