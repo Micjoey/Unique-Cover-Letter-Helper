@@ -11,16 +11,16 @@ import { Component, useCallback, useEffect } from 'react';
 
 function App() {
   const props = useSelector(state => ({ ...state, isAuthenticated: localStorage.getItem('access_token') !== null}))
-  const dispatch = useDispatch()
-  const onTryAutoSignup = useCallback(
-    () => dispatch(actions.authCheckState()),
-    // [dispatch]
-  )
+  // const dispatch = useDispatch()
+  // const onTryAutoSignup = useCallback(
+  //   () => dispatch(actions.authCheckState()),
+  //   // [dispatch]
+  // )
   
 
-  useEffect(() => {
-    onTryAutoSignup()
-  }, [])
+  // useEffect(() => {
+  //   onTryAutoSignup()
+  // }, [])
 
   return (
     <div className="App">

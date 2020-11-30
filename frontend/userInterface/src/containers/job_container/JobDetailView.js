@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
-import { confirmAlert } from 'react-confirm-alert'; 
+import { confirmAlert, alert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayContainer'
 
@@ -41,8 +41,12 @@ const JobDetailView = () => {
                 {
                     label: 'Yes',
                     onClick: () => {
+                        axios.defaults.headers = {
+                            "Content-type": "application/json",
+                            Authorization: `Bearer ${accessToken}`
+                        }
                         axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
-                            .then(() => window.location.href = 'http://127.0.0.1:3001/api/all-jobs/')
+                            .then(() => window.location.href = 'http://127.0.0.1:3001/all-jobs/')
                             .catch(error => console.log(error))
                     }
                 },
@@ -67,7 +71,7 @@ const JobDetailView = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
                             <button className="btn-warning" type="submit">Delete</button>
                         </form>
-                        <div className="cover-letter-container">
+                        <div className="cover-letter-container" id="cover-letter-choice">
                             <CoverLetterChoiceContainer job={job} userId={userId} />
                         </div>
                     </div>

@@ -13,7 +13,6 @@ const NonTechnicalCoverLetter = (props) => {
     today = mm + '/' + dd + '/' + yyyy;
 
     if (user && job) {
-        console.log(user)
         return (
             <div className="full-cover-letter">
                 <header>

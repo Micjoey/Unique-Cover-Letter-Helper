@@ -47,17 +47,17 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
 
     if (loaded.isLoaded) {
         return (
-            <div>
+            <div className="cover-letter-display-container">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input style={{ color: 'Black' }} type="submit" value="Change Cover Letter" />
-                    <label style={{ display: 'flex' }}>
+                    <label>
                         <p>Template Choices: </p>
                         <select style={{ color: 'Red' }} name="template_choice" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                             {Object.keys(template_choices).map((key, idx) => (
                                 <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
-                            ))}
+                                ))}
                         </select>
                     </label>
+                    <input className="cover-letter-display-button" type="submit" value="Change Cover Letter" />
                 </form>
                 <div>
                     {determineCoverLetter(currentCoverLetterChoice, job, user)}

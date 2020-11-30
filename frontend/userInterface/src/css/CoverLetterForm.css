@@ -50,3 +50,13 @@
 .full-cover-letter {
     margin: 2em;
 }
+
+.cover-letter-display-container, .cover-letter-display-button {
+    text-align: center;
+    color: black;
+    margin: auto;
+}
+
+/* .cover-letter-display-button {
+    style={{ color: 'Black', textAlign: 'center'}}
+} */
