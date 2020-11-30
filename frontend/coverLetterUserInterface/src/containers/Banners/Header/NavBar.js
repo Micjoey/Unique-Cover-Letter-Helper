@@ -45,7 +45,7 @@ const Header = () => {
           <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
           {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Item href="/admin/change-email/">Change Email</NavDropdown.Item>
             <NavDropdown.Divider />
             <ErrorBoundary>
             {

@@ -48,8 +48,6 @@ const ChangeEmail = () => {
                         type="email"
                         name={"newEmail"}
                         ref={register()}
-                        // ref={register({ required: true })}
-                        // onChange={e => handleChange(e)}
                     />
                 </Form.Field>
                 <Form.Field required>
@@ -62,8 +60,6 @@ const ChangeEmail = () => {
                         type="email" 
                         name={"confirmEmail"}
                         ref={register()}
-                        // ref={register({ required: true})}
-                        // onChange={handleChange()}
                     />
                 </Form.Field>
                 {error.length && (<Message error heading="There was an error" content={error}/>) }
