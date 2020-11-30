@@ -9,10 +9,6 @@ const axiosInstance = axios.create({
         'Content-Type': 'application/json',
         'accept': 'application/json'
     },
-    data: {
-        'access_token': localStorage.getItem('access_token'),
-        'refresh_token': localStorage.getItem('refresh_token')
-    }
 });
 
 axios.interceptors.response.use(response => 
@@ -25,7 +21,7 @@ axios.interceptors.response.use(response =>
             "Content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
-        console.log(localStorage.getItem('access_token', localStorage.getItem('refresh_token')))
+        console.log(localStorage.getItem('refresh_token'))
         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');

@@ -105,10 +105,10 @@ const reveal = (divToHide, button) => {
     const div = document.getElementsByClassName(divToHide)[0]
     if (divToHide !== "job-detail") {
         div.style.display === '' ? div.style.display = 'block' : div.style.display = ''
-
     } else {
         div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
-    }
+    } 
+
 
     let buttonTxt = document.getElementById(button)
     if (buttonTxt.innerText.includes("Hide")) {

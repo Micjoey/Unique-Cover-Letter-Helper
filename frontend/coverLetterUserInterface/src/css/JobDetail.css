@@ -28,8 +28,9 @@
     display: none;
 }
 
+
 .job-container {
-    /* display: flex; */
+    display: block;
 }
 
 .job-detail {
