@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
+import { Link } from 'react-router-dom'
 
 
 
@@ -61,6 +62,9 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
                 </form>
                 <div>
                     {determineCoverLetter(currentCoverLetterChoice, job, user)}
+                </div>
+                <div>
+                    <Link to="/job/form">Create another cover letter?</Link>
                 </div>
             </div>
     
