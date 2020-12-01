@@ -1,26 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Shell from './Shell'
 import {Form, Input, Message, Header, Button} from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 
-import axiosInstance from '../../store/axiosApi';
+import axios from 'axios'
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
-const ChangeEmail = () => {
-    const [currentEmail, setCurrentEmail] = useState("myemail@gmail.com")
-    const [newEmail, setNewEmail] = useState("")
-    const [confirmEmail, setConfirmEmail] = useState("")
+
+const ChangeEmail = (props) => {
+    const [user, setUser] = useState("")
+    const [newEmail] = useState("")
+    const [confirmEmail] = useState("")
     const [error, setError] = useState({})
     const {register, handleSubmit} = useForm()
     const [loading, setLoading] = useState(false)
-    // const accessToken = localStorage.getItem("access_token")
+    const accessToken = localStorage.getItem('access_token')
     
+    useEffect(() => {
+        setUser(props.location.state.user)
+    }, [])
+
+
     const onSubmit = data => {
         const email = data.newEmail
         const confirmEmail = data.confirmEmail
         if (data.newEmail !== '' || data.confirmEmail !== '') {
             if (email === confirmEmail) {
-                axiosInstance.post('')
+                if (email !== user.email) {
+                    setLoading(true)
+                    data = {email: email}
+                    axios.defaults.headers = {
+                        "Content-type": "application/json",
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                    axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
+                    .then(resp => {
+                        setUser(resp.data)
+                    })
+                    .catch(err => {
+                        console.log(err.Message)
+                    })
+                    setLoading(false)
+                } else {
+                    setError(`Your email is already ${email}`)
+                }
             } else {
                 setError("Emails don't match!")
             }
@@ -37,7 +62,7 @@ const ChangeEmail = () => {
             <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
                 <Form.Field>
                     <label>Current Email</label>
-                    <input value={currentEmail} name="currentEmail" disabled/>
+                    <input defaultValue={user.email} name="currentEmail" disabled/>
                 </Form.Field>
                 <Form.Field required>
                     <label>New Email</label>

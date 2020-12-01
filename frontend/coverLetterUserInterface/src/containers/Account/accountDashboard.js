@@ -1,46 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, } from 'react-router-dom'
-import {logout} from '../../store/actions/Auth'
-import {Grid, Container, Segment, Header, Menu} from 'semantic-ui-react'
+import { logout } from '../../store/actions/Auth'
+import { Grid, Container, Segment, Header, Menu } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
-import axiosInstance from '../../store/axiosApi'
 
-const Shell = props => {
-    const history = useHistory()
-    const dispatch = useDispatch()
-    const userId = jwtDecode(localStorage.getItem('access_token')).user_id
+
+const AccountDashboard = () => {
     const [user, setUser] = useState({})
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const accessToken = localStorage.getItem('access_token')
+    const userId = jwtDecode(accessToken).user_id
     const [loaded, isLoaded] = useState(false)
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            Authorization: `Bearer ${accessToken}`
         }
         axios.get(`http://localhost:3000/api/users/${userId}`)
-        .then(resp => {
-            setUser(resp.data)
-            // history.push({user: resp.data})
-        })
-        .then(() => {
-            isLoaded(true)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, [localStorage.getItem('access_token')])
+            .then(resp => {
+                setUser(resp.data)
+            })
+            .then(() => {
+                isLoaded(true)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
-        return (    
-            <Segment vertical>
+    if (loaded) {
+        return (
+            <Segment placeholder>
                 <Container>
-                    <Grid container stackable verticalAlign='top' divided columns={2}>
+                    <Grid container stackable verticalAlign='center' divided columns={2}>
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Header as="h3">Account</Header>
                                 <Menu vertical fluid>
-                                    <Menu.Item 
-                                        onClick={() => history.push("/admin/change-email/", {user: user})} 
+                                    <Menu.Item
+                                        onClick={() => history.push("/admin/change-email/", {user: user})}
                                         active={history.location.pathname === "/admin/change-email/"}
                                         name="change-email">
                                         Change Email
@@ -61,15 +62,24 @@ const Shell = props => {
                                     </Menu.Item>
                                 </Menu>
                             </Grid.Column>
-                            <Grid.Column width={12}>
-                                {props.children}
-                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Container>
             </Segment>
         )
+    } else {
+        return(
+            <Segment vertical>
+                <Container>
+                    <Grid container stackable verticalAlign='top' divided columns={2}>
+                        <Grid.Column width={4}>
+                            Loading
+                        </Grid.Column>
+                    </Grid>
+                </Container>
+            </Segment>
+        )
+    }
 }
 
-export default Shell
-
+export default AccountDashboard
