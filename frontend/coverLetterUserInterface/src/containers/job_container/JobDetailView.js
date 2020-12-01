@@ -33,7 +33,7 @@ const JobDetailView = () => {
             .catch(error => {
                 // history().push(window.location.href)
                 setLoaded({isLoaded: false})
-                alert(error.message)
+                alert(error)
                 window.location.href = ('/login')
             })
     }, [])
