@@ -60,8 +60,8 @@ class User(AbstractUser):
     #         self.instance.belongs_to_user = self.user
     #     super().save(*args, **kwargs)
 
-    def __str__(self):
-        return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
+    # def __str__(self):
+    #     return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
 
 class Job(models.Model):
     job_template_choices = (
@@ -114,7 +114,8 @@ class Job(models.Model):
     
 
     class Meta:
-        unique_together = ('link', 'template_choices', 'position_title')
+        unique_together = ('link', 'template_choices',
+                           'position_title', 'belongs_to_user')
         ordering = ['-created_date', '-modified_date', '-position_title']
         get_latest_by = ['-created_date', 'modified_date']
 

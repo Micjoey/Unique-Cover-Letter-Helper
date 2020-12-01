@@ -25,9 +25,14 @@ export const JobForm = (props) => {
         defaultValues: {
             job_posting_website: "LinkedIn",
             top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
-            choice_of_user: 6,
+            bullet_point_one: "Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles.",
+            bullet_point_two: "For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. ",
+            bullet_point_three: "My passion for competitive soccer has taught me to learn from my mistakes using constructive feedback to improve future action.",
+            bullet_point_four: "I continually strive for opportunities to improve my skills and have the opportunity to problem-solve.",
+            bullet_point_five: "A passion for reading books on communication, relationship building, and leadership allow me to learn continually.",
             job_stage: jobStage,
             template_choices: templateChoices,
+
         }
     })
 
@@ -36,8 +41,10 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
+        console.log(requestType, data)
         switch (requestType) {
             case 'post':
+                console.log("post", axios.defaults.headers)
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
                     .then(res => window.location.href = `http://127.0.0.1:3001/job/${res.data.id}`)
                     .catch(errors => console.log(errors))
@@ -408,18 +415,6 @@ export const JobForm = (props) => {
                             style={{ display: 'flex', margin: '0em 1em' }}
                         />
                         {errors.position_title && "Your input is required"}
-                    </div>
-                    <div style={{ display: 'flex', margin: '1em 0' }}>
-                        {/* <p style={{width: '12em'}}>Choice of User: </p> */}
-                        <input
-                            type="hidden"
-                            style={{ color: 'black' }}
-                            placeholder={"Choice of User"}
-                            name={"choice_of_user"}
-                            ref={register({ required: true })}
-                            style={{ display: 'flex', margin: '0em 1em' }}
-                        />
-                        {/* {errors.choice_of_user && "Your input is required"} */}
                     </div>
                     <div style={{ display: 'flex', margin: '1em 0' }}>
                         {/* <p style={{width: '12em'}}>Choice of User: </p> */}
