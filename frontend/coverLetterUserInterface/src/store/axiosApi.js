@@ -39,6 +39,7 @@ axios.interceptors.response.use(response =>
                 })
                 .catch(err => {
                     console.log(err, "user was logged out")
+                    alert("You've been logged out.")
                     logout()
                 });
         }
