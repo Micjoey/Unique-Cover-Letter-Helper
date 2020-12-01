@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django_filters',
 
     'corsheaders',
-    'rest_auth',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
 
    
     # 'allauth.socialaccount.providers.google',
@@ -106,6 +106,7 @@ DATABASES = {
 }
 
 AUTH_USER_MODEL = 'coverLetters.User'
+
 
 DATABASES = {
     'default': {
@@ -224,3 +225,4 @@ JWT_AUTH = {
 
 }
 
+REST_USE_JWT = True

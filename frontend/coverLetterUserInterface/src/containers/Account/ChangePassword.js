@@ -20,22 +20,25 @@ const ChangePassword = (props) => {
     const userId = jwtDecode(accessToken).user_id
 
     const onSubmit = data => {
-        const Password = data.newPassword
-        const confirmPassword = data.confirmPassword
-        if (data.newPassword !== '' || data.confirmPassword !== '') {
-            if (Password === confirmPassword) {
+        const oldPassword = data.oldPassword
+        const new_password = data.newPassword1
+        const newPassword2 = data.newPassword2
+        console.log(data)
+        if (data.newPassword1 !== '' || data.newPassword2 !== '') {
+            if (new_password === newPassword2) {
                     setLoading(true)
-                    data = { Password: Password }
+                    const backendData = { old_password: oldPassword, new_password: new_password }
+                    console.log(backendData)
                     axios.defaults.headers = {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    axios.patch(`http://localhost:3000/rest-auth/password/change/`, data)
+                    axios.patch(`http://localhost:3000/api/change-password/`, backendData)
                         .then(resp => {
                             { resp.length && (<Message confirm heading="Successfully changed password" content="You have successfully change your password!" />) }
                         })
                         .catch(err => {
-                            console.log(err.Message)
+                            console.log(err)
                         })
                     setLoading(false)
             } else {
@@ -59,7 +62,7 @@ const ChangePassword = (props) => {
                         placeholder="Current Password"
                         defaultValue={newPassword}
                         type="password"
-                        name={"currentPassword"}
+                        name={"oldPassword"}
                         ref={register()}
                     />
                 </Form.Field>
@@ -70,7 +73,7 @@ const ChangePassword = (props) => {
                         placeholder="New Password"
                         defaultValue={newPassword}
                         type="password"
-                        name={"newPassword"}
+                        name={"new_password1"}
                         ref={register()}
                     />
                 </Form.Field>
@@ -82,7 +85,7 @@ const ChangePassword = (props) => {
                         defaultValue={confirmPassword}
                         dependencies={["newPassword"]}
                         type="password"
-                        name={"confirmPassword"}
+                        name={"new_password2"}
                         ref={register()}
                     />
                 </Form.Field>
