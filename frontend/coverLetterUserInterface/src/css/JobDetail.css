@@ -16,8 +16,9 @@
     overflow: -moz-scrollbars-vertical; 
     max-height: 10em;
     text-align: left;
-    max-width: 40%;
-    overflow-y: auto;
+    max-width: 70vh;
+    /* overflow-y: auto; */
+    overflow: auto;
 }
 
 .job-detail-mapping-container {
