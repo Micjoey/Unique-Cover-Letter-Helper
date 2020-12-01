@@ -41,7 +41,7 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        console.log(requestType, data)
+        console.log(requestType, data, "before switch")
         switch (requestType) {
             case 'post':
                 console.log("post", axios.defaults.headers)

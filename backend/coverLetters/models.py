@@ -92,7 +92,7 @@ class Job(models.Model):
     position_title = models.CharField("Position Title",max_length = 200)
     company = models.CharField(max_length = 200, blank=True)
     city = models.CharField(max_length = 200,  blank=True)
-    link = models.CharField(max_length = 200)
+    link = models.CharField(max_length = 1000)
     recruiter = models.CharField(max_length = 200,  blank=True)
     description = models.TextField( blank=True)
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
@@ -114,7 +114,7 @@ class Job(models.Model):
     
 
     class Meta:
-        unique_together = ('link', 'template_choices',
+        unique_together = ('link',
                            'position_title', 'belongs_to_user')
         ordering = ['-created_date', '-modified_date', '-position_title']
         get_latest_by = ['-created_date', 'modified_date']
