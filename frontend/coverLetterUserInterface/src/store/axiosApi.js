@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',
     // timeout: 5000,
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+        'Authorization': `Bearer ${localStorage.getItem('refresh_token')}`,
         'Content-Type': 'application/json',
         'accept': 'application/json'
     },
@@ -18,11 +18,11 @@ axios.interceptors.response.use(response =>
     }, error => {
         const originalRequest = error.config;
         // console.log(originalRequest, "originalrequest")
-        axios.defaults.headers = {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }
-        console.log(localStorage.getItem('refresh_token', "this is outside the error call"))
+        // axios.defaults.headers = {
+        //     "Content-type": "application/json",
+        //     Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
+        // }
+        console.log(localStorage.getItem('refresh_token', "this is outside the error call", localStorage.getItem('access_token')))
         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');
