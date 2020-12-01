@@ -49,6 +49,9 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
     if (loaded.isLoaded) {
         return (
             <div className="cover-letter-display-container">
+                <div>
+                    <Link to="/job/form">Create another cover letter?</Link>
+                </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label>
                         <p>Template Choices: </p>
@@ -62,9 +65,6 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
                 </form>
                 <div>
                     {determineCoverLetter(currentCoverLetterChoice, job, user)}
-                </div>
-                <div>
-                    <Link to="/job/form">Create another cover letter?</Link>
                 </div>
             </div>
     
