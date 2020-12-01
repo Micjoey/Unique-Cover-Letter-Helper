@@ -1,6 +1,6 @@
 import React from "react";
 import {formattedJobData} from "./formattedData";
-
+import {Link} from 'react-router-dom'
 
 const Jobs = props => {
     
@@ -13,8 +13,10 @@ const Jobs = props => {
             <div>
                 {jobDetailKeys.map(key => (
                     <div className="job-detail-container" key={`${key} - container`}>
-                        <p key={key} className="job-info-field">{formattedJobData[key]}: </p>
-                        <p className="job-info-data" key={`key value - ${key}`} key={`${key} - ${key}`}>{jobDetail[key]}</p> 
+                        {formattedJobData[key] !== 'Id' && formattedJobData[key] !== 'Job Link' ? <p key={`${key}`} className="job-info-field">{formattedJobData[key]}: </p> : null }
+                        {formattedJobData[key] !== 'Id' && formattedJobData[key] !== 'Job Link' ? <p className="job-info-data" key={`key value - ${key}`} key={`${key} - ${key}`}>{jobDetail[key]}</p> : null }
+                        {formattedJobData[key] === 'Job Link' ? <p key={`${key} + 1`} className="job-info-field">{formattedJobData[key]}: </p> : null }
+                        {formattedJobData[key] === 'Job Link' ? <Link to={jobDetail[key]} className="job-info-data" key={`key value - ${key} + 1`} key={`${key} - ${key}`}>{jobDetail[key]}</Link> : null }
                     </div>
                ))}
             </div>
