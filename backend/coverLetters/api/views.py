@@ -39,7 +39,7 @@ class JobViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         userId = self.request.user.id
-        allJobs = Job.objects.all()
+        allJobs = Job.objects.order_by('-id')
         return allJobs.filter(belongs_to_user=userId)
 
 

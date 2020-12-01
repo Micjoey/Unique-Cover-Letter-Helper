@@ -47,7 +47,6 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
     }, [])
 
     if (loaded.isLoaded) {
-        console.log(localStorage)
         return (
             <div className="cover-letter-display-container">
                 <form onSubmit={handleSubmit(onSubmit)}>
