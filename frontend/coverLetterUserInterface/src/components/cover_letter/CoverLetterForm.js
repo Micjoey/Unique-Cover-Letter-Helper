@@ -41,6 +41,7 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
+        console.log(requestType, "requesttype")
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
@@ -124,19 +125,6 @@ export const JobForm = (props) => {
                             style={{ display: 'flex', margin: '0em 1em' }}
                         />
                         {errors.position_title && "Your input is required"}
-                    </div>
-                    <div style={{ display: 'flex', margin: '1em 0' }}>
-                        {/* <p style={{width: '12em'}}>Choice of User: </p> */}
-                        <input
-                            type="hidden"
-                            style={{ color: 'black' }}
-                            placeholder={"Choice of User"}
-                            defaultValue={job.choice_of_user}
-                            name={"choice_of_user"}
-                            ref={register({ required: true })}
-                            style={{ display: 'flex', margin: '0em 1em' }}
-                        />
-                        {/* {errors.choice_of_user && "Your input is required"} */}
                     </div>
                     <div style={{ display: 'flex', margin: '1em 0' }}>
                         <p style={{ width: '12em' }}>Company: </p>
