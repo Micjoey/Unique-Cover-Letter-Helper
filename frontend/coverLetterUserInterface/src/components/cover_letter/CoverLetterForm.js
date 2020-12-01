@@ -41,7 +41,6 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        console.log(requestType, "requesttype")
         switch (requestType) {
             case 'post':
                 axios.post('http://127.0.0.1:3000/api/jobs/', data)
