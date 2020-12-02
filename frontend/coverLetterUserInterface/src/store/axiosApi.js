@@ -17,7 +17,7 @@ axios.interceptors.response.use(response =>
         return response;
     }, error => {
         const originalRequest = error.config;
-        // console.log(originalRequest, "originalrequest")
+        console.log(originalRequest, "<--- originalrequest, error --> ",error )
         // axios.defaults.headers = {
         //     "Content-type": "application/json",
         //     Authorization: `Bearer ${localStorage.getItem('refresh_token')}`
@@ -39,8 +39,9 @@ axios.interceptors.response.use(response =>
                 })
                 .catch(err => {
                     console.log(err, "user was logged out")
-                    alert("You've been logged out.")
-                    logout()
+                    alert("There was an error")
+                    // alert("You've been logged out.")
+                    // logout()
                 });
         }
         

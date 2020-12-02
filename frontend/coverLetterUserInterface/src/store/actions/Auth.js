@@ -93,14 +93,14 @@ export const authCheckState = () => {
         if (token === undefined) {
             dispatch(logout())
         } 
-        // else {
-        //     const expirationDate = new Date(localStorage.getItem('expirationDate'));
-        //     if (expirationDate <= new Date()) {
-        //         dispatch(logout());
-        //     } else {
-        //         dispatch(authSuccess(token))
-        //         dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
-        //     }
-        // }
+        else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if (expirationDate <= new Date()) {
+                dispatch(logout());
+            } else {
+                dispatch(authSuccess(token))
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
+            }
+        }
     }
 }
