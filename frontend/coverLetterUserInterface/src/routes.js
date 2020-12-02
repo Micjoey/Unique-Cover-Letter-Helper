@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 
 import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
@@ -15,7 +15,7 @@ import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-
+    console.log("hit private route")
     return (
         authenticated === true ? 
         <Route {...rest} render={ props => <Component {...props}/>} />
@@ -24,8 +24,17 @@ const PrivateRoute = ({components: Component, ...rest}) => {
     )
     
 }
-
-
+const NeedUserCredentials = ({components: Component, ...rest}) => {
+    const state = useHistory().location.state
+    console.log(state === undefined)
+    return (
+        state !== undefined ? 
+        <PrivateRoute {...rest} render={ props => <Component {...props}/>} />
+        :
+        <Redirect to="/admin/"/>
+    )
+    
+}
 
 
 const BaseRouter = (props) => (
@@ -34,16 +43,17 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
             <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
-            <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
-            <PrivateRoute exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
-            <PrivateRoute exact path='/admin/change-password/' component={ChangePassword} {...props}/>
-            <PrivateRoute exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/>
+            <NeedUserCredentials exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
+            <NeedUserCredentials exact path='/admin/change-password/' component={ChangePassword} {...props}/>
+            <NeedUserCredentials exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
             <PrivateRoute exact path='/admin/' component={AccountDashboard} />
             <Route exact path='/signup' component={Signup}/>
             <Route exact path='/login' component={Login}/>
-            <Route path='' component={HomePage}/>
+            <Route exact path='' component={HomePage}/>
         </Switch>
     </div>
 )
+
+
 
 export default BaseRouter
