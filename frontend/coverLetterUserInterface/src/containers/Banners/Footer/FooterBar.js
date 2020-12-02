@@ -36,14 +36,14 @@ const FooterPage = () => {
                 <MDBRow className="mt-3">
                     <MDBCol md="3" lg="4" xl="3" className="mb-4">
                         <h6 className="text-uppercase font-weight-bold">
-                            <strong>Company name</strong>
+                            <strong>Unique Cover Letter Generator</strong>
                         </h6>
                         <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                         <p>
-                            Here you can use rows and columns here to organize your footer
+                            {/* Here you can use rows and columns here to organize your footer
                             content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-            </p>
+                            elit. */}
+                        </p>
                     </MDBCol>
                     <MDBCol md="2" lg="2" xl="2" className="mb-4">
                         <h6 className="text-uppercase font-weight-bold">
@@ -51,9 +51,9 @@ const FooterPage = () => {
                         </h6>
                         <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                         <p>
-                            <a href="#!">MDBootstrap</a>
+                            <a href="#!">About Me</a>
                         </p>
-                        <p>
+                        {/* <p>
                             <a href="#!">MDWordPress</a>
                         </p>
                         <p>
@@ -61,7 +61,7 @@ const FooterPage = () => {
                         </p>
                         <p>
                             <a href="#!">Bootstrap Angular</a>
-                        </p>
+                        </p> */}
                     </MDBCol>
                     <MDBCol md="3" lg="2" xl="2" className="mb-4">
                         <h6 className="text-uppercase font-weight-bold">
@@ -83,29 +83,29 @@ const FooterPage = () => {
                     </MDBCol>
                     <MDBCol md="4" lg="3" xl="3" className="mb-4">
                         <h6 className="text-uppercase font-weight-bold">
-                            <strong>Contact</strong>
+                            <strong>Personal Portfolio</strong>
                         </h6>
                         <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                         <p>
                             <i className="fa fa-home mr-3" /> New York, NY 10012, US
-            </p>
+                        </p>
                         <p>
                             <i className="fa fa-envelope mr-3" /> info@example.com
-            </p>
+                        </p>
                         <p>
                             <i className="fa fa-phone mr-3" /> + 01 234 567 88
-            </p>
+                        </p>
                         <p>
                             <i className="fa fa-print mr-3" /> + 01 234 567 89
-            </p>
+                        </p>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
-            <div className="footer-copyright text-center py-3">
+            {/* <div className="footer-copyright text-center py-3">
                 <MDBContainer fluid>
                     &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
                 </MDBContainer>
-            </div>
+            </div> */}
         </MDBFooter>
     );
 }
