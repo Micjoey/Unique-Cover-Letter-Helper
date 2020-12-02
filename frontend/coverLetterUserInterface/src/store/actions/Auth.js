@@ -9,10 +9,12 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = token => {
+export const authSuccess = (token, refresh_token) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        token: token,
+        access_token: token,
+        refresh_token: refresh_token
     }
 }
 
@@ -49,16 +51,24 @@ export const authLogin = (username, password) => {
             username: username,
             password: password
         }).then(response => {
-            axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+            console.log(response, "check here in authLogin")
+            // axios.defaults.headers = {
+            //     "Content-type": "application/json",
+            //     Authorization: `Bearer ${accessToken}`
+            // }
+            // axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+            axiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.access}`;
             const token = response.data.access;
-            const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            localStorage.setItem('expirationDate', expirationDate);
+            const refresh_token = response.data.refresh;
+            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            // localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
-            dispatch(authSuccess(token));
+            dispatch(authSuccess(token, refresh_token));
             // dispatch(checkAuthTimeout(5000))
-            window.location.href="/all-jobs/"
+            // window.location.href="/all-jobs/"
         }).catch(err => {
+            console.log("error thrown in authLogin")
             throw err;
         })
     }
