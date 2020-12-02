@@ -66,10 +66,11 @@ export const authLogin = (username, password) => {
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             // dispatch(checkAuthTimeout(5000))
-            // window.location.href="/all-jobs/"
+            window.location.href="/all-jobs/"
         }).catch(err => {
             console.log("error thrown in authLogin")
-            throw err;
+            dispatch(authFail(err))
+            return err;
         })
     }
 }

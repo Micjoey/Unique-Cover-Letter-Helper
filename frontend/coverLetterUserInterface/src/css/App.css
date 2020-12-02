@@ -4,6 +4,7 @@
 @import 'JobList.css';
 @import 'CoverLetterForm.css';
 @import 'homepage.css';
+@import 'SemanticOverride.css';
 
 .App {
   text-align: center;

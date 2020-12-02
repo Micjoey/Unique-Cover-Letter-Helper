@@ -137,29 +137,6 @@ const RegistrationForm = () => {
             >
                 <Input.Password />
             </Form.Item>
-
-            {/* <Form.Item
-                name="preferred-name"
-                label={
-                    <span>
-                        Preferred Name&nbsp;
-                        <Tooltip title="What do you want others to call you?">
-                            <QuestionCircleOutlined />
-                        </Tooltip>
-                    </span>
-                }
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your nickname!',
-                        whitespace: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item> */}
-
-
             <Form.Item>
                 <Button type="primary" htmlType="submit">
                     Signup
