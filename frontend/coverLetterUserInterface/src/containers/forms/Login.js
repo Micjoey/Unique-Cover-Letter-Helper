@@ -42,11 +42,13 @@ const Login = () => {
     }, [])
     
     const onFinish = (values) => {
-        try {
-            onAuth(values.username, values.password)
-        } catch(e) {
-            alert(e.message)
-        }
+        onAuth(values.username, values.password)
+        history.push('/login')
+        // try {
+        //     onAuth(values.username, values.password)
+        // } catch(e) {
+        //     alert(e.message)
+        // }
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -65,7 +67,7 @@ const Login = () => {
                         remember: true,
                     }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    // onFinishFailed={onFinishFailed}
                 >
                     <Form.Item
                         label="Username"

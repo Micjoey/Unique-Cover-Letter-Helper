@@ -38,10 +38,10 @@ axios.interceptors.response.use(response =>
                 })
                 .catch(err => {
                     console.log(err, "user was logged out")
-                    alert("There was an error, logged inside the axiosAPI")
+                    // alert("There was an error, logged inside the axiosAPI")
                     // alert("You've been logged out.")
                     // logout()
-                    // authCheckState()
+                    authCheckState()
                 });
         }
         
