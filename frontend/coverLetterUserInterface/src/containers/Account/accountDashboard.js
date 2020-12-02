@@ -35,7 +35,7 @@ const AccountDashboard = () => {
         return (
             <Segment placeholder>
                 <Container>
-                    <Grid container stackable verticalAlign='center' divided columns={2}>
+                    <Grid container stackable divided columns={2}>
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Header as="h3">Account</Header>
