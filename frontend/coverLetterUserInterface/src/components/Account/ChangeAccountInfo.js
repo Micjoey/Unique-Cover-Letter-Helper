@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 
 import axios from 'axios'
 import Shell from '../../containers/Account/Shell';
+import { useHistory } from 'react-router-dom';
 
 
 
 const ChangeAccountInfo = (props) => {
     const [user, setUser] = useState({})
-
+    const history = useHistory()
     const [error, setError] = useState({})
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
@@ -32,9 +33,8 @@ const ChangeAccountInfo = (props) => {
         console.log(data)
         axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
             .then(resp => {
-                console.log(resp)
                 setUser(resp.data)
-                console.log("successful")
+                history.go()
             })
             .catch(err => {
                 console.log(err.Message)

@@ -128,7 +128,6 @@ const ChangeEmail = (props) => {
                     </Table.Footer>
                 </Table>
             </Form>
-            
         </Shell>
     )
 }
