@@ -33,35 +33,6 @@ class User(AbstractUser):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 
 
-# class UserDetail(models.Model):
-#     belongs_to_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, blank = True)
-#     first_name = models.CharField(max_length=200, blank=False)
-#     middle_name = models.CharField(max_length=200,  blank=True)
-#     last_name = models.CharField(max_length=200, blank=False)
-#     preferred_name = models.CharField(max_length=200, blank=True)
-#     phone_number = PhoneField(blank=True)
-#     email = models.EmailField(blank=True, null=True)
-#     linkedin = models.URLField(blank=True, null=True)
-#     github = models.URLField(blank=True, null=True)
-#     portfolio_website = models.URLField(blank=True, null=True)
-#     street_address = models.CharField(blank=True, max_length=200)
-#     city_address = models.CharField(blank=True, max_length=200,)
-#     state_address = models.CharField(blank=True, max_length=200,)
-#     zip_code = models.CharField(blank=True, max_length=200,)
-#     modified_date = models.DateField(auto_now=True, blank=True)
-#     created_date = models.DateField(auto_now_add=True, blank=True)
-    
-
-#     class Meta:
-#         ordering = ['-modified_date']
-
-    # def save(self, *args, **kwargs):
-    #     if self.user: 
-    #         self.instance.belongs_to_user = self.user
-    #     super().save(*args, **kwargs)
-
-    # def __str__(self):
-    #     return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name + ' - date created: ' + str(self.created_date)
 
 class Job(models.Model):
     job_template_choices = (

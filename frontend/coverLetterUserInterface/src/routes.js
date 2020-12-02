@@ -6,10 +6,11 @@ import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
 import Login from './containers/forms/Login'
 import Signup from './containers/forms/Signup'
-import ChangeEmail from './containers/Account/ChangeEmail'
+import ChangeEmail from './components/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
 import AccountDashboard from './containers/Account/accountDashboard'
-import ChangePassword from './containers/Account/ChangePassword'
+import ChangePassword from './components/Account/ChangePassword'
+import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
 
 
 const PrivateRoute = ({components: Component, ...rest}) => {
@@ -36,6 +37,7 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
             <PrivateRoute exact path='/admin/change-password/' component={ChangePassword} {...props}/>
+            <PrivateRoute exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/>
             <PrivateRoute exact path='/admin/' component={AccountDashboard} />
             <Route exact path='/signup' component={Signup}/>
             <Route exact path='/login' component={Login}/>

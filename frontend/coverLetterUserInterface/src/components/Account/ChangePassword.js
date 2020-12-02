@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Shell from './Shell'
 import { Form, Input, Message, Header, Button } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
 import jwtDecode from 'jwt-decode';
+import Shell from '../../containers/Account/Shell';
 
 
 
