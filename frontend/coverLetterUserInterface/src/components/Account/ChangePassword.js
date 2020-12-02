@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, Message, Header, Button } from 'semantic-ui-react'
+import {
+    Form, Input, Message,
+    Header, Button, Grid,
+    Container, Segment, Menu,
+    Table, Icon, Label, Tab
+} from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
@@ -21,8 +26,8 @@ const ChangePassword = (props) => {
 
     const onSubmit = data => {
         const oldPassword = data.oldPassword
-        const new_password = data.newPassword1
-        const newPassword2 = data.newPassword2
+        const new_password = data.new_password1
+        const newPassword2 = data.new_password2
         console.log(data)
         if (data.newPassword1 !== '' || data.newPassword2 !== '') {
             if (new_password === newPassword2) {
@@ -52,7 +57,74 @@ const ChangePassword = (props) => {
 
     return (
         <Shell>
-            <Header as="h2">Change Password</Header>
+            <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
+                <Table striped inverted textAlign="center">
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Current Password</Table.HeaderCell>
+                            <Table.HeaderCell>New Password</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell textAlign="center" verticalAlign="middle">Current Password: </Table.Cell>
+                            <Table.Cell>
+                                <Form.Field>
+                                    <label>Current Password</label>
+                                    <input
+                                        // value=
+                                        placeholder="Current Password"
+                                        defaultValue={newPassword}
+                                        type="password"
+                                        name={"oldPassword"}
+                                        ref={register()}
+                                    />
+                                </Form.Field>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell verticalAlign="middle" textAlign="center">
+                                <Form.Field>New Password</Form.Field>
+                            </Table.Cell>
+                            <Table.Cell>
+                                <Form.Field required>
+                                    <label>New Password</label>
+                                    <input
+                                        // value=
+                                        placeholder="New Password"
+                                        defaultValue={newPassword}
+                                        type="password"
+                                        name={"new_password1"}
+                                        ref={register()}
+                                    />
+                                </Form.Field>
+                                <Form.Field required>
+                                    <label>Confirm Password</label>
+                                    <input
+                                        // value=
+                                        placeholder="Confirm Password"
+                                        defaultValue={confirmPassword}
+                                        dependencies={["newPassword"]}
+                                        type="password"
+                                        name={"new_password2"}
+                                        ref={register()}
+                                    />
+                                </Form.Field>
+                            </Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+
+                    <Table.Footer>
+                        <Table.Row>
+                            <Table.HeaderCell colSpan='2' textAlign="center">
+                                {error.length && (<Message error heading="There was an error" content={error} />)}
+                                <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
+                            </Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Footer>
+                </Table>
+            </Form>
+            {/* <Header as="h2">Change Password</Header>
             <br />
             <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
                 <Form.Field required>
@@ -91,7 +163,7 @@ const ChangePassword = (props) => {
                 </Form.Field>
                 {error.length && (<Message error heading="There was an error" content={error} />)}
                 <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
-            </Form>
+            </Form> */}
         </Shell>
     )
 }
