@@ -35,39 +35,59 @@ const Header = () => {
 
 
   return  (
-    <Navbar bg="light" expand="lg" sticky="top" className="text-center">
-      <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          {/* <Nav.Link href="/">Home</Nav.Link> */}
-          <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
-          <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
-          {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/admin/">Account</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <ErrorBoundary>
-            {
-              props.isAuthenticated ? 
-                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
-                :
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-            }
-            </ErrorBoundary>
-            <NavDropdown.Item href="/signup">Signup</NavDropdown.Item>
-            {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
-          </NavDropdown>
-        </Nav>
-        {/* <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form> */}
-      </Navbar.Collapse>
-    </Navbar>
+    <div>
+      {props.isAuthenticated ? loggedInNav(props, logout) : loggedOutNav(props, logout)}
+    </div>
   )
 }
 
 
 
 export default Header
+
+const loggedInNav = (props, logout) => (
+  <Navbar bg="light" expand="lg" className="text-center">
+    <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+        {/* <Nav.Link href="/">Home</Nav.Link> */}
+        <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
+        <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
+        {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
+        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/admin/">Account</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <ErrorBoundary>
+            {
+              props.isAuthenticated ?
+                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+                :
+                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            }
+          </ErrorBoundary>
+        </NavDropdown>
+      </Nav>
+      {/* <Form inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-success">Search</Button>
+        </Form> */}
+    </Navbar.Collapse>
+  </Navbar>
+)
+
+const loggedOutNav = (props, logout) => (
+  < Navbar bg="light" expand="lg" className="text-center" >
+    <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+        <Nav.Link href="/login/">Login</Nav.Link>
+        <Nav.Link href="/signup">Sign Up</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar >
+)
+
+
+  
