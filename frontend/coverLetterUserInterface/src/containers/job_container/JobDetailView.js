@@ -40,8 +40,8 @@ const JobDetailView = () => {
 
     const onSubmit = () => {
         confirmAlert({
-            title: `Confirm Delete of ${job.position_title}?`,
-            message: 'Are you sure to do this?',
+            title: `Confirm Delete `,
+            message: 'Are you sure you want to delete ${job.position_title} at ${job.company}?',
             buttons: [
                 {
                     label: 'Yes',
