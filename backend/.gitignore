@@ -25,3 +25,9 @@ coverLetters/migrations/0049_merge_20201028_1812.py
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+./venv
+./db.json
+./db1.json
+./output.json
+./sqlLite.json
