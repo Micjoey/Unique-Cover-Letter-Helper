@@ -241,7 +241,7 @@ const ChangeAccountInfo = (props) => {
                         <Table.Footer>
                             <Table.Row>
                                 <Table.HeaderCell colSpan='2'textAlign="center">
-                                    {error && (<Message error heading="There was an error" content={error} />)}
+                                    {error.length && (<Message error heading="There was an error" content={error} />)}
                                     <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
                                 </Table.HeaderCell>
                             </Table.Row>
