@@ -32,4 +32,4 @@ yarn-error.log*
 ./output.json
 ./sqlLite.json
 
-node_modules
+node_modules/
