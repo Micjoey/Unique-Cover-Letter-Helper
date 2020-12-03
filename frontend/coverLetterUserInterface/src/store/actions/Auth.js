@@ -44,19 +44,13 @@ export const checkAuthTimeout = expirationTime => {
 }
 
 
-export const authLogin = (username, password) => {
+export const authLogin = (username, password, setErrorState) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://localhost:3000/api/token/', {
             username: username,
             password: password
         }).then(response => {
-            console.log(response, "check here in authLogin")
-            // axios.defaults.headers = {
-            //     "Content-type": "application/json",
-            //     Authorization: `Bearer ${accessToken}`
-            // }
-            // axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
             axiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.access}`;
             const token = response.data.access;
             const refresh_token = response.data.refresh;
@@ -68,9 +62,10 @@ export const authLogin = (username, password) => {
             // dispatch(checkAuthTimeout(5000))
             window.location.href="/all-jobs/"
         }).catch(err => {
-            console.log("error thrown in authLogin")
+            setErrorState("Failed to log in. Try again or sign up.")
             dispatch(authFail(err))
-            return err;
+            // return err
+            // window.location.reload()
         })
     }
 }
