@@ -179,6 +179,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 REST_FRAMEWORK = {
@@ -200,6 +201,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
     'http://127.0.0.1:3001',
+    "unique-cover-letter-generator-app.herokuapp.com"
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
