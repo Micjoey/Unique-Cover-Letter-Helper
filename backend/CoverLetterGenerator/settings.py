@@ -212,7 +212,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 JWT_AUTH = {
     'JWT_LEEWAY': 10,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    # 'JWT_LEEWAY': 10,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 

@@ -1,120 +1,90 @@
-import { Form, Input, Button, Checkbox, Spin, Space, Alert } from 'antd';
+// import { Form, Input, Button, Checkbox, Spin, Space, Alert } from 'antd';
+import {
+    Form, Input, Message,
+    Header, Button, Grid,
+    Container, Segment, Menu,
+    Table, Icon, Label, Tab, Divider
+} from 'semantic-ui-react'
+
 import {Nav} from 'react-bootstrap';
 import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../store/actions/Auth'
 import { useHistory }  from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 
-const layout = {
-    labelCol: {
-        span: 8,
-    },
-    wrapperCol: {
-        span: 16,
-    },
-};
-const tailLayout = {
-    wrapperCol: {
-        offset: 8,
-        span: 16,
-    },
-};
+
 
 const Login = () => {
     const history = useHistory()
+    const [loading, setLoading] = useState(false)
     const props = useSelector(state => (
         { ...state, 
             isAuthenticated: localStorage.getItem('access_token') !== null,
             loading: state.loading,
             error: state.error
         }))
-    
+    const {register, handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, password) => dispatch(actions.authLogin(username, password))
+        (username, password) => dispatch(actions.authLogin(username, password, setErrorMessage))
     )
 
     const [errorMessage, setErrorMessage] = useState(null)
-
-    useEffect(() => {
-        setErrorMessage(props.error)
-    }, [])
     
     const onFinish = (values) => {
-        onAuth(values.username, values.password)
-        history.push('/login')
-        // try {
-        //     onAuth(values.username, values.password)
-        // } catch(e) {
-        //     alert(e.message)
-        // }
+        setLoading(true)
+        try {
+            onAuth(values.username, values.password)
+        } catch {
+            setErrorMessage("Please try again or signup.")
+        }
+        setLoading(false)
     };
 
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo, "hit finish failed");
-    };
-
+    
     return (
         <div className="login-form">
-            {errorMessage}
-            {
-                !props.loading ? 
-                <Form
-                    {...layout}
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    // onFinishFailed={onFinishFailed}
-                >
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        autoComplete="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
-                        ]}
-                    >
-                    <Input />
-                    </Form.Item>
+            <Segment placeholder>
+                <Grid columns={2} relaxed='very' stackable>
+                    <Grid.Column>
+                        <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null}>
+                            {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
+                            <Form.Field required>
+                                <label>Username</label>
+                                <input
+                                    icon='user'
+                                    label='Username'
+                                    name={'username'}
+                                    placeholder='Username'
+                                    autoComplete="username"
+                                    ref={register()}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Password</label>
+                                <input
+                                    icon='lock'
+                                    label='Password'
+                                    name={'password'}
+                                    autoComplete="current-password"
+                                    type='password'
+                                    ref={register()}
+                                />
 
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        autoComplete="current-password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                        ]}
-                    >
-                        <Input.Password />
-                    </Form.Item>
+                            </Form.Field>
 
-                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
+                            <Button primary type="submit" loading={loading} disabled={loading}>Login</Button>
+                        </Form>
+                    </Grid.Column>
 
-                    <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
-                            Login
-                        </Button>
-                        or
-                        <Nav.Link style={{marginLeft: '10px'}} href='/signup'>
-                            Sign Up
-                        </Nav.Link>
-                    </Form.Item>
-                </Form>
-                :
-                <Spin tip="Loading...">
-                </Spin>
-            }
+                    <Grid.Column verticalAlign='middle'>
+                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
+                    </Grid.Column>
+                </Grid>
+                <Divider vertical>Or</Divider>
+            </Segment>
         </div>
     );
 };

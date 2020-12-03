@@ -28,12 +28,10 @@ const ChangePassword = (props) => {
         const oldPassword = data.oldPassword
         const new_password = data.new_password1
         const newPassword2 = data.new_password2
-        console.log(data)
         if (data.newPassword1 !== '' || data.newPassword2 !== '') {
             if (new_password === newPassword2) {
                     setLoading(true)
                     const backendData = { old_password: oldPassword, new_password: new_password }
-                    console.log(backendData)
                     axios.defaults.headers = {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
@@ -43,7 +41,7 @@ const ChangePassword = (props) => {
                             { resp.length && (<Message confirm heading="Successfully changed password" content="You have successfully change your password!" />) }
                         })
                         .catch(err => {
-                            console.log(err)
+                            setError(err)
                         })
                     setLoading(false)
             } else {

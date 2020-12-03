@@ -30,14 +30,13 @@ const ChangeAccountInfo = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        console.log(data)
         axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
             .then(resp => {
                 setUser(resp.data)
                 history.go()
             })
             .catch(err => {
-                console.log(err.Message)
+                setError(err.Message)
             })
         setLoading(false)
     }
@@ -242,7 +241,7 @@ const ChangeAccountInfo = (props) => {
                         <Table.Footer>
                             <Table.Row>
                                 <Table.HeaderCell colSpan='2'textAlign="center">
-                                    {error.length && (<Message error heading="There was an error" content={error} />)}
+                                    {error && (<Message error heading="There was an error" content={error} />)}
                                     <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
                                 </Table.HeaderCell>
                             </Table.Row>

@@ -43,7 +43,7 @@ const ChangeEmail = (props) => {
                         setUser(resp.data)
                     })
                     .catch(err => {
-                        console.log(err.Message)
+                        setError(err.Message)
                     })
                     setLoading(false)
                 } else {

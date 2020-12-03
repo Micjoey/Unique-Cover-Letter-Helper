@@ -15,7 +15,6 @@ import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
-    console.log("hit private route")
     return (
         authenticated === true ? 
         <Route {...rest} render={ props => <Component {...props}/>} />
@@ -26,7 +25,6 @@ const PrivateRoute = ({components: Component, ...rest}) => {
 }
 const NeedUserCredentials = ({components: Component, ...rest}) => {
     const state = useHistory().location.state
-    console.log(state === undefined)
     return (
         state !== undefined ? 
         <PrivateRoute {...rest} render={ props => <Component {...props}/>} />
