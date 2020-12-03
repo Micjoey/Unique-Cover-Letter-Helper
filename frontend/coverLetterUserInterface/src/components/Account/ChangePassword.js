@@ -15,10 +15,11 @@ import Shell from '../../containers/Account/Shell';
 
 
 const ChangePassword = (props) => {
-    const [newPassword] = useState("")
-    const [currentPassword] = useState("")
-    const [confirmPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+    const [currentPassword, setCurrentPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState({})
+    const [successMessage, setSuccessMessage] = useState(null)
     const { register, handleSubmit } = useForm()
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
@@ -28,7 +29,7 @@ const ChangePassword = (props) => {
         const oldPassword = data.oldPassword
         const new_password = data.new_password1
         const newPassword2 = data.new_password2
-        if (data.newPassword1 !== '' || data.newPassword2 !== '') {
+        if (new_password !== '' || newPassword2 !== '' || oldPassword) {
             if (new_password === newPassword2) {
                     setLoading(true)
                     const backendData = { old_password: oldPassword, new_password: new_password }
@@ -38,24 +39,27 @@ const ChangePassword = (props) => {
                     }
                     axios.patch(`http://localhost:3000/api/change-password/`, backendData)
                         .then(resp => {
-                            { resp.length && (<Message confirm heading="Successfully changed password" content="You have successfully change your password!" />) }
+                            setSuccessMessage("You have successfully changed the password!")
+                            setError({})
                         })
                         .catch(err => {
-                            setError(err)
+                            setError("Woops seems like something went wrong. Did you enter the correct current password?")
+                            setSuccessMessage(null)
                         })
                     setLoading(false)
             } else {
                 setError("Passwords don't match!")
+                setSuccessMessage(null)
             }
         } else {
             setError("Fields are empty!")
-
+            setSuccessMessage(null)
         }
     }
 
     return (
         <Shell>
-            <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
+            <Form onSubmit={handleSubmit(onSubmit)} error={error !== null} success={successMessage !== null}>
                 <Table striped inverted textAlign="center">
                     <Table.Header>
                         <Table.Row>
@@ -116,52 +120,13 @@ const ChangePassword = (props) => {
                         <Table.Row>
                             <Table.HeaderCell colSpan='2' textAlign="center">
                                 {error.length && (<Message error heading="There was an error" content={error} />)}
+                                {successMessage && (<Message success heading="Success" content={successMessage} />)}
                                 <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
                             </Table.HeaderCell>
                         </Table.Row>
                     </Table.Footer>
                 </Table>
             </Form>
-            {/* <Header as="h2">Change Password</Header>
-            <br />
-            <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
-                <Form.Field required>
-                    <label>Current Password</label>
-                    <input
-                        // value=
-                        placeholder="Current Password"
-                        defaultValue={newPassword}
-                        type="password"
-                        name={"oldPassword"}
-                        ref={register()}
-                    />
-                </Form.Field>
-                <Form.Field required>
-                    <label>New Password</label>
-                    <input
-                        // value=
-                        placeholder="New Password"
-                        defaultValue={newPassword}
-                        type="password"
-                        name={"new_password1"}
-                        ref={register()}
-                    />
-                </Form.Field>
-                <Form.Field required>
-                    <label>Confirm Password</label>
-                    <input
-                        // value=
-                        placeholder="Confirm Password"
-                        defaultValue={confirmPassword}
-                        dependencies={["newPassword"]}
-                        type="password"
-                        name={"new_password2"}
-                        ref={register()}
-                    />
-                </Form.Field>
-                {error.length && (<Message error heading="There was an error" content={error} />)}
-                <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
-            </Form> */}
         </Shell>
     )
 }

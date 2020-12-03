@@ -1,7 +1,7 @@
 import axios from 'axios'
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
-
+import jwtDecode from 'jwt-decode'
 
 export const authStart = () => {
     return {
@@ -44,7 +44,7 @@ export const checkAuthTimeout = expirationTime => {
 }
 
 
-export const authLogin = (username, password, setErrorState) => {
+export const authLogin = (username, password, setErrorState = null, justSignedUp = false) => {
     return dispatch => {
         dispatch(authStart());
         axios.post('http://localhost:3000/api/token/', {
@@ -60,9 +60,16 @@ export const authLogin = (username, password, setErrorState) => {
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             // dispatch(checkAuthTimeout(5000))
-            window.location.href="/all-jobs/"
+            if (justSignedUp) {
+                window.location.href="/signup-user-details/"
+            } else {
+                window.location.href="/all-jobs/"
+            }
+
         }).catch(err => {
-            setErrorState("Failed to log in. Try again or sign up.")
+            if (setErrorState !== null){
+                setErrorState("Failed to log in. Try again or sign up.")
+            }
             dispatch(authFail(err))
             // return err
             // window.location.reload()
@@ -71,7 +78,12 @@ export const authLogin = (username, password, setErrorState) => {
 }
 
 
-export const authSignUp = (username, email, password1, password2) => {
+export const authSignUp = ({...data}) => {
+    const username = data.username
+    const password1 = data.password
+    const password2 = data.confirm_password
+    const email = data.email
+    console.log({...data})
     return dispatch => {
         dispatch(authStart());
         axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
@@ -80,16 +92,19 @@ export const authSignUp = (username, email, password1, password2) => {
             password1: password1,
             password2: password2
         })
-        .then(res => {
-            const token = res.data.key;
-            const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+        .then(response => {
+            const token = response.data.key;
+            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            const accessToken = response.data.access;
+            const refreshToken = response.data.refresh;
+            localStorage.setItem('access_token', accessToken);
+            localStorage.setItem('refresh_token', refreshToken);
             localStorage.setItem('token', token);
-            localStorage.setItem('expirationDate', expirationDate);
-            dispatch(authSuccess(token));
-            dispatch(checkAuthTimeout(5000))})
-            .catch(err => {
-                dispatch(authFail(err))
-            })
+            dispatch(authLogin(username, password1, null, true))
+            dispatch(authSuccess(accessToken, refreshToken));
+        }).catch(err => {
+            dispatch(authFail(err))
+        })
     }
 }
 

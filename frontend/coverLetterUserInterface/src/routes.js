@@ -5,12 +5,13 @@ import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
 import Login from './containers/forms/Login'
-import Signup from './containers/forms/Signup'
+import Signup from './containers/forms/signUpForms.js/SignupInitial'
 import ChangeEmail from './components/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
 import AccountDashboard from './containers/Account/accountDashboard'
 import ChangePassword from './components/Account/ChangePassword'
 import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
+import AccountDetailsForm from './containers/forms/signUpForms.js/SignUpDetails'
 
 
 const PrivateRoute = ({components: Component, ...rest}) => {
@@ -31,7 +32,6 @@ const NeedUserCredentials = ({components: Component, ...rest}) => {
         :
         <Redirect to="/admin/"/>
     )
-    
 }
 
 
@@ -41,6 +41,7 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
             <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
+            <PrivateRoute exact path='/signup-user-details/' component={AccountDetailsForm}/>
             <NeedUserCredentials exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}

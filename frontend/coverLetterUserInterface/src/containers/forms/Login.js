@@ -46,10 +46,10 @@ const Login = () => {
     
     return (
         <div className="login-form">
-            <Segment placeholder>
+            <Segment placeholder inverted>
                 <Grid columns={2} relaxed='very' stackable>
                     <Grid.Column>
-                        <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null}>
+                        <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null} inverted>
                             {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
                             <Form.Field required>
                                 <label>Username</label>
@@ -80,10 +80,10 @@ const Login = () => {
                     </Grid.Column>
 
                     <Grid.Column verticalAlign='middle'>
-                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
+                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")} inverted/>
                     </Grid.Column>
                 </Grid>
-                <Divider vertical>Or</Divider>
+                <Divider vertical inverted>Or</Divider>
             </Segment>
         </div>
     );
