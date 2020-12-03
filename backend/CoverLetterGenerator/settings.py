@@ -204,7 +204,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ['UniqueCoverLetterApp-test.us-west-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['UniqueCoverLetterApp-test.us-west-1.elasticbeanstalk.com]
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
