@@ -200,11 +200,11 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
     'http://127.0.0.1:3001',
-
+    'UniqueCoverLetterApp-test.us-west-1.elasticbeanstalk.com',
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ['http://127.0.0.1:3001']
+ALLOWED_HOSTS = ['UniqueCoverLetterApp-test.us-west-1.elasticbeanstalk.com']
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
