@@ -73,7 +73,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'CoverLetterGenerator.urls'
+ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
 TEMPLATES = [
     {
@@ -91,7 +91,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CoverLetterGenerator.wsgi.application'
+WSGI_APPLICATION = 'CoverLetterGeneratorApp.wsgi.application'
 
 
 # Database

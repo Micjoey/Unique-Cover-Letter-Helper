@@ -7,7 +7,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CoverLetterGenerator.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CoverLetterGeneratorApp.settings')
     import django
     django.setup()
 

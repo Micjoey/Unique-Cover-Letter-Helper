@@ -62,7 +62,7 @@
 
 ## **Creating a SuperUser**
   For this system, it is vital to create a superuser. To do so, click here ([documentation](https://docs.djangoproject.com/en/1.8/intro/tutorial02/)) or follow the below steps:
-    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal at the top folder level (CoverLetterGenerator) of the project.
+    * run `python manage.py createsuperuser` or `python3 manage.py createsuperuser` in your terminal at the top folder level (CoverLetterGeneratorApp) of the project.
     * Follow prompts in the terminal.
     **Access to SuperUser**
       To access the superuser you'll have to go to `http://localhost:3000/admin` or `http://localhost:8000/admin` and log in. At this point you can edit or delete any information that is in the system.
@@ -108,7 +108,7 @@
     `python manage.py test`
     </br>
 ## **Editing Cover Letter**
-  ### `CoverLetterGenerator/coverLetters/templates/coverletters/cover-letter.html`
+  ### `CoverLetterGeneratorApp/coverLetters/templates/coverletters/cover-letter.html`
 
   ### Cover Letter Template
   If you want different pre-filled sections (i.e., Top Skills is filled with "Dynamic and accomplished Software Engineer with experience and expertise in") you can go to `coverLetters/models.py` and under that field in the `Job Model` you can either add or change the field `default="x"`.
@@ -118,10 +118,10 @@
   Don't worry about bullet_point_one, etc. They won't be added to the cover letter unless you wish it to be so.
 
 ## All Job Detail
-  ### `CoverLetterGenerator/coverLetters/templates/jobs`
+  ### `CoverLetterGeneratorApp/coverLetters/templates/jobs`
   This is the code's location, which holds the general information for the cover letter, and then the cover letter itself.
   
-  ### `CoverLetterGenerator/coverLetters/templates/all-jobs`
+  ### `CoverLetterGeneratorApp/coverLetters/templates/all-jobs`
   This is a simple for loop which shows all jobs that have templates and exist in your database.
   
 ## Filling Out Form
