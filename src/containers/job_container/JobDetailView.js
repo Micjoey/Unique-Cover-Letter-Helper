@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import JobDetail from '../../components/jobInfo/JobDetail'
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'

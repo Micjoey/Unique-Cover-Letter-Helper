@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import jwtDecode from 'jwt-decode';
 import Shell from '../../containers/Account/Shell';
 
@@ -25,6 +25,7 @@ const ChangePassword = (props) => {
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
+    const url = window.location.origin
 
     const onSubmit = data => {
         const oldPassword = data.oldPassword
@@ -38,7 +39,8 @@ const ChangePassword = (props) => {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    axios.patch(`http://localhost:3000/api/change-password/`, backendData)
+                    axios.patch(`${url}/api/change-password/`, backendData)
+                    // axios.patch(`http://localhost:3000/api/change-password/`, backendData)
                         .then(resp => {
                             setSuccessMessage("You have successfully changed the password!")
                             setError({})

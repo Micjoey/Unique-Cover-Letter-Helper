@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({
@@ -22,8 +22,10 @@ axios.interceptors.response.use(response =>
         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');
+            const url = window.location.origin
             return axiosInstance
-                .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
+                .post(`${url}/api/token/refresh/`, { refresh: refresh_token, access_token: access_token })
+                // .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
                     localStorage.setItem('access_token', response.data.access);
                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;

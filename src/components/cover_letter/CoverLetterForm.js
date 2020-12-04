@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/";
+;
 import { useHistory } from "react-router-dom";
 
 
