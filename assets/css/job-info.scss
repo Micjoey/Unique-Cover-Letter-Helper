@@ -11,7 +11,12 @@ body {
 
 .job-detail-container {
     display: flex;
+    width: 60%;
     // background-color: red;
+}
+
+.job-info-field > p {
+    width: 40%;
 }
 
 .job-detail-container > p:nth-child(2) {
