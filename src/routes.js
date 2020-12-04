@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from 'react'
-import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import React from 'react'
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
 
 import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
