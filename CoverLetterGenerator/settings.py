@@ -206,7 +206,7 @@ REST_FRAMEWORK = {
 
 # CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = [
-    'uniquecoverlettergenerator.herokuapp.com', '127.0.0.1']
+    'uniquecoverlettergenerator.herokuapp.com', '127.0.0.1', 'heroku.com']
 #                  'http://uniquecoverlettergenerator.com/', 'localhost', 'http://127.0.0.1']
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
