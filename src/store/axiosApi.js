@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { authCheckState, logout } from './actions/Auth';
+import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3000/api',

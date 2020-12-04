@@ -1,7 +1,7 @@
 import axios from 'axios'
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
-import jwtDecode from 'jwt-decode'
+
 
 export const authStart = () => {
     return {

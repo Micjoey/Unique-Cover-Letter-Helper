@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import JobDetail from '../../components/jobInfo/JobDetail'
 import axios from 'axios'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import { confirmAlert, alert } from 'react-confirm-alert'; 
@@ -16,7 +16,6 @@ const JobDetailView = () => {
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
-    const history = useHistory()
 
     useEffect(() => {
         axios.defaults.headers = {

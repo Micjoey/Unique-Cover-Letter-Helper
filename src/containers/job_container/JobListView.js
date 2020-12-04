@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
@@ -11,15 +10,8 @@ import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 
 const JobList = () => {
     let history = useHistory()
-    const props = useSelector(state => (
-        {
-            ...state, 
-            isAuthenticated: state.token !== null,
-            loading: state.loading,
-            error: state.error,
-            token: state.token,
-        }))
-    const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'))
+
+    const [accessToken] = useState(localStorage.getItem('access_token'))
     const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
     const [next, setNext] = useState([])
