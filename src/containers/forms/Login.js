@@ -46,44 +46,46 @@ const Login = () => {
     
     return (
         <div className="login-form">
-            <Segment placeholder inverted>
-                <Grid columns={2} relaxed='very' stackable>
-                    <Grid.Column>
-                        <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null} inverted>
-                            {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
-                            <Form.Field required>
-                                <label>Username</label>
-                                <input
-                                    icon='user'
-                                    label='Username'
-                                    name={'username'}
-                                    placeholder='Username'
-                                    autoComplete="username"
-                                    ref={register()}
-                                />
-                            </Form.Field>
-                            <Form.Field>
-                                <label>Password</label>
-                                <input
-                                    icon='lock'
-                                    label='Password'
-                                    name={'password'}
-                                    autoComplete="current-password"
-                                    type='password'
-                                    ref={register()}
-                                />
+            <Segment size="large">
+                <Segment placeholder inverted>
+                    <Grid columns={2} relaxed='very' stackable>
+                        <Grid.Column>
+                            <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null} inverted>
+                                {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
+                                <Form.Field required>
+                                    <label>Username</label>
+                                    <input
+                                        icon='user'
+                                        label='Username'
+                                        name={'username'}
+                                        placeholder='Username'
+                                        autoComplete="username"
+                                        ref={register()}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Password</label>
+                                    <input
+                                        icon='lock'
+                                        label='Password'
+                                        name={'password'}
+                                        autoComplete="current-password"
+                                        type='password'
+                                        ref={register()}
+                                    />
 
-                            </Form.Field>
+                                </Form.Field>
 
-                            <Button primary type="submit" loading={loading} disabled={loading}>Login</Button>
-                        </Form>
-                    </Grid.Column>
+                                <Button primary type="submit" loading={loading} disabled={loading}>Login</Button>
+                            </Form>
+                        </Grid.Column>
 
-                    <Grid.Column verticalAlign='middle'>
-                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
-                    </Grid.Column>
-                </Grid>
-                <Divider vertical inverted>Or</Divider>
+                        <Grid.Column verticalAlign='middle'>
+                            <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
+                        </Grid.Column>
+                    </Grid>
+                    <Divider vertical inverted>Or</Divider>
+                </Segment>
             </Segment>
         </div>
     );
