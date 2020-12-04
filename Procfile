@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunincorn CoverLetterGenerator.wsgi --log-file -
+web: gunincorn CoverLetterGeneratorApp.wsgi --log-file -
