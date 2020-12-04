@@ -80,7 +80,7 @@ const Login = () => {
                     </Grid.Column>
 
                     <Grid.Column verticalAlign='middle'>
-                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")} inverted/>
+                        <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
                     </Grid.Column>
                 </Grid>
                 <Divider vertical inverted>Or</Divider>

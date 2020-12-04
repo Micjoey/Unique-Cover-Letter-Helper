@@ -29,6 +29,7 @@ const JobList = () => {
         }
         axios.get(`http://127.0.0.1:3000/api/jobs/`, )
         .then( res => {
+            console.log(res)
             setAllJobs(res.data.results)
             return res
         })

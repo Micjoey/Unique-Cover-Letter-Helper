@@ -3,13 +3,20 @@
     width: 100%;
 }
 
-.job-detail-container{
+.job-detail-container {
     display: flex;
+    width: 60%;
+}
+
+.job-info-field > p:nth-child(2) {
+    width: 40%;
 }
 
 .job-info-field {
     width: fit-content;
+    min-width: 22vh;
     margin-right: .5em;
+
 }
 
 .job-info-data {

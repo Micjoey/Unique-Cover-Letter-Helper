@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {
     Form, Input, Message,
-    Header, Button, Grid,
-    Container, Segment, Menu,
-    Table, Icon, Label, Tab
+    Button, Table
 } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
 import Shell from '../../containers/Account/Shell';
 
 
