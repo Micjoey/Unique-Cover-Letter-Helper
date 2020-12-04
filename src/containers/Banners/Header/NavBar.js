@@ -46,7 +46,7 @@ const Header = () => {
 export default Header
 
 const loggedInNav = (props, logout) => (
-  <Navbar bg="light" expand="lg" className="text-center" sticky>
+  <Navbar bg="light" expand="lg" className="text-center" sticky style={{margin: '1em'}}>
     <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -54,7 +54,6 @@ const loggedInNav = (props, logout) => (
         {/* <Nav.Link href="/">Home</Nav.Link> */}
         <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
         <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
-        {/* <Nav.Link onClick={() => logout()}>Logout</Nav.Link> */}
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Item href="/admin/">Account</NavDropdown.Item>
           <NavDropdown.Divider />

@@ -7,6 +7,20 @@ import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 
+import {
+    Button,
+    Container,
+    Divider,
+    Grid,
+    Header,
+    Icon,
+    Image,
+    List,
+    Menu,
+    Segment,
+    Sidebar,
+    Visibility,
+} from 'semantic-ui-react'
 
 
 const JobList = () => {
@@ -52,25 +66,43 @@ const JobList = () => {
     if (loaded.isLoaded) {
         if (allJobs.length) {
             return (
-                <div>
-                    <h1>All Jobs:</h1>
+                <Container>
+                    <Segment>
+                        <Header
+                            as='h1'
+                            content='All Jobs'
+                            // inverted
+                            style={{
+                                fontSize: '2em',
+                                // fontWeight: 'normal',
+                                // marginBottom: 0,
+                                // marginTop: '.5em',
+                            }}
+                        />
+                        <Segment style={{fontSize: '2em'}}>
+                            <Jobs jobs={allJobs} jobProps={jobProps} />
+                        </Segment>
+                        <Segment style={{ fontSize: '1em' }}>
+                            <Pagination
+                                pageIndex={pageIndex}
+                                total={count}
+                                perPage={20}
+                                onNext={next}
+                                onPrevious={onPrevious}
+                                setAllJobs={setAllJobs}
+                                setNext={setNext}
+                                setOnPrevious={setOnPrevious}
+                                setPageIndex={setPageIndex}
+                            />
+                        </Segment>
+                    </Segment>
                     <div className="Jobs-container">
-                        <Jobs jobs={allJobs} jobProps={jobProps}/>
+                        
                     </div>
                     <footer>
-                        <Pagination 
-                            pageIndex={pageIndex} 
-                            total={count} 
-                            perPage={20} 
-                            onNext={next}
-                            onPrevious={onPrevious}
-                            setAllJobs={setAllJobs}
-                            setNext = {setNext}
-                            setOnPrevious={setOnPrevious}
-                            setPageIndex={setPageIndex}
-                        />
+                        
                     </footer>
-                </div>
+                </Container>
             )
         } else {
             return (
