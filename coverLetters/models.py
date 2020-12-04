@@ -14,7 +14,6 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
     last_name = models.CharField(max_length=200, blank=False)
-    email_address = models.EmailField(max_length=254, unique=True, blank=False)
     preferred_name = models.CharField(max_length=200, blank=True)
     phone_number = PhoneField(blank=True)
     linkedin = models.URLField(blank=True, null=True)
@@ -29,6 +28,7 @@ class User(AbstractUser):
 
     class Meta:
         ordering = ['-modified_date']
+        UniqueConstraint(fields=['email_address'], name='unique_email')
     
     def __str__(self):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
