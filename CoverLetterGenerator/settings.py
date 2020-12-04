@@ -206,7 +206,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ['unique-cover-letter-generator-app.herokuapp.com']
+# ALLOWED_HOSTS = ['unique-cover-letter-generator-app.herokuapp.com']
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
