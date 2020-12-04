@@ -46,7 +46,7 @@ const Header = () => {
 export default Header
 
 const loggedInNav = (props, logout) => (
-  <Navbar bg="light" expand="lg" className="text-center">
+  <Navbar bg="light" expand="lg" className="text-center" sticky>
     <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
