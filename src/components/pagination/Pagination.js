@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/";
+;
 import React, { useEffect } from 'react';
 
 

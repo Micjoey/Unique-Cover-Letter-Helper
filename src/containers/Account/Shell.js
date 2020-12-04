@@ -5,7 +5,7 @@ import {Grid, Container, Segment, Header, Menu} from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import axiosInstance from '../../store/axiosApi'
 
 const Shell = props => {
@@ -14,12 +14,14 @@ const Shell = props => {
     const userId = jwtDecode(localStorage.getItem('access_token')).user_id
     const [user, setUser] = useState({})
     const [loaded, isLoaded] = useState(false)
+    const url = window.location.origin
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
-        axios.get(`http://localhost:3000/api/users/${userId}`)
+        axios.get(`${url}/api/users/${userId}`)
+        // axios.get(`http://localhost:3000/api/users/${userId}`)
         .then(resp => {
             setUser(resp.data)
             // history.push({user: resp.data})

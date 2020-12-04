@@ -7,7 +7,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import jwtDecode from 'jwt-decode';
 
 const AccountDetailsForm = () => {
@@ -18,6 +18,7 @@ const AccountDetailsForm = () => {
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
     // const dispatch = useDispatch()
+    const url = window.location.origin
 
     const onSubmit = data => {
         setLoading(true)
@@ -25,7 +26,8 @@ const AccountDetailsForm = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.patch(`http://localhost:3000/api/users/${userId}/`, data)
+        axios.patch(`${url}/api/users/${userId}/`, data)
+        // axios.patch(`http://localhost:3000/api/users/${userId}/`, data)
             .then(() => {
                 history.push("/all-jobs/")
             })

@@ -8,7 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
-axios.defaults.proxy.host = "http://localhost:3000/"
+
 import Shell from '../../containers/Account/Shell';
 
 
@@ -21,6 +21,8 @@ const ChangeEmail = (props) => {
     const {register, handleSubmit} = useForm()
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
+    const url = window.location.origin
+    console.log(url)
     useEffect(() => {
         setUser(props.location.state.user)
     }, [])
