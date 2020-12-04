@@ -225,7 +225,7 @@ REST_FRAMEWORK = {
 
 # CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = [
-    'uniquecoverlettergenerator.herokuapp.com', '127.0.0.1', 'heroku.com']
+    'uniquecoverlettergenerator.herokuapp.com', '127.0.0.1', 'heroku.com', 'www.uniquecoverlettergenerator.com']
 #                  'http://uniquecoverlettergenerator.com/', 'localhost', 'http://127.0.0.1']
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
@@ -236,7 +236,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 JWT_AUTH = {
     'JWT_LEEWAY': 10,
-    # 'JWT_LEEWAY': 10,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
