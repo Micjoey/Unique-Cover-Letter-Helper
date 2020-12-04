@@ -26,8 +26,8 @@ const AccountDetailsForm = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.patch(`${url}/api/users/${userId}/`, data)
-        // axios.patch(`http://localhost:3000/api/users/${userId}/`, data)
+        // axios.patch(`${url}/api/users/${userId}/`, data)
+        axios.patch(`http://localhost:3000/api/users/${userId}/`, data)
             .then(() => {
                 history.push("/all-jobs/")
             })

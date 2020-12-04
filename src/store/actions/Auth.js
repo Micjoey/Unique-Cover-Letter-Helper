@@ -50,8 +50,8 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
     const url = window.location.origin
     return dispatch => {
         dispatch(authStart());
-        axios.post(`${url}/api/token/`, {
-        // axios.post('http://localhost:3000/api/token/', {
+        // axios.post(`${url}/api/token/`, {
+        axios.post('http://localhost:3000/api/token/', {
             username: username,
             password: password
         }).then(response => {

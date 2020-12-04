@@ -24,8 +24,8 @@ axios.interceptors.response.use(response =>
             const access_token = localStorage.getItem('access_token');
             const url = window.location.origin
             return axiosInstance
-                .post(`${url}/api/token/refresh/`, { refresh: refresh_token, access_token: access_token })
-                // .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
+                // .post(`${url}/api/token/refresh/`, { refresh: refresh_token, access_token: access_token })
+                .post('http://localhost:3000/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
                     localStorage.setItem('access_token', response.data.access);
                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
