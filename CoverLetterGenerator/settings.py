@@ -1,4 +1,4 @@
-
+import django_heroku
 import os
 import datetime
 import dj_database_url
@@ -250,3 +250,4 @@ JWT_AUTH = {
 }
 
 REST_USE_JWT = True
+django_heroku.settings(locals())
