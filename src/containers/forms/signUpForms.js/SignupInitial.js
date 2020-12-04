@@ -57,7 +57,7 @@ const RegistrationForm = () => {
     return (
         <div className="login-form">
 
-            <Segment placeholder>
+            <Segment placeholder inverted>
                 <Grid stackable >
                     <Grid.Column stackable>
                         <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
@@ -148,9 +148,9 @@ const RegistrationForm = () => {
                         </Form>
                     </Grid.Column>
                 </Grid>
-                <Divider horizontal>Or</Divider>
+                <Divider horizontal inverted>Or</Divider>
                 <Grid.Column verticalAlign='middle'>
-                    <Button content='Login' icon='signup' size='big' onClick={() => history.push("/login")} />
+                    <Button content='Login' icon='signup' size='medium' onClick={() => history.push("/login")}/>
                 </Grid.Column>
             </Segment>
         </div>

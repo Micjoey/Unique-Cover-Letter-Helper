@@ -51,8 +51,8 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
     return dispatch => {
         dispatch(authStart());
         // axios.post(`${url}/api/token/`, {
-        // axios.post('http://localhost:3000/api/token/', {
-        axios.post('http://www.uniquecoverlettergenerator.com/api/token/', {
+        axios.post('http://localhost:3000/api/token/', {
+        // axios.post('http://www.uniquecoverlettergenerator.com/api/token/', {
             username: username,
             password: password
         }).then(response => {
@@ -88,11 +88,10 @@ export const authSignUp = ({...data}) => {
     const password1 = data.password
     const password2 = data.confirm_password
     const email = data.email
-    console.log({...data})
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://www.uniquecoverlettergenerator.com/rest-auth/registration/', {
-        // axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
+        // axios.post('http://www.uniquecoverlettergenerator.com/rest-auth/registration/', {
+        axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,

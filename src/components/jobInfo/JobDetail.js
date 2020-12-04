@@ -6,7 +6,7 @@ const Jobs = props => {
     
     const jobDetail = props.jobDetail
     const jobDetailKeys = Object.keys(jobDetail)
-
+    console.log(props)
     return (
         <div className="job-detail">
             <h1>Job Detail: </h1>
