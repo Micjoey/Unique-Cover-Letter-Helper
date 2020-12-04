@@ -47,7 +47,7 @@ const Login = () => {
     return (
         <div className="login-form">
             <Segment size="large">
-                <Segment placeholder inverted>
+                <Segment placeholder inverted style={{minWidth: "10vh"}}>
                     <Grid columns={2} relaxed='very' stackable>
                         <Grid.Column>
                             <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null} inverted>

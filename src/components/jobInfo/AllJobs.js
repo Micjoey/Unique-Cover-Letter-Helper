@@ -10,7 +10,7 @@ const Jobs = props => {
         <ListGroup>
            {allJobs.map(job => (
                <a href={`/job/${job.id}`} key={job.id}>
-                   <ListGroup.Item>
+                   <ListGroup.Item style={{minHeight: "fit-content"}}>
                        {job.position_title} - {job.company}
                    </ListGroup.Item>
                </a>  
