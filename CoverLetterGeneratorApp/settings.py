@@ -98,13 +98,13 @@ WSGI_APPLICATION = 'CoverLetterGeneratorApp.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'TEST_NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'TEST_NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+#     }
+# }
 
 AUTH_USER_MODEL = 'coverLetters.User'
 
@@ -242,7 +242,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 JWT_AUTH = {
     'JWT_LEEWAY': 10,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 

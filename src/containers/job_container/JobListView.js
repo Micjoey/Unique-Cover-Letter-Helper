@@ -96,19 +96,41 @@ const JobList = () => {
                             />
                         </Segment>
                     </Segment>
-                    <div className="Jobs-container">
-                        
-                    </div>
-                    <footer>
-                        
-                    </footer>
                 </Container>
             )
         } else {
             return (
                 <div>
-                    No Jobs - Please create your first cover letter below.
-                    <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
+                    <Container>
+                        <Header 
+                            as='h1'
+                            content='No Cover Letters Exist'
+                            // inverted
+                            style={{
+                                fontSize: '2em',
+                                // fontWeight: 'normal',
+                                // marginBottom: 0,
+                                // marginTop: '.5em',
+                            }}
+                        />
+                        <Header 
+                            as='h3'
+                            content='Please create one below:'
+                            // inverted
+                            style={{
+                                fontSize: '2em',
+                                // fontWeight: 'normal',
+                                // marginBottom: 0,
+                                // marginTop: '.5em',
+                            }}
+                        />
+                        <Segment>
+                            <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
+                        </Segment>
+
+                    </Container>
+
+
                 </div>
             )
         }

@@ -17,11 +17,11 @@ function App() {
       {/* <Container> */}
         <div className="App">
           <header className="App-header">
-            <Router>
-              <Header {...props}/>
-              <BaseRouter/> 
-              <FooterPage/>
-            </Router>
+              <Router>
+                <Header {...props}/>
+                <BaseRouter/> 
+                <FooterPage/>
+              </Router>
           </header>
         </div>
       {/* </Container> */}

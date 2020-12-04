@@ -5,6 +5,7 @@
 @import 'CoverLetterForm.css';
 @import 'homepage.css';
 @import 'SemanticOverride.css';
+@import 'navbar.css';
 
 .App {
   text-align: center;

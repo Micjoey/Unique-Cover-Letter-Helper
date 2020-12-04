@@ -83,7 +83,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
 }
 
 
-export const authSignUp = ({...data}) => {
+export const authSignUp = ({ ...data }, setErrorMessage) => {
     const username = data.username
     const password1 = data.password
     const password2 = data.confirm_password
@@ -108,6 +108,7 @@ export const authSignUp = ({...data}) => {
             dispatch(authLogin(username, password1, null, true))
             dispatch(authSuccess(accessToken, refreshToken));
         }).catch(err => {
+            setErrorMessage("Either the password was too common (i.e password123), the Username taken, or the Email was. Please try again.")
             dispatch(authFail(err))
         })
     }

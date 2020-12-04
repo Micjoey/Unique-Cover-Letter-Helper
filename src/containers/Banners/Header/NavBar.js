@@ -29,6 +29,7 @@ const Header = () => {
       dispatch(actions.logout())
       history.push('/login')
     } catch (e) {
+      alert(e)
       alert('unable to logout')
     }
   }
@@ -46,7 +47,7 @@ const Header = () => {
 export default Header
 
 const loggedInNav = (props, logout) => (
-  <Navbar bg="light" expand="lg" className="text-center" sticky style={{margin: '1em'}}>
+  <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
     <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
