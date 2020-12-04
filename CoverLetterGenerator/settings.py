@@ -199,13 +199,13 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3001",
-    'http://127.0.0.1:3001',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3001",
+#     'http://127.0.0.1:3001',
+# ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = ['unique-cover-letter-generator-app.herokuapp.com',
+ALLOWED_HOSTS = ['unique-cover-letter-generator-app.herokuapp.com',]
 #                  'http://uniquecoverlettergenerator.com/', 'localhost', 'http://127.0.0.1']
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
