@@ -91,7 +91,8 @@ export const authSignUp = ({...data}) => {
     console.log({...data})
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
+        axios.post('http://www.uniquecoverlettergenerator.com/rest-auth/registration/', {
+        // axios.post('http://127.0.0.1:3000/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,
