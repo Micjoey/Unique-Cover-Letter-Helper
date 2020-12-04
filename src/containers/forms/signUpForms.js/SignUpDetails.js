@@ -1,20 +1,9 @@
-import React, { useCallback, useState } from 'react'
-import * as actions from '../../../store/actions/Auth'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
 import {
-    Form, Input, Message,
-    Header, Button, Grid,
-    Container, Segment, Menu,
-    Table, Icon, Label, Tab, Divider
+    Form, Message,
+    Button, Grid,
+    Segment, Table, 
 } from 'semantic-ui-react'
-
-// import {
-//     Form,
-//     Input,
-//     Select,
-//     Button,
-// } from 'antd';
-import { Nav } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
@@ -57,7 +46,6 @@ const AccountDetailsForm = () => {
                                     <Table.Row>
                                         <Table.HeaderCell>Account Info</Table.HeaderCell>
                                         <Table.HeaderCell> </Table.HeaderCell>
-
                                         <Table.Row>
                                             <Table.Cell textAlign="center" verticalAlign="middle">Name: </Table.Cell>
                                             <Table.Cell stackable>
