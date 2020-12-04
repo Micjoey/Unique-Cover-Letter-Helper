@@ -6,6 +6,7 @@ import { Form, Message,
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
 
@@ -18,7 +19,6 @@ const ChangeAccountInfo = (props) => {
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
-
     useEffect(() => {
         setUser(props.location.state.user)
     }, [])

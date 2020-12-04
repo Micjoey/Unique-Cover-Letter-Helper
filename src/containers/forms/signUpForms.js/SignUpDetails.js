@@ -7,6 +7,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import jwtDecode from 'jwt-decode';
 
 const AccountDetailsForm = () => {

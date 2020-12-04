@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 import { Link } from 'react-router-dom'

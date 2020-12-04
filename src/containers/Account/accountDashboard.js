@@ -5,6 +5,7 @@ import { Grid, Container, Segment, Header, Menu } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 
 
 const AccountDashboard = () => {

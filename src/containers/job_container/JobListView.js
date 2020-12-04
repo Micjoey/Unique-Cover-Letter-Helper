@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
