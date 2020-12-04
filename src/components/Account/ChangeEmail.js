@@ -8,6 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import Shell from '../../containers/Account/Shell';
 
 
@@ -20,7 +21,6 @@ const ChangeEmail = (props) => {
     const {register, handleSubmit} = useForm()
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
-    
     useEffect(() => {
         setUser(props.location.state.user)
     }, [])
@@ -38,7 +38,7 @@ const ChangeEmail = (props) => {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
+                    axios.patch(`${url}/api/users/${user.id}/`, data)
                     .then(resp => {
                         setUser(resp.data)
                     })

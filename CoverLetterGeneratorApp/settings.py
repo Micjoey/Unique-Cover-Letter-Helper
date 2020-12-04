@@ -221,8 +221,8 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001",
     'http://127.0.0.1:3001',
-'http://uniquecoverlettergenerator.herokuapp.com',
-'http://www.uniquecoverlettergenerator.com',
+    'http://uniquecoverlettergenerator.herokuapp.com',
+    'http://www.uniquecoverlettergenerator.com',
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True

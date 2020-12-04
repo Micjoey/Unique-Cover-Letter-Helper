@@ -1,4 +1,5 @@
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
 import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({

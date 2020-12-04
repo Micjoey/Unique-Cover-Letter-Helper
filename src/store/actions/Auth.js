@@ -1,7 +1,9 @@
 import axios from 'axios'
+axios.defaults.proxy.host = "http://localhost:3000/"
+
+
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
-
 
 export const authStart = () => {
     return {
