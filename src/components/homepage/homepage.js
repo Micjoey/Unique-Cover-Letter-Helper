@@ -28,7 +28,7 @@ const HomepageHeading = ({ mobile }) => {
         <Container text>
             <Header
                 as='h1'
-                content='Imagine-a-Company'
+                content='Unique Cover Letter Generator'
                 inverted
                 style={{
                     fontSize: mobile ? '2em' : '4em',
@@ -39,7 +39,7 @@ const HomepageHeading = ({ mobile }) => {
             />
             <Header
                 as='h2'
-                content='Do whatever you want when you want to.'
+                content='Want to save time while applying to jobs?'
                 inverted
                 style={{
                     fontSize: mobile ? '1.5em' : '1.7em',
@@ -87,28 +87,6 @@ class DesktopContainer extends Component {
                         style={{ minHeight: 700, padding: '1em 0em' }}
                         vertical
                     >
-                        {/* <Menu
-                            fixed={fixed ? 'top' : null}
-                            inverted={!fixed}
-                            pointing={!fixed}
-                            secondary={!fixed}
-                            size='large'
-                        >
-                            <Container>
-                                <Menu.Item as='a' active> Home </Menu.Item>
-                                <Menu.Item as='a'>Work</Menu.Item>
-                                <Menu.Item as='a'>Company</Menu.Item>
-                                <Menu.Item as='a'>Careers</Menu.Item>
-                                <Menu.Item position='right'>
-                                    <Button as='a' inverted={!fixed}>
-                                        Log in
-                                    </Button>
-                                    <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                                        Sign Up
-                                    </Button>
-                                </Menu.Item>
-                            </Container>
-                        </Menu> */}
                         <HomepageHeading />
                     </Segment>
                 </Visibility>
@@ -206,18 +184,18 @@ ResponsiveContainer.propTypes = {
 
 const Homepage = () => (
     <ResponsiveContainer>
-        <Segment style={{ padding: '8em 0em' }} vertical>
+        <Segment style={{ padding: '8em 0em' }} vertical inverted>
             <Grid container stackable verticalAlign='middle'>
                 <Grid.Row>
                     <Grid.Column width={8}>
-                        <Header as='h3' style={{ fontSize: '2em' }}>
+                        <Header as='h3' style={{ fontSize: '2em' }} inverted>
                             We Help Companies and Companions
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
                             We can give your company superpowers to do things that they never thought possible.
                             Let us delight your customers and empower your needs... through pure data analytics.
                         </p>
-                        <Header as='h3' style={{ fontSize: '2em' }}>
+                        <Header as='h3' style={{ fontSize: '2em' }} inverted>
                             We Make Bananas That Can Dance
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
@@ -237,17 +215,17 @@ const Homepage = () => (
             </Grid>
         </Segment>
 
-        <Segment style={{ padding: '0em' }} vertical>
+        <Segment style={{ padding: '0em' }} vertical inverted>
             <Grid celled='internally' columns='equal' stackable>
                 <Grid.Row textAlign='center'>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                        <Header as='h3' style={{ fontSize: '2em' }}>
+                        <Header as='h3' style={{ fontSize: '2em' }} inverted>
                             "What a Company"
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
                     </Grid.Column>
                     <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                        <Header as='h3' style={{ fontSize: '2em' }}>
+                        <Header as='h3' style={{ fontSize: '2em' }} inverted>
                             "I shouldn't have gone with their competitor."
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
@@ -259,9 +237,9 @@ const Homepage = () => (
             </Grid>
         </Segment>
 
-        <Segment style={{ padding: '8em 0em' }} vertical>
+        <Segment style={{ padding: '8em 0em' }} vertical inverted>
             <Container text>
-                <Header as='h3' style={{ fontSize: '2em' }}>
+                <Header as='h3' style={{ fontSize: '2em' }} inverted>
                     Breaking The Grid, Grabs Your Attention
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>
@@ -282,7 +260,7 @@ const Homepage = () => (
                     <a href='#'>Case Studies</a>
                 </Divider>
 
-                <Header as='h3' style={{ fontSize: '2em' }}>
+                <Header as='h3' style={{ fontSize: '2em' }} inverted>
                     Did We Tell You About Our Bananas?
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>

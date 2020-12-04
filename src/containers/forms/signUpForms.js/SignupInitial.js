@@ -56,102 +56,103 @@ const RegistrationForm = () => {
 
     return (
         <div className="login-form">
+            <Segment size="large">
+                <Segment placeholder inverted>
+                    <Grid stackable >
+                        <Grid.Column stackable>
+                            <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
+                                <Table striped inverted textAlign="center">
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell colSpan={10}>Account Info</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
 
-            <Segment placeholder inverted>
-                <Grid stackable >
-                    <Grid.Column stackable>
-                        <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
-                            <Table striped inverted textAlign="center">
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell colSpan={10}>Account Info</Table.HeaderCell>
-                                    </Table.Row>
-                                </Table.Header>
-
-                                <Table.Body>
-                                    <Table.Row>
-                                        <Table.Cell textAlign="center" verticalAlign="middle">Username: </Table.Cell>
-                                        <Table.Cell>
-                                            <Form.Field>
-                                                {/* <label>Confirm Email</label> */}
-                                                <input
-                                                    required
-                                                    placeholder={`Username:`}
-                                                    defaultValue={""}
-                                                    type="text"
-                                                    name={"username"}
-                                                    ref={register()}
-                                                    minLength={4}
-                                                    maxLength={20}
-                                                />
-                                            </Form.Field>
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" verticalAlign="middle">Email: </Table.Cell>
-                                        <Table.Cell>
-                                            <Form.Field>
-                                                {/* <label>Confirm Email</label> */}
-                                                <input
-                                                    required
-                                                    placeholder={`Email:`}
-                                                    defaultValue={""}
-                                                    type="email"
-                                                    name={"email"}
-                                                    ref={register()}
-                                                />
-                                            </Form.Field>
-                                        </Table.Cell>
-                                    </Table.Row>
-                                    <Table.Row>
-                                        <Table.Cell textAlign="center" verticalAlign="middle">Password: </Table.Cell>
-                                        <Table.Cell>
-                                            <Form.Field>
-                                                {/* <label>Confirm Email</label> */}
-                                                <input
-                                                    required
-                                                    placeholder={`Password:`}
-                                                    defaultValue={""}
-                                                    type="password"
-                                                    name={"password"}
-                                                    minLength={6}
-                                                    maxLength={20}
-                                                    ref={register()}
-                                                />
-                                            </Form.Field>
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" verticalAlign="middle">Confirm Password: </Table.Cell>
-                                        <Table.Cell>
-                                            <Form.Field>
-                                                {/* <label>Confirm Email</label> */}
-                                                <input
-                                                    required
-                                                    placeholder={`Confirm Password:`}
-                                                    defaultValue={""}
-                                                    type="password"
-                                                    minLength={6}
-                                                    maxLength={20}
-                                                    name={"confirm_password"}
-                                                    ref={register()}
-                                                />
-                                            </Form.Field>
-                                        </Table.Cell>
-                                    </Table.Row>
-                                </Table.Body>
-                                <Table.Footer>
-                                    <Table.Row>
-                                        <Table.HeaderCell colSpan='10' textAlign="center">
-                                            {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
-                                            <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
-                                        </Table.HeaderCell>
-                                    </Table.Row>
-                                </Table.Footer>
-                            </Table>
-                        </Form>
+                                    <Table.Body>
+                                        <Table.Row>
+                                            <Table.Cell textAlign="center" verticalAlign="middle">Username: </Table.Cell>
+                                            <Table.Cell>
+                                                <Form.Field>
+                                                    {/* <label>Confirm Email</label> */}
+                                                    <input
+                                                        required
+                                                        placeholder={`Username:`}
+                                                        defaultValue={""}
+                                                        type="text"
+                                                        name={"username"}
+                                                        ref={register()}
+                                                        minLength={4}
+                                                        maxLength={20}
+                                                    />
+                                                </Form.Field>
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" verticalAlign="middle">Email: </Table.Cell>
+                                            <Table.Cell>
+                                                <Form.Field>
+                                                    {/* <label>Confirm Email</label> */}
+                                                    <input
+                                                        required
+                                                        placeholder={`Email:`}
+                                                        defaultValue={""}
+                                                        type="email"
+                                                        name={"email"}
+                                                        ref={register()}
+                                                    />
+                                                </Form.Field>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell textAlign="center" verticalAlign="middle">Password: </Table.Cell>
+                                            <Table.Cell>
+                                                <Form.Field>
+                                                    {/* <label>Confirm Email</label> */}
+                                                    <input
+                                                        required
+                                                        placeholder={`Password:`}
+                                                        defaultValue={""}
+                                                        type="password"
+                                                        name={"password"}
+                                                        minLength={6}
+                                                        maxLength={20}
+                                                        ref={register()}
+                                                    />
+                                                </Form.Field>
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" verticalAlign="middle">Confirm Password: </Table.Cell>
+                                            <Table.Cell>
+                                                <Form.Field>
+                                                    {/* <label>Confirm Email</label> */}
+                                                    <input
+                                                        required
+                                                        placeholder={`Confirm Password:`}
+                                                        defaultValue={""}
+                                                        type="password"
+                                                        minLength={6}
+                                                        maxLength={20}
+                                                        name={"confirm_password"}
+                                                        ref={register()}
+                                                    />
+                                                </Form.Field>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                    <Table.Footer>
+                                        <Table.Row>
+                                            <Table.HeaderCell colSpan='10' textAlign="center">
+                                                {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
+                                                <Button primary type="submit" loading={loading} disabled={loading}>Submit</Button>
+                                            </Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Footer>
+                                </Table>
+                            </Form>
+                        </Grid.Column>
+                    </Grid>
+                    <Divider horizontal inverted>Or</Divider>
+                    <Grid.Column verticalAlign='middle'>
+                        <Button content='Login' icon='signup' size='medium' onClick={() => history.push("/login")}/>
                     </Grid.Column>
-                </Grid>
-                <Divider horizontal inverted>Or</Divider>
-                <Grid.Column verticalAlign='middle'>
-                    <Button content='Login' icon='signup' size='medium' onClick={() => history.push("/login")}/>
-                </Grid.Column>
+                </Segment>
             </Segment>
         </div>
     );
