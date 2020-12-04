@@ -1,6 +1,7 @@
 
 import os
 import datetime
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -107,15 +108,14 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'coverLetters.User'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'uniquecoverlettergenerator',
-        'USER': 'postgres',
-        'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'uniquecoverlettergenerator',
+    'USER': 'postgres',
+    'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
     },
     'test': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -126,6 +126,25 @@ DATABASES = {
         'PORT': '5431',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'uniquecoverlettergenerator',
+#         'USER': 'postgres',
+#         'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     },
+#     'test': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'uniquecoverlettergeneratorTest',
+#         'USER': 'postgres',
+#         'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5431',
+#     }
+# }
 
 CACHES = {
     'default': {
