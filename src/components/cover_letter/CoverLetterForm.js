@@ -44,17 +44,17 @@ export const JobForm = (props) => {
         }
         switch (requestType) {
             case 'post':
-                axios.post('http://127.0.0.1:3000/api/jobs/', data)
+                axios.post('api/jobs/', data)
                     .then(res => window.location.href = `http://127.0.0.1:3001/job/${res.data.id}`)
                     .catch(errors => console.log(errors))
                 break
             case 'put':
-                axios.put(`http://127.0.0.1:3000/api/jobs/${jobID}/`, data)
+                axios.put(`api/jobs/${jobID}/`, data)
                     .then(() => window.location.reload())
                     .catch(errors => console.log(errors))
                 break
             default:
-                history.push('http://127.0.0.1:3000/api/jobs')
+                history.push('api/jobs')
                 window.location.href = "/login"
                 break
         }
