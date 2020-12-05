@@ -21,7 +21,7 @@ const AccountDashboard = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`http://localhost:3000/api/users/${userId}`)
+        axios.get(`api/users/${userId}`)
         // axios.get(`${url}/api/users/${userId}`)
             .then(resp => {
                 setUser(resp.data)

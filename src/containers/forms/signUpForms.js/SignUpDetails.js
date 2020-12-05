@@ -27,7 +27,7 @@ const AccountDetailsForm = () => {
             Authorization: `Bearer ${accessToken}`
         }
         // axios.patch(`${url}/api/users/${userId}/`, data)
-        axios.patch(`http://localhost:3000/api/users/${userId}/`, data)
+        axios.patch(`api/users/${userId}/`, data)
             .then(() => {
                 history.push("/all-jobs/")
             })

@@ -21,7 +21,7 @@ const Shell = props => {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
         // axios.get(`${url}/api/users/${userId}`)
-        axios.get(`http://localhost:3000/api/users/${userId}`)
+        axios.get(`api/users/${userId}`)
         .then(resp => {
             setUser(resp.data)
             // history.push({user: resp.data})

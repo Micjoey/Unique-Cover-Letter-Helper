@@ -29,7 +29,7 @@ const Header = () => {
       dispatch(actions.logout())
       history.push('/login')
     } catch (e) {
-      alert(e)
+      // alert(e)
       alert('unable to logout')
     }
   }

@@ -35,7 +35,7 @@ const ChangeEmail = (props) => {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
+                    axios.patch(`api/users/${user.id}/`, data)
                     .then(resp => {
                         setUser(resp.data)
                     })

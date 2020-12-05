@@ -32,7 +32,7 @@ const ChangeAccountInfo = (props) => {
             Authorization: `Bearer ${accessToken}`
         }
         // axios.patch(`${url}/api/users/${user.id}/`, data)
-        axios.patch(`http://localhost:3000/api/users/${user.id}/`, data)
+        axios.patch(`api/users/${user.id}/`, data)
             .then(resp => {
                 setUser(resp.data)
                 history.go()

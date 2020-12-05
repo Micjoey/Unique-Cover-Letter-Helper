@@ -41,7 +41,7 @@ const JobList = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`http://127.0.0.1:3000/api/jobs/`, )
+        axios.get(`/api/jobs/`, )
         .then( res => {
             console.log(res)
             setAllJobs(res.data.results)

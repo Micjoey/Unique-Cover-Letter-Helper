@@ -40,7 +40,7 @@ const ChangePassword = (props) => {
                         Authorization: `Bearer ${accessToken}`
                     }
                     // axios.patch(`${url}/api/change-password/`, backendData)
-                    axios.patch(`http://localhost:3000/api/change-password/`, backendData)
+                    axios.patch(`api/change-password/`, backendData)
                         .then(resp => {
                             setSuccessMessage("You have successfully changed the password!")
                             setError({})
