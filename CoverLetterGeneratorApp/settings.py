@@ -2,7 +2,8 @@ import django_heroku
 import os
 import datetime
 import dj_database_url
-
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,9 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%xokulxiyo0_+^fa(e(11i6l8zx4$--eurj=#7ni$+3%-iuad@'
-# SECRET_KEY = SECRET_KEY
-# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -113,41 +112,23 @@ AUTH_USER_MODEL = 'coverLetters.User'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'uniquecoverlettergenerator',
-    'USER': 'postgres',
-    'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'uniquecoverlettergenerator',
+        'USER': os.getenv("POSTGRES_DATABASE_USER"),
+        'PASSWORD': os.getenv("POSTGRES_DATABASE_PASSWORD"),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     },
-    'test': {
+   'test': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'uniquecoverlettergeneratorTest',
-        'USER': 'postgres',
-        'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
+        'USER': os.getenv("POSTGRES_DATABASE_USER"),
+        'PASSWORD': os.getenv("POSTGRES_DATABASE_PASSWORD"),
         'HOST': '127.0.0.1',
         'PORT': '5431',
-    }
+   },
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'uniquecoverlettergenerator',
-#         'USER': 'postgres',
-#         'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     },
-#     'test': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'uniquecoverlettergeneratorTest',
-#         'USER': 'postgres',
-#         'PASSWORD': 'narL7IqcSs8Evvaqw6XbnChCdywk19a',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5431',
-#     }
-# }
 
 CACHES = {
     'default': {
