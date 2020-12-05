@@ -47,7 +47,7 @@ export const checkAuthTimeout = expirationTime => {
 
 
 export const authLogin = (username, password, setErrorState = null, justSignedUp = false) => {
-    const url = window.location.origin
+
     return dispatch => {
         dispatch(authStart());
         // axios.post(`${url}/api/token/`, {
@@ -76,8 +76,6 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
                 setErrorState("Failed to log in. Try again or sign up.")
             }
             dispatch(authFail(err))
-            // return err
-            // window.location.reload()
         })
     }
 }

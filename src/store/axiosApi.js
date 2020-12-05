@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
     timeout: 3000,
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-        // 'Authorization': `Bearer ${localStorage.getItem('refresh_token')}`,
         'Content-Type': 'application/json',
         'accept': 'application/json'
     },
@@ -24,7 +23,6 @@ axios.interceptors.response.use(response =>
             const access_token = localStorage.getItem('access_token');
             
             return axiosInstance
-                // .post(`${url}/api/token/refresh/`, { refresh: refresh_token, access_token: access_token })
                 .post('api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
                     localStorage.setItem('access_token', response.data.access);

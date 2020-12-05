@@ -12,11 +12,13 @@ import os
 from django.core.wsgi import get_wsgi_application
 from dotenv import load_dotenv
 
-# project_folder = os.path.expanduser(
-#     '~/CoverLetterGeneratorApp')
-# load_dotenv(os.path.join(project_folder, '.env'))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CoverLetterGeneratorApp.settings')
+
+project_folder = os.path.expanduser(
+    '/Users/macallansavett/Desktop/Software_engineering/FSP/CoverLetterGenerator/')
+print(project_folder)
+load_dotenv(os.path.join(project_folder, '.env'))
 
 
 
