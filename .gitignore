@@ -33,3 +33,5 @@ yarn-error.log*
 ./sqlLite.json
 
 node_modules
+CoverLetterGeneratorApp/private_settings.py
+.env
