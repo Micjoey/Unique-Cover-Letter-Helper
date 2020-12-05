@@ -56,7 +56,7 @@ const loggedInNav = (props, logout) => (
         <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
         <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/admin/">Account</NavDropdown.Item>
+          <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
           <NavDropdown.Divider />
           <ErrorBoundary>
             {
