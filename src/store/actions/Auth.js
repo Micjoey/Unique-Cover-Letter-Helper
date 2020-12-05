@@ -88,6 +88,7 @@ export const authSignUp = ({ ...data }, setErrorMessage) => {
     const password1 = data.password
     const password2 = data.confirm_password
     const email = data.email
+    
     return dispatch => {
         dispatch(authStart());
         // axios.post('http://www.uniquecoverlettergenerator.com/rest-auth/registration/', {
