@@ -51,7 +51,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
     return dispatch => {
         dispatch(authStart());
         // axios.post(`${url}/api/token/`, {
-        axios.post('api/token/', {
+        axios.post('/api/token/', {
         // axios.post('http://www.uniquecoverlettergenerator.com/api/token/', {
             username: username,
             password: password
