@@ -100,14 +100,6 @@ WSGI_APPLICATION = 'CoverLetterGeneratorApp.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         'TEST_NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
-#     }
-# }
-
 AUTH_USER_MODEL = 'coverLetters.User'
 
 DATABASES = {
@@ -235,15 +227,15 @@ REST_USE_JWT = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'build/static'),
+)
 
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'build/static'),
-# )
 # STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = [
