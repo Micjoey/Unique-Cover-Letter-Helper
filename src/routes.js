@@ -42,9 +42,9 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute exact path='/signup-user-details/' component={AccountDetailsForm}/>
-            <NeedUserCredentials exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
-            <NeedUserCredentials exact path='/admin/change-password/' component={ChangePassword} {...props}/>
-            <NeedUserCredentials exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
+            <NeedUserCredentials exact path='/user-admin/change-email/' component={ChangeEmail} {...props}/>
+            <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
+            <NeedUserCredentials exact path='/user-admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
             <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
             <Route exact path='/signup' component={Signup}/>
             <Route exact path='/login' component={Login}/>
