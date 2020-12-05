@@ -30,7 +30,7 @@ const NeedUserCredentials = ({components: Component, ...rest}) => {
         state !== undefined ? 
         <PrivateRoute {...rest} render={ props => <Component {...props}/>} />
         :
-        <Redirect to="/admin/"/>
+        <Redirect to="/user-admin/"/>
     )
 }
 
@@ -45,7 +45,7 @@ const BaseRouter = (props) => (
             <NeedUserCredentials exact path='/admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
-            <PrivateRoute exact path='/admin/' component={AccountDashboard} />
+            <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
             <Route exact path='/signup' component={Signup}/>
             <Route exact path='/login' component={Login}/>
             <Route path='/' component={HomePage}/>

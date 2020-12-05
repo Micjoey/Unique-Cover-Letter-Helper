@@ -36,7 +36,7 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`http://127.0.0.1:3000/api/users/${userId}`)
+        axios.get(`api/users/${userId}`)
             .then(res => {
                 setUser(res.data)
             }).then(() => {
