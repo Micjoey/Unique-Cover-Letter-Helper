@@ -45,18 +45,18 @@ const AccountDashboard = () => {
                                     <Header as="h3">Account</Header>
                                     <Menu vertical fluid>
                                         <Menu.Item
-                                            onClick={() => history.push("/admin/change-email/", { user: user, previousLocation: "/admin/change-email/"})}
-                                            active={history.location.pathname === "/admin/change-email/"}
+                                            onClick={() => history.push("/user-admin/change-email/", { user: user, previousLocation: "/admin/change-email/"})}
+                                            active={history.location.pathname === "/user-admin/change-email/"}
                                             name="change-email">
                                             Change Email
                                         </Menu.Item>
-                                        <Menu.Item onClick={() => history.push("/admin/change-password/", { user: user })}
-                                            active={history.location.pathname === "/admin/change-password/"}
+                                        <Menu.Item onClick={() => history.push("/user-admin/change-password/", { user: user })}
+                                            active={history.location.pathname === "/user-admin/change-password/"}
                                             name="change-password">
                                             Change Password
                                         </Menu.Item>
-                                        <Menu.Item onClick={() => history.push("/admin/change-account-info/", { user: user })}
-                                            active={history.location.pathname === "/admin/change-account-info/"}
+                                        <Menu.Item onClick={() => history.push("/user-admin/change-account-info/", { user: user })}
+                                            active={history.location.pathname === "/user-admin/change-account-info/"}
                                             name="change-account-info">
                                             Change Account Info
                                         </Menu.Item>

@@ -253,7 +253,7 @@ const ChangeAccountInfo = (props) => {
             </Shell>
         )
     } else {
-        history.push('/admin/')
+        history.push('/user-admin/')
     }
 
 }
