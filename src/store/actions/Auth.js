@@ -51,7 +51,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
     return dispatch => {
         dispatch(authStart());
         // axios.post(`${url}/api/token/`, {
-        axios.post('/api/token/', {
+        axios.post('api/token/', {
         // axios.post('http://www.uniquecoverlettergenerator.com/api/token/', {
             username: username,
             password: password
@@ -68,7 +68,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             if (justSignedUp) {
                 window.location.href="/signup-user-details/"
             } else {
-                window.location.href="/all-jobs/"
+                window.location.href="all-jobs/"
             }
 
         }).catch(err => {
