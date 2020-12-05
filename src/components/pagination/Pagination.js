@@ -31,7 +31,7 @@ export default function Pagination(props) {
     }
 
     const goHome = () => {
-        axios.get(`http://127.0.0.1:3000/api/jobs/`)
+        axios.get(`api/jobs/`)
             .then(res => {
                 setAllJobs(res.data.results)
                 setNext(res.data.next)
