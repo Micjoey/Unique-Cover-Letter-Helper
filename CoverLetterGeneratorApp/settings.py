@@ -216,7 +216,8 @@ ALLOWED_HOSTS = [
     'heroku.com', 
     'www.uniquecoverlettergenerator.com', 
     "localhost:3001", 
-    "http://localhost:3001/"
+    "http://localhost:3001/",
+    "https://uniquecoverlettergenerator.herokuapp.com/"
 ]
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
