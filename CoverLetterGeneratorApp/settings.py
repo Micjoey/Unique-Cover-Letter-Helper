@@ -173,17 +173,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 REST_FRAMEWORK = {
@@ -202,23 +192,23 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3001",
-#     'http://127.0.0.1:3001',
-#     'http://uniquecoverlettergenerator.herokuapp.com',
-#     'http://www.uniquecoverlettergenerator.com',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:3001',
+    'http://127.0.0.1:3000',
+    'http://uniquecoverlettergenerator.herokuapp.com',
+    'http://www.uniquecoverlettergenerator.com',
+]
 
 # CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = [
-    'uniquecoverlettergenerator.herokuapp.com', 
-    '127.0.0.1', 
-    'heroku.com', 
-    'www.uniquecoverlettergenerator.com', 
-    "localhost:3001", 
-    "http://localhost:3001/",
-    "https://uniquecoverlettergenerator.herokuapp.com/"
-]
+# ALLOWED_HOSTS = [
+#     'uniquecoverlettergenerator.herokuapp.com', 
+#     '127.0.0.1', 
+#     'heroku.com', 
+#     'www.uniquecoverlettergenerator.com', 
+#     "localhost:3001", 
+#     "http://localhost:3001/",
+#     "https://uniquecoverlettergenerator.herokuapp.com/"
+# ]
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -241,4 +231,26 @@ JWT_AUTH = {
 }
 
 REST_USE_JWT = True
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'build/static'),
+# )
+# STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
