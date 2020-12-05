@@ -50,21 +50,16 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
 
     return dispatch => {
         dispatch(authStart());
-        // axios.post(`${url}/api/token/`, {
         axios.post('api/token/', {
-        // axios.post('http://www.uniquecoverlettergenerator.com/api/token/', {
             username: username,
             password: password
         }).then(response => {
             axiosInstance.defaults.headers['Authorization'] = `Bearer ${response.data.access}`;
             const token = response.data.access;
             const refresh_token = response.data.refresh;
-            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            // localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
-            // dispatch(checkAuthTimeout(5000))
             if (justSignedUp) {
                 window.location.href="/signup-user-details/"
             } else {
