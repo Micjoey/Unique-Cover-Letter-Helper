@@ -16,11 +16,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["www.uniquecoverlettergenerator.com",
-                 "uniquecoverlettergenerator.com"
-                ]
+ALLOWED_HOSTS = [
+    'http://uniquecoverlettergenerator.herokuapp.com',
+    'http://www.uniquecoverlettergenerator.com',
+    "http://www.uniquecoverlettergenerator.com",
+    "http://uniquecoverlettergenerator.com",
+    'http://127.0.0.1:3001',
+    'http://127.0.0.1:3000'
+]
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3001',
@@ -45,6 +50,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -65,7 +71,7 @@ INSTALLED_APPS = [
     'django_memcached',
     'django_filters',
 
-    'corsheaders',
+    
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',

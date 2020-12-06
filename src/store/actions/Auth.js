@@ -48,7 +48,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password, setErrorState = null, justSignedUp = false, history = null) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post("api/token/", {
+        axios.post("/api/token/", {
             username: username,
             password: password
         }).then(response => {
