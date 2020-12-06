@@ -49,7 +49,7 @@ const JobDetailView = () => {
                             "Content-type": "application/json",
                             Authorization: `Bearer ${accessToken}`
                         }
-                        axios.delete(`/api/jobs/${paramsJobId}`, {...paramsJobId})
+                        axios.delete(`/api/jobs/${paramsJobId}/`, {...paramsJobId})
                             .then(() => history.push('/all-jobs'))
                             .catch(error => console.log(error))
                     }

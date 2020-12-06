@@ -26,12 +26,6 @@ yarn-error.log*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-./venv
-./db.json
-./db1.json
-./output.json
-./sqlLite.json
-
 node_modules
 CoverLetterGeneratorApp/private_settings.py
 .env
@@ -42,3 +36,4 @@ server.pass.key
 www_uniquecoverlettergenerator_com.ca-bundle
 www_uniquecoverlettergenerator_com.crt
 server.crt
+venv
