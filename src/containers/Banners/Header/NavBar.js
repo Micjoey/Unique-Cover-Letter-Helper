@@ -54,7 +54,6 @@ const Header = () => {
     }
   }
 
-
   return  (
     <div>
       {props.isAuthenticated ? loggedInNav(props, user, logout) : loggedOutNav(props, logout)}
@@ -78,6 +77,11 @@ const loggedInNav = (props, user, logout) => (
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
           <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
+          {
+            user.is_superuser ? 
+            <NavDropdown.Item href="/admin/">Admin</NavDropdown.Item> :
+            null
+          }
           <NavDropdown.Divider />
           <ErrorBoundary>
             {

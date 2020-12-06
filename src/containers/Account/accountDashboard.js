@@ -60,7 +60,7 @@ const AccountDashboard = () => {
                                             name="change-account-info">
                                             Change Account Info
                                         </Menu.Item>
-                                        { user.admin ? <Menu.Item onClick={() => history.push("/admin/")}
+                                            {user.is_superuser ? <Menu.Item onClick={() => history.push("/admin/")}
                                             active={history.location.pathname === "/admin/"}
                                             name="change-account-info">
                                             Change Account Info
