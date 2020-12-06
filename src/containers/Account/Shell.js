@@ -40,7 +40,7 @@ const Shell = props => {
                     <Grid container stackable verticalAlign='top' divided columns={2}>
                         <Grid.Row>
                             <Grid.Column width={4}>
-                                <Header as="h3">Account</Header>
+                                <Header as="h3" inverted>Account</Header>
                                 <Menu vertical fluid>
                                     <Menu.Item 
                                         onClick={() => history.push("/user-admin/change-email/", {user: user})} 

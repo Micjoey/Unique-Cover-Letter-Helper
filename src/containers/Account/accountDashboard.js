@@ -21,7 +21,7 @@ const AccountDashboard = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/users/${userId}`, {userId: userId})
+        axios.get(`/api/users/${userId}/`, {userId: userId})
             .then(resp => {
                 console.log(resp)
                 setUser(resp.data)
@@ -60,10 +60,10 @@ const AccountDashboard = () => {
                                             name="change-account-info">
                                             Change Account Info
                                         </Menu.Item>
-                                        { user.admin ? <Menu.Item onClick={() => history.push("/admin/")}
+                                        { user.is_superuser ? <Menu.Item onClick={() => history.push("/admin/")}
                                             active={history.location.pathname === "/admin/"}
                                             name="change-account-info">
-                                            Change Account Info
+                                            Admin
                                         </Menu.Item> : null}
                                         <Menu.Item onClick={() => dispatch(logout())}
                                             name="logout">

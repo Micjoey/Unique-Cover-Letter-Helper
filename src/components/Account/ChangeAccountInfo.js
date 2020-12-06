@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Message, 
-        Header, Button, Grid, 
-        Container, Segment, Menu, 
-        Table, Icon, Label } from 'semantic-ui-react'
+        Button,Table, 
+    } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 import { confirmAlert, alert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -287,7 +286,7 @@ const ChangeAccountInfo = (props) => {
                 </Form>
                 <br></br>
                 <Form onSubmit={handleSubmit(onDelete)} error={error !== null}>
-                    <Button type="submit" warning>Delete Account</Button>
+                    <Button type="submit" negative>Delete Account</Button>
                     {error.length && (<Message error heading="There was an error deleting your account. Please try again later." content={error} />)}
                 </Form>
             </Shell>
