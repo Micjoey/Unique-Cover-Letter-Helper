@@ -18,9 +18,29 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["www.uniquecoverlettergenerator.com",
+                 "uniquecoverlettergenerator.com"
+                ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:3001',
+    'http://127.0.0.1:3000',
+    'http://uniquecoverlettergenerator.herokuapp.com',
+    'http://www.uniquecoverlettergenerator.com',
+    "www.uniquecoverlettergenerator.com",
+    "uniquecoverlettergenerator.com"
+]
 
+# CORS_ORIGIN_ALLOW_ALL = True
+# ALLOWED_HOSTS = [
+#     'uniquecoverlettergenerator.herokuapp.com',
+#     '127.0.0.1',
+#     'heroku.com',
+#     'www.uniquecoverlettergenerator.com',
+#     "localhost:3001",
+#     "http://localhost:3001/",
+#     "https://uniquecoverlettergenerator.herokuapp.com/"
+# ]
 
 # Application definition
 
@@ -185,23 +205,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3001',
-    'http://127.0.0.1:3000',
-    'http://uniquecoverlettergenerator.herokuapp.com',
-    'http://www.uniquecoverlettergenerator.com',
-]
 
-# CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = [
-#     'uniquecoverlettergenerator.herokuapp.com', 
-#     '127.0.0.1', 
-#     'heroku.com', 
-#     'www.uniquecoverlettergenerator.com', 
-#     "localhost:3001", 
-#     "http://localhost:3001/",
-#     "https://uniquecoverlettergenerator.herokuapp.com/"
-# ]
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
