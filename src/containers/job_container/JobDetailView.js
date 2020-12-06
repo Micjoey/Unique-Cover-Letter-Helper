@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import JobDetail from '../../components/jobInfo/JobDetail'
 import axios from 'axios'
 
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import { confirmAlert, alert } from 'react-confirm-alert'; 
@@ -17,13 +17,13 @@ const JobDetailView = () => {
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
-
+    const history = useHistory()
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`api/jobs/${paramsJobId}`)
+        axios.get(`/api/jobs/${paramsJobId}`)
             .then(res => {
                 setjob(res.data)
                 setUserId(res.data.belongs_to_user)
@@ -31,10 +31,9 @@ const JobDetailView = () => {
                 setLoaded({ isLoaded: true })
             })
             .catch(error => {
-                // history().push(window.location.href)
                 setLoaded({isLoaded: false})
                 alert(error)
-                window.location.href = ('/login')
+                history.push('/login')
             })
     }, [])
 
@@ -50,8 +49,8 @@ const JobDetailView = () => {
                             "Content-type": "application/json",
                             Authorization: `Bearer ${accessToken}`
                         }
-                        axios.delete(`http://127.0.0.1:3000/api/jobs/${paramsJobId}/`)
-                            .then(() => window.location.href = 'http://127.0.0.1:3001/all-jobs/')
+                        axios.delete(`api/jobs/${paramsJobId}/`)
+                            .then(() => history.push('/all-jobs/')
                             .catch(error => console.log(error))
                     }
                 },

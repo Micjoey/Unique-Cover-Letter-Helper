@@ -14,7 +14,7 @@ const Shell = props => {
     const userId = jwtDecode(localStorage.getItem('access_token')).user_id
     const [user, setUser] = useState({})
     const [loaded, isLoaded] = useState(false)
-    const url = window.location.origin
+
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",

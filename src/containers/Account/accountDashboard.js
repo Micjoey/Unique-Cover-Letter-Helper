@@ -15,7 +15,7 @@ const AccountDashboard = () => {
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
     const [loaded, isLoaded] = useState(false)
-    const url = window.location.origin
+
     useEffect(() => {
         axios.defaults.headers = {
             "Content-type": "application/json",

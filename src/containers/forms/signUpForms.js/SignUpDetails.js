@@ -18,7 +18,7 @@ const AccountDetailsForm = () => {
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
     // const dispatch = useDispatch()
-    const url = window.location.origin
+
 
     const onSubmit = data => {
         setLoading(true)
@@ -26,7 +26,6 @@ const AccountDetailsForm = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        // axios.patch(`${url}/api/users/${userId}/`, data)
         axios.patch(`api/users/${userId}/`, data)
             .then(() => {
                 history.push("/all-jobs/")

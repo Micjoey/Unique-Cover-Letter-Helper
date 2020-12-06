@@ -25,7 +25,7 @@ const ChangePassword = (props) => {
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
-    const url = window.location.origin
+
 
     const onSubmit = data => {
         const oldPassword = data.oldPassword

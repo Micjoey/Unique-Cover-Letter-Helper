@@ -19,7 +19,7 @@ const ChangeAccountInfo = (props) => {
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
-    const url = window.location.origin
+
     useEffect(() => {
         setUser(props.location.state.user)
     }, [])
