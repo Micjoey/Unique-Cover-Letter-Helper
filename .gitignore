@@ -39,3 +39,6 @@ CoverLetterGeneratorApp/private_settings.py
 server.csr
 server.key
 server.pass.key
+www_uniquecoverlettergenerator_com.ca-bundle
+www_uniquecoverlettergenerator_com.crt
+server.crt
