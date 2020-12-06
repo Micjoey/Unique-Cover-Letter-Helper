@@ -28,7 +28,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://uniquecoverlettergenerator.herokuapp.com',
     'http://www.uniquecoverlettergenerator.com',
     "www.uniquecoverlettergenerator.com",
-    "uniquecoverlettergenerator.com"
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
