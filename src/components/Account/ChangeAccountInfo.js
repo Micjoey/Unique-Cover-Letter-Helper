@@ -62,29 +62,16 @@ const ChangeAccountInfo = (props) => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        confirmAlert({
-                            title: `Confirm Delete `,
-                            message: `Are you really sure?`,
-                            buttons: [
-                                {
-                                    label: 'Yes',
-                                    onClick: () => {
-                                        axios.defaults.headers = {
-                                            "Content-type": "application/json",
-                                            Authorization: `Bearer ${accessToken}`
-                                        }
-                                        axios.delete(`/api/users/${user.id}/`, { ...user.id })
-                                            .then(() => history.push('/login/'))
-                                            .catch(error => console.log(error))
-                                    }
-                                },
-                                {
-                                    label: 'No',
-                                }
-                            ]
-                        });
+                        axios.defaults.headers = {
+                            "Content-type": "application/json",
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                        axios.delete(`/api/users/${user.id}/`, { ...user.id })
+                            .then(() => history.push('/login/'))
+                            .catch(error => console.log(error))
                     }
-                },
+                }
+                ,
                 {
                     label: 'No',
                 }
