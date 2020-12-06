@@ -29,11 +29,13 @@ ALLOWED_HOSTS = [
     'http://localhost:3001',
     'uniquecoverlettergenerator.herokuapp.com',
     '127.0.0.1',
+    'heroku.com',
     'www.uniquecoverlettergenerator.com',
     "localhost:3001",
     "http://localhost:3001/",
     "https://uniquecoverlettergenerator.herokuapp.com/",
-    "https://www.uniquecoverlettergenerator.com/"
+    "https://www.uniquecoverlettergenerator.com/",
+    "https://uniquecoverlettergenerator.com"
 ]
 
 CORS_ALLOWED_ORIGINS = [
