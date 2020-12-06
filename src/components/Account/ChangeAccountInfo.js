@@ -287,7 +287,7 @@ const ChangeAccountInfo = (props) => {
                 </Form>
                 <br></br>
                 <Form onSubmit={handleSubmit(onDelete)} error={error !== null}>
-                    <Button type="submit" warning>Delete Account</Button>
+                    <Button type="submit" negative>Delete Account</Button>
                     {error.length && (<Message error heading="There was an error deleting your account. Please try again later." content={error} />)}
                 </Form>
             </Shell>
