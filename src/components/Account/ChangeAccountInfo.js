@@ -52,6 +52,44 @@ const ChangeAccountInfo = (props) => {
             })
         setLoading(false)
     }
+
+    const onDelete = () => {
+        confirmAlert({
+            title: `Confirm Delete `,
+            message: `Are you sure you want to delete your account ${user.first_name} ${user.last_name}? This is permenant and there is no coming back.`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        confirmAlert({
+                            title: `Confirm Delete `,
+                            message: `Are you really sure?`,
+                            buttons: [
+                                {
+                                    label: 'Yes',
+                                    onClick: () => {
+                                        axios.defaults.headers = {
+                                            "Content-type": "application/json",
+                                            Authorization: `Bearer ${accessToken}`
+                                        }
+                                        axios.delete(`/api/users/${user.id}/`, { ...user.id })
+                                            .then(() => history.push('/login/'))
+                                            .catch(error => console.log(error))
+                                    }
+                                },
+                                {
+                                    label: 'No',
+                                }
+                            ]
+                        });
+                    }
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        });
+    }
     if (user) {
         return (
             <Shell>
@@ -259,6 +297,10 @@ const ChangeAccountInfo = (props) => {
                             </Table.Row>
                         </Table.Footer>
                     </Table>
+                </Form>
+                <Form onSubmit={handleSubmit(onDelete)} error={error !== null}>
+                    <Button>Delete Account</Button>
+                    {error.length && (<Message error heading="There was an error deleting your account. Please try again later." content={error} />)}
                 </Form>
             </Shell>
         )
