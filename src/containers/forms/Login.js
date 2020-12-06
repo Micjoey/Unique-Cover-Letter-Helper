@@ -28,7 +28,7 @@ const Login = () => {
     const {register, handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        (username, password) => dispatch(actions.authLogin(username, password, setErrorMessage))
+        (username, password) => dispatch(actions.authLogin(username, password, setErrorMessage, false, history))
     )
 
     const [errorMessage, setErrorMessage] = useState(null)

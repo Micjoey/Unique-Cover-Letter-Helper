@@ -1,6 +1,5 @@
 import React from 'react'
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
-
 import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
@@ -40,14 +39,14 @@ const BaseRouter = (props) => (
         <Switch>
             <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
             <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
-            <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
+            <PrivateRoute exact path='/all-jobs' component={JobListView}/>
             <PrivateRoute exact path='/signup-user-details/' component={AccountDetailsForm}/>
             <NeedUserCredentials exact path='/user-admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
             <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
-            <Route exact path='/signup' component={Signup}/>
-            <Route exact path='/login' component={Login}/>
+            <Route exact path='/signup/' component={Signup}/>
+            <Route exact path='/login/' component={Login}/>
             <Route path='/' component={HomePage}/>
             <Route path='' component={HomePage}/>
         </Switch>

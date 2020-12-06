@@ -53,7 +53,7 @@ const loggedInNav = (props, logout) => (
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
         {/* <Nav.Link href="/">Home</Nav.Link> */}
-        <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
+        <Nav.Link href="/all-jobs">All Jobs</Nav.Link>
         <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>

@@ -30,7 +30,7 @@ const RegistrationForm = () => {
     const { register, handleSubmit } = useForm()
     const dispatch = useDispatch()
     const onAuth = useCallback(
-        ({ ...values }) => dispatch(actions.authSignUp(values, setErrorMessage))
+        ({ ...values }) => dispatch(actions.authSignUp(values, setErrorMessage, true, history))
     )
 
     const onSubmit = (values) => {

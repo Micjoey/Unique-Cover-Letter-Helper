@@ -41,9 +41,8 @@ const JobList = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`api/jobs/`, )
+        axios.get("api/jobs")
         .then( res => {
-            console.log(res)
             setAllJobs(res.data.results)
             return res
         })
@@ -58,8 +57,7 @@ const JobList = () => {
             setLoaded({isLoaded: true})
         })
         .catch(err => {
-            history.push('/login')
-            alert(err)
+            // alert(err)
         })
     }, [])
     

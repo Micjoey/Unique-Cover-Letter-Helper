@@ -9,7 +9,6 @@ import {
     Grid,
     Header,
     Icon,
-    Image,
     List,
     Menu,
     Segment,
@@ -204,7 +203,6 @@ const Homepage = () => (
                         </p>
                     </Grid.Column>
                     <Grid.Column floated='right' width={6}>
-                        <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -229,7 +227,6 @@ const Homepage = () => (
                             "I shouldn't have gone with their competitor."
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            <Image avatar src='/images/avatar/large/nan.jpg' />
                             <b>Nan</b> Chief Fun Officer Acme Toys
                         </p>
                     </Grid.Column>

@@ -17,7 +17,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CoverLetterGeneratorApp.setting
 
 project_folder = os.path.expanduser(
     '/Users/macallansavett/Desktop/Software_engineering/FSP/CoverLetterGenerator/')
-print(project_folder)
 load_dotenv(os.path.join(project_folder, '.env'))
 
 

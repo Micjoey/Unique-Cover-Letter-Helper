@@ -1,7 +1,6 @@
 
 import axios from 'axios'
 
-
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
 
@@ -46,11 +45,10 @@ export const checkAuthTimeout = expirationTime => {
 }
 
 
-export const authLogin = (username, password, setErrorState = null, justSignedUp = false) => {
-
+export const authLogin = (username, password, setErrorState = null, justSignedUp = false, history = null) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('api/token/', {
+        axios.post("api/token/", {
             username: username,
             password: password
         }).then(response => {
@@ -61,9 +59,11 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             if (justSignedUp) {
-                window.location.href="signup-user-details/"
+                history.push("signup-user-details/")
+                // window.location.href="signup-user-details/"
             } else {
-                window.location.href="all-jobs/"
+                // window.location.href="/all-jobs/"
+                history.push("/all-jobs")
             }
 
         }).catch(err => {
@@ -84,7 +84,6 @@ export const authSignUp = ({ ...data }, setErrorMessage) => {
 
     return dispatch => {
         dispatch(authStart());
-        // axios.post('http://www.uniquecoverlettergenerator.com/rest-auth/registration/', {
         axios.post('rest-auth/registration/', {
             username: username,
             email: email,
