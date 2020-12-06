@@ -6,7 +6,7 @@ import { Form, Message,
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
-
+import jwtDecode from 'jwt-decode'
 import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
 
@@ -19,9 +19,20 @@ const ChangeAccountInfo = (props) => {
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
+    const userId = jwtDecode(accessToken).user_id
 
     useEffect(() => {
-        setUser(props.location.state.user)
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${accessToken}`
+        }
+        axios.get(`/api/users/${userId}`)
+            .then(resp => {
+                setUser(resp.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
 
@@ -32,7 +43,7 @@ const ChangeAccountInfo = (props) => {
             Authorization: `Bearer ${accessToken}`
         }
         // axios.patch(`${url}/api/users/${user.id}/`, data)
-        axios.patch(`api/users/${user.id}/`, data)
+        axios.patch(`/api/users/${user.id}/`, data)
             .then(resp => {
                 setUser(resp.data)
                 history.go()

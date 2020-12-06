@@ -59,7 +59,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             if (justSignedUp) {
-                history.push("signup-user-details/")
+                history.push("/signup-user-details/")
                 // window.location.href="signup-user-details/"
             } else {
                 // window.location.href="/all-jobs/"

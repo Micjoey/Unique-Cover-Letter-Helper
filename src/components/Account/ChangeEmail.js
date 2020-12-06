@@ -4,7 +4,7 @@ import {
     Button, Table
 } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
-
+import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import Shell from '../../containers/Account/Shell';
 
@@ -18,8 +18,20 @@ const ChangeEmail = (props) => {
     const {register, handleSubmit} = useForm()
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
+    const userId = jwtDecode(accessToken).user_id
+    const [loaded, isLoaded] = useState(false)
+
     useEffect(() => {
-        setUser(props.location.state.user)
+        axios.get(`/api/users/${userId}`, { userId: userId })
+            .then(resp => {
+                setUser(resp.data)
+            })
+            .then(() => {
+                isLoaded(true)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
 
@@ -35,7 +47,7 @@ const ChangeEmail = (props) => {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    axios.patch(`api/users/${user.id}/`, data)
+                    axios.patch(`/api/users/${user.id}/`, data)
                     .then(resp => {
                         setUser(resp.data)
                     })

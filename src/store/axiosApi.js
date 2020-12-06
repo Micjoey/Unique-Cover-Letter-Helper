@@ -3,7 +3,7 @@ import axios from 'axios'
 import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({
-    baseURL: 'api',
+    // baseURL: '',
     timeout: 3000,
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -23,7 +23,7 @@ axios.interceptors.response.use(response =>
             const access_token = localStorage.getItem('access_token');
             
             return axiosInstance
-                .post('api/token/refresh/', { refresh: refresh_token, access_token: access_token })
+                .post('/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
                     localStorage.setItem('access_token', response.data.access);
                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;

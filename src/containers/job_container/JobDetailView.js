@@ -23,7 +23,7 @@ const JobDetailView = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/jobs/${paramsJobId}`)
+        axios.get(`/api/jobs/${paramsJobId}`, {...paramsJobId})
             .then(res => {
                 setjob(res.data)
                 setUserId(res.data.belongs_to_user)
@@ -40,7 +40,7 @@ const JobDetailView = () => {
     const onSubmit = () => {
         confirmAlert({
             title: `Confirm Delete `,
-            message: 'Are you sure you want to delete ${job.position_title} at ${job.company}?',
+            message: `Are you sure you want to delete ${job.position_title} at ${job.company}?`,
             buttons: [
                 {
                     label: 'Yes',
@@ -49,8 +49,8 @@ const JobDetailView = () => {
                             "Content-type": "application/json",
                             Authorization: `Bearer ${accessToken}`
                         }
-                        axios.delete(`api/jobs/${paramsJobId}/`)
-                            .then(() => history.push('/all-jobs/'))
+                        axios.delete(`/api/jobs/${paramsJobId}`, {...paramsJobId})
+                            .then(() => history.push('/all-jobs'))
                             .catch(error => console.log(error))
                     }
                 },

@@ -37,9 +37,9 @@ const NeedUserCredentials = ({components: Component, ...rest}) => {
 const BaseRouter = (props) => (
     <div>
         <Switch>
-            <PrivateRoute exact path='/job/form' component={CoverLetterView}/>
-            <PrivateRoute exact path='/job/:jobID' component={JobDetailView}/>
-            <PrivateRoute exact path='/all-jobs' component={JobListView}/>
+            <PrivateRoute exact path='/job/form/' component={CoverLetterView}/>
+            <PrivateRoute exact path='/job/:jobID/' component={JobDetailView}/>
+            <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute exact path='/signup-user-details/' component={AccountDetailsForm}/>
             <NeedUserCredentials exact path='/user-admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
@@ -47,8 +47,8 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
             <Route exact path='/signup/' component={Signup}/>
             <Route exact path='/login/' component={Login}/>
+            <Route exact path='' component={HomePage}/>
             <Route path='/' component={HomePage}/>
-            <Route path='' component={HomePage}/>
         </Switch>
     </div>
 )

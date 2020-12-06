@@ -24,7 +24,7 @@ const ChangePassword = (props) => {
     const { register, handleSubmit } = useForm()
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
-    const userId = jwtDecode(accessToken).user_id
+
 
 
     const onSubmit = data => {
@@ -40,7 +40,7 @@ const ChangePassword = (props) => {
                         Authorization: `Bearer ${accessToken}`
                     }
                     // axios.patch(`${url}/api/change-password/`, backendData)
-                    axios.patch(`api/change-password/`, backendData)
+                    axios.patch(`/api/change-password/`, backendData)
                         .then(resp => {
                             setSuccessMessage("You have successfully changed the password!")
                             setError({})

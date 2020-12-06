@@ -26,9 +26,9 @@ const AccountDetailsForm = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.patch(`api/users/${userId}/`, data)
+        axios.patch(`/api/users/${userId}/`, data)
             .then(() => {
-                history.push("/all-jobs/")
+                history.push("all-jobs/")
             })
             .catch(err => {
                 setErrorMessage(err.Message)
