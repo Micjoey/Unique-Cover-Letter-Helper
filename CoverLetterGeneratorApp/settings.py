@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # need to change
+DEBUG = True # need to change
 
 ALLOWED_HOSTS = [
     'http://uniquecoverlettergenerator.herokuapp.com',
@@ -25,10 +25,8 @@ ALLOWED_HOSTS = [
     "http://uniquecoverlettergenerator.com",
     'http://127.0.0.1:3001',
     'http://127.0.0.1:3000',
-    'https://127.0.0.1:3001',
-    'https://127.0.0.1:3000',
-    'https://localhost:3000',
-    'https://localhost:3001',
+    'http://localhost:3000',
+    'http://localhost:3001',
     'heroku.com',
     'uniquecoverlettergenerator.herokuapp.com',
     '127.0.0.1',
