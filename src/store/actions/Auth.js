@@ -76,7 +76,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
 }
 
 
-export const authSignUp = ({ ...data }, setErrorMessage) => {
+export const authSignUp = ({ ...data }, setErrorMessage, justSignedUp, history) => {
     const username = data.username
     const password1 = data.password
     const password2 = data.confirm_password
@@ -84,7 +84,7 @@ export const authSignUp = ({ ...data }, setErrorMessage) => {
 
     return dispatch => {
         dispatch(authStart());
-        axios.post('rest-auth/registration/', {
+        axios.post('/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,
@@ -98,7 +98,7 @@ export const authSignUp = ({ ...data }, setErrorMessage) => {
             localStorage.setItem('access_token', accessToken);
             localStorage.setItem('refresh_token', refreshToken);
             localStorage.setItem('token', token);
-            dispatch(authLogin(username, password1, null, true))
+            dispatch(authLogin(username, password1, null, true, history))
             dispatch(authSuccess(accessToken, refreshToken));
         }).catch(err => {
             setErrorMessage("Either the password was too common (i.e password123), the Username taken, or the Email was. Please try again.")
