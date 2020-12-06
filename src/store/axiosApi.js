@@ -18,7 +18,7 @@ axios.interceptors.response.use(response =>
         return response;
     }, error => {
         const originalRequest = error.config;
-        if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
+        if (error !== undefined && error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');
             

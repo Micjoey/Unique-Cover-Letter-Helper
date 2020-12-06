@@ -4,6 +4,7 @@ import * as actions from "../../store/actions/Auth"
 import { useHistory } from 'react-router-dom';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import NotLoggedInPage from '../../components/NotLoggedInPage';
+import { Segment } from 'semantic-ui-react';
 
 
 const CoverLetterView = () => {
@@ -17,9 +18,9 @@ const CoverLetterView = () => {
             error: state.error
         }))
     return (
-        <div>
+        <Segment inverted>
             <JobForm requestType="post" jobID={paramsJobId} buttonTxt="Create Cover Letter"/>
-        </div>
+        </Segment>
     )
 }
 
