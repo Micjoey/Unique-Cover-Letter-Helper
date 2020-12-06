@@ -22,7 +22,7 @@ const ChangeEmail = (props) => {
     const [loaded, isLoaded] = useState(false)
 
     useEffect(() => {
-        axios.get(`/api/users/${userId}`, { userId: userId })
+        axios.get(`/api/users/${userId}/`, { userId: userId })
             .then(resp => {
                 setUser(resp.data)
             })

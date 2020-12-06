@@ -23,7 +23,7 @@ const JobDetailView = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/jobs/${paramsJobId}`, {...paramsJobId})
+        axios.get(`/api/jobs/${paramsJobId}/`, {...paramsJobId})
             .then(res => {
                 setjob(res.data)
                 setUserId(res.data.belongs_to_user)

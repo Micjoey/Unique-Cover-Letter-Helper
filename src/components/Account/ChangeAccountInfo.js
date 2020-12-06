@@ -26,7 +26,7 @@ const ChangeAccountInfo = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/users/${userId}`)
+        axios.get(`/api/users/${userId}/`)
             .then(resp => {
                 setUser(resp.data)
             })
@@ -42,11 +42,10 @@ const ChangeAccountInfo = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        // axios.patch(`${url}/api/users/${user.id}/`, data)
         axios.patch(`/api/users/${user.id}/`, data)
             .then(resp => {
                 setUser(resp.data)
-                history.go()
+                // history.go()
             })
             .catch(err => {
                 setError(err.Message)
