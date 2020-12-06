@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [
     'www.uniquecoverlettergenerator.com',
     "localhost:3001",
     "http://localhost:3001/",
-    "https://uniquecoverlettergenerator.herokuapp.com/"
+    "https://uniquecoverlettergenerator.herokuapp.com/",
+    "https://www.uniquecoverlettergenerator.com/"
 
 ]
 
@@ -113,7 +114,7 @@ MIDDLEWARE = [
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True # need to change
+# SECURE_SSL_REDIRECT = True # need to change
 ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
 TEMPLATES = [
