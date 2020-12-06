@@ -4,7 +4,8 @@ import { Form, Message,
         Container, Segment, Menu, 
         Table, Icon, Label } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
-
+import { confirmAlert, alert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import Shell from '../../containers/Account/Shell';
@@ -97,8 +98,7 @@ const ChangeAccountInfo = (props) => {
                     <Table striped inverted textAlign="center">
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Current Account Info</Table.HeaderCell>
-                                <Table.HeaderCell>New Info</Table.HeaderCell>
+                                <Table.HeaderCell colSpan={10}>Account Info</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
     
@@ -299,7 +299,7 @@ const ChangeAccountInfo = (props) => {
                     </Table>
                 </Form>
                 <Form onSubmit={handleSubmit(onDelete)} error={error !== null}>
-                    <Button>Delete Account</Button>
+                    <Button type="submit" warning>Delete Account</Button>
                     {error.length && (<Message error heading="There was an error deleting your account. Please try again later." content={error} />)}
                 </Form>
             </Shell>
