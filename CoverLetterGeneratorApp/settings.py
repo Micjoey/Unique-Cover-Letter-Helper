@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # need to change
+DEBUG = True # need to change
 
 ALLOWED_HOSTS = [
     'http://uniquecoverlettergenerator.herokuapp.com',
@@ -113,7 +113,7 @@ MIDDLEWARE = [
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True # need to change
+# SECURE_SSL_REDIRECT = True # need to change
 ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
 TEMPLATES = [
