@@ -27,7 +27,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://uniquecoverlettergenerator.herokuapp.com',
     'http://www.uniquecoverlettergenerator.com',
-    "www.uniquecoverlettergenerator.com",
+    "http://www.uniquecoverlettergenerator.com",
+    "http://uniquecoverlettergenerator.com"
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = True
