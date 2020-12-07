@@ -21,6 +21,7 @@ import {
     Sidebar,
     Visibility,
 } from 'semantic-ui-react'
+import { useSelector } from 'react-redux';
 
 
 const JobList = () => {
@@ -34,6 +35,13 @@ const JobList = () => {
     const [loaded, setLoaded] = useState({isLoaded: false})
     const [pageIndex, setPageIndex] = useState(1)
     const [count, setCount] = useState(0)
+    const props = useSelector(state => (
+        {
+            ...state,
+            isAuthenticated: localStorage.getItem('access_token') !== null,
+            loading: state.loading,
+            error: state.error
+        }))
 
     useEffect(() => {
 
@@ -60,8 +68,7 @@ const JobList = () => {
             // alert(err)
         })
     }, [])
-    
-    if (loaded.isLoaded) {
+    if (loaded.isLoaded && !props.loading) {
         if (allJobs.length) {
             return (
                 <Container>

@@ -4,13 +4,13 @@ import JobListView from './containers/job_container/JobListView'
 import JobDetailView from './containers/job_container/JobDetailView'
 import CoverLetterView from './containers/forms/CoverLetterView'
 import Login from './containers/forms/Login'
-import Signup from './containers/forms/signUpForms.js/SignupInitial'
 import ChangeEmail from './components/Account/ChangeEmail'
 import HomePage from './components/homepage/homepage'
 import AccountDashboard from './containers/Account/accountDashboard'
 import ChangePassword from './components/Account/ChangePassword'
 import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
-import AccountDetailsForm from './containers/forms/signUpForms.js/SignUpDetails'
+import AccountDetailsForm from './containers/forms/signUpForms/SignUpDetails'
+import RegistrationForm from './containers/forms/signUpForms/SignupInitial'
 
 
 const PrivateRoute = ({components: Component, ...rest}) => {
@@ -45,7 +45,7 @@ const BaseRouter = (props) => (
             <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
             <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
-            <Route exact path='/signup/' component={Signup}/>
+            <Route exact path='/signup/' component={RegistrationForm}/>
             <Route exact path='/login/' component={Login}/>
             <Route exact path='' component={HomePage}/>
             <Route path='/' component={HomePage}/>

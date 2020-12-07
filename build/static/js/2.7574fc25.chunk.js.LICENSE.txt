@@ -31,6 +31,10 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+/*! Raygun4js - v2.21.0 - 2020-10-27
+* https://github.com/MindscapeHQ/raygun4js
+* Copyright (c) 2020 MindscapeHQ; Licensed MIT */
+
 /** @license React v0.20.1
  * scheduler.production.min.js
  *

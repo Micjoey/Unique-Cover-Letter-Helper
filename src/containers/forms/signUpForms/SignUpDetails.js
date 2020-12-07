@@ -4,7 +4,7 @@ import {
     Button, Grid,
     Segment, Table, 
 } from 'semantic-ui-react'
-import { useHistory } from 'react-router-dom';
+import { Prompt, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
@@ -12,16 +12,29 @@ import jwtDecode from 'jwt-decode';
 
 const AccountDetailsForm = () => {
     const history = useHistory()
+    const [requiredFields, setRequiredFields] = useState({})
     const [errorMessage, setErrorMessage] = useState({})
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
-    const accessToken = localStorage.getItem('access_token')
-    const userId = jwtDecode(accessToken).user_id
+    
+    
     // const dispatch = useDispatch()
-
+    window.onbeforeunload = handleChangePages()
+    
+    const handleChangePages = (e) => {
+        if (requiredFields) {
+            return null
+        } else {
+            const message = 'You need to fill in First and Last Name at the minimum.';
+            e.returnValue = message;
+            return message;
+        }
+    }
 
     const onSubmit = data => {
         setLoading(true)
+        const accessToken = localStorage.getItem('access_token')
+        const userId = jwtDecode(accessToken).user_id
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
@@ -29,6 +42,7 @@ const AccountDetailsForm = () => {
         axios.patch(`/api/users/${userId}/`, data)
             .then(() => {
                 history.push("all-jobs/")
+                setRequiredFields(data)
             })
             .catch(err => {
                 setErrorMessage(err.Message)
@@ -36,12 +50,11 @@ const AccountDetailsForm = () => {
         setLoading(false)
     }
 
-
     return (
         <div className="login-form">
             <Segment placeholder>
-                <Grid stackable >
-                    <Grid.Column stackable>
+                <Grid stackable="true" >
+                    <Grid.Column stackable={true}>
                         <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
                             <Table striped inverted textAlign="center">
                                 <Table.Header>

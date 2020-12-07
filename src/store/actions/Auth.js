@@ -60,11 +60,11 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             if (justSignedUp) {
-                history.push("signup-user-details/")
+                history.push("/signup-user-details/")
                 // window.location.href="signup-user-details/"
             } else {
                 // window.location.href="/all-jobs/"
-                history.push("all-jobs/")
+                history.push("/all-jobs/")
             }
 
         }).catch(err => {
@@ -77,30 +77,41 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
 }
 
 
-export const authSignUp = ({ ...data }, setErrorMessage, justSignedUp, history) => {
+export const authSignUp = (data, setErrorMessage, justSignedUp=true, history) => {
+    console.log(data)
     const username = data.username
     const password1 = data.password
     const password2 = data.confirm_password
     const email = data.email
+    const first_name = data.first_name
+    const last_name = data.last_name
 
     return dispatch => {
         dispatch(authStart());
-        axios.post('/rest-auth/registration/', {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            proxy: {
+                host: 'http://localhost',
+                port: 3000
+            }
+        }
+        axios.post("/rest-auth/registration/", {
             username: username,
             email: email,
             password1: password1,
-            password2: password2
-        })
-        .then(response => {
-            const token = response.data.key;
-            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            const accessToken = response.data.access;
-            const refreshToken = response.data.refresh;
+            password2: password2,
+            first_name: first_name,
+            last_name: last_name
+        }).then(response => {
+            const token = response.data.token;
+            // // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            const accessToken = response.data.token;
+            // const refreshToken = response.data.refresh;
             localStorage.setItem('access_token', accessToken);
-            localStorage.setItem('refresh_token', refreshToken);
+            // localStorage.setItem('refresh_token', refreshToken);
             localStorage.setItem('token', token);
-            dispatch(authLogin(username, password1, null, true, history))
-            dispatch(authSuccess(accessToken, refreshToken));
+            dispatch(authLogin(username, password1, null, justSignedUp, history))
+            dispatch(authSuccess(accessToken));
         }).catch(err => {
             setErrorMessage("Either the password was too common (i.e password123), the Username taken, or the Email was. Please try again.")
             dispatch(authFail(err))

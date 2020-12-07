@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # need to change
+DEBUG = True # need to change
 
 ALLOWED_HOSTS = [
     'http://uniquecoverlettergenerator.herokuapp.com',
@@ -24,15 +24,14 @@ ALLOWED_HOSTS = [
     "http://www.uniquecoverlettergenerator.com",
     "http://uniquecoverlettergenerator.com",
     'http://127.0.0.1:3001',
+    'http://localhost:3001',
     'http://127.0.0.1:3000',
     'http://localhost:3000',
-    'http://localhost:3001',
     'uniquecoverlettergenerator.herokuapp.com',
     '127.0.0.1',
     'heroku.com',
     'www.uniquecoverlettergenerator.com',
     "localhost:3001",
-    "http://localhost:3001/",
     "https://uniquecoverlettergenerator.herokuapp.com/",
     "https://www.uniquecoverlettergenerator.com/"
     "https://uniquecoverlettergenerator.com"
@@ -40,27 +39,19 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3001',
+    "http://localhost:3001",
     'http://127.0.0.1:3000',
+    'http://localhost:3000',
     'http://uniquecoverlettergenerator.herokuapp.com',
     'http://www.uniquecoverlettergenerator.com',
     "http://www.uniquecoverlettergenerator.com",
     "http://uniquecoverlettergenerator.com"
 ]
 
-# CORS_ORIGIN_ALLOW_ALL = True
-# ALLOWED_HOSTS = [
-#     'uniquecoverlettergenerator.herokuapp.com',
-#     '127.0.0.1',
-#     'heroku.com',
-#     'www.uniquecoverlettergenerator.com',
-#     "localhost:3001",
-#     "http://localhost:3001/",
-#     "https://uniquecoverlettergenerator.herokuapp.com/"
-# ]
-
 # Application definition
 
 INSTALLED_APPS = [
+    "scout_apm.django",
     'corsheaders',
     'django.contrib.auth',
     'django.contrib.admin',
@@ -112,8 +103,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True # need to change
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True # need to change
 ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
 TEMPLATES = [
@@ -268,5 +259,11 @@ STATICFILES_DIRS = (
 # ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SCOUT_MONITOR = True
+SCOUT_KEY = "[NSuExhzhiCoh6HeDFjV3]"
+SCOUT_NAME = "Cover Letter Generator"
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())

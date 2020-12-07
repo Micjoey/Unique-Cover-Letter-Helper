@@ -3,7 +3,7 @@ import axios from 'axios'
 import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({
-    // baseURL: '',
+    baseURL: window.location.origin,
     timeout: 3000,
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
