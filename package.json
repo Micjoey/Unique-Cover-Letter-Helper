@@ -26,7 +26,9 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
@@ -52,10 +54,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
   },
   "engines": {
     "node": "14.x",

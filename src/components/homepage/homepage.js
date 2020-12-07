@@ -184,7 +184,7 @@ ResponsiveContainer.propTypes = {
 const Homepage = () => (
     <ResponsiveContainer>
         <Segment style={{ padding: '8em 0em' }} vertical inverted>
-            <Grid container stackable verticalAlign='middle'>
+            <Grid container stackable="true" verticalAlign='middle'>
                 <Grid.Row>
                     <Grid.Column width={8}>
                         <Header as='h3' style={{ fontSize: '2em' }} inverted>

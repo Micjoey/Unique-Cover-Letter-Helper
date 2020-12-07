@@ -37,7 +37,7 @@ const Shell = props => {
         return (    
             <Segment vertical>
                 <Container>
-                    <Grid container stackable verticalAlign='top' divided columns={2}>
+                    <Grid container stackable="true" verticalAlign='top' divided columns={2}>
                         <Grid.Row>
                             <Grid.Column width={4}>
                                 <Header as="h3" inverted>Account</Header>

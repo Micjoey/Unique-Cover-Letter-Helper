@@ -82,7 +82,7 @@ const AccountDashboard = () => {
         return(
             <Segment vertical>
                 <Container>
-                    <Grid container stackable verticalAlign='top' divided columns={2}>
+                    <Grid container stackable="true" verticalAlign='top' divided columns={2}>
                         <Grid.Column width={4}>
                             Loading
                         </Grid.Column>

@@ -29,13 +29,41 @@ const Header = () => {
 
   const logout = () => {
     try {
+      history.push('/login/')
       dispatch(actions.logout())
-      history.push("/login/")
     } catch (e) {
-      // alert(e)
       alert('unable to logout')
     }
   }
+
+  const accessToken = localStorage.getItem('access_token')
+  const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
+
+  useEffect(() => {
+    props.loading = true
+    axios.defaults.headers = {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+    if (userId) {
+
+      axios.get(`/api/users/${userId}/`)
+        .then(resp => {
+          setUser(resp.data)
+          rg4js('setUser', {
+            identifier: `${resp.data.username}`,
+            isAnonymous: false,
+            email: `${resp.data.email}`,
+            firstName: `${resp.data.first_name}`,
+            fullName: `${resp.data.first_name} ${resp.data.last_name}`
+          })
+          props.loading = false
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }, [props.isAuthenticated])
 
   return  (
     <div>
@@ -49,31 +77,7 @@ const Header = () => {
 export default Header
 
 const LoggedInNav = (props, logout, user, setUser) => {
-  const accessToken = localStorage.getItem('access_token')
-  const userId = jwtDecode(accessToken).user_id
-  useEffect(() => {
-    props.loading = true
-    axios.defaults.headers = {
-      "Content-type": "application/json",
-      Authorization: `Bearer ${accessToken}`
-    }
-
-    axios.get(`/api/users/${userId}/`)
-      .then(resp => {
-        setUser(resp.data)
-        rg4js('setUser', {
-          identifier: `${resp.data.username}`,
-          isAnonymous: false,
-          email: `${resp.data.email}`,
-          firstName: `${resp.data.first_name}`,
-          fullName: `${resp.data.first_name} ${resp.data.last_name}`
-        })
-        props.loading = false
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [props.isAuthenticated])
+  
   return(
     <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
       <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
@@ -93,12 +97,7 @@ const LoggedInNav = (props, logout, user, setUser) => {
             }
             <NavDropdown.Divider />
             <ErrorBoundary>
-              {
-                props.isAuthenticated ?
-                  <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
-                  :
-                  <NavDropdown.Item href="/login/">Login</NavDropdown.Item>
-              }
+              <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
             </ErrorBoundary>
           </NavDropdown>
         </Nav>

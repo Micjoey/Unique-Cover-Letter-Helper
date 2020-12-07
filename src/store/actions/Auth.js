@@ -49,7 +49,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password, setErrorState = null, justSignedUp = false, history = null) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post("/api/token/", {
+        axios.post("api/token/", {
             username: username,
             password: password
         }).then(response => {
@@ -66,7 +66,6 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
                 // window.location.href="/all-jobs/"
                 history.push("/all-jobs/")
             }
-
         }).catch(err => {
             if (setErrorState !== null){
                 setErrorState("Failed to log in. Try again or sign up.")
@@ -95,7 +94,7 @@ export const authSignUp = (data, setErrorMessage, justSignedUp=true, history) =>
                 port: 3000
             }
         }
-        axios.post("/rest-auth/registration/", {
+        axios.post("rest-auth/registration/", {
             username: username,
             email: email,
             password1: password1,

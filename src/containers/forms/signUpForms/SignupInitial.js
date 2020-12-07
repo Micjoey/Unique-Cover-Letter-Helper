@@ -58,7 +58,7 @@ const RegistrationForm = () => {
         <div className="login-form">
             <Segment size="large">
                 <Segment placeholder inverted>
-                    <Grid stackable >
+                    <Grid stackable="true" >
                         <Grid.Column stackable>
                             <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
                                 <Table striped inverted textAlign="center">
