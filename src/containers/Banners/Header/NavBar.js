@@ -5,15 +5,40 @@ import {
   Form, 
   FormControl, 
   Button } from 'react-bootstrap';
-import React, { useCallback, } from 'react'
+import React, { useCallback, useEffect, useState, } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as actions from '../../../store/actions/Auth'
 import ErrorBoundary from '../../../store/ErrorBoundary';
+import axios from 'axios'
+import jwtDecode from 'jwt-decode'
 
 
 const Header = () => {
   let history = useHistory()
+  const [user, setUser] = useState({})
+  const accessToken = localStorage.getItem('access_token')
+  let userId = null
+  if (accessToken) {
+    userId = jwtDecode(accessToken).user_id
+  } else {
+    history.push('/login/')
+  }
+  useEffect(() => {
+    axios.defaults.headers = {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`
+    }
+    axios.get(`/api/users/${userId}/`)
+      .then(resp => {
+        setUser(resp.data)
+      })
+      .catch(err => {
+        
+        console.log(err)
+      })
+  }, [])
+
   const props = useSelector(state => (
     {
       ...state, 
@@ -34,10 +59,9 @@ const Header = () => {
     }
   }
 
-
   return  (
     <div>
-      {props.isAuthenticated ? loggedInNav(props, logout) : loggedOutNav(props, logout)}
+      {props.isAuthenticated ? loggedInNav(props, user, logout) : loggedOutNav(props, logout)}
     </div>
   )
 }
@@ -46,7 +70,7 @@ const Header = () => {
 
 export default Header
 
-const loggedInNav = (props, logout) => (
+const loggedInNav = (props, user, logout) => (
   <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
     <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -56,14 +80,20 @@ const loggedInNav = (props, logout) => (
         <Nav.Link href="/all-jobs">All Jobs</Nav.Link>
         <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+          <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
           <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
+          {
+            user.is_superuser ? 
+            <NavDropdown.Item href="/admin/">Admin</NavDropdown.Item> :
+            null
+          }
           <NavDropdown.Divider />
           <ErrorBoundary>
             {
               props.isAuthenticated ?
                 <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
                 :
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                <NavDropdown.Item href="/login/">Login</NavDropdown.Item>
             }
           </ErrorBoundary>
         </NavDropdown>
@@ -76,7 +106,7 @@ const loggedInNav = (props, logout) => (
   </Navbar>
 )
 
-const loggedOutNav = (props, logout) => (
+const loggedOutNav = () => (
   < Navbar bg="light" expand="lg" className="text-center" >
     <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

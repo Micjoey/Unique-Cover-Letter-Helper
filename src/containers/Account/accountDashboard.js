@@ -21,9 +21,8 @@ const AccountDashboard = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/users/${userId}/`, {userId: userId})
+        axios.get(`/api/users/${userId}/`)
             .then(resp => {
-                console.log(resp)
                 setUser(resp.data)
             })
             .then(() => {
@@ -33,7 +32,7 @@ const AccountDashboard = () => {
                 console.log(err)
             })
     }, [])
-
+  
     if (loaded) {
         return (
             <div class="outer-semantic">
@@ -42,6 +41,7 @@ const AccountDashboard = () => {
                         <Grid container divided textAlign="center" >
                             {/* <Grid.Row> */}
                                 {/* <Grid.Column width={8}> */}
+                                <Container content>
                                     <Header as="h3">Account</Header>
                                     <Menu vertical fluid>
                                         <Menu.Item
@@ -70,6 +70,7 @@ const AccountDashboard = () => {
                                             Logout
                                         </Menu.Item>
                                     </Menu>
+                                </Container>
                                 {/* </Grid.Column> */}
                             {/* </Grid.Row> */}
                         </Grid>
