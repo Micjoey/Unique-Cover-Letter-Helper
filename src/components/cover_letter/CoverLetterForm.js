@@ -24,18 +24,17 @@ export const JobForm = (props) => {
     }
     const buttonTxt = props.buttonTxt
     const { register, errors, handleSubmit} = useForm({
-        defaultValues: {
-            job_posting_website: "LinkedIn",
-            top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
-            bullet_point_one: "Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles.",
-            bullet_point_two: "For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. ",
-            bullet_point_three: "My passion for competitive soccer has taught me to learn from my mistakes using constructive feedback to improve future action.",
-            bullet_point_four: "I continually strive for opportunities to improve my skills and have the opportunity to problem-solve.",
-            bullet_point_five: "A passion for reading books on communication, relationship building, and leadership allow me to learn continually.",
-            job_stage: jobStage,
-            template_choices: templateChoices,
-
-        }
+        // defaultValues: {
+        //     job_posting_website: "LinkedIn",
+        //     top_skills: "Dynamic and accomplished Software Engineer with experience and expertise in ",
+        //     bullet_point_one: "Over the last five years, I have worked in multiple team-based, customer-oriented, professional roles.",
+        //     bullet_point_two: "For sixteen years on competitive soccer teams, I practiced the art of communicating in a fast moving environment, including four years of college D3 soccer. ",
+        //     bullet_point_three: "My passion for competitive soccer has taught me to learn from my mistakes using constructive feedback to improve future action.",
+        //     bullet_point_four: "I continually strive for opportunities to improve my skills and have the opportunity to problem-solve.",
+        //     bullet_point_five: "A passion for reading books on communication, relationship building, and leadership allow me to learn continually.",
+        //     job_stage: jobStage,
+        //     template_choices: templateChoices,
+        // }
     })
 
     const onSubmit = (data) => {
