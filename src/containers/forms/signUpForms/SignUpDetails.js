@@ -43,7 +43,7 @@ const AccountDetailsForm = () => {
         }
         axios.patch(`/api/users/${userId}/`, data)
             .then(() => {
-                history.push("all-jobs/")
+                history.push("/all-jobs/")
                 setRequiredFields(data)
             })
             .catch(err => {

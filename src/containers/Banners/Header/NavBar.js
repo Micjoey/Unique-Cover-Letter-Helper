@@ -46,7 +46,7 @@ const Header = () => {
       "Content-type": "application/json",
       Authorization: `Bearer ${accessToken}`
     }
-    if (userId && refresh_token !== null) {
+    if (userId) {
       axios.get(`/api/users/${userId}/`)
         .then(resp => {
           setUser(resp.data)
@@ -63,7 +63,7 @@ const Header = () => {
           console.log(err)
         })
     }
-  }, [])
+  }, [props.isAuthenticated])
 
   return  (
     <div>
@@ -85,8 +85,8 @@ const LoggedInNav = (props, logout, user) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {/* <Nav.Link href="/">Home</Nav.Link> */}
-            <Nav.Link href="/all-jobs">All Jobs</Nav.Link>
-            <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
+            <Nav.Link href="/all-jobs/">All Jobs</Nav.Link>
+            <Nav.Link href="/job/form/">Cover Letter Form</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
               <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>

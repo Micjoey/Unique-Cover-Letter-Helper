@@ -64,7 +64,6 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             if (justSignedUp) {
                 const navBar = document.getElementsByClassName("nav-bar")[0]
                 navBar.style.display = "none"
-                // return null
                 history.push("/signup-user-details/")
             } else {       
                 history.push("/all-jobs/")
