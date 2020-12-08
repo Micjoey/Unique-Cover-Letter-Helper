@@ -71,11 +71,12 @@ const AccountDetailsForm = () => {
                                                 <Form.Field>
                                                     <input
                                                         required
-                                                        placeholder={`First Name:`}
+                                                        placeholder={`**First Name:`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"first_name"}
                                                         ref={register()}
+                                                        style={{ fontWeight: "bolder" }}
                                                     />
                                                 </Form.Field>
                                             </Table.Cell>
@@ -94,11 +95,12 @@ const AccountDetailsForm = () => {
                                                 <Form.Field>
                                                     <input
                                                         required
-                                                        placeholder={`Last Name:`}
+                                                        placeholder={`**Last Name:`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"last_name"}
                                                         ref={register()}
+                                                        style={{fontWeight: "bolder"}}
                                                     />
                                                 </Form.Field>
                                             </Table.Cell>

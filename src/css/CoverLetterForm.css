@@ -60,3 +60,22 @@
 /* .cover-letter-display-button {
     style={{ color: 'Black', textAlign: 'center'}}
 } */
+
+.required-field {
+    width: '12em';
+    font-weight: 'bolder';
+}
+
+.non-required-field {
+    width: '12em';
+}
+
+
+.list-form-field {
+    display: flex;
+}
+
+.list-form-field-with-margin {
+    display: 'flex'; 
+    margin: '1em 0';
+}

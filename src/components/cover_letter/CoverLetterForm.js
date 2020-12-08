@@ -85,7 +85,7 @@ export const JobForm = (props) => {
                     <div className="update-job-form">
                         <h1 className="form-title">Update Job Info</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <label style={{ display: 'flex' }}>
+                            <label className="list-form-field">
                                 <p>Template Choices: </p>
                                 <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                                     {Object.keys(template_choices).map((key, idx)=> (
@@ -93,7 +93,7 @@ export const JobForm = (props) => {
                                     ))}
                                 </select>
                             </label>
-                            <label style={{ display: 'flex' }}>
+                            <label className="list-form-field">
                                 <p>Job Stage: </p>
                                 <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                                     {Object.keys(job_stages).map((key, idx)=> (
@@ -105,8 +105,8 @@ export const JobForm = (props) => {
                                     ))}
                                 </select>
                             </label>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Job Posting Website: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">*Job Posting Website: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Job Posting Website"}
@@ -117,8 +117,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.job_posting_website && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Position Title: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field"> *Position Title: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Position Title"}
@@ -129,8 +129,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.position_title && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Company: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">*Company: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Company"}
@@ -141,8 +141,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.company && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>City: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">City: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"City"}
@@ -153,8 +153,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.city && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Link: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">*Link: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Link"}
@@ -165,8 +165,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.link && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Recruiter: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Recruiter: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Recruiter"}
@@ -177,8 +177,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.recruiter && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Description: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Description: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Description"}
@@ -189,8 +189,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.description && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Pre Bullet Point - Paragraph one: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Pre Bullet Point - Paragraph one: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Pre Bullet Point - Paragraph one"}
@@ -201,8 +201,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.pre_bullet_point_paragraph_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Pre Bullet Point - Paragraph two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Pre Bullet Point - Paragraph two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Pre Bullet Point - Paragraph two"}
@@ -213,8 +213,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.pre_bullet_point_paragraph_two && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Top Skill: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Top Skill: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Top Skill"}
@@ -225,8 +225,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.top_skills && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point One: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point One: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point One"}
@@ -237,8 +237,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Two"}
@@ -249,8 +249,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_two && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Three: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Three: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Three"}
@@ -261,8 +261,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_three && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Four: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Four: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Four"}
@@ -273,8 +273,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_four && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Five: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Five: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Five"}
@@ -285,8 +285,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_five && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Six: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Six: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Six"}
@@ -297,8 +297,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_six && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Seven: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Seven: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Seven"}
@@ -309,8 +309,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_seven && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Bullet Point Eight: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Eight: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Eight"}
@@ -321,8 +321,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_eight && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Post Bullet Point - Paragraph one: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Post Bullet Point - Paragraph one: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Post Bullet Point - Paragraph one"}
@@ -333,8 +333,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.post_bullet_point_paragraph_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{ width: '12em' }}>Post Bullet Point - Paragraph two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Post Bullet Point - Paragraph two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Post Bullet Point - Paragraph two"}
@@ -345,8 +345,7 @@ export const JobForm = (props) => {
                                 />
                                 {errors.post_bullet_point_paragraph_two && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                            <div>
                                 <input
                                     type="hidden"
                                     style={{ color: 'black' }}
@@ -354,9 +353,7 @@ export const JobForm = (props) => {
                                     name={"belongs_to_user"}
                                     defaultValue={userId}
                                     ref={register({ required: true })}
-                                    style={{ display: 'flex', margin: '0em 1em' }}
                                 />
-                                {/* {errors.choice_of_user && "Your input is required"} */}
                             </div>
                             <input style={{ color: 'Black' }} type="submit" value={buttonTxt} className="form-button"/>
                         </form>
@@ -372,24 +369,24 @@ export const JobForm = (props) => {
                     <div className="create-job-form">
                         <h1 className="form-title">Create Cover Letter</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <label style={{ display: 'flex' }}>
-                                <p style={{width: '12em'}}>Template Choices: </p>
+                            <label className="list-form-field">
+                                <p className="non-required-field">Template Choices: </p>
                                 <select style={{ color: 'Red' }} name="template_choices" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                                     {Object.keys(template_choices).map((key, idx) => (
                                         <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
                                     ))}
                                 </select>
                             </label>
-                            <label style={{ display: 'flex' }}>
-                                <p style={{width: '12em'}}>Job Stage: </p>
+                            <label className="list-form-field">
+                                <p className="non-required-field">Job Stage: </p>
                                 <select style={{ color: 'black' }} name="job_stage" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
                                     {Object.keys(job_stages).map((key, idx) => (
                                         <option key={idx} name={job_stages[key]}> {job_stages[key]} </option>
                                     ))}
                                 </select>
                             </label>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Job Posting Website: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">*Job Posting Website: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Job Posting Website"}
@@ -399,8 +396,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.job_posting_website && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Position Title: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">*Position Title: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Position Title"}
@@ -410,8 +407,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.position_title && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                {/* <p style={{width: '12em'}}>Choice of User: </p> */}
+                            <div className="list-form-field-with-margin">
+                                {/* <p className="non-required-field">Choice of User: </p> */}
                                 <input
                                     type="hidden"
                                     style={{ color: 'black' }}
@@ -423,8 +420,8 @@ export const JobForm = (props) => {
                                 />
                                 {/* {errors.choice_of_user && "Your input is required"} */}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Company: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">* Company: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Company"}
@@ -434,8 +431,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.company && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>City: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">City: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"City"}
@@ -445,8 +442,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.city && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Link: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="required-field">* Job Link: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Link"}
@@ -456,8 +453,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.link && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Recruiter: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Recruiter: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Recruiter"}
@@ -467,8 +464,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.recruiter && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Description: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Description: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Description"}
@@ -478,8 +475,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.description && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Pre Bullet Point - Paragraph one: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Pre Bullet Point - Paragraph one: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Pre Bullet Point - Paragraph one"}
@@ -489,8 +486,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.pre_bullet_point_paragraph_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Pre Bullet Point - Paragraph two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Pre Bullet Point - Paragraph two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Pre Bullet Point - Paragraph two"}
@@ -500,8 +497,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.pre_bullet_point_paragraph_two && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Top Skill: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Top Skill: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Top Skill"}
@@ -511,8 +508,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.top_skills && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point One: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point One: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point One"}
@@ -522,8 +519,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Two"}
@@ -533,8 +530,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_two && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Three: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Three: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Three"}
@@ -544,8 +541,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_three && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Four: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Four: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Four"}
@@ -555,8 +552,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_four && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Five: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Five: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Five"}
@@ -566,8 +563,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_five && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Six: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Six: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Six"}
@@ -577,8 +574,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_six && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Seven: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Seven: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Seven"}
@@ -588,8 +585,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_seven && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Bullet Point Eight: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Bullet Point Eight: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Bullet Point Eight"}
@@ -599,8 +596,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.bullet_point_eight && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Post Bullet Point - Paragraph one: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Post Bullet Point - Paragraph one: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Post Bullet Point - Paragraph one"}
@@ -610,8 +607,8 @@ export const JobForm = (props) => {
                                 />
                                 {errors.post_bullet_point_paragraph_one && "Your input is required"}
                             </div>
-                            <div style={{ display: 'flex', margin: '1em 0' }}>
-                                <p style={{width: '12em'}}>Post Bullet Point - Paragraph two: </p>
+                            <div className="list-form-field-with-margin">
+                                <p className="non-required-field">Post Bullet Point - Paragraph two: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Post Bullet Point - Paragraph two"}
