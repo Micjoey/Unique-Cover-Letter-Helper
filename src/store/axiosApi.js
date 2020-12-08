@@ -36,7 +36,6 @@ axios.interceptors.response.use(response =>
         
         return Promise.reject(error);
     }, () => {
-        // console.log(`checked state in the axiosAPI`)
         authCheckState()
     }
     

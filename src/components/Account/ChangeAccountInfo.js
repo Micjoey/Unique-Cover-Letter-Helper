@@ -66,7 +66,7 @@ const ChangeAccountInfo = (props) => {
                             Authorization: `Bearer ${accessToken}`
                         }
                         axios.delete(`/api/users/${user.id}/`)
-                            .then(resp => console.log(resp))
+                            // .then(resp => console.log(resp))
                             .then(() => actions.logout())
                             .then(() => history.push('/login/'))
                             .then( () => history.go(0))

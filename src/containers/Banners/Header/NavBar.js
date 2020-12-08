@@ -39,7 +39,6 @@ const Header = () => {
   const accessToken = localStorage.getItem('access_token')
   const refresh_token = localStorage.getItem('refresh_token')
   const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
-  console.log(userId, "this is in header")
 
   useEffect(() => {
     props.loading = true
@@ -47,7 +46,6 @@ const Header = () => {
       "Content-type": "application/json",
       Authorization: `Bearer ${accessToken}`
     }
-    console.log(userId, refresh_token)
     if (userId && refresh_token !== null) {
       axios.get(`/api/users/${userId}/`)
         .then(resp => {
