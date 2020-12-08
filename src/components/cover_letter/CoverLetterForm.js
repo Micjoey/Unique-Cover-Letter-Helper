@@ -443,7 +443,7 @@ export const JobForm = (props) => {
                                 {errors.city && "Your input is required"}
                             </div>
                             <div className="list-form-field-with-margin">
-                                <p className="required-field">* Job Link: </p>
+                                <p className="required-field">*Job Link: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Link"}
