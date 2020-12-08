@@ -2,10 +2,7 @@ import React from "react";
 import {formattedJobData} from "./formattedData";
 import {Link} from 'react-router-dom'
 import {
-    Form, Input, Message,
-    Header, Button, Grid,
-    Container, Segment, Menu,
-    Table, Icon, Label, Tab
+    Header, Container, Segment, 
 } from 'semantic-ui-react'
 
 const Jobs = props => {

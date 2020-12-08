@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 
+
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'
 
@@ -10,7 +11,7 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, refresh_token) => {
+export const authSuccess = (token, refresh_token = null) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
@@ -31,6 +32,7 @@ export const logout = () => {
     localStorage.removeItem('access_token')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('refresh_token')
+    localStorage.removeItem('token')
     authCheckState()
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -49,7 +51,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password, setErrorState = null, justSignedUp = false, history = null) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post("api/token/", {
+        axios.post("/api/token/", {
             username: username,
             password: password
         }).then(response => {
@@ -60,10 +62,11 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             localStorage.setItem('refresh_token', response.data.refresh);
             dispatch(authSuccess(token, refresh_token));
             if (justSignedUp) {
+                const navBar = document.getElementsByClassName("nav-bar")[0]
+                navBar.style.display = "none"
+                // return null
                 history.push("/signup-user-details/")
-                // window.location.href="signup-user-details/"
-            } else {
-                // window.location.href="/all-jobs/"
+            } else {       
                 history.push("/all-jobs/")
             }
         }).catch(err => {
@@ -76,41 +79,31 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
 }
 
 
-export const authSignUp = (data, setErrorMessage, justSignedUp=true, history) => {
-    console.log(data)
+export const authSignUp = (data, setErrorMessage, justSignedUp, history) => {
+    logout()
     const username = data.username
     const password1 = data.password
     const password2 = data.confirm_password
     const email = data.email
-    const first_name = data.first_name
-    const last_name = data.last_name
-
     return dispatch => {
         dispatch(authStart());
+        
         axios.defaults.headers = {
             "Content-type": "application/json",
-            proxy: {
-                host: 'http://localhost',
-                port: 3000
-            }
         }
-        axios.post("rest-auth/registration/", {
+        axios.post("/rest-auth/registration/", {
             username: username,
             email: email,
             password1: password1,
             password2: password2,
-            first_name: first_name,
-            last_name: last_name
         }).then(response => {
-            const token = response.data.token;
+            dispatch(authLogin(username, password1, setErrorMessage, justSignedUp, history))
+            // const token = response.data.token;
             // // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            const accessToken = response.data.token;
+            // const accessToken = response.data.token;
             // const refreshToken = response.data.refresh;
-            localStorage.setItem('access_token', accessToken);
-            // localStorage.setItem('refresh_token', refreshToken);
-            localStorage.setItem('token', token);
-            dispatch(authLogin(username, password1, null, justSignedUp, history))
-            dispatch(authSuccess(accessToken));
+            // localStorage.setItem('access_token', accessToken);
+            // // localStorage.setItem('refresh_token', refreshToken);
         }).catch(err => {
             setErrorMessage("Either the password was too common (i.e password123), the Username taken, or the Email was. Please try again.")
             dispatch(authFail(err))
@@ -121,6 +114,7 @@ export const authSignUp = (data, setErrorMessage, justSignedUp=true, history) =>
 export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('access_token')
+        const refresh_token = localStorage.getItem('refresh_token')
         if (token === undefined) {
             dispatch(logout())
         } 

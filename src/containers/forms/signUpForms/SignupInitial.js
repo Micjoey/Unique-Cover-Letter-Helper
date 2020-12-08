@@ -32,15 +32,13 @@ const RegistrationForm = () => {
     const onAuth = useCallback(
         ({ ...values }) => dispatch(actions.authSignUp(values, setErrorMessage, true, history))
     )
-
     const onSubmit = (values) => {
         const data = {...values}
         const passwordCheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
        if (data.password === data.confirm_password) {
             if (data.password.length > 5) {
                 if (data.password.match(passwordCheck)){
-                    onAuth({...values})
-                    
+                    onAuth(data)
                 } else {
                     setErrorMessage("Password needs to contain at least one numeric digit, one uppercase and one lowercase letter")
                 }
@@ -67,7 +65,6 @@ const RegistrationForm = () => {
                                             <Table.HeaderCell colSpan={10}>Account Info</Table.HeaderCell>
                                         </Table.Row>
                                     </Table.Header>
-
                                     <Table.Body>
                                         <Table.Row>
                                             <Table.Cell textAlign="center" verticalAlign="middle">Username: </Table.Cell>
@@ -94,6 +91,7 @@ const RegistrationForm = () => {
                                                         required
                                                         placeholder={`Email:`}
                                                         defaultValue={""}
+                                                        autoComplete="new-email"
                                                         type="email"
                                                         name={"email"}
                                                         ref={register()}
@@ -130,35 +128,6 @@ const RegistrationForm = () => {
                                                         minLength={6}
                                                         maxLength={20}
                                                         name={"confirm_password"}
-                                                        ref={register()}
-                                                    />
-                                                </Form.Field>
-                                            </Table.Cell>
-                                        </Table.Row>
-                                        <Table.Row>
-                                            <Table.Cell textAlign="center" verticalAlign="middle">First Name: </Table.Cell>
-                                            <Table.Cell>
-                                                <Form.Field>
-                                                    {/* <label>Confirm Email</label> */}
-                                                    <input
-                                                        required
-                                                        placeholder={`First Name:`}
-                                                        defaultValue={""}
-                                                        type="text"
-                                                        name={"first_name"}
-                                                        ref={register()}
-                                                    />
-                                                </Form.Field>
-                                            </Table.Cell>
-                                            <Table.Cell textAlign="center" verticalAlign="middle">Last Name: </Table.Cell>
-                                            <Table.Cell>
-                                                <Form.Field>
-                                                    <input
-                                                        required
-                                                        placeholder={`Last Name:`}
-                                                        defaultValue={""}
-                                                        type="text"
-                                                        name={"last_name"}
                                                         ref={register()}
                                                     />
                                                 </Form.Field>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { authCheckState} from './actions/Auth';
 
 const axiosInstance = axios.create({
-    baseURL: window.location.origin,
+    baseURL: '',
     timeout: 3000,
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -21,7 +21,6 @@ axios.interceptors.response.use(response =>
         if (error !== undefined && error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
             const access_token = localStorage.getItem('access_token');
-            
             return axiosInstance
                 .post('/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {

@@ -2,9 +2,7 @@ import {
   Navbar, 
   Nav, 
   NavDropdown, 
-  Form, 
-  FormControl, 
-  Button } from 'react-bootstrap';
+} from 'react-bootstrap';
 import React, { useCallback, useEffect, useState, } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -13,6 +11,8 @@ import ErrorBoundary from '../../../store/ErrorBoundary';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import rg4js from 'raygun4js';
+
+
 
 const Header = () => {
   let history = useHistory()
@@ -37,7 +37,9 @@ const Header = () => {
   }
 
   const accessToken = localStorage.getItem('access_token')
+  const refresh_token = localStorage.getItem('refresh_token')
   const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
+  console.log(userId, "this is in header")
 
   useEffect(() => {
     props.loading = true
@@ -45,8 +47,8 @@ const Header = () => {
       "Content-type": "application/json",
       Authorization: `Bearer ${accessToken}`
     }
-    if (userId) {
-
+    console.log(userId, refresh_token)
+    if (userId && refresh_token !== null) {
       axios.get(`/api/users/${userId}/`)
         .then(resp => {
           setUser(resp.data)
@@ -63,11 +65,11 @@ const Header = () => {
           console.log(err)
         })
     }
-  }, [props.isAuthenticated])
+  }, [])
 
   return  (
     <div>
-      {props.isAuthenticated ? LoggedInNav(props, logout, user, setUser) : loggedOutNav(props, logout)}
+      {props.isAuthenticated ? LoggedInNav(props, logout, user) : loggedOutNav(props, logout)}
     </div>
   )
 }
@@ -76,38 +78,43 @@ const Header = () => {
 
 export default Header
 
-const LoggedInNav = (props, logout, user, setUser) => {
-  
-  return(
-    <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
-      <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          {/* <Nav.Link href="/">Home</Nav.Link> */}
-          <Nav.Link href="/all-jobs">All Jobs</Nav.Link>
-          <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
-            <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
-            {
-              user.is_superuser ? 
-              <NavDropdown.Item href="/admin/">Admin</NavDropdown.Item> :
-              null
-            }
-            <NavDropdown.Divider />
-            <ErrorBoundary>
-              <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
-            </ErrorBoundary>
-          </NavDropdown>
-        </Nav>
-        {/* <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
-      </Navbar.Collapse>
-    </Navbar>
-  )
+const LoggedInNav = (props, logout, user) => {
+  if (!props.loading) {
+    return(
+      <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
+        <Navbar.Brand href="/">Unique Cover Letter Generator</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
+            <Nav.Link href="/all-jobs">All Jobs</Nav.Link>
+            <Nav.Link href="/job/form">Cover Letter Form</Nav.Link>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
+              <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
+              {
+                user.is_superuser ? 
+                <NavDropdown.Item href="/admin/">Admin</NavDropdown.Item> :
+                null
+              }
+              <NavDropdown.Divider />
+              <ErrorBoundary>
+                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+              </ErrorBoundary>
+            </NavDropdown>
+          </Nav>
+          {/* <Form inline>
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+              <Button variant="outline-success">Search</Button>
+            </Form> */}
+        </Navbar.Collapse>
+      </Navbar>
+    )
+  } else {
+    return (
+      <Header>Loading</Header>
+    )
+  }
 }
 
 

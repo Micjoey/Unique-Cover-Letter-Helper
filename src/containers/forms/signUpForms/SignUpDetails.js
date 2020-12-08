@@ -19,19 +19,21 @@ const AccountDetailsForm = () => {
     
     
     // const dispatch = useDispatch()
-    window.onbeforeunload = handleChangePages()
+    // window.onbeforeunload = handleChangePages()
     
-    const handleChangePages = (e) => {
-        if (requiredFields) {
-            return null
-        } else {
-            const message = 'You need to fill in First and Last Name at the minimum.';
-            e.returnValue = message;
-            return message;
-        }
-    }
+    // const handleChangePages = (e) => {
+    //     if (requiredFields) {
+    //         return null
+    //     } else {
+    //         const message = 'You need to fill in First and Last Name at the minimum.';
+    //         e.returnValue = message;
+    //         return message;
+    //     }
+    // }
 
     const onSubmit = data => {
+        const navBar = document.getElementsByClassName("nav-bar")[0]
+        navBar.style.display = null
         setLoading(true)
         const accessToken = localStorage.getItem('access_token')
         const userId = jwtDecode(accessToken).user_id
@@ -47,7 +49,9 @@ const AccountDetailsForm = () => {
             .catch(err => {
                 setErrorMessage(err.Message)
             })
+        
         setLoading(false)
+
     }
 
     return (

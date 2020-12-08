@@ -9,7 +9,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
-
+import * as actions from '../../store/actions/Auth'
 
 
 const ChangeAccountInfo = (props) => {
@@ -65,8 +65,11 @@ const ChangeAccountInfo = (props) => {
                             "Content-type": "application/json",
                             Authorization: `Bearer ${accessToken}`
                         }
-                        axios.delete(`/api/users/${user.id}/`, { ...user.id })
+                        axios.delete(`/api/users/${user.id}/`)
+                            .then(resp => console.log(resp))
+                            .then(() => actions.logout())
                             .then(() => history.push('/login/'))
+                            .then( () => history.go(0))
                             .catch(error => console.log(error))
                     }
                 }

@@ -6,20 +6,11 @@ import { useHistory } from 'react-router-dom';
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
 import { JobForm } from '../../components/cover_letter/CoverLetterForm';
-
+import * as actions from '../../store/actions/Auth'
 import {
-    Button,
     Container,
-    Divider,
-    Grid,
     Header,
-    Icon,
-    Image,
-    List,
-    Menu,
     Segment,
-    Sidebar,
-    Visibility,
 } from 'semantic-ui-react'
 import { useSelector } from 'react-redux';
 
@@ -65,7 +56,7 @@ const JobList = () => {
             setLoaded({isLoaded: true})
         })
         .catch(err => {
-            // alert(err)
+            actions.authCheckState()
         })
     }, [])
     if (loaded.isLoaded && !props.loading) {
