@@ -17,7 +17,7 @@ const NonTechnicalCoverLetter = (props) => {
             <div className="full-cover-letter">
                 <header>
                     <h1>Non Tech Cover Letter</h1>
-                    <h3> Resume Link for tracking - <br /> <a href="http://macallan.space/?utm_source=Resume%20Link&utm_medium=link&utm_campaign=Resume%20Link"> https://bit.ly/2HXrCWl </a> </h3>
+                    {/* <h3> Resume Link for tracking - <br /> <a href="http://macallan.space/?utm_source=Resume%20Link&utm_medium=link&utm_campaign=Resume%20Link"> https://bit.ly/2HXrCWl </a> </h3> */}
                 </header>
                 <div>
                     <div className="cover-letter-body">

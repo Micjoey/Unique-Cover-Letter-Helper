@@ -153,7 +153,7 @@ export const JobForm = (props) => {
                                 {errors.city && "Your input is required"}
                             </div>
                             <div className="list-form-field-with-margin">
-                                <p className="required-field">*Link: </p>
+                                <p className="required-field">*Job Posting Website: </p>
                                 <textarea
                                     style={{ color: 'black' }}
                                     placeholder={"Link"}
@@ -420,7 +420,7 @@ export const JobForm = (props) => {
                                 {/* {errors.choice_of_user && "Your input is required"} */}
                             </div>
                             <div className="list-form-field-with-margin">
-                                <p className="required-field">* Company: </p>
+                                <p className="required-field">*Company: </p>
                                 <input
                                     style={{ color: 'black' }}
                                     placeholder={"Company"}
