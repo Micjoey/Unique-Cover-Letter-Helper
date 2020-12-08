@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 import { Link } from 'react-router-dom'
+import { Container, Segment } from 'semantic-ui-react'
 
 
 
