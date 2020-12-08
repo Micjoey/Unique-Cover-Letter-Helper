@@ -37,7 +37,6 @@ const Header = () => {
   }
 
   const accessToken = localStorage.getItem('access_token')
-  const refresh_token = localStorage.getItem('refresh_token')
   const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
 
   useEffect(() => {

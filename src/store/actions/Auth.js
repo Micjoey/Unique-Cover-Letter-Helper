@@ -49,6 +49,10 @@ export const checkAuthTimeout = expirationTime => {
 
 
 export const authLogin = (username, password, setErrorState = null, justSignedUp = false, history = null) => {
+    rg4js('setUser', {
+        identifier: `${username}`,
+        isAnonymous: false,
+    })
     return dispatch => {
         dispatch(authStart());
         axios.post("/api/token/", {
@@ -60,6 +64,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             const refresh_token = response.data.refresh;
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
+            
             dispatch(authSuccess(token, refresh_token));
             if (justSignedUp) {
                 const navBar = document.getElementsByClassName("nav-bar")[0]
