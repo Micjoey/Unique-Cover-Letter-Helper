@@ -370,7 +370,7 @@ export const JobForm = (props) => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <label className="list-form-field">
                                 <p className="non-required-field">Template Choices: </p>
-                                <select style={{ color: 'Red' }} name="template_choices" ref={register} className="list-form-field-with-margin">
+                                <select name="template_choices" ref={register} className="list-form-field-with-margin">
                                     {Object.keys(template_choices).map((key, idx) => (
                                         <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
                                     ))}
