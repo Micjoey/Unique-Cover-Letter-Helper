@@ -8,10 +8,10 @@ export const determineCoverLetter = (coverLetter, job, user) => {
     switch (coverLetter) {
         case "non-technical-cover-letter":
             return <NonTechnicalCoverLetter job={job} user={user} />
-        case 'cover-letter':
-            return <CoverLetter job={job} user={user}/>
-        case 'Triplebyte (message-version)':
-            return <TriplebyteCoverLetter job={job} user={user}/>
+        // case 'cover-letter':
+        //     return <CoverLetter job={job} user={user}/>
+        // case 'Triplebyte (message-version)':
+        //     return <TriplebyteCoverLetter job={job} user={user}/>
         case 'Standard Job Template':
             return <StandardCoverLetter job={job} user={user}/>
         default:
