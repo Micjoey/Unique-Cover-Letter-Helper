@@ -23,9 +23,9 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
         'non-technical-cover-letter': 'Non-technical Cover Letter',
         'Standard Job Template': 'Standard Job Template',
         'Triplebyte (message-version)': 'Triplebyte (message-version)',
-        'cover-letter': 'Cover Letter',
-        'cover-letter-4': 'Template 4',
-        'cover-letter-5': 'Template 5',
+        // 'cover-letter': 'Cover Letter',
+        // 'cover-letter-4': 'Template 4',
+        // 'cover-letter-5': 'Template 5',
     }
 
     const onSubmit = (data) => {
@@ -53,14 +53,13 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
         <div className="cover-letter-display-container">
             <Container>
                 <Segment inverted>
-
                         <div>
                             <Link to="/job/form">Create another cover letter?</Link>
                         </div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <label>
                                 <p>Template Choices: </p>
-                                <select style={{ color: 'Red' }} name="template_choice" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
+                                <select name="template_choice" ref={register} className="list-form-field-with-margin">
                                     {Object.keys(template_choices).map((key, idx) => (
                                         <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
                                         ))}
