@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-
+import rg4js from 'raygun4js';
 
 import axiosInstance from '../axiosApi'
 import * as actionTypes from './ActionTypes'

@@ -60,7 +60,6 @@ class Job(models.Model):
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     job_stage = models.CharField(
         choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
-    job_posting_website = models.CharField("Job Posting Website", max_length=200,)
     position_title = models.CharField("Position Title",max_length = 200)
     company = models.CharField(max_length = 200, blank=True)
     city = models.CharField(max_length = 200,  blank=True)
