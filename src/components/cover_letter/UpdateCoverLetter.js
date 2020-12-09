@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import { Container, Form, Grid, Header, Input, Popup, Segment, Select } from "semantic-ui-react";
+import { Container, Form, Grid, Header, Input, Label, List, Popup, Segment, Select } from "semantic-ui-react";
 
 
 export const UpdateJobForm = (props) => {
 
     const job = props.job
-    console.log(useHistory())
+    const [updatedJob, updateJob] = useState(job)
     const { register, handleSubmit } = useForm({
         reValidateMode: 'onChange'
     })
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const handleChange = (e, { name, value }) => {
-        props.setJob(prevState => ({
+        updateJob(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -26,7 +26,7 @@ export const UpdateJobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.put(`/api/jobs/${job.id}`, job)
+        axios.put(`/api/jobs/${job.id}/`, updatedJob)
             .then(() => window.location.reload())
             .catch(errors => console.log(errors))
     };
@@ -49,7 +49,8 @@ export const UpdateJobForm = (props) => {
 
     return (
         <Container>
-            <Segment inverted>
+            <Segment inverted vertical>
+                <List divided selection>
                 <Form onSubmit={handleSubmit(onSubmit)} >
                     <Header
                         as='h3'
@@ -61,142 +62,220 @@ export const UpdateJobForm = (props) => {
                         }}
                         textAlign="center"
                     />
-                    <Form.Select
-                        fluid
-                        required
-                        // placeholder={job.template_choices}
-                        defaultValue={job.template_choices}
-                        options={job_template_choicess}
-                        name="job_template_choices"
-                        onChange={handleChange}
-                    />
-                    <Form.Select
-                        defaultValue={job.job_stage}
-                        options={job_stages}
-                        name="job_stage"
-                        onChange={handleChange}
-                    />
-                    <Form.Input
-                        type="text"
-                        placeholder={job.position_title ? job.position_title : "**Position Title**"}
-                        name="position_title"
-                        onChange={handleChange}
-                        required
-                    />
-                    <Form.Input
-                        type="text"
-                        placeholder={job.company ? job.company : "**Company Applying To**"}
-                        name="company"
-                        onChange={handleChange}
-                        required
-                    />
-                    <Form.Input
-                        type="text"
-                        placeholder={job.recruiter ? job.recruiter : "Recruiter's Name"}
-                        name="recruiter"
-                        onChange={handleChange}
-                    />
-                    <Form.Input
-                        type="url"
-                        placeholder={job.link ? job.link : "**Link for Job Post**"}
-                        name="link"
-                        onChange={handleChange}
-                        required
-                    />
-                    <Form.TextArea
-                        type="text"
-                        placeholder={job.description ? job.description : "Description of Job Post"}
-                        name="description"
-                        onChange={handleChange}
-                    />
-                    <Grid>
+                    <List.Item>
+                        <Label color="red" horizontal>Template Choice</Label>
+                        <Form.Select
+                            fluid
+                            requiwhite
+                            // defaultValue={job.template_choices}
+                            defaultValue={job.template_choices}
+                            options={job_template_choicess}
+                            name="job_template_choices"
+                            onChange={handleChange}
+                        />
+                    </List.Item>
+                    <br/>
+                    <List.Item>
+                        <Label color="red" horizontal>Job Stage</Label>
+                        <Form.Select
+                            defaultValue={job.job_stage}
+                            options={job_stages}
+                            name="job_stage"
+                            onChange={handleChange}
+                        />
+                    </List.Item>
+                    <br />
+                    <List.Item>
+                        <Label color="red" horizontal>Position Title</Label>
+                        <Form.Input
+                            type="text"
+                            defaultValue={job.position_title}
+                            name="position_title"
+                            onChange={handleChange}
+                            required
+                        />
+                    </List.Item>
+                    <br />
+                    <List.Item>
+                            <Label color="red" horizontal>Job Stage</Label>
+                        <Form.Input
+                            type="text"
+                            defaultValue={job.company}
+                            name="company"
+                            onChange={handleChange}
+                            required
+                        />
+                    </List.Item>
+                    <br />
+                    <List.Item>
+                        <Label color="red" horizontal>Recruiter's Name</Label>
+                        <Form.Input
+                            placeholder="Recruiter's Name"
+                            defaultValue={job.recruiter ? job.recruiter : ""}
+                            name="recruiter"
+                            onChange={handleChange}
+                        />
+                    </List.Item>
+                    <br />
+                    <List.Item>
+                        <Label color="red" horizontal>Link for Job Post</Label>
+                        <Form.Input
+                            type="url"
+                            defaultValue={job.link}
+                            name="link"
+                            onChange={handleChange}
+                            required
+                        />
+                    </List.Item><br />
+                    <List.Item>
+                            <Label color="red" horizontal>Description of Job Post</Label>
+                        <Form.TextArea
+                            type="text"
+                            placeholder="Description of Job Post"
+                            defaultValue={job.description ? job.description : ""}
+                            name="description"
+                            onChange={handleChange}
+                        />
+                    </List.Item>
+                    <Grid verticalAlign="middle">
                         <Grid.Row>
                             <Grid.Column width={8}>
-                                    <Popup
-                                        content="This field fulfills the pre-bullet-point paragraph."
-                                        trigger={
-                                            <Form.TextArea
-                                                placeholder={job.pre_bullet_point_paragraph_one ? job.pre_bullet_point_paragraph_one : `Unique Paragraph One `}
-                                                name="pre_bullet_point_paragraph_one"
-                                                onChange={handleChange} />
-                                        } />
+                                    <br />
+                                    <List.Item>
+                                        <Label color="red" horizontal>First Custom Paragraph</Label>
+                                        <Popup
+                                            content="This field fulfills the pre-bullet-point paragraph."
+                                            trigger={
+                                                <Form.TextArea
+                                                    placeholder='Unique Paragraph One'
+                                                    defaultValue={job.pre_bullet_point_paragraph_one ? job.pre_bullet_point_paragraph_one : ``}
+                                                    name="pre_bullet_point_paragraph_one"
+                                                    onChange={handleChange} />
+                                            } />
+                                    </List.Item>
                             </Grid.Column>
                             <Grid.Column width={8}>
+                                    <br />
+                                    <List.Item>
+                                        <Label color="red" horizontal>Second Custom Paragraph</Label>
                                     <Popup
                                         content="This field fulfills the SECOND pre-bullet-point paragraph."
                                         trigger={
                                             <Form.TextArea
-                                                placeholder={job.pre_bullet_point_paragraph_two ? job.pre_bullet_point_paragraph_two : `Unique Paragraph Two `}
+                                                placeholder="Unique Paragraph Two"
+                                                defaultValue={job.pre_bullet_point_paragraph_two ? job.pre_bullet_point_paragraph_two : ``}
                                                 name="pre_bullet_point_paragraph_two"
                                                 onChange={handleChange} />
                                         } />
+                                    </List.Item>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column width={8}>
-                                    <Popup
+                                <br />
+                                <List.Item>
+                                        <Label color="red" horizontal>Top Skills</Label>
+                                        <Popup
                                         content="Fill in the YOUR skills that match the JOBS description."
                                         trigger={
                                             <Form.TextArea
-                                                placeholder={job.top_skills ? job.top_skills : `**Top skills related to job**`}
+                                                placeholder="Top skills related to job"
+                                                defaultValue={job.top_skills ? job.top_skills : ``}
                                                 name="top_skills"
                                                 onChange={handleChange}
-                                                required
                                             />
                                         } />
+                                    </List.Item>
                             </Grid.Column>
                             <Grid.Column width={8}>
+                                <br />
+                                <List.Item>
+                                        <Label color="red" horizontal>Second Bullet Point</Label>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_one ? job.bullet_point_one : `Second Bullet Point `}
+                                        placeholder="Second Bullet Point "
+                                        defaultValue={job.bullet_point_one ? job.bullet_point_one : ``}
                                         name="bullet_point_one"
                                         onChange={handleChange} />
+                                </List.Item>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column width={8}>
+                                <br />
+                                <List.Item>
+                                        <Label color="red" horizontal>Third Bullet Point</Label>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_two ? job.bullet_point_two : `Third Bullet Point `}
+                                        placeholder="Third Bullet Point "
+                                        defaultValue={job.bullet_point_two ? job.bullet_point_two : ``}
                                         name="bullet_point_two"
                                         onChange={handleChange} />
+                                </List.Item>
                             </Grid.Column>
                             <Grid.Column width={8}>
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_three ? job.bullet_point_three : `Fourth Bullet Point `}
-                                        name="bullet_point_three"
-                                        onChange={handleChange} />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={8}>
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_five ? job.bullet_point_five : `Fifth Bullet Point `}
-                                        name="bullet_point_five"
-                                        onChange={handleChange} />
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_six ? job.bullet_point_six : `Sixth Bullet Point `}
-                                        name="bullet_point_six"
-                                        onChange={handleChange} />
+                                    <br />
+                                    <List.Item>
+                                        <Label color="red" horizontal>Fourth Bullet Point</Label>
+                                        <Form.TextArea
+                                            placeholder="Fourth Bullet Point"
+                                            defaultValue={job.bullet_point_three ? job.bullet_point_three : ``}
+                                            name="bullet_point_three"
+                                            onChange={handleChange} />
+                                    </List.Item>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column width={8}>
+                                    <br />
+                                    <List.Item>
+                                        <Label color="red" horizontal>Fifth Bullet Point</Label>
+                                        <Form.TextArea
+                                            placeholder="Fifth Bullet Point"
+                                            defaultValue={job.bullet_point_five ? job.bullet_point_five : ``}
+                                            name="bullet_point_five"
+                                            onChange={handleChange} />
+                                    </List.Item>
+                            </Grid.Column>
+                            <Grid.Column width={8}>
+                                    <br />
+                                    <List.Item>
+                                        <Label color="red" horizontal>Sixth Bullet Point</Label>
+                                        <Form.TextArea
+                                            placeholder="Sixth Bullet Point"
+                                            defaultValue={job.bullet_point_six ? job.bullet_point_six : ``}
+                                            name="bullet_point_six"
+                                            onChange={handleChange} />
+                                    </List.Item>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column width={8}>
+                                <br />
+                                <List.Item>
+                                        <Label color="red" horizontal>Seventh Bullet Point</Label>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_seven ? job.bullet_point_seven : `Seventh Bullet Point `}
+                                        placeholder="Seventh Bullet Point"
+                                        defaultValue={job.bullet_point_seven ? job.bullet_point_seven : ``}
                                         name="bullet_point_seven"
                                         onChange={handleChange} />
+                                </List.Item>
                             </Grid.Column>
                             <Grid.Column width={8}>
+                                <br />
+                                <List.Item>
+                                        <Label color="red" horizontal>Eigth Bullet Point</Label>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_eight ? job.bullet_point_eight : `Eigth Bullet Point `}
+                                        placeholder="Eigth Bullet Point"
+                                        defaultValue={job.bullet_point_eight ? job.bullet_point_eight : ``}
                                         name="bullet_point_eight"
                                         onChange={handleChange} />
+                                </List.Item>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <Form.Button primary content="Create Cover Letter" />
+                    <br/>
+                    <Form.Button primary content="Update Cover Letter" />
                 </Form>
+                </List>
             </Segment>
         </Container>
     )

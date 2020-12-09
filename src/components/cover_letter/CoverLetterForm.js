@@ -14,7 +14,7 @@ export const JobForm = (props) => {
     })
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const handleChange = (e, { name, value }) => {
-        updateJob(prevState => ({
+        props.setFormVariables(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -26,8 +26,8 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.post('/api/jobs/', updatedJob)
-            .then(res => history.push(`/job/${res.data.id}/`, {...res.data.id}))
+        axios.post('/api/jobs/', job)
+            .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
             .catch(errors => console.log(errors))
 
             // case 'put':
@@ -115,40 +115,40 @@ export const JobForm = (props) => {
                         name="description"
                         onChange={handleChange}
                     />
-                    <Grid>
+                    <Grid container columns="equal" padded="vertically" verticalAlign="middle" centered>
                         <Grid.Row>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Popup
-                                        content="This field fulfills the pre-bullet-point paragraph."
-                                        trigger={
-                                            <Form.TextArea
-                                                placeholder={job.pre_bullet_point_paragraph_one ? job.pre_bullet_point_paragraph_one : `Unique Paragraph One `}
-                                                name="pre_bullet_point_paragraph_one"
-                                                onChange={handleChange} />
-                                        } />
+                            {job.job_template_choices === "Standard Job Template" ?
+                                <Grid.Column>
+                                        <Popup
+                                            content="This field fulfills the pre-bullet-point paragraph."
+                                            trigger={
+                                                <Form.TextArea
+                                                    placeholder={job.pre_bullet_point_paragraph_one ? job.pre_bullet_point_paragraph_one : `Unique Paragraph One `}
+                                                    name="pre_bullet_point_paragraph_one"
+                                                    onChange={handleChange} />
+                                            } />
+                                </Grid.Column>
                                     :
                                     null
                                 }
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Popup
-                                        content="This field fulfills the SECOND pre-bullet-point paragraph."
-                                        trigger={
-                                            <Form.TextArea
-                                                placeholder={job.pre_bullet_point_paragraph_two ? job.pre_bullet_point_paragraph_two : `Unique Paragraph Two `}
-                                                name="pre_bullet_point_paragraph_two"
-                                                onChange={handleChange} />
-                                        } />
+                            {job.job_template_choices === "Standard Job Template" && job.pre_bullet_point_paragraph_one?
+                                <Grid.Column>
+                                        <Popup
+                                            content="This field fulfills the SECOND pre-bullet-point paragraph."
+                                            trigger={
+                                                <Form.TextArea
+                                                    placeholder={job.pre_bullet_point_paragraph_two ? job.pre_bullet_point_paragraph_two : `Unique Paragraph Two `}
+                                                    name="pre_bullet_point_paragraph_two"
+                                                    onChange={handleChange} />
+                                            } />
+                                </Grid.Column>
                                     :
                                     null
                                 }
-                            </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
+                            {job.job_template_choices === "Standard Job Template" ?
+                                <Grid.Column>
                                     <Popup
                                         content="Fill in the YOUR skills that match the JOBS description."
                                         trigger={
@@ -159,86 +159,86 @@ export const JobForm = (props) => {
                                                 required
                                             />
                                         } />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_one ? job.bullet_point_one : `Second Bullet Point `}
-                                        name="bullet_point_one"
-                                        onChange={handleChange} />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
+                                </Grid.Column>
+                                :
+                                null
+                            }
+                            {job.job_template_choices === "Standard Job Template" && job.top_skills ?
+                                <Grid.Column>
+                                        <Form.TextArea
+                                            placeholder={job.bullet_point_one ? job.bullet_point_one : `Second Bullet Point `}
+                                            name="bullet_point_one"
+                                            onChange={handleChange} />
+                                </Grid.Column>
+                                :
+                                null
+                            }
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_two ? job.bullet_point_two : `Third Bullet Point `}
-                                        name="bullet_point_two"
-                                        onChange={handleChange} />
+                            {job.job_template_choices === "Standard Job Template" && job.bullet_point_one?
+                                <Grid.Column>
+                                        <Form.TextArea
+                                            placeholder={job.bullet_point_two ? job.bullet_point_two : `Third Bullet Point `}
+                                            name="bullet_point_two"
+                                            onChange={handleChange} />
+                                </Grid.Column>
                                     :
                                     null
                                 }
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ? 
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_three ? job.bullet_point_three : `Fourth Bullet Point `}
-                                        name="bullet_point_three"
-                                        onChange={handleChange}/> 
+                                {job.job_template_choices === "Standard Job Template" && job.bullet_point_two? 
+                                <Grid.Column>
+                                        <Form.TextArea
+                                            placeholder={job.bullet_point_three ? job.bullet_point_three : `Fourth Bullet Point `}
+                                            name="bullet_point_three"
+                                            onChange={handleChange}/> 
+                                </Grid.Column>
                                     :
                                     null
                                 }
-                            </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
+                            {job.job_template_choices === "Standard Job Template" && job.bullet_point_three?
+                                <Grid.Column>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_five ? job.bullet_point_five : `Fifth Bullet Point `}
+                                        placeholder={job.bullet_point_five ? job.bullet_point_four : `Fifth Bullet Point `}
+                                        name="bullet_point_four"
+                                        onChange={handleChange} />
+                                </Grid.Column>
+                                :
+                                null
+                            }
+                            {job.job_template_choices === "Standard Job Template" && job.bullet_point_four ?
+                                <Grid.Column>
+                                    <Form.TextArea
+                                        placeholder={job.bullet_point_five ? job.bullet_point_five : `Sixth Bullet Point `}
                                         name="bullet_point_five"
                                         onChange={handleChange} />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_six ? job.bullet_point_six : `Sixth Bullet Point `}
-                                        name="bullet_point_six"
-                                        onChange={handleChange} />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
+                                </Grid.Column>
+                                :
+                                null
+                            }
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
+                            {job.job_template_choices === "Standard Job Template" && job.bullet_point_six ?
+                                <Grid.Column>
+                                        <Form.TextArea
+                                            placeholder={job.bullet_point_six ? job.bullet_point_six : `Seventh Bullet Point `}
+                                            name="bullet_point_six"
+                                            onChange={handleChange} />
+                                </Grid.Column>
+                                :
+                                null
+                            }
+                            {job.job_template_choices === "Standard Job Template" && job.bullet_point_seven?
+                                <Grid.Column>
                                     <Form.TextArea
-                                        placeholder={job.bullet_point_seven ? job.bullet_point_seven : `Seventh Bullet Point `}
+                                        placeholder={job.bullet_point_seven ? job.bullet_point_seven : `Eigth Bullet Point `}
                                         name="bullet_point_seven"
                                         onChange={handleChange} />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
-                            <Grid.Column width={8}>
-                                {job.job_template_choices === "Standard Job Template" ?
-                                    <Form.TextArea
-                                        placeholder={job.bullet_point_eight ? job.bullet_point_eight : `Eigth Bullet Point `}
-                                        name="bullet_point_eight"
-                                        onChange={handleChange} />
-                                    :
-                                    null
-                                }
-                            </Grid.Column>
+                                </Grid.Column>
+                                :
+                                null
+                            }
                         </Grid.Row>
                     </Grid>
                     <Form.Button primary content="Create Cover Letter"/>

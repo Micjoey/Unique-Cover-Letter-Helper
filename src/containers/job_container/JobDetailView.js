@@ -89,17 +89,17 @@ export default JobDetailView
 
 
 const reveal = (divToHide, button) => {
-    console.log(divToHide)
     const div = document.getElementsByClassName(divToHide)[0]
     const coverLetter = document.getElementsByClassName("cover-letter-container")[0]
+    const coverLetterButton = document.getElementById("show-cover-letter-button")
     if (divToHide !== "job-detail") {
         div.style.display === '' ? div.style.display = 'block' : div.style.display = ''
         
     } else {
-        console.log(div.style.display, coverLetter.style.display)
         div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
         if (coverLetter.style.display === 'none' || coverLetter.style.display === '')  {
             coverLetter.style.display = 'block'
+            coverLetterButton.innerText = coverLetterButton.innerText.replace("Show", "Hide")
         } else {
             coverLetter.style.display = ''
         }
