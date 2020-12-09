@@ -60,7 +60,7 @@ class Job(models.Model):
         choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
     job_stage = models.CharField(
         choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
-    job_posting_website = models.CharField("Job Posting Website", max_length=200,)
+    # job_posting_website = models.CharField("Job Posting Website", max_length=200,)
     position_title = models.CharField("Position Title",max_length = 200)
     company = models.CharField(max_length = 200, blank=True)
     city = models.CharField(max_length = 200,  blank=True)
@@ -99,8 +99,8 @@ class Job(models.Model):
             self.instance.belongs_to_user = self.user
         if not self.description:
             self.description = 'N/A'
-        if not self.job_posting_website:
-            self.job_posting_website = self.company
+        if not self.link:
+            self.link = self.company
         super().save(*args, **kwargs)
 
 

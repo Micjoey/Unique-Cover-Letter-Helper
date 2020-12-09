@@ -5,11 +5,41 @@ import {
     Header, Container, Segment, 
 } from 'semantic-ui-react'
 
-const Jobs = props => {
-    
-    const jobDetail = props.jobDetail
-    const jobDetailKeys = Object.keys(jobDetail)
+import axios from 'axios'
+import { confirmAlert, alert } from 'react-confirm-alert'; 
+import { useForm } from "react-hook-form";
 
+
+const Jobs = props => {
+    const accessToken = props.accessToken
+    const history = props.history
+    const jobDetail = props.jobDetail
+    const paramsJobId = jobDetail.id
+    const jobDetailKeys = Object.keys(jobDetail)
+    const { handleSubmit } = useForm()
+    const onSubmit = () => {
+        confirmAlert({
+            title: `Confirm Delete `,
+            message: `Are you sure you want to delete ${jobDetail.position_title} at ${jobDetail.company}?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        axios.defaults.headers = {
+                            "Content-type": "application/json",
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                        axios.delete(`/api/jobs/${paramsJobId}/`, { ...paramsJobId })
+                            .then(() => history.push('/all-jobs'))
+                            .catch(error => console.log(error))
+                    }
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        });
+    }
     return (
         <Container className="job-detail">
             <Header
@@ -34,6 +64,9 @@ const Jobs = props => {
                     </div>
                ))}
             </Segment>
+            <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
+                <button className="btn-warning" type="submit">Delete</button>
+            </form>
         </Container>
     );
 };

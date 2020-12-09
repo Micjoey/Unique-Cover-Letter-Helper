@@ -22,13 +22,13 @@ const StandardCoverLetter = (props) => {
                             {user.email ? <p className="com">{user.email}</p>
                                 :
                                 null}
-                            {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a> | </p>
+                            {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a></p>
                                 :
                                 null}
-                            {user.github ? <p><a href={user.github}>{user.github}</a> | </p>
+                            {user.github ? <p><a href={user.github}>{user.github}</a></p>
                                 :
                                 null}
-                            {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a> | </p>
+                            {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a></p>
                                 :
                                 null}
                             <br></br>
@@ -38,15 +38,15 @@ const StandardCoverLetter = (props) => {
                                     <p> Dear Hiring Manager:</p>}
                             </div>
                             <p>
-                                As advertised on the {job.job_posting_website ? ` ${job.job_posting_website } ` : ` ${ job.company } ` } website, your need for a
+                                As advertised on the {job.link ? ` ${job.link } ` : ` ${ job.company } ` } website, your need for a
                                 {` ${job.position_title} ` } is an excellent match to my background 
                                 and career goals. With my strong education and experience, I am 
                                 confident I can make an immediate contribution given the opportunity.
                             </p>
                             {job.pre_bullet_point_paragraph_one ? <p>{job.pre_bullet_point_paragraph_one}</p> : null}
                             {job.pre_bullet_point_paragraph_two ? <p>{job.pre_bullet_point_paragraph_two}</p> : null}
-                            <p>Highlights of my qualifications most relevant to your needs include:</p>
-                            <p> * {job.top_skills}</p>
+                            {job.top_skills ? <p>Highlights of my qualifications most relevant to your needs include:</p> : null }
+                            {job.top_skills ? <p> * {job.top_skills}</p> : null }
                             {job.bullet_point_one ? <p> * {job.bullet_point_one }</p> : null }
                             {job.bullet_point_two ? <p> * {job.bullet_point_two }</p> : null }
                             {job.bullet_point_three ? <p> * {job.bullet_point_three }</p> : null }

@@ -23,18 +23,21 @@ const NonTechnicalCoverLetter = (props) => {
                     <div className="cover-letter-body">
                         <p>{today}</p>
                         <div>
-                            {user.email ? <p className="com">{user.email}</p> 
-                            :
-                            null}
-                            {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a> | </p> 
-                            :
-                            null}
-                            {user.github ? <p><a href={user.github}>{user.github}</a> | </p> 
-                            :
-                            null}
-                            {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a> | </p> 
-                            :
-                            null}
+                            <div>
+
+                                {user.email ? <p className="com">{user.email}</p> 
+                                :
+                                null}
+                                {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a></p> 
+                                :
+                                null}
+                                {user.github ? <p><a href={user.github}>{user.github}</a></p> 
+                                :
+                                null}
+                                {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a></p> 
+                                :
+                                null}
+                            </div>
                             <br></br>
                             <div>
                                 {job.recruiter ? <p> Dear {job.recruiter }:</p> 
@@ -43,12 +46,12 @@ const NonTechnicalCoverLetter = (props) => {
                             </div>
                             <p>
                                 Thank you for the opportunity to apply for the {` ${job.position_title} `} 
-                                role at your company - { job.company }.
+                                role at your company{job.company ? ` - ${ job.company }` : null}.
                                 After reviewing your job description, it's clear that you're looking
                                 for a candidate that is familiar with
-                                the responsibilities associated with the 
-                                {job.position_title ? ` ${job.position_title} ` : null }
-                                 role and can perform them confidently. Given these requirements,
+                                the responsibilities associated with the  
+                                {job.position_title ? ` ${job.position_title} ` : " " }
+                                role and can perform them confidently. Given these requirements,
                                 I am confident that I can do the job adeptly and fulfill the above
                                 expectations successfully.
                             </p>
@@ -64,7 +67,7 @@ const NonTechnicalCoverLetter = (props) => {
                             <p>
                                 After reviewing my resume, I hope you will agree that I am a
                                 competent and competitive candidate for the
-                                {job.position_title ? ` ${job.position_title } ` : null }
+                                {job.position_title ? ` ${job.position_title } ` : " " }
                                 role. I look forward to elaborating on how my specific skills
                                 and abilities will benefit your organization.
                                 I can be reached at {user.phone_number} or

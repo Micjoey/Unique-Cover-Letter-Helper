@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 import { Link } from 'react-router-dom'
-import { Container, Segment } from 'semantic-ui-react'
+import { Container, Popup, Segment, SegmentGroup } from 'semantic-ui-react'
 
 
 
@@ -23,9 +23,9 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
         'non-technical-cover-letter': 'Non-technical Cover Letter',
         'Standard Job Template': 'Standard Job Template',
         'Triplebyte (message-version)': 'Triplebyte (message-version)',
-        'cover-letter': 'Cover Letter',
-        'cover-letter-4': 'Template 4',
-        'cover-letter-5': 'Template 5',
+        // 'cover-letter': 'Cover Letter',
+        // 'cover-letter-4': 'Template 4',
+        // 'cover-letter-5': 'Template 5',
     }
 
     const onSubmit = (data) => {
@@ -37,7 +37,7 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/users/${userId}`)
+        axios.get(`/api/users/${userId}/`)
             .then(res => {
                 setUser(res.data)
             }).then(() => {
@@ -52,26 +52,33 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
         return (
         <div className="cover-letter-display-container">
             <Container>
-                <Segment inverted>
-
-                        <div>
+                <SegmentGroup inverted>
+                        <Segment>
                             <Link to="/job/form">Create another cover letter?</Link>
-                        </div>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <label>
-                                <p>Template Choices: </p>
-                                <select style={{ color: 'Red' }} name="template_choice" ref={register} style={{ display: 'flex', margin: '0em 1em' }}>
-                                    {Object.keys(template_choices).map((key, idx) => (
-                                        <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
-                                        ))}
-                                </select>
-                            </label>
-                            <input className="cover-letter-display-button" type="submit" value="Change Cover Letter" />
-                        </form>
-                        <div>
-                            {determineCoverLetter(currentCoverLetterChoice, job, user)}
-                        </div>
-                </Segment>
+                        </Segment>
+                        <Segment>
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <label>
+                                    <p>Template Choices: </p>
+                                    <select name="template_choice" ref={register} className="list-form-field-with-margin">
+                                        {Object.keys(template_choices).map((key, idx) => (
+                                            <option value={key} key={idx} name={template_choices[key]}> {template_choices[key]} </option>
+                                            ))}
+                                    </select>
+                                </label>
+                                <Popup
+                                    content="This will temporarily change the cover letter."
+                                    offset={[120,-10]}
+                                    trigger={
+                                    <input className="cover-letter-display-button" type="submit" value="Change Cover Letter" />
+                                    }
+                                />
+                            </form>
+                            <div>
+                                {determineCoverLetter(currentCoverLetterChoice, job, user)}
+                            </div>
+                        </Segment>
+                </SegmentGroup>
             </Container>
         </div>
     
