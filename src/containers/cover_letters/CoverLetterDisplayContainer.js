@@ -57,7 +57,6 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
                             <Link to="/job/form">Create another cover letter?</Link>
                         </Segment>
                         <Segment>
-
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <label>
                                     <p>Template Choices: </p>

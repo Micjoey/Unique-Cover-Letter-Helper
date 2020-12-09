@@ -29,12 +29,6 @@ export const JobForm = (props) => {
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
             .catch(errors => console.log(errors))
-
-            // case 'put':
-            //     axios.put(`/api/jobs/${jobID}`, {...data,jobID})
-            //         .then(() => window.location.reload())
-            //         .catch(errors => console.log(errors))
-            //     break
     };
 
     const job_template_choicess = [
@@ -53,7 +47,6 @@ export const JobForm = (props) => {
 
     ]
     
-    // if (job) {
     return (
         <Container>
             <Segment inverted>
@@ -246,6 +239,5 @@ export const JobForm = (props) => {
             </Segment>
         </Container>
     )
-    // }
 }
 

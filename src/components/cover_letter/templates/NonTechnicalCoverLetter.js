@@ -28,13 +28,13 @@ const NonTechnicalCoverLetter = (props) => {
                                 {user.email ? <p className="com">{user.email}</p> 
                                 :
                                 null}
-                                {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a> | </p> 
+                                {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a></p> 
                                 :
                                 null}
-                                {user.github ? <p><a href={user.github}>{user.github}</a> | </p> 
+                                {user.github ? <p><a href={user.github}>{user.github}</a></p> 
                                 :
                                 null}
-                                {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a> | </p> 
+                                {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a></p> 
                                 :
                                 null}
                             </div>
@@ -46,7 +46,7 @@ const NonTechnicalCoverLetter = (props) => {
                             </div>
                             <p>
                                 Thank you for the opportunity to apply for the {` ${job.position_title} `} 
-                                role at your company - { job.company }.
+                                role at your company{job.company ? ` - ${ job.company }` : null}.
                                 After reviewing your job description, it's clear that you're looking
                                 for a candidate that is familiar with
                                 the responsibilities associated with the  
