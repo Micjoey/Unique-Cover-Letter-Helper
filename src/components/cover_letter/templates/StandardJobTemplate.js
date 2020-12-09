@@ -45,8 +45,8 @@ const StandardCoverLetter = (props) => {
                             </p>
                             {job.pre_bullet_point_paragraph_one ? <p>{job.pre_bullet_point_paragraph_one}</p> : null}
                             {job.pre_bullet_point_paragraph_two ? <p>{job.pre_bullet_point_paragraph_two}</p> : null}
-                            <p>Highlights of my qualifications most relevant to your needs include:</p>
-                            <p> * {job.top_skills}</p>
+                            {job.top_skills ? <p>Highlights of my qualifications most relevant to your needs include:</p> : null }
+                            {job.top_skills ? <p> * {job.top_skills}</p> : null }
                             {job.bullet_point_one ? <p> * {job.bullet_point_one }</p> : null }
                             {job.bullet_point_two ? <p> * {job.bullet_point_two }</p> : null }
                             {job.bullet_point_three ? <p> * {job.bullet_point_three }</p> : null }
