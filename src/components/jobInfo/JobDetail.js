@@ -42,19 +42,23 @@ const Jobs = props => {
     }
     return (
         <Container className="job-detail">
-            <Header
-                as='h1'
-                inverted
-                content='Job Detail'
-                // inverted
-                style={{
-                    fontSize: '2em',
-                    // fontWeight: 'normal',
-                    // marginBottom: 0,
-                    // marginTop: '.5em',
-                }}
-            />
-            <Segment inverted>
+            <Segment>
+
+                <Header
+                    as='h1'
+                    // inverted
+                    content='Job Detail'
+                    // inverted
+                    style={{
+                        fontSize: '2em',
+                        // fontWeight: 'normal',
+                        // marginBottom: 0,
+                        // marginTop: '.5em',
+                    }}
+                    textAlign="center"
+                />
+            </Segment>
+            <Segment>
                 {jobDetailKeys.map(key => (
                     <div className="job-detail-container" key={`${key} - container`}>
                         {formattedJobData[key] !== 'Id' && formattedJobData[key] !== 'Job Link' ? <p key={`${key}`} className="job-info-field">{formattedJobData[key]}: </p> : null }
