@@ -23,18 +23,21 @@ const NonTechnicalCoverLetter = (props) => {
                     <div className="cover-letter-body">
                         <p>{today}</p>
                         <div>
-                            {user.email ? <p className="com">{user.email}</p> 
-                            :
-                            null}
-                            {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a> | </p> 
-                            :
-                            null}
-                            {user.github ? <p><a href={user.github}>{user.github}</a> | </p> 
-                            :
-                            null}
-                            {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a> | </p> 
-                            :
-                            null}
+                            <div>
+
+                                {user.email ? <p className="com">{user.email}</p> 
+                                :
+                                null}
+                                {user.linkedin ? <p><a href={user.linkedin}>{user.linkedin}</a> | </p> 
+                                :
+                                null}
+                                {user.github ? <p><a href={user.github}>{user.github}</a> | </p> 
+                                :
+                                null}
+                                {user.portfolio_website ? <p><a href={user.portfolio_website}>{user.portfolio_website}</a> | </p> 
+                                :
+                                null}
+                            </div>
                             <br></br>
                             <div>
                                 {job.recruiter ? <p> Dear {job.recruiter }:</p> 

@@ -62,3 +62,7 @@
 .job-and-cover-letter-container {
     display: flex;
 }
+
+.active {
+    background-color: greenyellow;
+}

@@ -8,14 +8,16 @@ import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import { confirmAlert, alert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayContainer'
+import { UpdateJobForm } from '../../components/cover_letter/UpdateCoverLetter'
+import { Button, Container, Grid, Segment, SegmentGroup } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 const JobDetailView = () => {
-    const [job, setjob] = useState([])
+    const [job, setJob] = useState([])
     const [userId, setUserId] = useState([])
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const [accessToken] = useState(localStorage.getItem('access_token'))
-    const { handleSubmit } = useForm()
     const paramsJobId = useParams().jobID
     const history = useHistory()
     useEffect(() => {
@@ -23,9 +25,9 @@ const JobDetailView = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.get(`/api/jobs/${paramsJobId}/`, {...paramsJobId})
+        axios.get(`/api/jobs/${paramsJobId}/`)
             .then(res => {
-                setjob(res.data)
+                setJob(res.data)
                 setUserId(res.data.belongs_to_user)
             }).then(() => {
                 setLoaded({ isLoaded: true })
@@ -37,60 +39,41 @@ const JobDetailView = () => {
             })
     }, [])
 
-    const onSubmit = () => {
-        confirmAlert({
-            title: `Confirm Delete `,
-            message: `Are you sure you want to delete ${job.position_title} at ${job.company}?`,
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        axios.defaults.headers = {
-                            "Content-type": "application/json",
-                            Authorization: `Bearer ${accessToken}`
-                        }
-                        axios.delete(`/api/jobs/${paramsJobId}/`, {...paramsJobId})
-                            .then(() => history.push('/all-jobs'))
-                            .catch(error => console.log(error))
-                    }
-                },
-                {
-                    label: 'No',
-                }
-            ]
-        });
-    }
+    
 
     if (loaded.isLoaded) {
         return (
-            <div>
-                <div className="hide-buttons">
-                    <button id="show-job-update-button" onClick={() => reveal('update-job-container', 'show-job-update-button')}>Show Update Form</button>
-                    <button id="show-cover-letter-button" onClick={() => reveal('cover-letter-container', "show-cover-letter-button")}>Show Cover Letter</button>
-                    <button id="hide-job-details-button" onClick={() => reveal('job-detail', "hide-job-details-button")}>Hide Job Details</button>
-                </div>
-                <div className="job-container">
-                    <div className="job-and-cover-letter-container">
-                        <div>
-                            <JobDetail jobDetail={job} />
-                            <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
-                                <button className="btn-warning" type="submit">Delete</button>
-                            </form>
+            <Container>
+                <Segment className="hide-buttons" inverted>
+                    <Button 
+                        id="show-job-update-button" 
+                        onClick={() => reveal("update-job-container","show-job-update-button")}
+                        >Show Update Job Form</Button>
+                    <Button 
+                        id="show-cover-letter-button" 
+                        onClick={() => reveal('cover-letter-container', "show-cover-letter-button")}
+                        >Show Cover Letter</Button>
+                    <Button 
+                        id="hide-job-details-button" 
+                        onClick={() => reveal('job-detail', "hide-job-details-button")}
+                        >Hide Job Details</Button>
+                </Segment>
+                <Container className="job-container">
+                    <SegmentGroup>
 
-                        </div>
-                        <div className="update-job-container">
-                            <JobForm requestType="put" job={job} buttonTxt="Update" />
-                        </div>
-                    </div>
-                    <div className="cover-letter-container" id="cover-letter-choice">
-                        <CoverLetterChoiceContainer job={job} userId={userId} />
-                    </div>
-                    
-                </div>
-                {/* <div className="job-container">
-                    
-                </div> */}
-            </div>
+                        <Segment className="job-and-cover-letter-container" inverted>
+                            <JobDetail jobDetail={job} userId={userId} accessToken={accessToken} history={history}/>
+                        </Segment>
+                        <Segment className="cover-letter-container" id="cover-letter-choice" inverted>
+                            <CoverLetterChoiceContainer job={job} userId={userId} inverted/>
+                        </Segment>
+                        <Segment className="update-job-container" inverted>
+                            <UpdateJobForm job={job} userId={userId} setJob={setJob} />
+                        </Segment>
+                    </SegmentGroup>
+                </Container>
+            </Container>
+
         )
     } else {
         return (
@@ -106,18 +89,30 @@ export default JobDetailView
 
 
 const reveal = (divToHide, button) => {
+    console.log(divToHide)
     const div = document.getElementsByClassName(divToHide)[0]
+    const coverLetter = document.getElementsByClassName("cover-letter-container")[0]
     if (divToHide !== "job-detail") {
         div.style.display === '' ? div.style.display = 'block' : div.style.display = ''
+        
     } else {
+        console.log(div.style.display, coverLetter.style.display)
         div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
+        if (coverLetter.style.display === 'none' || coverLetter.style.display === '')  {
+            coverLetter.style.display = 'block'
+        } else {
+            coverLetter.style.display = ''
+        }
     } 
 
 
     let buttonTxt = document.getElementById(button)
     if (buttonTxt.innerText.includes("Hide")) {
         buttonTxt.innerText = buttonTxt.innerText.replace("Hide", "Show")
+        buttonTxt.style.backgroundColor = "#e0e1e2"
     } else {
         buttonTxt.innerText = buttonTxt.innerText.replace("Show", "Hide")
+        buttonTxt.style.backgroundColor = "grey"
+        
     }
 }
