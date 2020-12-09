@@ -11,7 +11,9 @@ import { useForm } from "react-hook-form";
 
 const CoverLetterView = () => {
     const [user, setUser] = useState({})
-
+    const accessToken = localStorage.getItem('access_token')
+    const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
+    
     const [formVariables, setFormVariables] = useState({
         job_template_choices: "non-technical-cover-letter",
         recruiter: '',
@@ -35,6 +37,7 @@ const CoverLetterView = () => {
         bullet_point_eight: '',
         post_bullet_point_paragraph_one: '',
         post_bullet_point_paragraph_two: '',
+        belongs_to_user: userId,
     })
 
     const props = useSelector(state => (
@@ -44,9 +47,6 @@ const CoverLetterView = () => {
             loading: state.loading,
             error: state.error
         }))
-
-    const accessToken = localStorage.getItem('access_token')
-    const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
 
     useEffect(() => {
         props.loading = true

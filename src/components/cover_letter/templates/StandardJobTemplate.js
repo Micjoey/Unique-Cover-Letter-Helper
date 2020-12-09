@@ -38,7 +38,7 @@ const StandardCoverLetter = (props) => {
                                     <p> Dear Hiring Manager:</p>}
                             </div>
                             <p>
-                                As advertised on the {job.job_posting_website ? ` ${job.job_posting_website } ` : ` ${ job.company } ` } website, your need for a
+                                As advertised on the {job.link ? ` ${job.link } ` : ` ${ job.company } ` } website, your need for a
                                 {` ${job.position_title} ` } is an excellent match to my background 
                                 and career goals. With my strong education and experience, I am 
                                 confident I can make an immediate contribution given the opportunity.

@@ -22,14 +22,14 @@ export const JobForm = (props) => {
 
     
     const onSubmit = () => {
+        axios.defaults.headers = {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${accessToken}`
+        }
         console.log(job)
-        // axios.defaults.headers = {
-        //     "Content-type": "application/json",
-        //     Authorization: `Bearer ${accessToken}`
-        // }
-        // axios.post('/api/jobs/', data)
-        //     .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
-        //     .catch(errors => console.log(errors))
+        axios.post('/api/jobs/', job)
+            .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
+            .catch(errors => console.log(errors))
 
             // case 'put':
             //     axios.put(`/api/jobs/${jobID}`, {...data,jobID})
@@ -67,6 +67,7 @@ export const JobForm = (props) => {
                             fontSize: '4em',
                             fontWeight: 'normal',
                         }}
+                        textAlign="center"
                     />
                     <Form.Select
                         fluid
