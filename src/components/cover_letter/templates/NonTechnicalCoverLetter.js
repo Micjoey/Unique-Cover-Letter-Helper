@@ -46,9 +46,9 @@ const NonTechnicalCoverLetter = (props) => {
                                 role at your company - { job.company }.
                                 After reviewing your job description, it's clear that you're looking
                                 for a candidate that is familiar with
-                                the responsibilities associated with the 
-                                {job.position_title ? ` ${job.position_title} ` : null }
-                                 role and can perform them confidently. Given these requirements,
+                                the responsibilities associated with the  
+                                {job.position_title ? ` ${job.position_title} ` : " " }
+                                role and can perform them confidently. Given these requirements,
                                 I am confident that I can do the job adeptly and fulfill the above
                                 expectations successfully.
                             </p>
@@ -64,7 +64,7 @@ const NonTechnicalCoverLetter = (props) => {
                             <p>
                                 After reviewing my resume, I hope you will agree that I am a
                                 competent and competitive candidate for the
-                                {job.position_title ? ` ${job.position_title } ` : null }
+                                {job.position_title ? ` ${job.position_title } ` : " " }
                                 role. I look forward to elaborating on how my specific skills
                                 and abilities will benefit your organization.
                                 I can be reached at {user.phone_number} or
