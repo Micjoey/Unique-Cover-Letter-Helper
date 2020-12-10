@@ -3,14 +3,13 @@ import JobDetail from '../../components/jobInfo/JobDetail'
 import axios from 'axios'
 
 import { useHistory, useParams } from 'react-router'
-import { useForm } from 'react-hook-form'
-import { JobForm } from '../../components/cover_letter/CoverLetterForm'
-import { confirmAlert, alert } from 'react-confirm-alert'; 
+
+import { alert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayContainer'
 import { UpdateJobForm } from '../../components/cover_letter/UpdateCoverLetter'
-import { Button, Container, Grid, Segment, SegmentGroup } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Button, Container, Segment, SegmentGroup } from 'semantic-ui-react'
+
 
 
 const JobDetailView = () => {

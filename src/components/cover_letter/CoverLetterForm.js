@@ -94,12 +94,26 @@ export const JobForm = (props) => {
                         name="recruiter"
                         onChange={handleChange}
                     />
-                    <Form.Input 
-                        type="url" 
-                        placeholder={job.link ? job.link : "**Link for Job Post**"}
-                        name="link"
-                        onChange={handleChange}
-                        required
+                    <Popup
+                        content={`I.e LinkedIn or Google. It will default to the ${job.company}.`}
+                        trigger={
+                        <Form.Input 
+                            type="text" 
+                            placeholder={job.job_posting_website ? job.job_posting_website : "Hosting Website"}
+                            name="recruiter"
+                            onChange={handleChange}
+                        />}
+                    />
+                    <Popup
+                        content="Web url link"
+                        trigger={
+                        <Form.Input 
+                            type="url" 
+                            placeholder={job.link ? job.link : "**Link for Job Post**"}
+                            name="link"
+                            onChange={handleChange}
+                            required
+                        />}
                     />
                     <Form.TextArea 
                         type="text" 

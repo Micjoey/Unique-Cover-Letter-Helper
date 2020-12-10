@@ -115,10 +115,19 @@ export const UpdateJobForm = (props) => {
                             name="recruiter"
                             onChange={handleChange}
                         />
-                    </List.Item>
-                    <br />
+                    </List.Item><br />
+                        <List.Item>
+                            <Label color="red" horizontal>Job Posting Website</Label>
+                            <Form.Input
+                                type="text"
+                                defaultValue={job.job_posting_website}
+                                name="link"
+                                onChange={handleChange}
+                                required
+                            />
+                        </List.Item><br />
                     <List.Item>
-                        <Label color="red" horizontal>Link for Job Post</Label>
+                        <Label color="red" horizontal>Url for Job Post</Label>
                         <Form.Input
                             type="url"
                             defaultValue={job.link}
@@ -127,6 +136,7 @@ export const UpdateJobForm = (props) => {
                             required
                         />
                     </List.Item><br />
+                    
                     <List.Item>
                             <Label color="red" horizontal>Description of Job Post</Label>
                         <Form.TextArea

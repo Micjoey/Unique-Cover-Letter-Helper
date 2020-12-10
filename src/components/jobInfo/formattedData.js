@@ -4,7 +4,7 @@ export const formattedJobData = {
     'template_choices': 'Template Choice',
     'job_stage': 'Job Stage',
     'choice_of_user': 'Choice of User',
-    'job_posting_website': 'Job Website',
+    'job_posting_website': 'Hosting Job Website',
     'position_title': 'Position Title',
     'company': 'Company',
     'city': 'City',

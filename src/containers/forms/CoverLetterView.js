@@ -20,6 +20,7 @@ const CoverLetterView = () => {
         position_title: '',
         job_stage: 'Initial',
         company: '',
+        job_posting_website: '',
         top_skills: '',
         city: '',
         link: '',
