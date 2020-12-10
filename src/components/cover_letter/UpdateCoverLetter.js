@@ -28,7 +28,10 @@ export const UpdateJobForm = (props) => {
         }
         axios.put(`/api/jobs/${job.id}/`, updatedJob)
             .then(() => window.location.reload())
-            .catch(errors => console.log(errors))
+            .catch(errors => 
+                {
+                    // console.log(errors)
+                })
     };
 
     const job_template_choicess = [

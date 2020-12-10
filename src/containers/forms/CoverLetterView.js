@@ -69,7 +69,7 @@ const CoverLetterView = () => {
                     props.loading = false
                 })
                 .catch(err => {
-                    console.log(err)
+                    // console.log(err)
                 })
         }
     }, [])

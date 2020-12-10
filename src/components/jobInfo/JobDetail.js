@@ -31,7 +31,9 @@ const Jobs = props => {
                         }
                         axios.delete(`/api/jobs/${paramsJobId}/`, { ...paramsJobId })
                             .then(() => history.push('/all-jobs'))
-                            .catch(error => console.log(error))
+                            .catch(error => {
+                                // console.log(error)
+                            })
                     }
                 },
                 {

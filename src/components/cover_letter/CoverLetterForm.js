@@ -27,7 +27,9 @@ export const JobForm = (props) => {
         }
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
-            .catch(errors => console.log(errors))
+            .catch(errors => 
+                // {console.log(errors)}
+            )
     };
 
     const job_template_choicess = [

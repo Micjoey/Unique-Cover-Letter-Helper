@@ -59,7 +59,7 @@ const Header = () => {
           props.loading = false
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
         })
     }
   }, [props.isAuthenticated])

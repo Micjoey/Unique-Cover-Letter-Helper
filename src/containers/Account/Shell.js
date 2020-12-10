@@ -30,7 +30,7 @@ const Shell = props => {
             isLoaded(true)
         })
         .catch(err => {
-            console.log(err)
+            // console.log(err)
         })
     }, [localStorage.getItem('access_token')])
 

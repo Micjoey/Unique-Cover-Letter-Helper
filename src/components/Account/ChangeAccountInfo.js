@@ -31,7 +31,7 @@ const ChangeAccountInfo = (props) => {
                 setUser(resp.data)
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }, [])
 
@@ -70,7 +70,10 @@ const ChangeAccountInfo = (props) => {
                             .then(() => actions.logout())
                             .then(() => history.push('/login/'))
                             .then( () => history.go(0))
-                            .catch(error => console.log(error))
+                            .catch(error => {
+
+                                // console.log(error)
+                            })
                     }
                 }
                 ,

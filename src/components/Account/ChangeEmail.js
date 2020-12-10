@@ -30,7 +30,7 @@ const ChangeEmail = (props) => {
                 isLoaded(true)
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }, [])
 
