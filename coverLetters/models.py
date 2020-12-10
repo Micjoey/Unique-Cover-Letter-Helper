@@ -57,7 +57,7 @@ class Job(models.Model):
     form_creation_date = models.CharField(
         max_length=100, blank=True, default=datetime.now().strftime('%B %dth, %Y'))
     template_choices = models.CharField(
-        choices=job_template_choices, default='Standard Job Template', max_length=100, null=False, blank='False')
+        choices=job_template_choices, default='non-technical-cover-letter', max_length=100, null=False, blank='False')
     job_stage = models.CharField(
         choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
     job_posting_website = models.CharField("Job Posting Website", max_length=200, default="Google")
@@ -70,7 +70,7 @@ class Job(models.Model):
     pre_bullet_point_paragraph_one = models.TextField( blank=True)
     pre_bullet_point_paragraph_two = models.TextField( blank=True)
     top_skills = models.TextField(
-         blank=True, default='Dynamic and accomplished Software Engineer with experience and expertise in')
+         blank=True,)
     bullet_point_one = models.TextField( blank=True)
     bullet_point_two = models.TextField( blank=True)
     bullet_point_three = models.TextField( blank=True)
