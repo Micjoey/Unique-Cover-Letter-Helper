@@ -13,6 +13,7 @@ import {
     Segment,
 } from 'semantic-ui-react'
 import { useSelector } from 'react-redux';
+import CoverLetterView from '../forms/CoverLetterView';
 
 
 const JobList = () => {
@@ -96,38 +97,15 @@ const JobList = () => {
             )
         } else {
             return (
-                <div>
-                    <Container>
-                        <Header 
-                            as='h1'
-                            content='No Cover Letters Exist'
-                            // inverted
-                            style={{
-                                fontSize: '2em',
-                                // fontWeight: 'normal',
-                                // marginBottom: 0,
-                                // marginTop: '.5em',
-                            }}
+                <Container>
+                    <Segment>
+                        <Header
+                            as="h1"
+                            content="You haven't applied to any jobs yet!"
                         />
-                        <Header 
-                            as='h3'
-                            content='Please create one below:'
-                            // inverted
-                            style={{
-                                fontSize: '2em',
-                                // fontWeight: 'normal',
-                                // marginBottom: 0,
-                                // marginTop: '.5em',
-                            }}
-                        />
-                        <Segment>
-                            <JobForm requestType="post" jobID={null} buttonTxt="Create Cover Letter" />
-                        </Segment>
-
-                    </Container>
-
-
-                </div>
+                    </Segment>
+                    <CoverLetterView/>
+                </Container>
             )
         }
     } else {

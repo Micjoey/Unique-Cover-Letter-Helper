@@ -7,7 +7,6 @@ import { Button, Container, Form, Grid, Header, Input, Popup, Segment, Select } 
 
 export const JobForm = (props) => {
     const job = props.job
-    const [updatedJob, updateJob] = useState(job)
     const history = useHistory()
     const { register, watch, errors, handleSubmit} = useForm({
         reValidateMode: 'onChange'
