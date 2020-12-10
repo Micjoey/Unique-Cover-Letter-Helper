@@ -183,16 +183,15 @@ ResponsiveContainer.propTypes = {
 
 const Homepage = () => (
     <ResponsiveContainer>
-        <Segment style={{ padding: '8em 0em' }} vertical inverted>
+        {/* <Segment style={{ padding: '8em 0em' }} vertical inverted>
             <Grid container stackable="true" verticalAlign='middle'>
                 <Grid.Row>
                     <Grid.Column width={8}>
                         <Header as='h3' style={{ fontSize: '2em' }} inverted>
-                            We Help Companies and Companions
+                            We Help Job Seekers Create Unique Cover Letters
                         </Header>
                         <p style={{ fontSize: '1.33em' }}>
-                            We can give your company superpowers to do things that they never thought possible.
-                            Let us delight your customers and empower your needs... through pure data analytics.
+                            People spend enourmous amount of time trying to create unique cover letters.
                         </p>
                         <Header as='h3' style={{ fontSize: '2em' }} inverted>
                             We Make Bananas That Can Dance
@@ -269,7 +268,7 @@ const Homepage = () => (
                     I'm Still Quite Interested
                 </Button>
             </Container>
-        </Segment>
+        </Segment> */}
 
     </ResponsiveContainer>
 )
