@@ -28,7 +28,10 @@ export const JobForm = (props) => {
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
             .catch(errors => 
-                // {console.log(errors)}
+                {
+
+                    // {console.log(errors)}
+                }
             )
     };
 
