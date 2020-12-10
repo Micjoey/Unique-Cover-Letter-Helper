@@ -100,7 +100,7 @@ export const JobForm = (props) => {
                         <Form.Input 
                             type="text" 
                             placeholder={job.job_posting_website ? job.job_posting_website : "Hosting Website"}
-                            name="recruiter"
+                                name="job_posting_website"
                             onChange={handleChange}
                         />}
                     />
