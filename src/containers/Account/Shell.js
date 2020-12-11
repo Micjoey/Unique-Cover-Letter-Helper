@@ -58,6 +58,11 @@ const Shell = props => {
                                         name="change-account-info">
                                         Change Account Info
                                     </Menu.Item>
+                                    <Menu.Item onClick={() => history.push("/default-form-values/", { user: user, previousLocation: "/admin/change-info/" })}
+                                        active={history.location.pathname === "/user-admin/change-account-info/"}
+                                        name="change-account-info">
+                                        Set Default Form
+                                        </Menu.Item>
                                     <Menu.Item onClick={() => dispatch(logout())}
                                         name="logout">
                                         Logout
