@@ -71,6 +71,12 @@ const CoverLetterView = () => {
                 .catch(err => {
                     // console.log(err)
                 })
+            axios.get('/api/defaultInfo/')
+                .then(resp => {
+                    const formValues = resp.data.results[0]
+                    const updatedFormVariables = Object.assign({}, formVariables, {...formValues})
+                    setFormVariables(updatedFormVariables)
+                })
         }
     }, [])
 

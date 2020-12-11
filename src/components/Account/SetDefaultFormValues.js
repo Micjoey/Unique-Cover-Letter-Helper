@@ -55,7 +55,6 @@ const SetDefaultFormValue = props => {
                     }
                 )
         } else {
-            console.log(newValues)
             axios.patch(`/api/defaultInfo/${newValues.id}/`, newValues)
                 .then(res => history.go(0))
                 .catch(errors => {

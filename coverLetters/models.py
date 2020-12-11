@@ -27,9 +27,9 @@ class DefaultInfo(models.Model):
         ('No Response', 'No Response')
     )
     template_choices = models.CharField(
-        choices=job_template_choices, default='non-technical-cover-letter', max_length=100, null=False, blank='False')
+        choices=job_template_choices, max_length=100, null=False, blank='False')
     job_stage = models.CharField(
-        choices=job_stages, default='Initial', max_length=100, null=False, blank='False')
+        choices=job_stages, max_length=100, null=False, blank='False')
     job_posting_website = models.CharField(
         "Job Posting Website", max_length=200, blank=True, default = "")
     position_title = models.CharField(
