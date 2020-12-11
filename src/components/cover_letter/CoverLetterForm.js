@@ -123,10 +123,10 @@ export const JobForm = (props) => {
                         />}
                     />
                     <Popup
-                        content="Web url link"
+                        content="Web Url link"
                         trigger={
                         <Form.Input 
-                            type="url" 
+                            type="text" 
                             placeholder={job.link ? job.link : "**Link for Job Post**"}
                             name="link"
                             onChange={handleChange}
