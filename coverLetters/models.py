@@ -62,7 +62,7 @@ class DefaultInfo(models.Model):
 
 class User(AbstractUser):
     defaultInfoObject = DefaultInfo.objects.create()
-    currentId = defaultInfoObject.id + 1
+    currentId = defaultInfoObject.id
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
     last_name = models.CharField(max_length=200, blank=False)
