@@ -37,12 +37,9 @@ export const JobForm = (props) => {
     const specificDropDown = (nameOfDropdown) => {
         return job.job_template_choices === nameOfDropdown
     }
-    const willDisplay = (...variables) => {
 
-    }
         
-    
-    console.log(job)
+
     return (
         <Container>
             <Segment inverted>
@@ -283,6 +280,7 @@ export const JobForm = (props) => {
                         </Grid.Row>
                     </Grid>
                     <Form.Button primary content="Create Cover Letter"/>
+                    <Button secondary onClick={() => history.push('/default-form-values/')}>Set Default Values for Future Forms</Button>
                 </Form>
             </Segment>
         </Container>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
-import { Form, Grid, Header, Segment, Select } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Segment, Select } from 'semantic-ui-react';
 import { determineCoverLetter } from '../cover_letters/determineCoverLetterFormat';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'

@@ -46,11 +46,33 @@ const SetDefaultFormValue = props => {
                         "Content-type": "application/json",
                         Authorization: `Bearer ${accessToken}`
                     }
-                    console.log(updatedUser)
                     axios.patch(`/api/users/${props.user.id}/`, updatedUser)
                 })
-                .then(() => history.go(0))
-                .then(() => alert("You succesfully set your default values"))
+                .then(
+                    confirmAlert({
+                        title: `Success!`,
+                        message: `You successfully set your default values, do you wish to create a new cover letter?`,
+                        buttons: [
+                            {
+                                label: 'Yes',
+                                onClick: () => history.push('/job/form/')
+                            }
+                            ,
+                            {
+                                label: 'Go To All Jobs',
+                                onClick: () => { history.push('/all-jobs/') }
+                            },
+                            {
+                                label: 'Go To Account Dashboard',
+                                onClick: () => { history.push('/user-admin/') }
+                            },
+                            {
+                                label: 'No',
+                                onClick: () => { history.go(0) }
+                            },
+                        ]
+                    })
+                )
                 .catch(errors => {
     
                     // {console.log(errors)}
@@ -102,7 +124,7 @@ const SetDefaultFormValue = props => {
                         content='Default Form Values'
                         inverted
                         style={{
-                            fontSize: '4em',
+                            fontSize: '3em',
                             fontWeight: 'normal',
                         }}
                         textAlign="center"
