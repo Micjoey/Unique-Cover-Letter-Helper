@@ -7,7 +7,7 @@ from multiselectfield import MultiSelectField
 import datetime
 from datetime import datetime
 
-__all__ = ['CheckConstraint', 'UniqueConstraint']
+__all__ = ['UniqueConstraint']
 
 
 class DefaultInfo(models.Model):
