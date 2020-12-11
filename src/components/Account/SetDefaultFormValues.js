@@ -113,7 +113,6 @@ const SetDefaultFormValue = props => {
 
     useEffect(() => {
         setNewValues(props.defaultInfo)
-        console.log(props.defaultInfo)
     }, [props.defaultInfo])
 
     return (
