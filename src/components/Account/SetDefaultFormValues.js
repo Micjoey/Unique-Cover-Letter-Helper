@@ -113,6 +113,7 @@ const SetDefaultFormValue = props => {
 
     useEffect(() => {
         setNewValues(props.defaultInfo)
+        console.log(props.defaultInfo)
     }, [props.defaultInfo])
 
     return (
@@ -133,8 +134,8 @@ const SetDefaultFormValue = props => {
                         fluid
                         placeholder="Choose Template"
                         options={job_template_choices}
-                        value={newValues.template_choices}
-                        name="job_template_choices"
+                        value={newValues.template_choices ? newValues.template_choices : ""}
+                        name="template_choices"
                         onChange={handleChange}
                     />
                     <Form.Select
