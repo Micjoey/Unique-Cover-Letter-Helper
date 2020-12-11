@@ -61,7 +61,8 @@ class DefaultInfo(models.Model):
 
 
 class User(AbstractUser):
-    currentId = DefaultInfo.objects.last().id
+    defaultInfoObject = DefaultInfo.objects.last() or DefaultInfo().save()
+    currentId = defaultInfoObject.id
     currentObject, created = DefaultInfo.objects.get_or_create(
         id=currentId + 1)
     first_name = models.CharField(max_length=200, blank=False)
