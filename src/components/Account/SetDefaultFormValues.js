@@ -133,7 +133,7 @@ const SetDefaultFormValue = props => {
                         fluid
                         placeholder="Choose Template"
                         options={job_template_choices}
-                        value={newValues.template_choices ? newValues.template_choices : ""}
+                        value={newValues.template_choices}
                         name="job_template_choices"
                         onChange={handleChange}
                     />
