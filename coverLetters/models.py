@@ -61,6 +61,9 @@ class DefaultInfo(models.Model):
 
 
 class User(AbstractUser):
+    currentId = DefaultInfo.objects.last().id
+    currentObject, created = DefaultInfo.objects.get_or_create(
+        id=currentId + 1)
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
     last_name = models.CharField(max_length=200, blank=False)
@@ -74,7 +77,7 @@ class User(AbstractUser):
     state_address = models.CharField(blank=True, max_length=200,)
     zip_code = models.CharField(blank=True, max_length=200,)
     default_info = models.OneToOneField(
-        DefaultInfo, on_delete=models.CASCADE, blank=True, null=True)
+        DefaultInfo, on_delete=models.CASCADE, default=currentObject.id, blank=True, null=True)
     modified_date = models.DateField(auto_now=True, blank=True)
     created_date = models.DateField(auto_now_add=True, blank=True)
 
