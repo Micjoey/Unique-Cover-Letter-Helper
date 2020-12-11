@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode'
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { job_template_choices, job_stages } from "../FieldChoices";
+import { confirmAlert } from 'react-confirm-alert'
 
 
 
@@ -49,6 +50,7 @@ const SetDefaultFormValue = props => {
                     axios.patch(`/api/users/${props.user.id}/`, updatedUser)
                 })
                 .then(() => history.go(0))
+                .then(() => alert("You succesfully set your default values"))
                 .catch(errors => {
     
                     // {console.log(errors)}
@@ -56,8 +58,31 @@ const SetDefaultFormValue = props => {
                 )
         } else {
             axios.patch(`/api/defaultInfo/${newValues.id}/`, newValues)
-                .then(res => history.go(0))
-                .catch(errors => {
+                .then(
+                    confirmAlert({
+                    title: `Success!`,
+                    message: `You successfully set your default values, do you wish to create a new cover letter?`,
+                    buttons: [
+                                {
+                                    label: 'Yes',
+                                    onClick: () => history.push('/job/form/')
+                                }
+                                ,
+                                {
+                                    label: 'Go To All Jobs',
+                                    onClick: () => { history.push('/all-jobs/') }
+                                },
+                                {
+                                    label: 'Go To Account Dashboard',
+                                    onClick: () => { history.push('/user-admin/') }
+                                },
+                                {
+                                    label: 'No',
+                                    onClick: () => { history.go(0) }
+                                },
+                            ]
+                    })
+                ).catch(errors => {
                     // {console.log(errors)}
                 }
             )
@@ -105,6 +130,14 @@ const SetDefaultFormValue = props => {
                         onChange={handleChange}
                         value={newValues.position_title ? newValues.position_title : ""}
                     />
+                    <Form.Input
+                        type="text"
+                        placeholder="City"
+                        name="city"
+                        onChange={handleChange}
+                        value={newValues.city ? newValues.city : ""}
+                    />
+                    
                     <Popup
                         content={`I.e LinkedIn or Google. It will default to the company
                          otherwise if no value is given in the form.`}
@@ -193,7 +226,7 @@ const SetDefaultFormValue = props => {
                                         placeholder={ `Fifth Bullet Point `}
                                         name="bullet_point_four"
                                         onChange={handleChange} 
-                                    value={newValues.bullet_point_five ? newValues.bullet_point_five : ""}
+                                        value={newValues.bullet_point_four ? newValues.bullet_point_four : ""}
                                     />
                                 </Grid.Column>
 
