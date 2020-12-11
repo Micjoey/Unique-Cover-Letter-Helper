@@ -4,32 +4,19 @@ import {
     Button, Grid,
     Segment, Table, 
 } from 'semantic-ui-react'
-import { Prompt, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-
 import jwtDecode from 'jwt-decode';
+import { confirmAlert } from 'react-confirm-alert';
 
 const AccountDetailsForm = () => {
     const history = useHistory()
-    const [requiredFields, setRequiredFields] = useState({})
+    // const [requiredFields, setRequiredFields] = useState({})
     const [errorMessage, setErrorMessage] = useState({})
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
-    
-    
-    // const dispatch = useDispatch()
-    // window.onbeforeunload = handleChangePages()
-    
-    // const handleChangePages = (e) => {
-    //     if (requiredFields) {
-    //         return null
-    //     } else {
-    //         const message = 'You need to fill in First and Last Name at the minimum.';
-    //         e.returnValue = message;
-    //         return message;
-    //     }
-    // }
+
 
     const onSubmit = data => {
         const navBar = document.getElementsByClassName("nav-bar")[0]
@@ -42,10 +29,28 @@ const AccountDetailsForm = () => {
             Authorization: `Bearer ${accessToken}`
         }
         axios.patch(`/api/users/${userId}/`, data)
-            .then(() => {
-                history.push("/all-jobs/")
-                setRequiredFields(data)
-            })
+            .then(
+                confirmAlert({
+                    title: `Success!`,
+                    message: `You have finished filling out your user profile. Would you like to set default values for your future cover letters or go straight to creating them?`,
+                    buttons: [
+                        {
+                            label: 'Yes, straight to cover letters',
+                            color: 'red',
+                            onClick: () => history.push('/job/form/')
+                        }
+                        ,
+                        {
+                            label: 'Set your default form values',
+                            onClick: () => { history.push('/default-form-values/') }
+                        },
+                        {
+                            label: 'No, I would like to change my account information.',
+                            onClick: () => { history.push('/user-admin/') }
+                        },
+                    ]
+                })
+            )
             .catch(err => {
                 setErrorMessage(err.Message)
             })
