@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { Button, Container, Form, Grid, Header, Input, Popup, Segment, Select } from "semantic-ui-react";
 import { job_template_choices, job_stages } from "../FieldChoices";
+import { confirmAlert } from "react-confirm-alert";
 
 
 export const JobForm = (props) => {
@@ -20,6 +21,23 @@ export const JobForm = (props) => {
         }));
     }
 
+    const areYouSure = () => {
+        confirmAlert({
+            title: `You sure?`,
+            message: `If you leave now you will lose any information you have in your fields.
+             You can also set your default values in your Account page in the top right.`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => history.push('/default-form-values/')
+                }
+                ,
+                {
+                    label: 'No',
+                },
+            ]
+        })
+    }
     
     const onSubmit = () => {
         axios.defaults.headers = {
@@ -54,6 +72,8 @@ export const JobForm = (props) => {
                         }}
                         textAlign="center"
                     />
+                    <Button secondary onClick={() => areYouSure()}>Set Default Values</Button>
+                    <br/>
                     <Form.Select
                         fluid
                         required
@@ -280,7 +300,7 @@ export const JobForm = (props) => {
                         </Grid.Row>
                     </Grid>
                     <Form.Button primary content="Create Cover Letter"/>
-                    <Button secondary onClick={() => history.push('/default-form-values/')}>Set Default Values for Future Forms</Button>
+                    
                 </Form>
             </Segment>
         </Container>

@@ -36,6 +36,7 @@ const AccountDetailsForm = () => {
                     buttons: [
                         {
                             label: 'Yes, straight to cover letters',
+                            color: 'red',
                             onClick: () => history.push('/job/form/')
                         }
                         ,
