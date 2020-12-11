@@ -5,7 +5,12 @@
 
 .job-detail-container {
     display: flex;
-    width: 60%;
+    width: 100%;
+    padding: .5em;
+}
+
+.job-detail-container:nth-of-type(odd) {
+    background-color: rgba(238, 238, 238, 0.516);
 }
 
 .job-info-field > p:nth-child(2) {

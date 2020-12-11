@@ -10,6 +10,7 @@ import { confirmAlert, alert } from 'react-confirm-alert';
 import { useForm } from "react-hook-form";
 
 
+
 const Jobs = props => {
     const accessToken = props.accessToken
     const history = props.history
@@ -17,6 +18,7 @@ const Jobs = props => {
     const paramsJobId = jobDetail.id
     const jobDetailKeys = Object.keys(jobDetail)
     const { handleSubmit } = useForm()
+    
     const onSubmit = () => {
         confirmAlert({
             title: `Confirm Delete `,
@@ -61,14 +63,15 @@ const Jobs = props => {
                 />
             </Segment>
             <Segment>
-                {jobDetailKeys.map(key => (
+                {dataFields(jobDetail, jobDetailKeys)}
+                {/* {jobDetailKeys.map(key => (
                     <div className="job-detail-container" key={`${key} - container`}>
                         {formattedJobData[key] !== 'Id' && formattedJobData[key] !== 'Job Link' ? <p key={`${key}`} className="job-info-field">{formattedJobData[key]}: </p> : null }
                         {formattedJobData[key] !== 'Id' && formattedJobData[key] !== 'Job Link' ? <p className="job-info-data" key={`key value - ${key}`} key={`${key} - ${key}`}>{jobDetail[key]}</p> : null }
                         {formattedJobData[key] === 'Job Link' ? <p key={`${key} + 1`} className="job-info-field">{formattedJobData[key]}: </p> : null }
                         {formattedJobData[key] === 'Job Link' ? <p><Link to={jobDetail[key]} className="job-info-data" key={`key value - ${key} + 1`} key={`${key} - ${key}`}>{jobDetail[key]}</Link></p> : null }
                     </div>
-               ))}
+               ))} */}
             </Segment>
             <form onSubmit={handleSubmit(onSubmit)} className="delete-button">
                 <button className="btn-warning" type="submit">Delete</button>
@@ -82,3 +85,29 @@ export default Jobs;
 
 
 
+const dataFields = (jobDetail, jobDetailKeys) => {
+    console.log(jobDetail, jobDetailKeys)
+   const jobDetailMap = jobDetailKeys.map(key => {
+        if (jobDetail[key] !== '') {
+            if (key !== 'id' && formattedJobData[key] !== 'Job Link' && key !== 'belongs_to_user') {
+                console.log("hit in here")
+                return (
+                    <div className="job-detail-container" key={`${key} - container`}>
+                        <p key={`${key}`} className="job-info-field">{formattedJobData[key]}: </p>
+                        <p className="job-info-data" key={`key value - ${key}`} key={`${key} - ${key}`}>{jobDetail[key]}</p>
+                    </div>
+                )
+            } else if (formattedJobData[key] === 'Job Link') {
+                return (
+                    <div className="job-detail-container" key={`${key} - container`}>
+                        <p key={`${key} + 1`} className="job-info-field">{formattedJobData[key]}: </p>
+                        <p><Link to={jobDetail[key]} className="job-info-data" key={`key value - ${key} + 1`} key={`${key} - ${key}`}>{jobDetail[key]}</Link></p>
+                    </div>
+                )
+            }
+        }
+    })
+    return (
+        jobDetailMap
+    )
+}
