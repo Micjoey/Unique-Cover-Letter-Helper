@@ -51,10 +51,19 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class DefaultInfoViewSet(viewsets.ModelViewSet):
-    serializer_class = DefaultInfo
+    serializer_class = DefaultInfoSerializer
     queryset = DefaultInfo.objects.all()
     pagination_class = JobPagination
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        defaultInfo = self.request.user.default_info
+        if defaultInfo:
+            defaultInfoId = defaultInfo.id
+            defaultInfo = DefaultInfo.objects.order_by('-id')
+            return defaultInfo.filter(id=defaultInfoId)
+        else:
+            return []
 
 
 class ObtainTokenView(TokenObtainPairView):

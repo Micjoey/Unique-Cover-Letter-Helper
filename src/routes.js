@@ -12,6 +12,7 @@ import ChangeAccountInfo from './components/Account/ChangeAccountInfo'
 import AccountDetailsForm from './containers/forms/signUpForms/SignUpDetails'
 import RegistrationForm from './containers/forms/signUpForms/SignupInitial'
 import { UpdateJobForm } from './components/cover_letter/UpdateCoverLetter'
+import PreferredDetailsContainer from './containers/Account/PreferredDetailsContainer'
 
 
 const PrivateRoute = ({components: Component, ...rest}) => {
@@ -44,6 +45,7 @@ const BaseRouter = (props) => (
             <PrivateRoute exact path='/job/:jobID/' component={JobDetailView}/>
             <PrivateRoute exact path='/all-jobs/' component={JobListView}/>
             <PrivateRoute exact path='/signup-user-details/' component={AccountDetailsForm}/>
+            <PrivateRoute exact path='/default-form-values/' component={PreferredDetailsContainer}/>
             <NeedUserCredentials exact path='/user-admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}

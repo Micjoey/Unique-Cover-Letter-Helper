@@ -14,6 +14,7 @@ import * as actions from '../../store/actions/Auth'
 
 const ChangeAccountInfo = (props) => {
     const [user, setUser] = useState({})
+    
     const history = useHistory()
     const [error, setError] = useState({})
     const { register, handleSubmit } = useForm({})

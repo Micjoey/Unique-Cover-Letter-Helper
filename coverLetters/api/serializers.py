@@ -1,7 +1,7 @@
 from django.urls import path, include
 # from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from coverLetters.models import Job, User
+from coverLetters.models import Job, User, DefaultInfo
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -34,7 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class DefaultInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = DefaultInfo
         fields = '__all__'
 
 

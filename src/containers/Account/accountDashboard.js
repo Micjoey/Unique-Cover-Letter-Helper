@@ -36,13 +36,15 @@ const AccountDashboard = () => {
     if (loaded) {
         return (
             <div class="outer-semantic">
-                <Segment placeholder className="outer-semantic">
+                <Segment placeholder className="outer-semantic" padded="very">
                     <Container text textAlign="center">
                         <Grid container divided textAlign="center" >
                             {/* <Grid.Row> */}
                                 {/* <Grid.Column width={8}> */}
                                 <Container content>
-                                    <Header as="h3">Account</Header>
+                                    <Segment>
+                                        <Header as="h3">Account Info</Header>
+                                    </Segment>
                                     <Menu vertical fluid>
                                         <Menu.Item
                                             onClick={() => history.push("/user-admin/change-email/", { user: user, previousLocation: "/admin/change-email/"})}
@@ -60,15 +62,20 @@ const AccountDashboard = () => {
                                             name="change-account-info">
                                             Change Account Info
                                         </Menu.Item>
+                                        <Menu.Item onClick={() => history.push("/default-form-values/", { user: user, previousLocation: "/admin/change-info/" })}
+                                            active={history.location.pathname === "/user-admin/change-account-info/"}
+                                            name="change-account-info">
+                                            Set Default Form
+                                        </Menu.Item>
                                         { user.is_superuser ? <Menu.Item onClick={() => history.push("/admin/")}
                                             active={history.location.pathname === "/admin/"}
                                             name="change-account-info">
                                             Admin
                                         </Menu.Item> : null}
-                                        <Menu.Item onClick={() => dispatch(logout())}
+                                        {/* <Menu.Item onClick={() => dispatch(logout())}
                                             name="logout">
                                             Logout
-                                        </Menu.Item>
+                                        </Menu.Item> */}
                                     </Menu>
                                 </Container>
                                 {/* </Grid.Column> */}

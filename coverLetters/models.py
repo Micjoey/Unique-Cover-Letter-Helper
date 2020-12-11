@@ -73,8 +73,8 @@ class User(AbstractUser):
     city_address = models.CharField(blank=True, max_length=200,)
     state_address = models.CharField(blank=True, max_length=200,)
     zip_code = models.CharField(blank=True, max_length=200,)
-    default_info = models.ForeignKey(
-        DefaultInfo, on_delete=models.CASCADE, blank=True)
+    default_info = models.OneToOneField(
+        DefaultInfo, on_delete=models.CASCADE, blank=True, null=True)
     modified_date = models.DateField(auto_now=True, blank=True)
     created_date = models.DateField(auto_now_add=True, blank=True)
 

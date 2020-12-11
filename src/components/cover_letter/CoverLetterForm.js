@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { Button, Container, Form, Grid, Header, Input, Popup, Segment, Select } from "semantic-ui-react";
+import { job_template_choices, job_stages } from "../FieldChoices";
 
 
 export const JobForm = (props) => {
@@ -35,21 +36,9 @@ export const JobForm = (props) => {
             )
     };
 
-    const job_template_choicess = [
-        { key: 'non-technical-cover-letter', value: 'non-technical-cover-letter', text: 'Non-technical Cover Letter'},
-        { key: 'Triplebyte (message-version)', value: 'Triplebyte (message-version)', text: 'Triplebyte (message-version)'},
-        { key: 'Standard Job Template', value: 'Standard Job Template', text: 'Standard Job Template'},
-        // 'cover-letter-4': 'Template 4',
-        // 'cover-letter-5': 'Template 5',
-    ]
-        
-    const job_stages = [
-        { key: 'Initial', value: 'Initial', text: 'Initial'},
-        { key: 'Accepted', value: 'Accepted', text: 'Accepted'},
-        { key: 'Rejected', value: 'Rejected', text: 'Rejected'},
-        { key: 'No Response', value: 'No Response', text: 'No Response'},
 
-    ]
+        
+    
     
     return (
         <Container>
@@ -69,7 +58,7 @@ export const JobForm = (props) => {
                         fluid
                         required
                         placeholder="Choose Template" 
-                        options={job_template_choicess} 
+                        options={job_template_choices} 
                         name="job_template_choices"
                         onChange={handleChange}
                     />
