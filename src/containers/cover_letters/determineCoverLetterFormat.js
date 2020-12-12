@@ -3,6 +3,7 @@ import NonTechnicalCoverLetter from '../../components/cover_letter/templates/Non
 import StandardCoverLetter from '../../components/cover_letter/templates/StandardJobTemplate'
 import TriplebyteCoverLetter from '../../components/cover_letter/templates/TriplebyteCoverLetter'
 
+
 export const determineCoverLetter = (coverLetter, job, user) => {
     switch (coverLetter) {
         case "non-technical-cover-letter":
