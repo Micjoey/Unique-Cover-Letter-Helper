@@ -37,7 +37,7 @@ const FooterPage = () => {
                                 Comments and suggestions wanted!
                             </Header>
                             <p>
-                                Any suggestions or comments please send to <a href="mailto: admin@uniquecoverlettergenerator.com">Send Email</a>
+                                Any suggestions or comments please send to at this - <a href="mailto: admin@uniquecoverlettergenerator.com">link.</a>
                             </p>
                         </Grid.Column>
                     </Grid.Row>
