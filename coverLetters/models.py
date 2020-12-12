@@ -76,7 +76,7 @@ class User(AbstractUser):
     state_address = models.CharField(blank=True, max_length=200,)
     zip_code = models.CharField(blank=True, max_length=200,)
     default_info = models.OneToOneField(
-        DefaultInfo, on_delete=models.DO_NOTHING, default=currentId, blank=True)
+        DefaultInfo, on_delete=models.CASCADE, default=currentId, blank=True)
     modified_date = models.DateField(auto_now=True, blank=True)
     created_date = models.DateField(auto_now_add=True, blank=True)
 
