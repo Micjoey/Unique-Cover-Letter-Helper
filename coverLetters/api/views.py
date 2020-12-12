@@ -57,6 +57,8 @@ class UserViewSet(viewsets.ModelViewSet):
         self.request.user.delete()
         return Response(data="delete successful")
 
+    
+
 
 
 

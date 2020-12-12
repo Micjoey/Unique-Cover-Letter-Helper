@@ -3,7 +3,7 @@ import { Form, Message,
         Button,Table, 
     } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
-import { confirmAlert, alert } from 'react-confirm-alert';
+import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
@@ -14,7 +14,6 @@ import * as actions from '../../store/actions/Auth'
 
 const ChangeAccountInfo = (props) => {
     const [user, setUser] = useState({})
-    
     const history = useHistory()
     const [error, setError] = useState({})
     const { register, handleSubmit } = useForm({})
@@ -48,6 +47,9 @@ const ChangeAccountInfo = (props) => {
                 setUser(resp.data)
                 // history.go()
             })
+            .then(() =>
+                history.go(0)
+            )
             .catch(err => {
                 setError(err.Message)
             })

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import Shell from '../../containers/Account/Shell';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -20,7 +21,7 @@ const ChangeEmail = (props) => {
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
     const [loaded, isLoaded] = useState(false)
-
+    const history = useHistory()
     useEffect(() => {
         axios.get(`/api/users/${userId}/`, { userId: userId })
             .then(resp => {
@@ -51,6 +52,7 @@ const ChangeEmail = (props) => {
                     .then(resp => {
                         setUser(resp.data)
                     })
+                    .then(() => history.go(0))
                     .catch(err => {
                         setError(err.Message)
                     })

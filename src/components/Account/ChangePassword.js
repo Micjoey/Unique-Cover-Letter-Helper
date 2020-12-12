@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
-    Form, Input, Message,
-    Header, Button, Grid,
-    Container, Segment, Menu,
-    Table, Icon, Label, Tab
+    Form,  Message,
+    Button, Table, 
 } from 'semantic-ui-react'
 import { useForm } from "react-hook-form";
 
 import axios from 'axios'
 
-import jwtDecode from 'jwt-decode';
 import Shell from '../../containers/Account/Shell';
 
 
 
 
 const ChangePassword = (props) => {
-    const [newPassword, setNewPassword] = useState("")
-    const [currentPassword, setCurrentPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
+    const [newPassword] = useState("")
+    const [confirmPassword] = useState("")
     const [error, setError] = useState({})
     const [successMessage, setSuccessMessage] = useState(null)
     const { register, handleSubmit } = useForm()
