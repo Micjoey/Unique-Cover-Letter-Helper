@@ -57,7 +57,8 @@ class DefaultInfo(models.Model):
         get_latest_by = ['-created_date', 'modified_date']
 
     def __str__(self):
-        return 'ID ' + str(self.id) 
+        user = User.objects.get(default_info = self)
+        return 'ID ' + str(self.id) + " - " + user.first_name + " " + user.last_name
 
 
 
