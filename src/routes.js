@@ -49,7 +49,7 @@ const BaseRouter = (props) => (
             <NeedUserCredentials exact path='/user-admin/change-email/' component={ChangeEmail} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-password/' component={ChangePassword} {...props}/>
             <NeedUserCredentials exact path='/user-admin/change-account-info/' component={ChangeAccountInfo} {...props}/> */}
-            <PrivateRoute exact path='/user-admin/' component={AccountDashboard} />
+            <PrivateRoute exact path='  ' component={AccountDashboard} />
             <Route exact path='/signup/' component={RegistrationForm}/>
             <Route exact path='/login/' component={Login}/>
             <Route exact path='' component={HomePage}/>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
-import { Button, Form, Grid, Header, Segment, Select } from 'semantic-ui-react';
+import { Grid, Header, Segment} from 'semantic-ui-react';
 import { determineCoverLetter } from '../cover_letters/determineCoverLetterFormat';
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import rg4js from 'raygun4js';
-import { useForm } from "react-hook-form";
+
 
 const CoverLetterView = () => {
     const [user, setUser] = useState({})
@@ -79,9 +79,20 @@ const CoverLetterView = () => {
                 })
         }
     }, [])
-
     return (
         <Segment placeholder padded="very">
+            { !user.first_name ?
+                <Segment>
+                    {user.first_name}
+                    <Header>
+                        You are missing crucial information! Please navigate to your user profile and fill in at the minimum your first and last name.
+                    </Header>
+                    <p>
+                        <Link to="/user-admin/">Please click here - Account Dashboard</Link> - Then navigate to change account info and update information.
+                    </p>
+                </Segment> 
+            : null
+            }
             <Grid columns={2} stackable>
                 <Grid.Row>
                     <Grid.Column verticalAlign="left">

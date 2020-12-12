@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # need to change
+DEBUG = True # need to change
 
 ALLOWED_HOSTS = [
     'http://uniquecoverlettergenerator.herokuapp.com',
