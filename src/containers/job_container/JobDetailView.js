@@ -9,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import CoverLetterChoiceContainer from '../cover_letters/CoverLetterDisplayContainer'
 import { UpdateJobForm } from '../../components/cover_letter/UpdateCoverLetter'
 import { Button, Container, Segment, SegmentGroup } from 'semantic-ui-react'
+import { loadingPageInverted } from '../../components/LoadingPage';
 
 
 
@@ -76,9 +77,7 @@ const JobDetailView = () => {
         )
     } else {
         return (
-            <div>
-                <h1>Loading</h1>
-            </div>
+            loadingPageInverted()
         )
     }
 
