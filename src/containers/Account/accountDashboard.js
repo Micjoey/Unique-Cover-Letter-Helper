@@ -62,7 +62,7 @@ const AccountDashboard = () => {
                                             name="change-account-info">
                                             Change Account Info
                                         </Menu.Item>
-                                        <Menu.Item onClick={() => history.push("/default-form-values/", { user: user, previousLocation: "/admin/change-info/" })}
+                                    <Menu.Item onClick={() => history.push("/default-form-values/", { user: user, previousLocation: "/admin/default-form-values/" })}
                                             active={history.location.pathname === "/user-admin/change-account-info/"}
                                             name="change-account-info">
                                             Set Default Form

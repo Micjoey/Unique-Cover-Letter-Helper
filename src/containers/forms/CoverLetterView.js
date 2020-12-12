@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from 'react'
 import {  useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { JobForm } from '../../components/cover_letter/CoverLetterForm'
 import { Grid, Header, Segment} from 'semantic-ui-react';
 import { determineCoverLetter } from '../cover_letters/determineCoverLetterFormat';
@@ -15,6 +15,7 @@ const CoverLetterView = () => {
     const accessToken = localStorage.getItem('access_token')
     const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
     const [formVariables, setFormVariables] = useState({
         job_template_choices: "non-technical-cover-letter",
         recruiter: '',
@@ -87,7 +88,6 @@ const CoverLetterView = () => {
         // }
         Promise.all([userInfo, defaultInfo]).then(() => setLoading(false))
     }, [])
-
     if (!loading) {
         return (
             <Segment placeholder padded="very">
@@ -95,10 +95,10 @@ const CoverLetterView = () => {
                     <Segment>
                         {user.first_name}
                         <Header>
-                            You are missing crucial information! Please navigate to your user profile and fill in at the minimum your first and last name.
+                            You are missing crucial information! Please navigate to the link below and fill in - at the MINIMUM your first and last name.
                         </Header>
                         <p>
-                            <Link to="/user-admin/">Please click here - Account Dashboard</Link> - Then navigate to change account info and update information.
+                            <Link to="/signup-user-details/">Please click here to set your information.</Link>
                         </p>
                     </Segment> 
                 : null

@@ -27,6 +27,7 @@ const PrivateRoute = ({components: Component, ...rest}) => {
 }
 const NeedUserCredentials = ({components: Component, ...rest}) => {
     const state = useHistory().location.state
+
     return (
         state !== undefined ? 
         <PrivateRoute {...rest} render={ props => <Component {...props}/>} />
