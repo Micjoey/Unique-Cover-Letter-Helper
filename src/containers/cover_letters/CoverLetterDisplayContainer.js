@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 import { Link } from 'react-router-dom'
 import { Container, Popup, Segment, SegmentGroup } from 'semantic-ui-react'
-import { job_template_choices } from '../../components/FieldChoices'
 
 
 
@@ -14,12 +13,20 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
     const [user, setUser] = useState({})
     const [loaded, setLoaded] = useState({ isLoaded: false })
     const [currentCoverLetterChoice, setCurrentCoverLetterChoice] = useState(job.template_choices)
-    const template_choices = job_template_choices
     const { register, handleSubmit } = useForm({
         defaultValues: {
             template_choice: job.template_choices,
         }
     })
+
+    const template_choices = {
+        'non-technical-cover-letter': 'Non-technical Cover Letter',
+        'Standard Job Template': 'Standard Job Template',
+        'Triplebyte (message-version)': 'Triplebyte (message-version)',
+        // 'cover-letter': 'Cover Letter',
+        // 'cover-letter-4': 'Template 4',
+        // 'cover-letter-5': 'Template 5',
+    }
 
     const onSubmit = (data) => {
         setCurrentCoverLetterChoice(data['template_choice'])

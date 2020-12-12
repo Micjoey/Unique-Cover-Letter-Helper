@@ -53,13 +53,15 @@ const CoverLetterView = () => {
 
     useEffect(() => {
         props.loading = true
+        setLoading(true)
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        if (userId) {
-           
-            axios.get(`/api/users/${userId}/`)
+        let userInfo = null
+        let defaultInfo = null
+        // if (userId) {
+           userInfo = axios.get(`/api/users/${userId}/`)
                 .then(resp => {
                     setLoading(true)
                     setUserLoading("hidden")
@@ -73,24 +75,19 @@ const CoverLetterView = () => {
                     })
                     props.loading = false
                 })
-                .then(() => {
-                    setLoading(false)
-                })
                 .catch(err => {
                     // console.log(err)
                 })
-            axios.get('/api/defaultInfo/')
+            defaultInfo = axios.get('/api/defaultInfo/')
                 .then(resp => {
-                    setLoading(true)
                     const formValues = resp.data.results[0]
                     const updatedFormVariables = Object.assign({}, formVariables, {...formValues})
                     setFormVariables(updatedFormVariables)
                 })
-                .then(() => setLoading(false))
                 .catch(err => {
-                    return
                 })
-        }
+        // }
+        Promise.all([userInfo, defaultInfo]).then(() => setLoading(false))
     }, [])
 
     if (!loading) {

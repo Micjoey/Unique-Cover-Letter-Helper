@@ -86,11 +86,9 @@ export default Jobs;
 
 
 const dataFields = (jobDetail, jobDetailKeys) => {
-    console.log(jobDetail, jobDetailKeys)
    const jobDetailMap = jobDetailKeys.map(key => {
         if (jobDetail[key] !== '') {
             if (key !== 'id' && formattedJobData[key] !== 'Job Link' && key !== 'belongs_to_user') {
-                console.log("hit in here")
                 return (
                     <div className="job-detail-container" key={`${key} - container`}>
                         <p key={`${key}`} className="job-info-field">{formattedJobData[key]}: </p>
