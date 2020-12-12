@@ -52,8 +52,8 @@ export const JobForm = (props) => {
                 }
             )
     };
-    const specificDropDown = (nameOfDropdown) => {
-        return job.job_template_choices === nameOfDropdown
+    const specificDropDown = (nameOfDropdown, nameOfDropdownTwo = null) => {
+        return job.job_template_choices === nameOfDropdown || job.job_template_choices === nameOfDropdownTwo
     }
 
         
@@ -141,7 +141,7 @@ export const JobForm = (props) => {
                     />
                     <Grid container columns="equal" padded="vertically" verticalAlign="middle" centered>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") ?
                                 <Grid.Column>
                                         <Popup
                                             content="This field fulfills the pre-bullet-point paragraph."
@@ -157,7 +157,7 @@ export const JobForm = (props) => {
                                     :
                                     null
                                 }
-                            {specificDropDown("Standard Job Template") && (job.pre_bullet_point_paragraph_one || job.pre_bullet_point_paragraph_two)  ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.pre_bullet_point_paragraph_one || job.pre_bullet_point_paragraph_two)  ?
                                 <Grid.Column>
                                         <Popup
                                             content="This field fulfills the SECOND pre-bullet-point paragraph."
@@ -175,7 +175,7 @@ export const JobForm = (props) => {
                                 }
                         </Grid.Row>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") ?
                                 <Grid.Column>
                                     <Popup
                                         content="Fill in the YOUR skills that match the JOBS description."
@@ -192,7 +192,7 @@ export const JobForm = (props) => {
                                 :
                                 null
                             }
-                            {specificDropDown("Standard Job Template") && (job.top_skills || job.bullet_point_one) ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.top_skills || job.bullet_point_one) ?
                                 <Grid.Column>
                                         <Form.TextArea
                                             placeholder={job.bullet_point_one ? job.bullet_point_one : `Second Bullet Point `}
@@ -206,7 +206,7 @@ export const JobForm = (props) => {
                             }
                         </Grid.Row>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_one || job.bullet_point_two)?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_one || job.bullet_point_two)?
                                 <Grid.Column>
                                         <Form.TextArea
                                             placeholder={job.bullet_point_two ? job.bullet_point_two : `Third Bullet Point `}
@@ -218,7 +218,7 @@ export const JobForm = (props) => {
                                     :
                                     null
                                 }
-                                {specificDropDown("Standard Job Template") && (job.bullet_point_two  || job.bullet_point_three)? 
+                                {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_two  || job.bullet_point_three)? 
                                 <Grid.Column>
                                         <Form.TextArea
                                             placeholder={job.bullet_point_three ? job.bullet_point_three : `Fourth Bullet Point `}
@@ -232,7 +232,7 @@ export const JobForm = (props) => {
                                 }
                         </Grid.Row>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_three || job.bullet_point_four)?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_three || job.bullet_point_four)?
                                 <Grid.Column>
                                     <Form.TextArea
                                         placeholder={job.bullet_point_five ? job.bullet_point_four : `Fifth Bullet Point `}
@@ -244,7 +244,7 @@ export const JobForm = (props) => {
                                 :
                                 null
                             }
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_four || job.bullet_point_five) ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_four || job.bullet_point_five) ?
                                 <Grid.Column>
                                     <Form.TextArea
                                         placeholder={job.bullet_point_five ? job.bullet_point_five : `Sixth Bullet Point `}
@@ -258,7 +258,7 @@ export const JobForm = (props) => {
                             }
                         </Grid.Row>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_five || job.bullet_point_six) ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_five || job.bullet_point_six) ?
                                 <Grid.Column>
                                         <Form.TextArea
                                             placeholder={job.bullet_point_six ? job.bullet_point_six : `Seventh Bullet Point `}
@@ -270,7 +270,7 @@ export const JobForm = (props) => {
                                 :
                                 null
                             }
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_six || job.bullet_point_seven) ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_six || job.bullet_point_seven) ?
                                 <Grid.Column>
                                     <Form.TextArea
                                         placeholder={job.bullet_point_seven ? job.bullet_point_seven : `Eigth Bullet Point `}
@@ -284,7 +284,7 @@ export const JobForm = (props) => {
                             }
                         </Grid.Row>
                         <Grid.Row>
-                            {specificDropDown("Standard Job Template") && (job.bullet_point_seven || job.bullet_point_eight) ?
+                            {specificDropDown("Standard Job Template", "Triplebyte (message-version)") && (job.bullet_point_seven || job.bullet_point_eight) ?
                                 <Grid.Column>
                                         <Form.TextArea
                                             placeholder={job.bullet_point_eight ? job.bullet_point_eight : `Ninth Bullet Point `}
