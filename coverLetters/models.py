@@ -53,7 +53,7 @@ class DefaultInfo(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created_date', '-modified_date']
+        ordering = ['-created_date', '-modified_date', '-id']
         get_latest_by = ['-created_date', 'modified_date']
 
     def __str__(self):
@@ -84,7 +84,7 @@ class User(AbstractUser):
     created_date = models.DateField(auto_now_add=True, blank=True)
 
     class Meta:
-        ordering = ['-modified_date']
+        ordering = ['-modified_date', '-id']
         UniqueConstraint(fields=['email_address'], name='unique_email')
     
     def __str__(self):

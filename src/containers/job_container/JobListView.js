@@ -14,6 +14,7 @@ import {
 } from 'semantic-ui-react'
 import { useSelector } from 'react-redux';
 import CoverLetterView from '../forms/CoverLetterView';
+import { loadingPageInverted } from '../../components/LoadingPage';
 
 
 const JobList = () => {
@@ -110,9 +111,7 @@ const JobList = () => {
         }
     } else {
         return (
-            <div>
-                <h1>Loading</h1>
-            </div>
+            loadingPageInverted()
         )
     }
 

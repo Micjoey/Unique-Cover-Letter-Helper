@@ -7,13 +7,15 @@ import { determineCoverLetter } from '../cover_letters/determineCoverLetterForma
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import rg4js from 'raygun4js';
+import { loadingPage } from '../../components/LoadingPage'
 
 
 const CoverLetterView = () => {
     const [user, setUser] = useState({})
     const accessToken = localStorage.getItem('access_token')
     const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
-    
+    const [loading, setLoading] = useState(false)
+    const [userloading, setUserLoading] = useState(false)
     const [formVariables, setFormVariables] = useState({
         job_template_choices: "non-technical-cover-letter",
         recruiter: '',
@@ -56,8 +58,11 @@ const CoverLetterView = () => {
             Authorization: `Bearer ${accessToken}`
         }
         if (userId) {
+           
             axios.get(`/api/users/${userId}/`)
                 .then(resp => {
+                    setLoading(true)
+                    setUserLoading("hidden")
                     setUser(resp.data)
                     rg4js('setUser', {
                         identifier: `${resp.data.username}`,
@@ -68,48 +73,63 @@ const CoverLetterView = () => {
                     })
                     props.loading = false
                 })
+                .then(() => {
+                    setLoading(false)
+                })
                 .catch(err => {
                     // console.log(err)
                 })
             axios.get('/api/defaultInfo/')
                 .then(resp => {
+                    setLoading(true)
                     const formValues = resp.data.results[0]
                     const updatedFormVariables = Object.assign({}, formVariables, {...formValues})
                     setFormVariables(updatedFormVariables)
                 })
+                .then(() => setLoading(false))
+                .catch(err => {
+                    return
+                })
         }
     }, [])
-    return (
-        <Segment placeholder padded="very">
-            { !user.first_name ?
-                <Segment>
-                    {user.first_name}
-                    <Header>
-                        You are missing crucial information! Please navigate to your user profile and fill in at the minimum your first and last name.
-                    </Header>
-                    <p>
-                        <Link to="/user-admin/">Please click here - Account Dashboard</Link> - Then navigate to change account info and update information.
-                    </p>
-                </Segment> 
-            : null
-            }
-            <Grid columns={2} stackable>
-                <Grid.Row>
-                    <Grid.Column verticalAlign="left">
-                        <Segment inverted >
-                            <JobForm job={formVariables} setFormVariables={setFormVariables} user={user}/>
-                        </Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        {determineCoverLetter(
-                                    formVariables.job_template_choices,
-                                    formVariables,
-                                    user)}
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </Segment>
-    )
+
+    if (!loading) {
+        return (
+            <Segment placeholder padded="very">
+                { !user.first_name && !userloading ?
+                    <Segment style={{display: userloading}}>
+                        {user.first_name}
+                        <Header>
+                            You are missing crucial information! Please navigate to your user profile and fill in at the minimum your first and last name.
+                        </Header>
+                        <p>
+                            <Link to="/user-admin/">Please click here - Account Dashboard</Link> - Then navigate to change account info and update information.
+                        </p>
+                    </Segment> 
+                : null
+                }
+                <Grid columns={2} stackable>
+                    <Grid.Row>
+                        <Grid.Column verticalAlign="left">
+                            <Segment inverted >
+                                <JobForm job={formVariables} setFormVariables={setFormVariables} user={user}/>
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            {determineCoverLetter(
+                                        formVariables.job_template_choices,
+                                        formVariables,
+                                        user)}
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Segment>
+        )
+    } else {
+        return (
+            loadingPage
+        )
+    }
 }
 
 export default CoverLetterView
