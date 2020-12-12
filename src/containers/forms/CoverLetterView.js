@@ -15,7 +15,6 @@ const CoverLetterView = () => {
     const accessToken = localStorage.getItem('access_token')
     const userId = accessToken !== null ? jwtDecode(accessToken).user_id : null
     const [loading, setLoading] = useState(false)
-    const [userloading, setUserLoading] = useState(false)
     const [formVariables, setFormVariables] = useState({
         job_template_choices: "non-technical-cover-letter",
         recruiter: '',
@@ -64,7 +63,6 @@ const CoverLetterView = () => {
            userInfo = axios.get(`/api/users/${userId}/`)
                 .then(resp => {
                     setLoading(true)
-                    setUserLoading("hidden")
                     setUser(resp.data)
                     rg4js('setUser', {
                         identifier: `${resp.data.username}`,
@@ -93,8 +91,8 @@ const CoverLetterView = () => {
     if (!loading) {
         return (
             <Segment placeholder padded="very">
-                { !user.first_name && !userloading ?
-                    <Segment style={{display: userloading}}>
+                { !user.first_name && !loading ?
+                    <Segment>
                         {user.first_name}
                         <Header>
                             You are missing crucial information! Please navigate to your user profile and fill in at the minimum your first and last name.
