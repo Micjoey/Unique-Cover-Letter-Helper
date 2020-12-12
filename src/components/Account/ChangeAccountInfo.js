@@ -109,6 +109,9 @@ const ChangeAccountInfo = (props) => {
                                             type="text"
                                             name={"first_name"}
                                             ref={register()}
+                                            minLength={1}
+                                            maxLength={30}
+                                            required
                                         />
                                     </Form.Field>
                                 </Table.Cell>
@@ -127,6 +130,7 @@ const ChangeAccountInfo = (props) => {
                                             type="text"
                                             name={"middle_name"}
                                             ref={register()}
+
                                         />
                                     </Form.Field>
                                 </Table.Cell>
@@ -142,6 +146,9 @@ const ChangeAccountInfo = (props) => {
                                             type="text"
                                             name={"last_name"}
                                             ref={register()}
+                                            minLength={1}
+                                            maxLength={30}
+                                            required
                                         />
                                     </Form.Field>
                                 </Table.Cell>
