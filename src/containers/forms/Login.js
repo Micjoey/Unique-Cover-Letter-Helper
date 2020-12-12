@@ -48,7 +48,7 @@ const Login = () => {
         <div className="login-form">
             <Segment size="large">
                 <Segment placeholder inverted style={{minWidth: "10vh"}}>
-                    <Grid columns={2} relaxed='very' stackable>
+                    <Grid columns={1} relaxed='very' stackable>
                         <Grid.Column>
                             <Form onSubmit={handleSubmit(onFinish)} loading={props.loading} error={errorMessage !== null} inverted>
                                 {errorMessage && (<Message error heading="There was an error." content={errorMessage} />)}
@@ -78,13 +78,14 @@ const Login = () => {
 
                                 <Button primary type="submit" loading={loading} disabled={loading}>Login</Button>
                             </Form>
+                            <Divider horizontal inverted>Or</Divider>
+                        {/* <Grid.Column verticalAlign='middle'> */}
+                            <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
+                        {/* </Grid.Column> */}
                         </Grid.Column>
 
-                        <Grid.Column verticalAlign='middle'>
-                            <Button content='Sign up' icon='signup' size='big' onClick={() => history.push("/signup")}/>
-                        </Grid.Column>
                     </Grid>
-                    <Divider vertical inverted>Or</Divider>
+                    
                 </Segment>
             </Segment>
         </div>
