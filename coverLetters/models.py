@@ -57,12 +57,14 @@ class DefaultInfo(models.Model):
         get_latest_by = ['-created_date', 'modified_date']
 
     def __str__(self):
-        return 'ID ' + str(self.id)
+        return 'ID ' + str(self.id) 
+
 
 
 class User(AbstractUser):
-    defaultInfoObject = DefaultInfo.objects.create()
-    currentId = defaultInfoObject.id
+    # defaultInfoObject = DefaultInfo.objects.create()
+    # currentId = defaultInfoObject.id
+
     first_name = models.CharField(max_length=200, blank=False)
     middle_name = models.CharField(max_length=200,  blank=True)
     last_name = models.CharField(max_length=200, blank=False)
@@ -76,7 +78,7 @@ class User(AbstractUser):
     state_address = models.CharField(blank=True, max_length=200,)
     zip_code = models.CharField(blank=True, max_length=200,)
     default_info = models.OneToOneField(
-        DefaultInfo, on_delete=models.CASCADE, default=currentId, blank=True)
+        DefaultInfo, on_delete=models.CASCADE, blank=True)
     modified_date = models.DateField(auto_now=True, blank=True)
     created_date = models.DateField(auto_now_add=True, blank=True)
 
@@ -87,6 +89,11 @@ class User(AbstractUser):
     def __str__(self):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 
+    # def save(self, *args, **kwargs):
+    #     if not self.default_info:
+    #         newDefault = DefaultInfo.objects.create()
+    #         self.default_info = DefaultInfo.objects.last()
+    #     super().save(*args, **kwargs)
 
 
 class Job(models.Model):
@@ -156,6 +163,8 @@ class Job(models.Model):
         if not self.job_posting_website:
             self.job_posting_website = self.company
         super().save(*args, **kwargs)
+
+    
 
 
 
