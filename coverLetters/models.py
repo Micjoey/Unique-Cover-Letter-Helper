@@ -89,11 +89,10 @@ class User(AbstractUser):
     def __str__(self):
         return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.default_info:
-    #         newDefault = DefaultInfo.objects.create()
-    #         self.default_info = DefaultInfo.objects.last()
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.default_info = DefaultInfo.objects.create()
+        super().save(*args, **kwargs)
 
 
 class Job(models.Model):

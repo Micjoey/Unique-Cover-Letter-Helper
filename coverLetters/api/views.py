@@ -51,10 +51,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         defaultId = self.request.user.default_info.id
-        defaultValue = DefaultInfo.objects.get(id=defaultId)
-        defaultValue.delete()
+        if defaultId:
+            defaultValue = DefaultInfo.objects.get(id=defaultId)
+            defaultValue.delete()
         self.request.user.delete()
         return Response(data="delete successful")
+
+
+
 
 
 
