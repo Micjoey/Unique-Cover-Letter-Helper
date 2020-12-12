@@ -26,18 +26,18 @@ const FooterPage = () => {
                         <Grid.Column width={3}>
                             <Header inverted as='h4' content='About' />
                             <List link inverted>
-                                <List.Item as='a'>About</List.Item>
-                                <List.Item as='a'>FAQ</List.Item>
-                                <List.Item as='a'>How To Access</List.Item>
+                                {/* <List.Item as='a'>About</List.Item> */}
+                                {/* <List.Item as='a'>FAQ</List.Item> */}
+                                {/* <List.Item as='a'>How To Access</List.Item> */}
                                 {/* <List.Item as='a'>Favorite X-Men</List.Item> */}
                             </List>
                         </Grid.Column>
                         <Grid.Column width={7}>
                             <Header as='h4' inverted>
-                                Footer Header
+                                Comments and suggestions wanted!
                             </Header>
                             <p>
-                                Any suggestions or comments please send to
+                                Any suggestions or comments please send to <a href="mailto: admin@uniquecoverlettergenerator.com">Send Email</a>
                             </p>
                         </Grid.Column>
                     </Grid.Row>
