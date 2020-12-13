@@ -58,7 +58,11 @@ class DefaultInfo(models.Model):
 
     def __str__(self):
         user = User.objects.get(default_info = self)
-        return 'ID ' + str(self.id) + " - " + user.first_name + " " + user.last_name
+        if (not user.first_name) {
+            return 'ID ' + str(self.id) + " - " + user.email
+        } else {
+            return 'ID ' + str(self.id) + " - " + user.first_name + " " + user.last_name
+        }
 
 
 

@@ -59,9 +59,22 @@ const AccountDetailsForm = () => {
 
     }
 
+    const pageLoad = () => {
+        confirmAlert({
+            title: `Please fill in.`,
+            message: `For this next page, please fill in as much information as you can.  The First Name and Last Name are required.`,
+            buttons: [
+                {
+                    label: 'continue',
+                }
+                ,
+            ]
+        })
+    }
+
     return (
         <div className="login-form">
-            <Segment placeholder>
+            <Segment placeholder onClick={confirmAlert()}>
                 <Grid stackable="true" >
                     <Grid.Column stackable={true}>
                         <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
@@ -128,7 +141,6 @@ const AccountDetailsForm = () => {
                                             <Table.Cell textAlign="center" verticalAlign="middle">Cover Letter Information </Table.Cell>
                                             <Table.Cell>
                                                 <Form.Field name="phone_number">
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`Phone Number:`}
                                                         defaultValue={""}
@@ -138,7 +150,6 @@ const AccountDetailsForm = () => {
                                                     />
                                                 </Form.Field>
                                                 <Form.Field name="LinkedIn">
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`LinkedIn:`}
                                                         defaultValue={""}
@@ -148,7 +159,6 @@ const AccountDetailsForm = () => {
                                                     />
                                                 </Form.Field>
                                                 <Form.Field name="github">
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`Github:`}
                                                         defaultValue={""}
@@ -158,7 +168,6 @@ const AccountDetailsForm = () => {
                                                     />
                                                 </Form.Field>
                                                 <Form.Field name="portfolioWebsite">
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`Portfolio Website:`}
                                                         defaultValue={""}
@@ -173,7 +182,6 @@ const AccountDetailsForm = () => {
                                             <Table.Cell textAlign="center" verticalAlign="middle">Address: </Table.Cell>
                                             <Table.Cell>
                                                 <Form.Field>
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`Street Address:`}
                                                         defaultValue={""}
@@ -183,7 +191,6 @@ const AccountDetailsForm = () => {
                                                     />
                                                 </Form.Field>
                                                 <Form.Field>
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`City Address:`}
                                                         defaultValue={""}
@@ -193,7 +200,6 @@ const AccountDetailsForm = () => {
                                                     />
                                                 </Form.Field>
                                                 <Form.Field>
-                                                    {/* <label>Confirm Email</label> */}
                                                     <input
                                                         placeholder={`State Address:`}
                                                         defaultValue={""}
