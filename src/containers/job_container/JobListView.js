@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import { useHistory } from 'react-router-dom';
 
 import Jobs from '../../components/jobInfo/AllJobs'
 import Pagination from '../../components/pagination/Pagination'
-import { JobForm } from '../../components/cover_letter/CoverLetterForm';
 import * as actions from '../../store/actions/Auth'
 import {
     Container,
@@ -18,8 +16,7 @@ import { loadingPageInverted } from '../../components/LoadingPage';
 
 
 const JobList = () => {
-    let history = useHistory()
-
+    
     const [accessToken] = useState(localStorage.getItem('access_token'))
     const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
@@ -35,6 +32,7 @@ const JobList = () => {
             loading: state.loading,
             error: state.error
         }))
+    console.log(props)
 
     useEffect(() => {
 

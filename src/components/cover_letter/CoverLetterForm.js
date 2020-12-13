@@ -107,6 +107,12 @@ export const JobForm = (props) => {
                     />
                     <Form.Input 
                         type="text" 
+                        placeholder={job.city ? job.city : "City"}
+                        name="city"
+                        onChange={handleChange}
+                    />
+                    <Form.Input 
+                        type="text" 
                         placeholder={job.recruiter ? job.recruiter : "Recruiter's Name"}
                         name="recruiter"
                         onChange={handleChange}
