@@ -44,16 +44,20 @@ export const JobForm = (props) => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
+        if (!job.job_posting_website) {
+            job.job_posting_website = job.company
+        }
+        console.log(job, "after")
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
             .catch(errors => 
                 {
-                    // {console.log(errors)}
+                    // console.log(errors)
                 }
             )
     };
     const specificDropDown = (nameOfDropdown, nameOfDropdownTwo = null) => {
-        return job.job_template_choices === nameOfDropdown || job.job_template_choices === nameOfDropdownTwo
+        return job.template_choices === nameOfDropdown || job.template_choices === nameOfDropdownTwo
     }
 
         
@@ -79,9 +83,9 @@ export const JobForm = (props) => {
                         required
                         placeholder="Choose Template" 
                         options={job_template_choices} 
-                        name="job_template_choices"
+                        name="template_choices"
                         onChange={handleChange}
-                        defaultValue={job.job_template_choices}
+                        defaultValue={job.template_choices}
                     />
                     <Form.Select 
                         placeholder="Choose Job Stage" 
@@ -118,14 +122,15 @@ export const JobForm = (props) => {
                         onChange={handleChange}
                     />
                     <Popup
-                        content={`I.e LinkedIn or Google. It will default to the ${job.company}.`}
+                        content={`I.e LinkedIn or Google. It will default to ${job.company}.`}
                         trigger={
                         <Form.Input 
                             type="text" 
-                            placeholder={job.job_posting_website ? job.job_posting_website : "Hosting Website"}
+                            placeholder={job.job_posting_website ? job.job_posting_website : "**Hosting Website**"}
                             name="job_posting_website"
                             onChange={handleChange}
                             defaultValue={job.job_posting_website}
+                            // required
                         />}
                     />
                     <Popup

@@ -58,7 +58,7 @@ export const UpdateJobForm = (props) => {
                             // defaultValue={job.template_choices}
                             defaultValue={job.template_choices}
                             options={job_template_choices}
-                            name="job_template_choices"
+                            name="template_choices"
                             onChange={handleChange}
                         />
                     </List.Item>

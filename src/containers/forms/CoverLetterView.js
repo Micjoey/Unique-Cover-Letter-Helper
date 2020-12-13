@@ -17,7 +17,7 @@ const CoverLetterView = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [formVariables, setFormVariables] = useState({
-        job_template_choices: "non-technical-cover-letter",
+        template_choices: "non-technical-cover-letter",
         recruiter: '',
         position_title: '',
         job_stage: 'Initial',
@@ -112,7 +112,7 @@ const CoverLetterView = () => {
                         </Grid.Column>
                         <Grid.Column>
                             {determineCoverLetter(
-                                        formVariables.job_template_choices,
+                                formVariables.template_choices,
                                         formVariables,
                                         user)}
                         </Grid.Column>
