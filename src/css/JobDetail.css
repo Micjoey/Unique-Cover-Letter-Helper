@@ -37,8 +37,12 @@
     /* display: flex; */
 }
 
-.update-job-container, .cover-letter-container {
+.update-job-container {
     display: none;
+}
+
+.cover-letter-container {
+    display: block;
 }
 
 
@@ -65,5 +69,5 @@
 }
 
 .job-and-cover-letter-container {
-    display: flex;
+    display: none;
 }

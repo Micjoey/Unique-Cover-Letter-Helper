@@ -46,17 +46,17 @@ const JobDetailView = () => {
             <Container>
                 <Segment className="hide-buttons" inverted>
                     <Button 
-                        id="show-job-update-button" 
-                        onClick={() => reveal("update-job-container","show-job-update-button")}
+                        id="job-update-button" 
+                        onClick={() => reveal("update-job-container","job-update-button")}
                         >Show Update Job Form</Button>
                     <Button 
-                        id="show-cover-letter-button" 
-                        onClick={() => reveal('cover-letter-container', "show-cover-letter-button")}
-                        >Show Cover Letter</Button>
+                        id="cover-letter-button" 
+                        onClick={() => reveal('cover-letter-container', "cover-letter-button")}
+                        >Hide Cover Letter</Button>
                     <Button 
-                        id="hide-job-details-button" 
-                        onClick={() => reveal('job-detail', "hide-job-details-button")}
-                        >Hide Job Details</Button>
+                        id="job-details-button" 
+                        onClick={() => reveal('job-and-cover-letter-container', "job-details-button")}
+                        >Show Job Details</Button>
                 </Segment>
                 <Container className="job-container">
                     <SegmentGroup>
@@ -88,21 +88,26 @@ export default JobDetailView
 
 const reveal = (divToHide, button) => {
     const div = document.getElementsByClassName(divToHide)[0]
+    const buttonToChange = document.getElementById(button)
     const coverLetter = document.getElementsByClassName("cover-letter-container")[0]
-    const coverLetterButton = document.getElementById("show-cover-letter-button")
-    if (divToHide !== "job-detail") {
-        div.style.display === '' ? div.style.display = 'block' : div.style.display = ''
-        
-    } else {
-        div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
-        if (coverLetter.style.display === 'none' || coverLetter.style.display === '')  {
-            coverLetter.style.display = 'block'
-            coverLetterButton.innerText = coverLetterButton.innerText.replace("Show", "Hide")
-        } else {
-            coverLetter.style.display = ''
-        }
-    } 
+    const jobDetail = document.getElementsByClassName("job-and-cover-letter-container")[0]
+    const jobDetailButton = document.getElementById("job-details-button")
+    const coverLetterButton = document.getElementById("cover-letter-button")
 
+    div.style.display === '' || div.style.display === 'none' ? div.style.display = 'block' : div.style.display = 'none'
+    
+    // if (coverLetter.style.display === 'none' && jobDetail.style.display === 'none' && div.style.display === 'none') {
+    //     coverLetter.style.display = 'block'
+    // } else if (coverLetter.style.display === '' && jobDetail.style.display === '' && div.style.display === '') {
+    //     coverLetter.style.display = 'block'
+    // } 
+    
+    
+    if (div.style.display !== 'block') {
+        buttonToChange.innerText = buttonToChange.innerText.replace("Show", "Hide")
+    } else {
+        buttonToChange.innerText = buttonToChange.innerText.replace("Hide", "Show")
+    }
 
     let buttonTxt = document.getElementById(button)
     if (buttonTxt.innerText.includes("Hide")) {
@@ -112,5 +117,16 @@ const reveal = (divToHide, button) => {
         buttonTxt.innerText = buttonTxt.innerText.replace("Show", "Hide")
         buttonTxt.style.backgroundColor = "grey"
         
+    }
+    if (jobDetailButton.innerText.includes('Show') && coverLetterButton.innerText.includes('Show') && buttonToChange.innerText.includes('Show')) {
+        coverLetter.style.display = 'block'
+        if (coverLetterButton.innerText.includes("Hide")) {
+            coverLetterButton.innerText = coverLetterButton.innerText.replace("Hide", "Show")
+            coverLetterButton.style.backgroundColor = "#e0e1e2"
+        } else {
+            coverLetterButton.innerText = coverLetterButton.innerText.replace("Show", "Hide")
+            coverLetterButton.style.backgroundColor = "grey"
+
+        }
     }
 }

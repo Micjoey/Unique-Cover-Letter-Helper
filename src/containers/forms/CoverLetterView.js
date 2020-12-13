@@ -111,6 +111,12 @@ const CoverLetterView = () => {
                             </Segment>
                         </Grid.Column>
                         <Grid.Column>
+                            <Segment>
+                                <Header
+                                    as="h3"
+                                    content="Cover Letter Preview"
+                                />
+                            </Segment>
                             {determineCoverLetter(
                                 formVariables.template_choices,
                                         formVariables,
