@@ -152,6 +152,8 @@ class Job(models.Model):
         ordering = ['-created_date', '-modified_date', '-position_title']
         get_latest_by = ['-created_date', 'modified_date']
 
+
+
     def __str__(self):
         return self.company + ' ' + self.position_title + ' - Last Modified: ' + str(self.modified_date) + ' - ' + self.template_choices + " - " + self.belongs_to_user.first_name + " " + self.belongs_to_user.last_name
 

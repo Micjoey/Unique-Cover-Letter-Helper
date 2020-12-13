@@ -32,7 +32,6 @@ const JobList = () => {
             loading: state.loading,
             error: state.error
         }))
-    console.log(props)
 
     useEffect(() => {
 

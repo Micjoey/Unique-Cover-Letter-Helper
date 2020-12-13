@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import { Button, Container, Form, Grid, Header, Input, Popup, Segment, Select } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Header, Message, Popup, Segment } from "semantic-ui-react";
 import { job_template_choices, job_stages } from "../FieldChoices";
 import { confirmAlert } from "react-confirm-alert";
 
@@ -10,7 +10,8 @@ import { confirmAlert } from "react-confirm-alert";
 export const JobForm = (props) => {
     const job = props.job
     const history = useHistory()
-    const { register, watch, errors, handleSubmit} = useForm({
+    const [error, setError] = useState({})
+    const { register, watch, handleSubmit} = useForm({
         reValidateMode: 'onChange'
     })
     const [accessToken] = useState(localStorage.getItem('access_token'))
@@ -47,12 +48,24 @@ export const JobForm = (props) => {
         if (!job.job_posting_website) {
             job.job_posting_website = job.company
         }
-        console.log(job, "after")
+
+
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
-            .catch(errors => 
-                {
-                    // console.log(errors)
+            .catch(error => 
+                {   
+                const errors = Object.values(error.response.data)
+                let errorMessage = ""
+                errors.map(eArray => {
+                    eArray.map(e => {
+                        if (e.includes("fields link, position_title, belongs_to_user")) {
+                            setError("You have already applied to this job!")
+                        } else {
+                            errorMessage += e
+                        }
+                    })
+                })
+                // setError(errorMessage)
                 }
             )
     };
@@ -65,19 +78,20 @@ export const JobForm = (props) => {
     return (
         <Container>
             <Segment inverted>
-                <Form onSubmit={handleSubmit(onSubmit)} >
-                    <Header
-                        as='h3'
-                        content='Create Cover Letter'
-                        inverted
-                        style={{
-                            fontSize: '4em',
-                            fontWeight: 'normal',
-                        }}
-                        textAlign="center"
-                    />
-                    <Button secondary onClick={() => areYouSure()}>Set Default Values</Button>
-                    <br/>
+                <Header
+                    as='h3'
+                    content='Create Cover Letter'
+                    inverted
+                    style={{
+                        fontSize: '4em',
+                        fontWeight: 'normal',
+                    }}
+                    textAlign="center"
+                />
+                <Button secondary onClick={() => areYouSure()}>Set Default Values</Button>
+                <br/>
+                <Form onSubmit={handleSubmit(onSubmit)} error={error.length > 0}>
+                    
                     <Form.Select
                         fluid
                         required
@@ -310,6 +324,7 @@ export const JobForm = (props) => {
 
                         </Grid.Row>
                     </Grid>
+                    {error.length && (<Message error heading="There was an error" content={error} />)}
                     <Form.Button primary content="Create Cover Letter"/>
                     
                 </Form>

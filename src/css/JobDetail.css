@@ -71,3 +71,8 @@
 .job-and-cover-letter-container {
     display: none;
 }
+
+.header-title {
+    font-size: '4em';
+    font-weight: 'normal';
+}
