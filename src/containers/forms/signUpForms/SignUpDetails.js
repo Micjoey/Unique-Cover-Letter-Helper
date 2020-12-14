@@ -16,7 +16,7 @@ const AccountDetailsForm = () => {
     const [errorMessage, setErrorMessage] = useState({})
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
-
+    const [alerted, setAlerted] = useState(false)
 
     const onSubmit = data => {
         const navBar = document.getElementsByClassName("nav-bar")[0]
@@ -60,16 +60,22 @@ const AccountDetailsForm = () => {
     }
 
     const pageLoad = () => {
-        confirmAlert({
-            title: `Please fill in.`,
-            message: `For this next page, please fill in as much information as you can.  The First Name and Last Name are required.`,
-            buttons: [
-                {
-                    label: 'continue',
-                }
-                ,
-            ]
-        })
+        if (!alerted) {
+            confirmAlert({
+                title: `Please fill in.`,
+                message: `For this next page, please fill in as much information as you can.  The First Name and Last Name are required.`,
+                buttons: [
+                    {
+                        label: 'continue',
+                        onClick: () => {
+                            setAlerted(true)
+                        }
+                    }
+                    ,
+                ]
+            })
+            setAlerted(true)
+        }
     }
 
     return (
