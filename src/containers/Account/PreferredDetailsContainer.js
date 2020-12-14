@@ -31,6 +31,13 @@ const PreferredDetailsContainer = () => {
         axios.get(`/api/users/${userId}/`)
             .then(resp => {
                 setUser(resp.data)
+                rg4js('setUser', {
+                    identifier: `${resp.data.username}`,
+                    isAnonymous: false,
+                    email: `${resp.data.email}`,
+                    firstName: `${resp.data.first_name}`,
+                    fullName: `${resp.data.first_name} ${resp.data.last_name}`
+                })
             })
             .catch(err => {
                 // console.log(err)

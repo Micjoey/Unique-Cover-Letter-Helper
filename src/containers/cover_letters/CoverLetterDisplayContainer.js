@@ -40,6 +40,13 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
         axios.get(`/api/users/${userId}/`)
             .then(res => {
                 setUser(res.data)
+                rg4js('setUser', {
+                    identifier: `${resp.data.username}`,
+                    isAnonymous: false,
+                    email: `${resp.data.email}`,
+                    firstName: `${resp.data.first_name}`,
+                    fullName: `${resp.data.first_name} ${resp.data.last_name}`
+                })
             }).then(() => {
                 setLoaded({ isLoaded: true })
             })

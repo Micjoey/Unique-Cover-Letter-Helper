@@ -92,7 +92,10 @@ class User(AbstractUser):
         UniqueConstraint(fields=['email_address'], name='unique_email')
     
     def __str__(self):
-        return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
+        if (not self.first_name):
+            return 'ID ' + str(self.id) + ' - ' + self.username
+        else:
+            return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 
     def save(self, *args, **kwargs):
         if not self.id:

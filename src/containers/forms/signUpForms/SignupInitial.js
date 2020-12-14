@@ -20,18 +20,19 @@ const RegistrationForm = () => {
     const history = useHistory()
     const [loading] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null)
-    const props = useSelector(state => (
-        {
-            ...state,
-            isAuthenticated: localStorage.getItem('access_token') !== null,
-            loading: state.loading,
-            error: state.error
-        }))
+    // const props = useSelector(state => (
+    //     {
+    //         ...state,
+    //         isAuthenticated: localStorage.getItem('access_token') !== null,
+    //         loading: state.loading,
+    //         error: state.error
+    //     }))
     const { register, handleSubmit } = useForm()
     const dispatch = useDispatch()
     const onAuth = useCallback(
         ({ ...values }) => dispatch(actions.authSignUp(values, setErrorMessage, true, history))
     )
+
     const onSubmit = (values) => {
         const data = {...values}
         const passwordCheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
