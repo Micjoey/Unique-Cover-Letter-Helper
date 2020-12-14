@@ -60,7 +60,6 @@ const JobDetailView = () => {
                 </Segment>
                 <Container className="job-container">
                     <SegmentGroup>
-
                         <Segment className="job-and-cover-letter-container" inverted>
                             <JobDetail jobDetail={job} userId={userId} accessToken={accessToken} history={history}/>
                         </Segment>

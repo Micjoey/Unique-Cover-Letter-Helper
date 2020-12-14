@@ -23,8 +23,8 @@ const PrivateRoute = ({components: Component, ...rest}) => {
         :
         <Redirect to="/login"/>
     )
-    
 }
+
 const NeedUserCredentials = ({components: Component, ...rest}) => {
     const state = useHistory().location.state
 

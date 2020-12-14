@@ -37,6 +37,7 @@ const StandardCoverLetter = (props) => {
                                     :
                                     <p> Dear Hiring Manager:</p>}
                             </div>
+                            <br/>
                             <p>
                                 As advertised on the {job.job_posting_website ? ` ${job.job_posting_website } ` : ` ${ job.company } ` } website, your need for a
                                 {` ${job.position_title} ` } is an excellent match to my background 

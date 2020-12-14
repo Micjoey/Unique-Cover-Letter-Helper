@@ -5,11 +5,8 @@ import { useHistory } from 'react-router-dom'
 import {
     Button,
     Container,
-    Divider,
-    Grid,
     Header,
     Icon,
-    List,
     Menu,
     Segment,
     Sidebar,

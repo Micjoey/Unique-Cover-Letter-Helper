@@ -44,6 +44,7 @@ const NonTechnicalCoverLetter = (props) => {
                                 :
                                 <p> Dear Hiring Manager:</p>}
                             </div>
+                            <br/>
                             <p>
                                 Thank you for the opportunity to apply for the {` ${job.position_title} `} 
                                 role at your company{job.company ? ` - ${ job.company }` : null}.
