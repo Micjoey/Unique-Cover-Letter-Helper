@@ -74,7 +74,7 @@ const AccountDetailsForm = () => {
 
     return (
         <div className="login-form">
-            <Segment placeholder onClick={confirmAlert()}>
+            <Segment placeholder onClick={pageLoad()}>
                 <Grid stackable="true" >
                     <Grid.Column stackable={true}>
                         <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
