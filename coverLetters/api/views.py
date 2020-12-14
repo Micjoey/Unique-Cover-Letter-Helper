@@ -54,7 +54,6 @@ class UserViewSet(viewsets.ModelViewSet):
         if defaultId:
             defaultValue = DefaultInfo.objects.get(id=defaultId)
             defaultValue.delete()
-        self.request.user.delete()
         return Response(data="delete successful")
 
     

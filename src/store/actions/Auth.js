@@ -117,7 +117,7 @@ export const authSignUp = (data, setErrorMessage, justSignedUp, history) => {
 export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('access_token')
-        const refresh_token = localStorage.getItem('refresh_token')
+        // const refresh_token = localStorage.getItem('refresh_token')
         if (token === undefined) {
             dispatch(logout())
         } 
