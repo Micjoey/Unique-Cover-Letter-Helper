@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+import rg4js from 'raygun4js';
 import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
 import { loadingPage } from '../LoadingPage';
@@ -21,7 +22,6 @@ const ChangeEmail = (props) => {
     const [loading, setLoading] = useState(false)
     const accessToken = localStorage.getItem('access_token')
     const userId = jwtDecode(accessToken).user_id
-    const [loaded, isLoaded] = useState(false)
     const history = useHistory()
     useEffect(() => {
         axios.get(`/api/users/${userId}/`, { userId: userId })
@@ -36,7 +36,7 @@ const ChangeEmail = (props) => {
                 })
             })
             .then(() => {
-                isLoaded(true)
+                setLoading(true)
             })
             .catch(err => {
                 // console.log(err)

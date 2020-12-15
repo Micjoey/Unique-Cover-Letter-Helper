@@ -5,7 +5,7 @@ import './css/App.css';
 import Header from './containers/Banners/Header/NavBar';
 import FooterPage from './containers/Banners/Footer/FooterBar';
 import {
-  Container, Segment,
+  Segment,
 } from 'semantic-ui-react'
 import { createBrowserHistory } from 'history';
 import rg4js from 'raygun4js';

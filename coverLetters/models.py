@@ -93,7 +93,7 @@ class User(AbstractUser):
     
     def __str__(self):
         if (not self.first_name):
-            return 'ID ' + str(self.id) + ' - ' + self.username
+            return 'ID ' + str(self.id) + ' - ' + self.username + " - username"
         else:
             return 'ID ' + str(self.id) + ' - ' + self.first_name + ' ' + self.last_name
 

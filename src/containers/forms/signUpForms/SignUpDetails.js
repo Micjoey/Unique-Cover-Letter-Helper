@@ -4,19 +4,36 @@ import {
     Button, Grid,
     Segment, Table, 
 } from 'semantic-ui-react'
-import { useHistory } from 'react-router-dom';
+import { Prompt, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode';
 import { confirmAlert } from 'react-confirm-alert';
+import rg4js from 'raygun4js';
+
 
 const AccountDetailsForm = () => {
     const history = useHistory()
-    // const [requiredFields, setRequiredFields] = useState({})
+    const [requiredFields, setRequiredFields] = useState({
+        first_name: "",
+        last_name: "",
+    })
     const [errorMessage, setErrorMessage] = useState({})
     const { register, handleSubmit } = useForm({})
     const [loading, setLoading] = useState(false)
     const [alerted, setAlerted] = useState(false)
+    const handleChange = (event, name) => {
+        event.persist()
+        let tempString = ""
+        if (!requiredFields[name]) {    
+            tempString = requiredFields[name]
+        }
+        setRequiredFields(prevState => ({
+            ...prevState,
+            [name]: tempString + event.nativeEvent.data
+        }));
+    }
+
 
     const onSubmit = data => {
         const navBar = document.getElementsByClassName("nav-bar")[0]
@@ -28,41 +45,45 @@ const AccountDetailsForm = () => {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
         }
-        axios.patch(`/api/users/${userId}/`, data)
-            .then(resp => {
-                rg4js('setUser', {
-                    identifier: `${resp.data.username}`,
-                    isAnonymous: false,
-                    email: `${resp.data.email}`,
-                    firstName: `${resp.data.first_name}`,
-                    fullName: `${resp.data.first_name} ${resp.data.last_name}`
+        if (data.first_name && data.last_name) {
+            axios.patch(`/api/users/${userId}/`, data)
+                .then(resp => {
+                    rg4js('setUser', {
+                        identifier: `${resp.data.username}`,
+                        isAnonymous: false,
+                        email: `${resp.data.email}`,
+                        firstName: `${resp.data.first_name}`,
+                        fullName: `${resp.data.first_name} ${resp.data.last_name}`
+                    })
                 })
-            })
-            .then(
-                confirmAlert({
-                    title: `Success!`,
-                    message: `You have finished filling out your user profile. Would you like to set default values for your future cover letters or go straight to creating them?`,
-                    buttons: [
-                        {
-                            label: 'Yes, straight to cover letters',
-                            color: 'red',
-                            onClick: () => history.push('/job/form/')
-                        }
-                        ,
-                        {
-                            label: 'Set your default form values',
-                            onClick: () => { history.push('/default-form-values/') }
-                        },
-                        {
-                            label: 'No, I would like to change my account information.',
-                            onClick: () => { history.push('/user-admin/') }
-                        },
-                    ]
+                .then(
+                    confirmAlert({
+                        title: `Success!`,
+                        message: `You have finished filling out your user profile. Would you like to set default values for your future cover letters or go straight to creating them?`,
+                        buttons: [
+                            {
+                                label: 'Yes, straight to cover letters',
+                                color: 'red',
+                                onClick: () => history.push('/job/form/')
+                            }
+                            ,
+                            {
+                                label: 'Set your default form values',
+                                onClick: () => { history.push('/default-form-values/') }
+                            },
+                            {
+                                label: 'No, I would like to change my account information.',
+                                onClick: () => { history.push('/user-admin/') }
+                            },
+                        ]
+                    })
+                )
+                .catch(err => {
+                    setErrorMessage(err.Message)
                 })
-            )
-            .catch(err => {
-                setErrorMessage(err.Message)
-            })
+        } else {
+            setErrorMessage("You didn't fill out the required fields")
+        }
         
         setLoading(false)
 
@@ -90,7 +111,7 @@ const AccountDetailsForm = () => {
     return (
         <div className="login-form">
             <Segment placeholder onClick={pageLoad()}>
-                <Grid stackable="true" >
+                <Grid stackable={true}>
                     <Grid.Column stackable={true}>
                         <Form onSubmit={handleSubmit(onSubmit)} error={errorMessage !== null}>
                             <Table striped inverted textAlign="center">
@@ -104,19 +125,20 @@ const AccountDetailsForm = () => {
                                                 <Form.Field>
                                                     <input
                                                         required
-                                                        placeholder={`**First Name:`}
+                                                        placeholder={`**First Name**`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"first_name"}
                                                         ref={register()}
                                                         style={{ fontWeight: "bolder" }}
+                                                        onChange={data => handleChange(data, "first_name")}
                                                     />
                                                 </Form.Field>
                                             </Table.Cell>
                                             <Table.Cell stackable>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`Middle Name:`}
+                                                        placeholder={`Middle Name`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"middle_name"}
@@ -128,7 +150,7 @@ const AccountDetailsForm = () => {
                                                 <Form.Field>
                                                     <input
                                                         required
-                                                        placeholder={`**Last Name:`}
+                                                        placeholder={`**Last Name**`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"last_name"}
@@ -143,7 +165,7 @@ const AccountDetailsForm = () => {
                                             <Table.Cell stackable>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`Preferred Name:`}
+                                                        placeholder={`Preferred Name`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"preferred_name"}
@@ -157,7 +179,7 @@ const AccountDetailsForm = () => {
                                             <Table.Cell>
                                                 <Form.Field name="phone_number">
                                                     <input
-                                                        placeholder={`Phone Number:`}
+                                                        placeholder={`Phone Number`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"phone_number"}
@@ -166,7 +188,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field name="LinkedIn">
                                                     <input
-                                                        placeholder={`LinkedIn:`}
+                                                        placeholder={`LinkedIn`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"linkedin"}
@@ -175,7 +197,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field name="github">
                                                     <input
-                                                        placeholder={`Github:`}
+                                                        placeholder={`Github`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"github"}
@@ -184,7 +206,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field name="portfolioWebsite">
                                                     <input
-                                                        placeholder={`Portfolio Website:`}
+                                                        placeholder={`Portfolio Website`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"portfolio_website"}
@@ -198,7 +220,7 @@ const AccountDetailsForm = () => {
                                             <Table.Cell>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`Street Address:`}
+                                                        placeholder={`Street Address`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"street_address"}
@@ -207,7 +229,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`City Address:`}
+                                                        placeholder={`City Address`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"city_address"}
@@ -216,7 +238,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`State Address:`}
+                                                        placeholder={`State Address`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"state_address"}
@@ -225,7 +247,7 @@ const AccountDetailsForm = () => {
                                                 </Form.Field>
                                                 <Form.Field>
                                                     <input
-                                                        placeholder={`Zip Code:`}
+                                                        placeholder={`Zip Code`}
                                                         defaultValue={""}
                                                         type="text"
                                                         name={"zip_code"}

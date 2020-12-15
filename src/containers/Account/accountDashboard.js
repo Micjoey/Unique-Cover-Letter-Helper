@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, } from 'react-router-dom'
-import { logout } from '../../store/actions/Auth'
 import { Grid, Container, Segment, Header, Menu } from 'semantic-ui-react'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+import rg4js from 'raygun4js';
+
 
 
 
@@ -96,7 +97,7 @@ const AccountDashboard = () => {
         return(
             <Segment vertical>
                 <Container>
-                    <Grid container stackable="true" verticalAlign='top' divided columns={2}>
+                    <Grid container stackable={true} verticalAlign='top' divided columns={2}>
                         <Grid.Column width={4}>
                             Loading
                         </Grid.Column>

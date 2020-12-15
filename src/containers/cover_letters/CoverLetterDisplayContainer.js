@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import rg4js from 'raygun4js';
 import { useForm } from 'react-hook-form'
 import { determineCoverLetter } from './determineCoverLetterFormat'
 import { Link } from 'react-router-dom'
@@ -38,8 +38,8 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             Authorization: `Bearer ${accessToken}`
         }
         axios.get(`/api/users/${userId}/`)
-            .then(res => {
-                setUser(res.data)
+            .then(resp => {
+                setUser(resp.data)
                 rg4js('setUser', {
                     identifier: `${resp.data.username}`,
                     isAnonymous: false,
@@ -61,7 +61,7 @@ const CoverLetterChoiceContainer = ({job, userId}) => {
             <Container>
                 <SegmentGroup inverted>
                         <Segment>
-                            <Link to="/job/form">Create another cover letter?</Link>
+                            <Link to="/job/form" user={user}>Create another cover letter?</Link>
                         </Segment>
                         <Segment>
                             <form onSubmit={handleSubmit(onSubmit)}>

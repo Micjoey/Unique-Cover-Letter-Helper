@@ -10,6 +10,8 @@ import jwtDecode from 'jwt-decode'
 import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
 import * as actions from '../../store/actions/Auth'
+import rg4js from 'raygun4js';
+
 
 
 const ChangeAccountInfo = (props) => {
@@ -40,7 +42,7 @@ const ChangeAccountInfo = (props) => {
             .catch(err => {
                 // console.log(err)
             })
-    }, [])
+    }, [accessToken, userId])
 
 
     const onSubmit = data => {

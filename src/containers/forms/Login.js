@@ -1,9 +1,8 @@
 // import { Form, Input, Button, Checkbox, Spin, Space, Alert } from 'antd';
 import {
-    Form, Input, Message,
-    Header, Button, Grid,
-    Container, Segment, Menu,
-    Table, Icon, Label, Tab, Divider
+    Form, Message,
+    Button, Grid,
+    Segment,  Divider
 } from 'semantic-ui-react'
 
 import {Nav} from 'react-bootstrap';
