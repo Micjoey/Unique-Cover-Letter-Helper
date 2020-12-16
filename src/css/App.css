@@ -51,3 +51,10 @@ font {
 }
 
 
+.nav-link:hover {
+  background-color: rgba(227, 227, 227, 0.801);
+  border-radius: 10%;
+  border-style: outset;
+  border-width: 1px;
+  border-color: coral; 
+}
