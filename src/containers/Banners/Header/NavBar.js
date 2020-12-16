@@ -76,7 +76,6 @@ const Header = () => {
 export default Header
 
 const LoggedInNav = (props, logout, user) => {
-  console.log(user)
   if (!props.loading) {
     return(
       <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>

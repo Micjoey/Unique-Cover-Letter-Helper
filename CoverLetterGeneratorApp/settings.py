@@ -108,8 +108,8 @@ RAYGUN4PY_CONFIG = {
     'api_key': os.getenv("RAYGUN_API_KEY")
 }
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True # need to change
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True # need to change
 
 ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
