@@ -38,6 +38,7 @@
     "drop-db": " dropdb uniquecoverlettergenerator && heroku pg:pull postgresql-shallow-57562 uniquecoverlettergenerator",
     "prep-db": "npm run copy-db-local  && npm run copy-heroku-db && npm run drop-db",
     "build": "npm run react-scripts build && git add build || npm run copy-both-db",
+    "test-run": "git add . && git commit -m 'trial' && git push",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "npm run build"
