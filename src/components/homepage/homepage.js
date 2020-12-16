@@ -43,7 +43,7 @@ const HomepageHeading = ({ mobile }) => {
                     marginTop: mobile ? '0.5em' : '1.5em',
                 }}
             />
-            <Button primary size='huge' onClick={() => history.push('/all-jobs/')}>
+            <Button primary size='huge' onClick={() => history.push('/job/form/')}>
                 Get Started
                 <Icon name='right arrow' />
             </Button>
