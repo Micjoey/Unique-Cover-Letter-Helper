@@ -32,7 +32,12 @@
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build",
+    "copy-db-local": "pg_dump uniquecoverlettergenerator > database/localDB",
+    "copy-heroku-db": "heroku pg:backups:capture && heroku pg:backups:download > database/latest.dump && rm latest.dump",
+    "copy-both-db": "npm run copy-db-local && npm run copy-heroku-db",
+    "drop-db": " dropdb uniquecoverlettergenerator && heroku pg:pull postgresql-shallow-57562 uniquecoverlettergenerator",
+    "prep-db": "npm run copy-db-local  && npm run copy-heroku-db && npm run drop-db && echo 'FINISHED DATABASE BACKUP'",
+    "build": "npm run copy-both-db && npm run react-scripts build && git add build && git add database && echo 'FINSIHED DATABASE BUILD'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "npm run build"
