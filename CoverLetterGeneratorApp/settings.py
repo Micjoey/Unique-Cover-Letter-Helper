@@ -105,7 +105,7 @@ MIDDLEWARE = [
 ]
 
 RAYGUN4PY_CONFIG = {
-    'api_key': 'whox8sMPt2ROwK7PItisYw'
+    'api_key': os.getenv("RAYGUN_API_KEY")
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
