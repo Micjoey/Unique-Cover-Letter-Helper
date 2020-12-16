@@ -57,7 +57,7 @@ const JobList = () => {
         .catch(err => {
             actions.authCheckState()
         })
-    }, [])
+    }, [accessToken])
     if (loaded.isLoaded && !props.loading) {
         if (allJobs.length) {
             return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Container, Form, Grid, Header, Popup, Segment } from 'semantic-ui-react'
-import jwtDecode from 'jwt-decode'
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { job_template_choices, job_stages } from "../FieldChoices";

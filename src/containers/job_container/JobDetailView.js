@@ -89,7 +89,7 @@ const reveal = (divToHide, button) => {
     const div = document.getElementsByClassName(divToHide)[0]
     const buttonToChange = document.getElementById(button)
     const coverLetter = document.getElementsByClassName("cover-letter-container")[0]
-    const jobDetail = document.getElementsByClassName("job-and-cover-letter-container")[0]
+    // const jobDetail = document.getElementsByClassName("job-and-cover-letter-container")[0]
     const jobDetailButton = document.getElementById("job-details-button")
     const coverLetterButton = document.getElementById("cover-letter-button")
 

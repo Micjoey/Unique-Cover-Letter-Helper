@@ -5,8 +5,7 @@ import {
     Segment,  Divider
 } from 'semantic-ui-react'
 
-import {Nav} from 'react-bootstrap';
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../store/actions/Auth'
 import { useHistory }  from 'react-router-dom';

@@ -105,7 +105,7 @@ const CoverLetterView = () => {
                 }
                 <Grid columns={2} stackable>
                     <Grid.Row>
-                        <Grid.Column verticalAlign="left">
+                        <Grid.Column verticalAlign="middle">
                             <Segment inverted >
                                 <JobForm job={formVariables} setFormVariables={setFormVariables} user={user}/>
                             </Segment>

@@ -11,7 +11,7 @@ export const JobForm = (props) => {
     const job = props.job
     const history = useHistory()
     const [error, setError] = useState({})
-    const { register, watch, handleSubmit} = useForm({
+    const { handleSubmit } = useForm({
         reValidateMode: 'onChange'
     })
     const [accessToken] = useState(localStorage.getItem('access_token'))
@@ -60,8 +60,11 @@ export const JobForm = (props) => {
                     eArray.map(e => {
                         if (e.includes("fields link, position_title, belongs_to_user")) {
                             setError("You have already applied to this job!")
+                            return null
                         } else {
                             errorMessage += e
+                            setError(errorMessage)
+                            return null
                         }
                     })
                 })

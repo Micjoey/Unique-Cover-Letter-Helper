@@ -4,7 +4,7 @@ import { Segment, Dimmer, Image, Loader } from "semantic-ui-react"
 
 export const loadingPage = () => {
     return (
-        <Segment padded="very"> 
+        <Segment padded="very" style={{zIndex: -1}}> 
             <Dimmer active>
                 <Loader content='Loading' />
             </Dimmer>
@@ -15,7 +15,7 @@ export const loadingPage = () => {
 }
 export const loadingPageInverted = () => {
     return (
-        <Segment padded="very">
+        <Segment padded="very" style={{ zIndex: -1 }}>
             <Dimmer active inverted>
                 <Loader inverted size='massive' content='Loading' />
             </Dimmer>

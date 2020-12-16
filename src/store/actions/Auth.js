@@ -102,7 +102,7 @@ export const authSignUp = (data, setErrorMessage, justSignedUp, history) => {
         }).then(response => {
             dispatch(authLogin(username, password1, setErrorMessage, justSignedUp, history))
             // const token = response.data.token;
-            // // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
             // const accessToken = response.data.token;
             // const refreshToken = response.data.refresh;
             // localStorage.setItem('access_token', accessToken);

@@ -17,6 +17,7 @@ import PreferredDetailsContainer from './containers/Account/PreferredDetailsCont
 
 const PrivateRoute = ({components: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
+    
     return (
         authenticated === true ? 
         <Route {...rest} render={ props => <Component {...props}/>} />

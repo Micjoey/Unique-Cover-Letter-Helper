@@ -33,7 +33,7 @@ axios.interceptors.response.use(response =>
                     authCheckState()
                 });
         }
-        
+        authCheckState()
         return Promise.reject(error);
     }, () => {
         authCheckState()
