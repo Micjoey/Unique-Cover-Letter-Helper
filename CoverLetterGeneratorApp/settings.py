@@ -100,8 +100,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'raygun4py.middleware.django.Provider',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+RAYGUN4PY_CONFIG = {
+    'api_key': 'whox8sMPt2ROwK7PItisYw'
+}
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True # need to change
