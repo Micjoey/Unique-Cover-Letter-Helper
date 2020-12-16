@@ -43,13 +43,13 @@ const AccountDashboard = () => {
   
     if (loaded) {
         return (
-            <div class="outer-semantic">
+            <div className="outer-semantic">
                 <Segment placeholder className="outer-semantic" padded="very">
                     <Container text textAlign="center">
                         <Grid container divided textAlign="center" >
                             {/* <Grid.Row> */}
                                 {/* <Grid.Column width={8}> */}
-                                <Container content>
+                                <Container>
                                     <Segment>
                                         <Header as="h3">Account Info</Header>
                                     </Segment>

@@ -36,7 +36,7 @@ const ChangeEmail = (props) => {
                 })
             })
             .then(() => {
-                setLoading(true)
+                setLoading(false)
             })
             .catch(err => {
                 // console.log(err)
@@ -77,7 +77,6 @@ const ChangeEmail = (props) => {
         }
     }
     if (!loading) {
-
         return (
             <Shell>
                 <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>

@@ -11,6 +11,7 @@ import Shell from '../../containers/Account/Shell';
 import { useHistory } from 'react-router-dom';
 import * as actions from '../../store/actions/Auth'
 import rg4js from 'raygun4js';
+import { loadingPage } from '../LoadingPage';
 
 
 
@@ -24,6 +25,7 @@ const ChangeAccountInfo = (props) => {
     const userId = jwtDecode(accessToken).user_id
 
     useEffect(() => {
+        setLoading(true)
         axios.defaults.headers = {
             "Content-type": "application/json",
             Authorization: `Bearer ${accessToken}`
@@ -42,6 +44,7 @@ const ChangeAccountInfo = (props) => {
             .catch(err => {
                 // console.log(err)
             })
+        setLoading(false)
     }, [accessToken, userId])
 
 
@@ -95,7 +98,7 @@ const ChangeAccountInfo = (props) => {
             ]
         });
     }
-    if (user) {
+    if (user && !loading) {
         return (
             <Shell>
                 <Form onSubmit={handleSubmit(onSubmit)} error={error !== null}>
@@ -317,7 +320,11 @@ const ChangeAccountInfo = (props) => {
             </Shell>
         )
     } else {
-        history.push('/user-admin/')
+        // history.push('/user-admin/')
+        return (
+            loadingPage()
+
+        )
     }
 
 }
