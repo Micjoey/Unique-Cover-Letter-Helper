@@ -88,15 +88,15 @@ const LoggedInNav = (props, logout, user) => {
             <Nav.Link href="/job/form/" className="nav-link">Cover Letter Form</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
-              <NavDropdown.Item href="/user-admin/">Account</NavDropdown.Item>
+              <NavDropdown.Item href="/user-admin/" className="nav-link">Account</NavDropdown.Item>
               {
                 user.is_superuser ? 
-                <NavDropdown.Item href="/admin/">Admin</NavDropdown.Item> :
+                  <NavDropdown.Item href="/admin/" className="nav-link">Admin</NavDropdown.Item> :
                 null
               }
               <NavDropdown.Divider />
               <ErrorBoundary>
-                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => logout()} className="nav-link">Logout</NavDropdown.Item>
               </ErrorBoundary>
             </NavDropdown>
           </Nav>
