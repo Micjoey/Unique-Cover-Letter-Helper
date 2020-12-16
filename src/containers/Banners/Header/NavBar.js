@@ -76,6 +76,7 @@ const Header = () => {
 export default Header
 
 const LoggedInNav = (props, logout, user) => {
+  console.log(user)
   if (!props.loading) {
     return(
       <Navbar bg="light" expand="lg" className="nav-bar" sticky={true}>
@@ -90,7 +91,7 @@ const LoggedInNav = (props, logout, user) => {
               <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
               <NavDropdown.Item href="/user-admin/" className="nav-link">Account</NavDropdown.Item>
               {
-                user.is_superuser || user.staff_status ? 
+                user.is_superuser || user.is_staff ? 
                   <NavDropdown.Item href="/admin/" className="nav-link">Admin</NavDropdown.Item> :
                 null
               }
