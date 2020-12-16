@@ -76,6 +76,7 @@ const ChangePassword = (props) => {
                                         // value=
                                         placeholder="Current Password"
                                         defaultValue={newPassword}
+                                        autoComplete="current-password"
                                         type="password"
                                         name={"oldPassword"}
                                         ref={register()}
@@ -96,6 +97,7 @@ const ChangePassword = (props) => {
                                         defaultValue={newPassword}
                                         type="password"
                                         name={"new_password1"}
+                                        autoComplete="new-password"
                                         ref={register()}
                                     />
                                 </Form.Field>
@@ -106,6 +108,7 @@ const ChangePassword = (props) => {
                                         placeholder="Confirm Password"
                                         defaultValue={confirmPassword}
                                         dependencies={["newPassword"]}
+                                        autoComplete="new-password"
                                         type="password"
                                         name={"new_password2"}
                                         ref={register()}
