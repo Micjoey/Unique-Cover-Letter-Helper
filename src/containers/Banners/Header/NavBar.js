@@ -90,7 +90,7 @@ const LoggedInNav = (props, logout, user) => {
               <NavDropdown.Header>Welcome {user.preferred_name ? user.preferred_name : user.first_name}</NavDropdown.Header>
               <NavDropdown.Item href="/user-admin/" className="nav-link">Account</NavDropdown.Item>
               {
-                user.is_superuser ? 
+                user.is_superuser || user.staff_status ? 
                   <NavDropdown.Item href="/admin/" className="nav-link">Admin</NavDropdown.Item> :
                 null
               }
