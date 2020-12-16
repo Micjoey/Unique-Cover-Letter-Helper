@@ -256,12 +256,12 @@ const ChangeAccountInfo = (props) => {
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
-                                <Table.Cell textAlign="center" verticalAlign="middle">City Address: </Table.Cell>
+                                <Table.Cell textAlign="center" verticalAlign="middle">City: </Table.Cell>
                                 <Table.Cell>
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update City Address:`}
+                                            placeholder={`Update City:`}
                                             defaultValue={user.city_address}
                                             type="text"
                                             name={"city_address"}
@@ -271,12 +271,12 @@ const ChangeAccountInfo = (props) => {
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
-                                <Table.Cell textAlign="center" verticalAlign="middle">State Address: </Table.Cell>
+                                <Table.Cell textAlign="center" verticalAlign="middle">State: </Table.Cell>
                                 <Table.Cell>
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={"Update State Address:"}
+                                            placeholder={"Update State:"}
                                             defaultValue={user.state_address}
                                             type="text"
                                             name={"state_address"}
