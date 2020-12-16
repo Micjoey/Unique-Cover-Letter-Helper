@@ -116,7 +116,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update First Name: ${user.first_name}`}
+                                            placeholder={`Update First Name:`}
                                             defaultValue={user.first_name}
                                             type="text"
                                             name={"first_name"}
@@ -137,7 +137,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="middle_name">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update middle Name: ${user.middle_name}`}
+                                            placeholder={`Update middle Name:`}
                                             defaultValue={user.middle_name}
                                             type="text"
                                             name={"middle_name"}
@@ -153,7 +153,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="last_name">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Last Name: ${user.last_name}`}
+                                            placeholder={`Update Last Name:`}
                                             defaultValue={user.last_name}
                                             type="text"
                                             name={"last_name"}
@@ -171,7 +171,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="preferred_name">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Preferred Name: ${user.preferred_name}`}
+                                            placeholder={`Update Preferred Name:`}
                                             defaultValue={user.preferred_name}
                                             type="text"
                                             name={"preferred_name"}
@@ -186,7 +186,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="phone_number">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Phone Number: ${user.phone_number}`}
+                                            placeholder={`Update Phone Number:`}
                                             defaultValue={user.phone_number}
                                             type="text"
                                             name={"phone_number"}
@@ -201,7 +201,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field name="LinkedIn">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update LinkedIn: ${user.linkedin}`}
+                                            placeholder={`Update LinkedIn:`}
                                             defaultValue={user.linkedin}
                                             type="text"
                                             name={"linkedin"}
@@ -216,7 +216,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="github">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Github: ${user.github}`}
+                                            placeholder={`Update Github:`}
                                             defaultValue={user.github}
                                             type="text"
                                             name={"github"}
@@ -231,7 +231,7 @@ const ChangeAccountInfo = (props) => {
                                     <Form.Field name="portfolioWebsite">
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Portfolio Website: ${user.portfolio_website}`}
+                                            placeholder={`Update Portfolio Website:`}
                                             defaultValue={user.portfolio_website}
                                             type="text"
                                             name={"portfolio_website"}
@@ -246,7 +246,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Street Address: ${user.street_address}`}
+                                            placeholder={`Update Street Address:`}
                                             defaultValue={user.street_address}
                                             type="text"
                                             name={"street_address"}
@@ -261,7 +261,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update City Address: ${user.city_address}`}
+                                            placeholder={`Update City Address:`}
                                             defaultValue={user.city_address}
                                             type="text"
                                             name={"city_address"}
@@ -276,7 +276,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update State Address: ${user.state_address}`}
+                                            placeholder={"Update State Address:"}
                                             defaultValue={user.state_address}
                                             type="text"
                                             name={"state_address"}
@@ -291,7 +291,7 @@ const ChangeAccountInfo = (props) => {
                                         <Form.Field>
                                         {/* <label>Confirm Email</label> */}
                                         <input
-                                            placeholder={`Update Zip Code: ${user.zip_code}`}
+                                            placeholder={`Update Zip Code:`}
                                             defaultValue={user.zip_code}
                                             type="text"
                                             name={"zip_code"}
