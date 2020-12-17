@@ -108,8 +108,8 @@ RAYGUN4PY_CONFIG = {
     'api_key': os.getenv("RAYGUN_API_KEY")
 }
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True # need to change
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True # need to change
 
 ROOT_URLCONF = 'CoverLetterGeneratorApp.urls'
 
@@ -228,7 +228,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 JWT_AUTH = {
     'JWT_LEEWAY': 10,
-    # 'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
