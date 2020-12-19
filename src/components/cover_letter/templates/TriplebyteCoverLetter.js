@@ -61,7 +61,6 @@ const TriplebyteCoverLetter = (props) => {
                                 }
                             </p>
                             <br/>
-                            <br/>
                             {user.email ? <p className="com">{user.email}</p>
                                 :
                                 null}
