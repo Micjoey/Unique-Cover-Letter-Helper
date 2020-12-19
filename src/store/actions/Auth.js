@@ -10,12 +10,13 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, refresh_token = null) => {
+export const authSuccess = (token, refresh_token = null, expirationDate) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
         access_token: token,
-        refresh_token: refresh_token
+        refresh_token: refresh_token,
+        expirationDate: expirationDate,
     }
 }
 
@@ -63,8 +64,8 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             const refresh_token = response.data.refresh;
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
-            
-            dispatch(authSuccess(token, refresh_token));
+            const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            dispatch(authSuccess(token, refresh_token, expirationDate));
             if (justSignedUp) {
                 const navBar = document.getElementsByClassName("nav-bar")[0]
                 navBar.style.display = "none"
@@ -101,12 +102,6 @@ export const authSignUp = (data, setErrorMessage, justSignedUp, history) => {
             password2: password2,
         }).then(response => {
             dispatch(authLogin(username, password1, setErrorMessage, justSignedUp, history))
-            // const token = response.data.token;
-            // const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
-            // const accessToken = response.data.token;
-            // const refreshToken = response.data.refresh;
-            // localStorage.setItem('access_token', accessToken);
-            // // localStorage.setItem('refresh_token', refreshToken);
         }).catch(err => {
             setErrorMessage("Either the password was too common (i.e password123), the Username taken, or the Email was. Please try again.")
             dispatch(authFail(err))
@@ -118,7 +113,6 @@ export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('access_token')
         const refresh_token = localStorage.getItem('refresh_token')
-        // console.log(refresh_token)
         if (token === undefined) {
             dispatch(logout())
         } 
