@@ -59,6 +59,7 @@ const Header = () => {
           props.loading = false
         })
         .catch(err => {
+          actions.authCheckState()
           // console.log(err)
         })
     }
