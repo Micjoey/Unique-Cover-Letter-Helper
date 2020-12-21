@@ -7,7 +7,7 @@ const Jobs = props => {
     const allJobs = Object.values(props.jobs)
     
     return (
-        <ListGroup>
+        <ListGroup className="standard-header">
            {allJobs.map(job => (
                <a href={`/job/${job.id}`} key={job.id}>
                    <ListGroup.Item style={{minHeight: "fit-content"}}>

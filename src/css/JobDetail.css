@@ -73,6 +73,14 @@
 }
 
 .header-title {
-    font-size: '4em';
+    font-size: 4em;
     font-weight: 'normal';
+}
+
+.standard-header {
+    font-size: 2em;
+}
+
+.smaller-header {
+    font-size: 1em;
 }

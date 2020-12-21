@@ -7,24 +7,37 @@ import Pagination from '../../components/pagination/Pagination'
 import * as actions from '../../store/actions/Auth'
 import {
     Container,
+    Form,
+    Grid,
     Header,
+    Input,
+    Label,
     Segment,
 } from 'semantic-ui-react'
 import { useSelector } from 'react-redux';
 import CoverLetterView from '../forms/CoverLetterView';
 import { loadingPageInverted } from '../../components/LoadingPage';
+import { searchBar } from './searchBar'
+import { useForm } from 'react-hook-form'
 
 
 const JobList = () => {
     
     const [accessToken] = useState(localStorage.getItem('access_token'))
-    const [jobProps, setJobProps] = useState([])
     const [allJobs, setAllJobs] = useState([])
     const [next, setNext] = useState([])
+    const [searchString, setString] = useState("")
     const [onPrevious, setOnPrevious] = useState([])
     const [loaded, setLoaded] = useState({isLoaded: false})
     const [pageIndex, setPageIndex] = useState(1)
     const [count, setCount] = useState(0)
+    const { handleSubmit } = useForm({
+        reValidateMode: 'onChange'
+    })
+
+    const handleChange =( e, { name, value }) => {
+        searchBar(value, allJobs, setAllJobs)
+    }
     const props = useSelector(state => (
         {
             ...state,
@@ -46,7 +59,6 @@ const JobList = () => {
         })
         .then(response => {
             setAllJobs(response.data.results)
-            setJobProps(response.data)
             setNext(response.data.next)
             setCount(response.data.count)
             setOnPrevious(response.data.previous)
@@ -58,24 +70,32 @@ const JobList = () => {
             actions.authCheckState()
         })
     }, [accessToken])
-    if (loaded.isLoaded && !props.loading) {
+    if (loaded.isLoaded && !props.loading && allJobs) {
         if (allJobs.length) {
             return (
                 <Container>
                     <Segment>
-                        <Header
-                            as='h1'
-                            content='All Jobs'
-                            // inverted
-                            style={{
-                                fontSize: '2em',
-                                // fontWeight: 'normal',
-                                // marginBottom: 0,
-                                // marginTop: '.5em',
-                            }}
-                        />
-                        <Segment style={{fontSize: '2em'}}>
-                            <Jobs jobs={allJobs} jobProps={jobProps} />
+                        <Segment raised primary={true}>
+                            <Form className="search-bar-form">
+                                <Label as='h1' color='blue'>
+                                    Search Bar
+                                </Label>
+                                <Form.Input 
+                                    type="text"
+                                    placeholder="Search by Company, Name, Status"
+                                    onChange={handleChange}
+                                    className="search-bar-input"
+                                >
+                                </Form.Input>
+                            </Form>
+                        </Segment>
+                        <Segment className="standard-header" secondary>
+                            <Header
+                                as='h1'
+                                content='All Jobs'
+                                className="all-jobs-header"
+                            />
+                            <Jobs jobs={allJobs} />
                         </Segment>
                         <Segment style={{ fontSize: '1em' }}>
                             <Pagination
