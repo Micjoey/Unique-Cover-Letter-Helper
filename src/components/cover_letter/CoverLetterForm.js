@@ -130,6 +130,7 @@ export const JobForm = (props) => {
                         type="text" 
                         placeholder={job.city ? job.city : "City"}
                         name="city"
+                        defaultValue={job.city}
                         onChange={handleChange}
                     />
                     <Form.Input 
