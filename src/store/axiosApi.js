@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { authCheckState} from './actions/Auth';
+import { authCheckState, logout} from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: '',
@@ -30,6 +30,9 @@ axios.interceptors.response.use(response =>
                     return axiosInstance(originalRequest);
                 })
                 .catch(err => {
+                    if (err.response.data.code === "token_not_valid") {
+                        logout()
+                    }
                     authCheckState()
                 });
         }
