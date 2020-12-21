@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { authCheckState} from './actions/Auth';
+import { authCheckState, logout} from './actions/Auth';
 
 const axiosInstance = axios.create({
     baseURL: '',
@@ -20,9 +20,10 @@ axios.interceptors.response.use(response =>
         const originalRequest = error.config;
         if (error !== undefined && error.response.status === 401 && error.response.statusText === "Unauthorized") {
             const refresh_token = localStorage.getItem('refresh_token');
-            const access_token = localStorage.getItem('access_token');
+            // const access_token = localStorage.getItem('access_token');
             return axiosInstance
-                .post('/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
+                .post('/api/token/refresh/', { refresh: refresh_token })
+                // .post('/api/token/refresh/', { refresh: refresh_token, access_token: access_token })
                 .then(response => {
                     localStorage.setItem('access_token', response.data.access);
                     axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
@@ -30,6 +31,9 @@ axios.interceptors.response.use(response =>
                     return axiosInstance(originalRequest);
                 })
                 .catch(err => {
+                    if (err.response.data.code === "token_not_valid"){
+                        logout()
+                    }
                     authCheckState()
                 });
         }

@@ -65,6 +65,7 @@ export const authLogin = (username, password, setErrorState = null, justSignedUp
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             const expirationDate = new Date(new Date().getTime() + 5000 * 1000);
+            localStorage.setItem('expiration', expirationDate);
             dispatch(authSuccess(token, refresh_token, expirationDate));
             if (justSignedUp) {
                 const navBar = document.getElementsByClassName("nav-bar")[0]

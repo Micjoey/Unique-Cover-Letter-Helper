@@ -52,25 +52,26 @@ export const JobForm = (props) => {
 
         axios.post('/api/jobs/', job)
             .then(res => history.push(`/job/${res.data.id}`, {...res.data.id}))
-            .catch(error => 
-                {   
-                const errors = Object.values(error.response.data)
+            .catch(error => {  
                 let errorMessage = ""
-                errors.map(eArray => {
-                    eArray.map(e => {
-                        if (e.includes("fields link, position_title, belongs_to_user")) {
-                            setError("You have already applied to this job!")
-                            return null
-                        } else {
-                            errorMessage += e
-                            setError(errorMessage)
-                            return null
-                        }
+                if (error.response.data) {
+                    const errors = Object.values(error.response.data)
+                    errors.map(eArray => {
+                        eArray.map(e => {
+                            if (e.includes("fields link, position_title, belongs_to_user")) {
+                                setError("You have already applied to this job!")
+                                return null
+                            } else {
+                                errorMessage += e
+                                setError(errorMessage)
+                                return null
+                            }
+                        })
                     })
-                })
-                // setError(errorMessage)
+                } else {
+                    setError("There was an error, please refresh or try again.")
                 }
-            )
+            })
     };
     const specificDropDown = (nameOfDropdown, nameOfDropdownTwo = null) => {
         return job.template_choices === nameOfDropdown || job.template_choices === nameOfDropdownTwo
@@ -129,6 +130,7 @@ export const JobForm = (props) => {
                     <Form.Input 
                         type="text" 
                         placeholder={job.city ? job.city : "City"}
+                        defaultValue={job.city}
                         name="city"
                         onChange={handleChange}
                     />
