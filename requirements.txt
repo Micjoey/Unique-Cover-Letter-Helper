@@ -54,7 +54,7 @@ soupsieve==2.0.1
 sqlparse==0.4.1
 structlog==20.1.0
 toml==0.10.2
-urllib3==1.26.2
+urllib3==1.26.3
 virtualenv==20.2.2
 whitenoise==5.2.0
 wrapt==1.12.1
