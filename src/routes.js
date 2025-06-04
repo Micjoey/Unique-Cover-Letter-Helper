@@ -15,7 +15,7 @@ import { UpdateJobForm } from './components/cover_letter/UpdateCoverLetter'
 import PreferredDetailsContainer from './containers/Account/PreferredDetailsContainer'
 
 
-const PrivateRoute = ({components: Component, ...rest}) => {
+const PrivateRoute = ({component: Component, ...rest}) => {
     const authenticated = localStorage.getItem("access_token") !== null
     
     return (
@@ -26,7 +26,7 @@ const PrivateRoute = ({components: Component, ...rest}) => {
     )
 }
 
-const NeedUserCredentials = ({components: Component, ...rest}) => {
+const NeedUserCredentials = ({component: Component, ...rest}) => {
     const state = useHistory().location.state
 
     return (
