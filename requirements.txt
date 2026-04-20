@@ -5,7 +5,7 @@ asgiref==3.3.1
 beautifulsoup4==4.9.3
 billiard==3.3.0.23
 blinker==1.4
-celery==3.1.26.post2
+celery==5.2.2
 certifi==2020.11.8
 cffi==1.14.4
 chardet==3.0.4
