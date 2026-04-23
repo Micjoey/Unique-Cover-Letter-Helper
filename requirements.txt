@@ -39,7 +39,7 @@ psutil==5.7.3
 psycopg2==2.8.6
 py==1.10.0
 pycparser==2.20
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyOpenSSL==20.0.0
 pyparsing==2.4.7
 python-dotenv==0.15.0
